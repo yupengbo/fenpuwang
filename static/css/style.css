@@ -1,0 +1,118 @@
+
+html body, html input, html textarea, html select, html button {
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+body {
+    padding-top:45px;
+    margin: 0px;
+}
+
+#top-navigation-bar {
+    height: 45px;
+    width: 100%;
+    position:fixed;
+    top: 0;
+    background-color: #422422;
+}
+
+#main-content {
+    width: 940px;
+    min-height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.question-body {
+    width: 100%;
+    min-height: 100px;
+    margin-top: 30px;
+}
+
+.question-text-area {
+    width: 660px;
+    float: left;
+}
+.question-avatar-area {
+    float: right;
+    margin-left: 20px;
+    margin-top:15px;
+    padding-left: 20px;
+    background-color: #f9f8f5;
+    width: 200px;
+    height: 70px;
+}
+
+.question-avatar-area img {
+    float:left;
+}
+
+.profile-area {
+    float:left;
+    margin-top: 20px;
+}
+
+.question-avatar-area .profile-name {
+    font-size: 14px;
+    color: #555555;
+}
+
+.avatar-big {
+    width: 44px;
+    height: 44px;
+    margin-top:13px;
+    margin-right: 20px;
+}
+
+.question-title {
+    font-size: 20px;
+    color: #222222;
+
+    line-height: 32px;
+}
+
+.question-desc {
+    font-size: 14px;
+    color:#444444;
+    line-height: 24px;
+
+}
+
+.action-bar {
+    width: 100%;
+    height: 48px;
+    color: #f9f8f5;
+    margin-top: 60px;
+    margin-bottom: 30px;
+}
+
+.answer-body {
+    width: 100%;
+}
+
+.section-block {
+    background-color: #fdfdfd;
+    border: 1px solid #eeeeee;
+}
+.answer-list-section {
+    float:left;
+    margin-right: 20px;
+    margin-bottom: 50px;
+    padding: 20 20 40 20px;
+    width: 590px;
+
+}
+
+.answer-side-section {
+    float:left;
+    width: 320px;
+}
+
+.related-products {
+    width: 100%;
+}
+
+.related-questions {
+    margin-top: 20px;
+    width: 100%;
+}
