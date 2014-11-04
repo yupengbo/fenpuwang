@@ -6,7 +6,7 @@ Get base url for api request.
 """
 def get_base_url():
     if settings.DEBUG:
-        base_url = "http://api.dabanniu.com/v2/"
+        base_url = "http://testapi.dabanniu.com/v2/"
     else:
         base_url = "http://api.dabanniu.com/v2/"
     return base_url

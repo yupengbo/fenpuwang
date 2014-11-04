@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 
 {% block title %} {{ question.question.title }} {% endblock %}
-
+{% block script %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/question.css" %}">
+{% endblock %}
 {% block main_content %}
 <div class="question-body">
     <div class="question-text-area">
@@ -53,3 +56,7 @@
 </div>
 
 {% endblock %}
+
+<script>
+
+</script>
