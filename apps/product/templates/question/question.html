@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %} {{ question.question.title }} {% endblock %}
+{% block script %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/question.css" %}">
+{% endblock %}
+{% block main_content %}
+<div class="question-body">
+    <div class="question-text-area">
+        <div class="question-title">
+            {{ question.question.title }}
+        </div>
+        <div class="question-desc">
+            {{ question.question.content }}
+        </div>
+    </div>
+    <div class="question-avatar-area">
+        <img class="avatar-big" src="{{ question.question.user.avatarURL }}" alt="avatar" />
+        <div class="profile-area">
+            <div class="profile-name">{{ question.question.user.userName }}</div>
+            <div class="profile-property">
+                {{ question.question.user.skinType }},{{ question.question.user.ages }}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="action-bar"> </div>
+<div class="answer-body">
+    <div class="answer-list-section section-block">
+        <h4> {{ question.answerList|length }}个回答</h4>
+        <ul>
+            {% for answer in question.answerList %}
+                {% include "question/answerItem.html" %}
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="answer-side-section">
+        <div class="related-products section-block">
+            <div> 提到的商品 </div>
+            <div>
+                {% for product in question.relatedProductList %}
+                    {% include "question/productItem.html" %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="related-questions section-block">
+            <div> 相关问题：
+                {% for relatedQuestion in question.relatedQuestionList %}
+                    <div>{{ relatedQuestion.title }}</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
+
+<script>
+
+</script>

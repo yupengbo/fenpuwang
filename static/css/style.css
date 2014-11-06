@@ -1,25 +1,39 @@
-
+@CHARSET "UTF-8";
+html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,em,font,img,small,strong,b,u,i,s,dl,dt,dd,ol,ul,li,fieldset,form,label{
+	padding:0px; margin:0px;
+}
+a img {
+	border:0; 
+}
+ul {
+	list-style:none; 
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight:normal; font-size:12px; 
+}
+.fl {
+	float:left; 
+}
+.fr {
+	float:right; 
+}
+.clear{
+	clear:both;
+}
 html body, html input, html textarea, html select, html button {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
 body {
-    padding-top:45px;
     margin: 0px;
+	min-width:320px;
 }
 
-#top-navigation-bar {
-    height: 45px;
+#top-navigation-bar,#main-content{
     width: 100%;
-    position:fixed;
-    top: 0;
-    background-color: #422422;
 }
-
 #main-content {
-    width: 940px;
+    width: 100%;
     min-height: 400px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
