@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block script %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/feeds.css" %}">
+{% endblock %}
+{% block main_content %}
+<ul class='feedsList'>
+    {% for feed in feeds.feedList %}
+        {% include "items/feedItems/baseFeedItem.html" %}
+    {% endfor %}
+</ul>
+{% endblock %}

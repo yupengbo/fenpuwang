@@ -1,39 +1,89 @@
 @CHARSET "UTF-8";
-html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,em,font,img,small,strong,b,u,i,s,dl,dt,dd,ol,ul,li,fieldset,form,label{
-	padding:0px; margin:0px;
-}
-a img {
-	border:0; 
-}
-ul {
-	list-style:none; 
-}
-h1, h2, h3, h4, h5, h6 {
-	font-weight:normal; font-size:12px; 
-}
-.fl {
-	float:left; 
-}
-.fr {
-	float:right; 
-}
-.clear{
-	clear:both;
-}
+/*   通用样式  begin   */
+html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,em,font,img,small,strong,b,u,i,s,dl,dt,dd,ol,ul,li,fieldset,form,label {padding:0px;margin:0px;}
+a,img {border:0;}
+ul {list-style:none;}
+li {list-style-type:none;}
+input,select{vertical-align:middle;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal; font-size:12px;}
+/* 鼠标样式 */
+.pointer{ cursor:pointer;}
+/* 取消边框 */
+.noborder{ border:0 none;}
+/* 文本对齐方式 */
+.t_l{ text-align:left;}
+.t_c{ text-align:center;}
+.t_r{ text-align:right;}
+/* 字母和单词换行设置，强制内容换行，强制内容不换行 */
+.break { word-break:break-all; word-wrap:break-word;}
+.nobreak { word-break:keep-all; word-wrap:normal;}
+/* 定位关系 */
+.absolute{ position:absolute;}
+.relative{ position:relative;}
+/* 浮动定义 */
+.fl {float:left; }
+.fr {float:right; }
+/* 定义文本下划线 */
+.unline{ text-decoration:underline;}
+.disunline{ text-decoration:none;}
+/* 隐藏元素，visibility可以隐藏元素，但是还是会在布局中占位 */
+.invisible{ visibility:hidden;}
+/* 从页面布局上隐藏元素，从布局上隐藏元素 */
+.hidden{ display:none;}
+.block{ display:block;}
+/* 清理浮动元素,当浮动换行时后面元素不希望浮动，添加此属性，防止IE BUG */
+.clear{ clear:both; height:0px; width:100%; font-size:1px; line-height:0px; visibility:hidden; overflow:hidden;}
+/* 容器 */
+.wrapper{ clear:both; overflow:hidden;}
+/*   通用样式  end   */
+
+/* m站特定样式  */
 html body, html input, html textarea, html select, html button {
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-}
+	}
 
-body {
-    margin: 0px;
-	min-width:320px;
-}
-
-#top-navigation-bar,#main-content{
-    width: 100%;
-}
-#main-content {
-    width: 100%;
-    min-height: 400px;
-}
+	body {
+	    margin: 0px;
+		    min-width:320px;
+			}
+			/* m站主结构  begin */
+			#top-navigation-bar,#main-content{
+			    width: 100%;
+				}
+				#main-content {
+				    width: 100%;
+					    min-height: 400px;
+						}
+						.s_avatar{width:18px;height:18px;}
+						/*  font color */
+						.fcb1{color:#222222;}
+						.fcg1{color:#aaaaaa;}
+						.fcg2{color:#666666;}
+						.fcprice{color:#bdbdbd}
+						/*  字号  */
+						.f14{font-size:15px;}
+						.f14{font-size:14px;}
+						.f13{font-size:13px;line-height:19px;}
+						.f10{font-size:10px;}
+						/*  产品图片边框  */
+						.imgborder1{border:1px solid #dbdbdb;}
+						/*  分割线  */
+						.sp_line{border-bottom:1px solid #e9e9e9;width:100%;}
+						/* m站主结构  end  */
+						/* 顶部下载  */
+						.download{height:80px; background-color:#3e3930;}
+						.download img{cursor:pointer;}
+						.download .close,.download .openapp,.download .logoicon,.download .slogan{position:absolute;}
+						.download .close{width:15px;height:15px;left:5px;top:5px;}
+						.download .openapp{width:75px;height:25px;right:10px;bottom:15px;}
+						.download .logoicon{width:40px;height:40px;left:27px;top:8px;}
+						.download .slogan{width:50%;left:73px;top:11px;}
+						/*  顶部导航  */
+						.nav{background-color:#ff5346;height:44px;}
+						.nav img{cursor:pointer;}
+						.nav ul,.nav .top_search,.nav .icon_btn{position:absolute;top:13px;}
+						.nav ul li{float:left;display:block;padding:0 10px;color:#fff;cursor:pointer;}
+						.nav ul .on{font-weight:bold;}
+						.nav .icon_btn{width:40%;right:20px;}
+						.nav .feed_filter{margin-left:20px;}
 

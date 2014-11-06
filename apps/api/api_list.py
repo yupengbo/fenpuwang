@@ -33,8 +33,16 @@ def get_question_detail(question_id, has_question_details):
 
 def get_product_detail(product_id, has_product_details, pre, mark):
     params = {'productId': product_id, 'hasBody': has_product_details, 'pre': pre, 'mark': mark}
-    return request('POST', 'getProductInfo.do', params)
+    return get_result(request('POST', 'getProductInfo.do', params))
 
 def get_product_by_category(query_type, order, category_id, filter_category_id, pre, mark):
     params = {'type': query_type, 'order': order, 'pre': pre, 'mark': mark, 'categoryId': category_id, 'filterCategoryId': filter_category_id}
-    return request('POST', 'listProductsByCategory.do', params)
+    return get_result(request('POST', 'listProductsByCategory.do', params))
+
+def get_product_feeds(category_id = 0, pre = 20, mark = 0):
+    params = {'pre': pre, 'mark': mark, 'categoryId': category_id}
+    return get_result(request('POST', 'listProductFeeds.do', params))
+
+def search(search_type, pre, mark, keyword):
+    params = {'pre': pre, 'mark': mark, 'type': search_type, 'keyword': keyword}
+    return get_result(request('POST', 'search.do', params))

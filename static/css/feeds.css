@@ -1,0 +1,7 @@
+.feedsList{background-color:#f9f9f9;}
+.feedsList li{padding:5px 12px;}
+.feedsList li .list_h{height:18px;}
+.feedsList li .list_h span{padding:2px 8px;}
+.feedsList li .list_h em{padding:4px 0;}
+.feedsList li .list_c {position:relative;clear:both;}
+.feedsList li .sp_line {padding:5px 0px;}
