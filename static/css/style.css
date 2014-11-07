@@ -51,39 +51,61 @@ html body, html input, html textarea, html select, html button {
 			    width: 100%;
 				}
 				#main-content {
-				    width: 100%;
-					    min-height: 400px;
-						}
-						.s_avatar{width:18px;height:18px;}
-						/*  font color */
-						.fcb1{color:#222222;}
-						.fcg1{color:#aaaaaa;}
-						.fcg2{color:#666666;}
-						.fcprice{color:#bdbdbd}
-						/*  字号  */
-						.f14{font-size:15px;}
-						.f14{font-size:14px;}
-						.f13{font-size:13px;line-height:19px;}
-						.f10{font-size:10px;}
-						/*  产品图片边框  */
-						.imgborder1{border:1px solid #dbdbdb;}
-						/*  分割线  */
-						.sp_line{border-bottom:1px solid #e9e9e9;width:100%;}
-						/* m站主结构  end  */
-						/* 顶部下载  */
-						.download{height:80px; background-color:#3e3930;}
-						.download img{cursor:pointer;}
-						.download .close,.download .openapp,.download .logoicon,.download .slogan{position:absolute;}
-						.download .close{width:15px;height:15px;left:5px;top:5px;}
-						.download .openapp{width:75px;height:25px;right:10px;bottom:15px;}
-						.download .logoicon{width:40px;height:40px;left:27px;top:8px;}
-						.download .slogan{width:50%;left:73px;top:11px;}
-						/*  顶部导航  */
-						.nav{background-color:#ff5346;height:44px;}
-						.nav img{cursor:pointer;}
-						.nav ul,.nav .top_search,.nav .icon_btn{position:absolute;top:13px;}
-						.nav ul li{float:left;display:block;padding:0 10px;color:#fff;cursor:pointer;}
-						.nav ul .on{font-weight:bold;}
-						.nav .icon_btn{width:40%;right:20px;}
-						.nav .feed_filter{margin-left:20px;}
-
+				    min-height: 400px;
+					}
+					.s_avatar{width:18px;height:18px;}
+					/*  font color */
+					.fcb1{color:#222222;}/* 主级别文字*/
+					.fcg1{color:#aaaaaa;}/* 弱级别文字*/
+					.fcg2{color:#666666;}/* 次级别文字*/
+					.fcprice{color:#cc9793}
+					/*  字号  */
+					.f15{font-size:15px;}
+					.f14{font-size:14px;}
+					.f13{font-size:13px;line-height:19px;}
+					.f10{font-size:10px;}
+					/*  产品图片边框  */
+					.imgborder1{border:1px solid #dbdbdb;}
+					/*  分割线  */
+					.sp_line{border-bottom:1px solid #eeeeee;width:100%;}
+					.sp_line2{border-bottom:1px solid #dbdbdb;width:100%;}
+					/* m站主结构  end  */
+					/* 顶部下载  */
+					.bg{background-repeat: no-repeat;background-position:center center;}
+					.download{height:87px; background-color:#3e3930;}
+					.download .close,.download .info,.download .btns{position:absolute;}
+					.download .info,.download .btns{width:100%;}
+					.download .info{top:12px;}
+					.download .btns{bottom:5px;}
+					.download .btns div{width:50%;}
+					.download .close{background-image:url('../images/btn_nav_cancel_pressed.png');width:15px;height:15px;left:5px;top:5px;}
+					.download .btn_download,.download .btn_openapp{cursor:pointer;background-size:78px 27px;width:78px;height:27px;}
+					.download .btn_download{background-image:url('../images/btn_banner_download_normal.png');}
+					.download .btn_openapp{background-image:url('../images/btn_banner_open_normal.png');}
+					/*  顶部导航  */
+					.nav{background-color:#ff5346;height:44px;}
+					.nav img{cursor:pointer;}
+					.nav ul,.nav .top_search,.nav .icon_btn{position:absolute;top:13px;}
+					.nav ul li{float:left;display:block;padding:0 10px;color:#fff;cursor:pointer;}
+					.nav ul .on{font-weight:bold;}
+					.nav .icon_btn{width:40%;right:20px;}
+					.nav .feed_filter{margin-left:20px;}
+					/*   search */
+					.search_box{height:188px;}
+					.search_box h1{background-size:48px 22px;width:48px;height:22px;background-image:url('../images/img_fenpu.png');margin:18px auto 0;}
+					.search_box h2{background-size:125px 14px;width:125px;height:14px;background-image:url('../images/img_solo.png');margin:12px auto 0;}
+					.search_box .search_input_box{margin:18px auto 0;}
+					.search_box ul{height:45px;margin:0 auto; width:90%;}
+					.search_box ul  li{height:45px;}
+					.search_box ul .l_b{background:url('../images/bg_input_left.png');width:2px;}
+					.search_box ul .c_b{background:url('../images/bg_input_middle.png');width:98%;}
+					.search_box ul .r_b{background:url('../images/bg_input_right.png');width:2px;}
+					.search_box input{border:0px;}
+					.search_box #index_keyword_lable,.search_box #index_btn_search{position:absolute;top:16px;}
+					.search_box #index_keyword{position:absolute;top:15px;}
+					.search_box #index_keyword,.search_box #index_keyword_lable{left:11%;width:70%;}
+					.search_box #index_btn_search{right:13% ;background-color:#fff;background-size:17px 17px;width:17px;height:17px;background-image:url('../images/btn_seach_bar_search_normal.png');}
+					@media only screen and (-webkit-min-device-pixel-ratio: 1.5), not all {
+					    .download .btn_download{background-image:url('../images/btn_banner_download_normal@2x.png');}
+						    .download .btn_openapp{background-image:url('../images/btn_banner_open_normal@2x.png')}
+							}

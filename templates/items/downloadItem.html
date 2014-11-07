@@ -1,9 +1,12 @@
-<div class='download relative'>
-    <img class='close' alt='关闭' src='' />
-    <img class='openapp' alt='打开应用' src='' />
-    <img class='logoicon' alt='logo' src='' />
-    <div class='slogan'>
-        <h1>粉扑</h1>
-        <p>“美丽，知道”化妆品问答社区</p>
-    </div>
-</div>
+{% load staticfiles %}
+<div class='download relative t_c'>
+    <div class='close'></div>
+	    <img class='close' alt='关闭' src='{% static "images/btn_banner_cancel_normal.png" %}' />
+		        <div class='info'>
+				     <img alt='粉扑·“美丽，知道”化妆品问答社区，在粉扑客户端中浏览，体验更好，内容更全哦' src='{% static "images/img_banner_information.png" %}' />
+					          </div>
+							      <div class='btns'>
+								        <div class='fl'><a href='#' class='bg btn_download block fr'></a></div>
+										      <div class='fl'><a href='#' class='bg btn_openapp block fl'></a></div>
+											      </div>
+												   </div>
