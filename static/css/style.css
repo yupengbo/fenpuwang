@@ -83,16 +83,26 @@ html body, html input, html textarea, html select, html button {
 					.download .btn_download{background-image:url('../images/btn_banner_download_normal.png');}
 					.download .btn_openapp{background-image:url('../images/btn_banner_open_normal.png');}
 					/*  顶部导航  */
-					.nav{background-color:#ff5346;height:44px;}
+					.nav{background-color:#ff5346;height:44px;overflow:hidden;}
 					.nav img{cursor:pointer;}
-					.nav ul,.nav .top_search,.nav .icon_btn{position:absolute;top:13px;}
-					.nav ul li{float:left;display:block;padding:0 10px;color:#fff;cursor:pointer;}
-					.nav ul .on{font-weight:bold;}
-					.nav .icon_btn{width:40%;right:20px;}
-					.nav .feed_filter{margin-left:20px;}
+					.nav ul{width:80%;}
+					.nav ul,.nav .icon_btn{position:absolute;top:13px;}
+					.nav ul li{float:left;display:block;padding:0 3%;color:#ffddda;cursor:pointer;}
+					.nav ul .on{font-weight:bold;color:#fff;}
+					.nav .icon_btn{width:40%;right:3%;}
+					.nav .top_search{height:44px;}
+					.nav .top_search .closebox{width:10%;min-width:40px;}
+					.nav .top_search .inputbox{width:80%;min-width:260px;}
+					.nav .top_search .close{margin:14px 12px;background-size:16px 16px;width:16px;height:16px;background-image:url('../images/btn_nav_cancel_normal.png');}
+					.nav .top_search .keyword{margin-top:6px;width:100%;border:1px  #eeeeee solid;background-color:#fff;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;height:27px;}
+					.nav .top_search .search_icon{right:3%;top:14px;}
+					.nav .top_search .index{width:75%;min-width:230px;}
+					.nav .top_search .on{background-color:#fff;background-image:url('../images/btn_nav_search_pressed.png');}
+					.nav .feed_filter{margin:2px 0 0 5%;background-size:21px 13px;width:21px;height:13px;background-image:url('../images/btn_nav_shaixuan_normal.png');}
+					.nav .search_icon{border:0px;background-color:#ff5346;background-size:17px 17px;width:17px;height:17px;background-image:url('../images/btn_nav_search_normal.png');}
 					/*   search */
-					.search_box{height:188px;}
-					.search_box h1{background-size:48px 22px;width:48px;height:22px;background-image:url('../images/img_fenpu.png');margin:18px auto 0;}
+					.search_box{height:166px;padding-top:18px;}
+					.search_box h1{background-size:48px 22px;width:48px;height:22px;background-image:url('../images/img_fenpu.png');margin:0 auto;}
 					.search_box h2{background-size:125px 14px;width:125px;height:14px;background-image:url('../images/img_solo.png');margin:12px auto 0;}
 					.search_box .search_input_box{margin:18px auto 0;}
 					.search_box ul{height:45px;margin:0 auto; width:90%;}
@@ -100,11 +110,8 @@ html body, html input, html textarea, html select, html button {
 					.search_box ul .l_b{background:url('../images/bg_input_left.png');width:2px;}
 					.search_box ul .c_b{background:url('../images/bg_input_middle.png');width:98%;}
 					.search_box ul .r_b{background:url('../images/bg_input_right.png');width:2px;}
-					.search_box input{border:0px;}
-					.search_box #index_keyword_lable,.search_box #index_btn_search{position:absolute;top:16px;}
-					.search_box #index_keyword{position:absolute;top:15px;}
-					.search_box #index_keyword,.search_box #index_keyword_lable{left:11%;width:70%;}
-					.search_box #index_btn_search{right:13% ;background-color:#fff;background-size:17px 17px;width:17px;height:17px;background-image:url('../images/btn_seach_bar_search_normal.png');}
+					.search_box #index_keyword{padding-left:3%;left:10%;width:80%;border:1px  #eeeeee solid; background-color:#f9f9f9;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;height:45px;}
+					.search_box #index_btn_search{top:16px;border:0px;right:13% ;background-color:#fff;background-size:17px 17px;width:17px;height:17px;background-image:url('../images/btn_seach_bar_search_normal.png');}
 					@media only screen and (-webkit-min-device-pixel-ratio: 1.5), not all {
 					    .download .btn_download{background-image:url('../images/btn_banner_download_normal@2x.png');}
 						    .download .btn_openapp{background-image:url('../images/btn_banner_open_normal@2x.png')}
