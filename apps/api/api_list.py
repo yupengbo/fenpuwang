@@ -6,7 +6,8 @@ Get base url for api request.
 """
 def get_base_url():
     if settings.DEBUG:
-        base_url = "http://testapi.dabanniu.com/v2/"
+        #base_url = "http://testapi.dabanniu.com/v2/"
+        base_url = "http://api.dabanniu.com/v2/"
     else:
         base_url = "http://api.dabanniu.com/v2/"
     return base_url
@@ -31,7 +32,7 @@ def get_question_detail(question_id, has_question_details):
     params = {'questionId': question_id, 'hasBody': has_question_details}
     return get_result(request('POST', 'getQuestionDetail.do', params))
 
-def get_product_detail(product_id, has_product_details, pre, mark):
+def get_product_detail(product_id, has_product_details = 0, pre = 20, mark = 0):
     params = {'productId': product_id, 'hasBody': has_product_details, 'pre': pre, 'mark': mark}
     return get_result(request('POST', 'getProductInfo.do', params))
 

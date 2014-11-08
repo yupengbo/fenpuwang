@@ -1,0 +1,23 @@
+/*product*/
+.product-body {min-height:100px; margin-top:13px; margin-left:9px; margin-right:9px;}
+
+.product-detail-name {height: 17px; padding-top:15px;}
+.product-detail-size {height: 13px; padding-top:12px;}
+.product-detail-size .product-price {padding-left:6px;}
+.product-detail-comment {height: 11px; padding-top:13px;padding-bottom:14px}
+.product-detail-comment .product-like {padding-left:13px;}
+
+.product-related .btn {width:33%;}
+.product-related .btn .btn-content {width:85px;margin:0 auto;}
+.product-related {height:13px; padding-top:13px;padding-bottom:13px;margin:0 auto;}
+.porduct-jeshao-img,.porduct-category-img,.porduct-brand-img{margin-top:3px;margin-right:4px;background-color:#ffffff;background-size:12px 12px;width:12px;height:12px;}
+.porduct-jeshao-img{background-image:url('/static/images/icon_product_jieshao.png');}
+.porduct-category-img{background-image:url('/static/images/icon_product_leibie.png');}
+.porduct-brand-img{background-image:url('/static/images/icon_product_pinpai.png');}
+
+/*question list*/
+.question-body{background-color:#f9f9f9;padding-left:15px;padding-right:15px;padding-bottom:20px;}
+.question-overview{padding-top:20px;padding-bottom:10px;height:16px;}
+.question-body li .title{padding-top:22px;}
+.question-body li .content{padding-top:12px;padding-bottom:12px;}
+
