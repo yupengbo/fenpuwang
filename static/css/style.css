@@ -101,6 +101,10 @@ html body, html input, html textarea, html select, html button {
 					.nav .top_search .on{background-color:#fff;background-image:url('../images/btn_nav_search_pressed.png');}
 					.nav .feed_filter{margin:2px 0 0 5%;background-size:21px 13px;width:21px;height:13px;background-image:url('../images/btn_nav_shaixuan_normal.png');}
 					.nav .search_icon{border:0px;background-color:#ff5346;background-size:17px 17px;width:17px;height:17px;background-image:url('../images/btn_nav_search_normal.png');}
+					/*    feeds  filter  */
+					.feed_filter_box{z-index:50;background:url('../images/filter_feed_bg_line.png');box-shadow:0 0 5px #999;-webkit-box-shadow:0 0 5px #999;-moz-box-shadow:0 0 5px #999;}
+					.feed_filter_box li{color:#d3b5af;display:block;height:13px;padding:17px 12px;font-size:12px;float:left;}
+					.feed_filter_box .on{color:#ff5346;}
 					/*   search */
 					.search_box{height:166px;padding-top:18px;}
 					.search_box h1{background-size:48px 22px;width:48px;height:22px;background-image:url('../images/img_fenpu.png');margin:0 auto;}
@@ -112,7 +116,7 @@ html body, html input, html textarea, html select, html button {
 					.search_box ul .c_b{background:url('../images/bg_input_middle.png');width:98%;}
 					.search_box ul .r_b{background:url('../images/bg_input_right.png');width:2px;}
 					.search_box #index_keyword{padding-left:3%;left:10%;width:80%;border:1px  #eeeeee solid; background-color:#f9f9f9;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;height:45px;}
-					.search_box #index_btn_search{top:16px;border:0px;right:13% ;background-color:#fff;background-size:17px 17px;width:17px;height:17px;background-image:url('../images/btn_seach_bar_search_normal.png');}
+					.search_box #index_btn_search{top:16px;border:0px;right:13% ;background-color:#f9f9f9;background-size:17px 17px;width:17px;height:17px;background-image:url('../images/btn_seach_bar_search_normal.png');}
 					@media only screen and (-webkit-min-device-pixel-ratio: 1.5), not all {
 					    .download .btn_download{background-image:url('../images/btn_banner_download_normal@2x.png');}
 						    .download .btn_openapp{background-image:url('../images/btn_banner_open_normal@2x.png')}
