@@ -28,13 +28,13 @@
   <div class="product_related">
     <div class="btn fl"><div class="btn_content fcg1 f13 bg"><div class="porduct_jeshao_img fl"></div>产品信息</div></div>
     <div class="btn fl"><div class="btn_content fcg1 f13 bg"><div class="porduct_category_img fl"></div>同类别产品</div></div>
-    <div class="btn fl"><div class="btn_content fcg1 f13 bg"><div class="porduct_brand_img fl"></div>同品牌产品</div>
+    <div class="btn fl"><div class="btn_content fcg1 f13 bg"><div class="porduct_brand_img fl"></div>同品牌产品</div></div>
   </div>
 </div>
 
 <!--产品相关问题信息-->
 <div class="question_body">
-<div class="question_overview fcg1 f13">{{product.questionList|length}}个相关回答</div>
+<div class="question_overview fcg1 f13">{{product.totalNumber}}个相关回答</div>
 <div class="sp_line"></div>
 <ul class='question_list'>
   {% for question in product.questionList %}

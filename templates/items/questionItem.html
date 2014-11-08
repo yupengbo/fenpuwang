@@ -7,7 +7,7 @@
   {% ifequal question.relatedAnswer.isBest 0%}
     相关回答:&nbsp
   {% endifequal  %}
-  {{ question.relatedAnswer.content|truncatewords:"100" }}<em></em>
+  {{ question.relatedAnswer.content }}<em></em>
 </div>
 <div class='title_rinfo hidden'>{{ question.answerNum }}</div>
 <div class='content_rinfo hidden'>{{ question.relatedAnswer.likeNum }}</div>
