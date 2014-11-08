@@ -9,34 +9,34 @@
 
 {% block main_content %}
 <!--产品信息-->
-<div class="product-body">
-  <div class="product-pics">
+<div class="product_body">
+  <div class="product_pics">
     <!--img src="{{ product.product.pics }}"/-->
   </div>
-  <div class="product-info">
-    <div class="product-detail-name fcb1 f15">{{ product.product.name}}</div>  
-    <div class="product-detail-size fcg1 f15">
+  <div class="product_info">
+    <div class="product_detail_name fcb1 f15">{{ product.product.name}}</div>  
+    <div class="product_detail_size fcg1 f15">
       <div class="fl">{{ product.product.size }}</div>
-      <div class="product-price fl">参考价:&nbsp<span class="fcprice">¥{{ product.product.price }}</span></div>
+      <div class="product_price fl">参考价:&nbsp<span class="fcprice">¥{{ product.product.price }}</span></div>
     </div>  
-    <div class="product-detail-comment">
-      <div class="product-like fcg1 f13 fr"><span class="fcprice">{{ product.product.likeNum }}人</span>认为好用</div>
-      <div class="product-used fcg1 f13 fr"><span class="fcprice">{{ product.product.usedNum }}人</span>用过</div>
+    <div class="product_detail_comment">
+      <div class="product_like fcg1 f13 fr"><span class="fcprice">{{ product.product.likeNum }}人</span>认为好用</div>
+      <div class="product_used fcg1 f13 fr"><span class="fcprice">{{ product.product.usedNum }}人</span>用过</div>
     </div>  
   </div>
   <div class="sp_line"></div>
-  <div class="product-related">
-    <div class="btn fl"><div class="btn-content fcg1 f13 bg"><div class="porduct-jeshao-img fl"></div>产品信息</div></div>
-    <div class="btn fl"><div class="btn-content fcg1 f13 bg"><div class="porduct-category-img fl"></div>同类别产品</div></div>
-    <div class="btn fl"><div class="btn-content fcg1 f13 bg"><div class="porduct-brand-img fl"></div>同品牌产品</div>
+  <div class="product_related">
+    <div class="btn fl"><div class="btn_content fcg1 f13 bg"><div class="porduct_jeshao_img fl"></div>产品信息</div></div>
+    <div class="btn fl"><div class="btn_content fcg1 f13 bg"><div class="porduct_category_img fl"></div>同类别产品</div></div>
+    <div class="btn fl"><div class="btn_content fcg1 f13 bg"><div class="porduct_brand_img fl"></div>同品牌产品</div>
   </div>
 </div>
 
 <!--产品相关问题信息-->
-<div class="question-body">
-<div class="question-overview fcg1 f13">{{product.questionList|length}}个相关回答</div>
+<div class="question_body">
+<div class="question_overview fcg1 f13">{{product.questionList|length}}个相关回答</div>
 <div class="sp_line"></div>
-<ul class='question-list'>
+<ul class='question_list'>
   {% for question in product.questionList %}
     {% include "items/questionItem.html" %}
   {% endfor %}

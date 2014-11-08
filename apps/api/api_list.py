@@ -28,8 +28,8 @@ def request(method, api_name, params, time_out=30.0):
     api_str = get_base_url() + api_name
     return requests.request(method, api_str, params = params, timeout = time_out)
 
-def get_question_detail(question_id, has_question_details):
-    params = {'questionId': question_id, 'hasBody': has_question_details}
+def get_question_detail(question_id, has_question_details, has_related_question):
+    params = {'questionId': question_id, 'hasBody': has_question_details, 'hasOtherQuestion':has_related_question}
     return get_result(request('POST', 'getQuestionDetail.do', params))
 
 def get_product_detail(product_id, has_product_details = 0, pre = 20, mark = 0):
