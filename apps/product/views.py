@@ -4,17 +4,14 @@ import requests
 from apps.api import api_list
 from apps.utils import string_utils
 
-def truncate_text1(text, length = 200, suffix = "..."):
-  if text == None:
-    return None
-  if len(text) > 200:
-    text = text[0:200] + str(suffix)
-  return text
-  
-
 def process_product_data(product_data):
   for question in product_data['questionList']:
     question['relatedAnswer']['content'] = string_utils.truncate_text(question['relatedAnswer']['content']) 
+  for pic in product_data['product']['pics']:
+    pic['thumb_b'] = pic['thumb-b']
+    pic['thumb_s'] = pic['thumb-s']
+    pic['thumb_l'] = pic['thumb-l']
+     
   
 def product_detail(request, product_id):
   has_product_info =  1

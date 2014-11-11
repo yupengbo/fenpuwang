@@ -1,6 +1,9 @@
 /*product*/
 .product_body {min-height:100px; padding:13px 15px 0 15px;}
 
+.prodcut_pics {height:145px;}
+.product_pics img{height:145px; margin:0 auto;}
+
 .product_detail_name {height: 17px; padding-top:15px;}
 .product_detail_size {height: 13px; padding-top:12px;}
 .product_detail_size .product_price {padding-left:6px;}
