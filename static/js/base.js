@@ -63,45 +63,52 @@ $(function(){
 																																																																											            error : $.error_callback
 																																																																														        });
 																																																																																    },
-																																																																																	    success_callback : function(xmlReq) {
-																																																																																		        
-																																																																																				    },
-																																																																																					    before_send_callback : function(xmlReq) {
-																																																																																						        /**
-																																																																																								        * 数据请求之前时执行
-																																																																																										        */
-																																																																																												        $.ajax_complete();
-																																																																																														    },
-																																																																																															    complete_callback : function(xmlReq, textStatus) {
-																																																																																																        /**
-																																																																																																		         * 数据获取完成时执行
-																																																																																																				          */
-																																																																																																						          $.ajax_complete();
-																																																																																																								      },
-																																																																																																									      /**
-																																																																																																										       * 请求出现错误 responseText 请求的数据 data || textStatus 文本状态 eg：success
-																																																																																																											        */
-																																																																																																													    error_callback : function(xmlReq, textStatus) {
-																																																																																																														        switch (xmlReq.status) {
-																																																																																																																            case 404: // Not Found
-																																																																																																																			                alert("XmlHttpRequest status: [404] \nThe requested URL was not found on this server.");
-																																																																																																																							                break;
-																																																																																																																											            case 500:
-																																																																																																																														                alert("XmlHttpRequest status: [500] Service Unavailable");
-																																																																																																																																		                break;
-																																																																																																																																						            case 400:
-																																																																																																																																									                alert("XmlHttpRequest status: [400] Bad Request");
-																																																																																																																																													                break;
-																																																																																																																																																	            case 503: // Service Unavailable
-																																																																																																																																																				                alert("XmlHttpRequest status: [503] Service Unavailable");
-																																																																																																																																																								                break;
-																																																																																																																																																												            default:
-																																																																																																																																																															                break;
-																																																																																																																																																																			        }
-																																																																																																																																																																					        $.ajax_complete();
-																																																																																																																																																																							    },
-																																																																																																																																																																								    ajax_complete : function(){
-																																																																																																																																																																									        /*去掉菊花转*/
-																																																																																																																																																																											        $("").html("");
-																																																																																																																																																																													    }
-																																																																																																																																																																														});  
+																																																																																	    show_loadding : function(xmlReq) {
+																																																																																		        var ww=$(window).width();
+																																																																																				        var wh=$(window).height();
+																																																																																						        var dw=$(document).width();
+																																																																																								        var dh=$(document).height();
+																																																																																										        $('#data-loadding').width(dw);
+																																																																																												        $('#data-loadding').height(dh);
+																																																																																														        $('#data-loadding img').css('top',(wh/2-24));
+																																																																																																        $('#data-loadding img').css('left',(ww/2-24));
+																																																																																																		    },
+																																																																																																			    success_callback : function(xmlReq) {
+																																																																																																				        $.ajax_complete();
+																																																																																																						    },
+																																																																																																							    before_send_callback : function(xmlReq) {
+																																																																																																								        
+																																																																																																										    },
+																																																																																																											    complete_callback : function(xmlReq, textStatus) {
+																																																																																																												        /**
+																																																																																																														         * 数据获取完成时执行
+																																																																																																																          */
+																																																																																																																		          
+																																																																																																																				      },
+																																																																																																																					      /**
+																																																																																																																						       * 请求出现错误 responseText 请求的数据 data || textStatus 文本状态 eg：success
+																																																																																																																							        */
+																																																																																																																									    error_callback : function(xmlReq, textStatus) {
+																																																																																																																										        switch (xmlReq.status) {
+																																																																																																																												            case 404: // Not Found
+																																																																																																																															                alert("XmlHttpRequest status: [404] \nThe requested URL was not found on this server.");
+																																																																																																																																			                break;
+																																																																																																																																							            case 500:
+																																																																																																																																										                alert("XmlHttpRequest status: [500] Service Unavailable");
+																																																																																																																																														                break;
+																																																																																																																																																		            case 400:
+																																																																																																																																																					                alert("XmlHttpRequest status: [400] Bad Request");
+																																																																																																																																																									                break;
+																																																																																																																																																													            case 503: // Service Unavailable
+																																																																																																																																																																                alert("XmlHttpRequest status: [503] Service Unavailable");
+																																																																																																																																																																				                break;
+																																																																																																																																																																								            default:
+																																																																																																																																																																											                break;
+																																																																																																																																																																															        }
+																																																																																																																																																																																	        $.ajax_complete();
+																																																																																																																																																																																			    },
+																																																																																																																																																																																				    ajax_complete : function(){
+																																																																																																																																																																																					        /*去掉菊花转*/
+																																																																																																																																																																																							        $('#data-loadding').hide();
+																																																																																																																																																																																									    }
+																																																																																																																																																																																										});  

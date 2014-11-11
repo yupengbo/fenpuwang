@@ -69,6 +69,9 @@ html body, html input, html textarea, html select, html button {
 					/*  分割线  */
 					.sp_line{border-bottom:1px solid #eeeeee;width:100%;}
 					.sp_line2{border-bottom:1px solid #dbdbdb;width:100%;}
+					/*  loaddding */
+					#data-loadding,#data-loadding img{position:absolute;top:0px;left:0px;z-index:9999;}
+					#data-loadding{background-color:#000;-moz-opacity:0.8; opacity:0.8;-khtml-opacity: 0.8}
 					/* m站主结构  end  */
 					/* 顶部下载  */
 					.bg{background-repeat: no-repeat;background-position:center center;}
@@ -84,7 +87,7 @@ html body, html input, html textarea, html select, html button {
 					.download .btn_openapp{background-image:url('../images/btn_banner_open_normal.png');}
 					/*  顶部导航  */
 					.nav_bar{height:44px;width:100%;}
-					.nav{z-index:9999;background-color:#ff5346;height:44px;overflow:hidden;position:relative;left:0;top:0;width:100%;}
+					.nav{z-index:999;background-color:#ff5346;height:44px;overflow:hidden;position:relative;left:0;top:0;width:100%;}
 					.nav img{cursor:pointer;}
 					.nav ul{width:80%;}
 					.nav ul,.nav .icon_btn{position:absolute;top:13px;}
@@ -103,7 +106,7 @@ html body, html input, html textarea, html select, html button {
 					.nav .search_icon{border:0px;background-color:#ff5346;background-size:17px 17px;width:17px;height:17px;background-image:url('../images/btn_nav_search_normal.png');}
 					/*    feeds  filter  */
 					.feed_filter_box{z-index:50;background:url('../images/filter_feed_bg_line.png');box-shadow:0 0 5px #999;-webkit-box-shadow:0 0 5px #999;-moz-box-shadow:0 0 5px #999;}
-					.feed_filter_box li{color:#d3b5af;display:block;height:13px;padding:17px 12px;font-size:12px;float:left;}
+					.feed_filter_box li{color:#d3b5af;display:block;height:13px;padding:17px 25px;font-size:12px;float:left;}
 					.feed_filter_box .on{color:#ff5346;}
 					/*   search */
 					.search_box{height:166px;padding-top:18px;}
