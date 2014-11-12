@@ -51,7 +51,7 @@ $.extend({
         success_cb = (success_cb === null ? $.success_callback : success_cb);
         completion_cb = (completion_cb === null ? $.complete_callback : completion_cb);
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             dataType: datatype.toLowerCase(),
             url: url,
             data: args,

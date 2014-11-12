@@ -1,7 +1,7 @@
 <div class="related-question-item">
-    <div class="related-question-title f13 fcb1">
+    <a class="related-question-title f13 fcb1" href="{% url 'question:question_details' q.questionId %}">
         {{ q.title }}
-    </div>
+    </a>
     <div class="related-question-answer-num f10 fcg2">
         {{ q.answerNum }}回答
     </div>

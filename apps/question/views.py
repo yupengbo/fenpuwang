@@ -3,11 +3,11 @@
 from django.shortcuts import render
 from django.http import HttpResponse,Http404
 from django.template import RequestContext, loader
+from django.views.decorators.csrf import csrf_exempt
 from apps.api import api_list
 from apps.utils import data_process_utils
 import requests
 import json
-import pdb
 
 def question_details(request, question_id):
     try:
@@ -19,8 +19,16 @@ def question_details(request, question_id):
         return HttpResponse(e)
     raise Http404
 
+@csrf_exempt
 def answer_list(request, question_id, mark):
-    if request.is_ajax(): #仅接受ajax请求
+    """
+    根据mark返回答案列表，仅接受ajax请求
+    :param request:
+    :param question_id:
+    :param mark:
+    :return:
+    """
+    if request.is_ajax():
         try:
             answers_obj = api_list.get_question_detail(question_id, 0, 0, mark)
             if answers_obj['error'] == 0:
@@ -30,7 +38,7 @@ def answer_list(request, question_id, mark):
                 response_json = {'html':template.render(context), 'mark':answers_obj['mark']}
                 return HttpResponse(json.dumps(response_json), content_type="application/json")
         except Exception as e:
-            return HttpResponse(e)
+            raise Http404
         raise Http404
     else:
         raise Http404
@@ -59,9 +67,12 @@ def process_question_data(question_obj):
         question_obj['answerPart1'] = question_obj['answerList'][0 : answer_num]
 
 def process_answers(answers):
+    """
+    将answer中的用户profile转换成页面显示格式
+    :param answers:
+    :return:
+    """
     for answer in answers:
         answer['user']['profile'] = data_process_utils.get_user_profile_str(answer['user'])
         if answer['isBest'] > 0:
             answer['content'] = u"最佳回答：" +  answer['content']
-
-
