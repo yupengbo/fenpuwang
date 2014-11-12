@@ -5,7 +5,13 @@
     <link rel="stylesheet" href="{% static "css/products.css" %}">
 {% endblock %}
 {% block main_content %}
-	<ul class='productList datalist'>
+    <ul class='filter_list'>
+	<li><div class='p_f_5'></div>明星产品</li>
+	<li><div class='p_f_1'></div>用过人数</li>
+	<li><div class='p_f_6'></div>好评率</li>
+	<li><div class='p_f_3'></div>价格</li>
+	</ul>
+	<ul class='product_list datalist'>
 	    {% for product in products.productList %}
 	        {% include "items/productItem.html" %}
 	    {% endfor %}
