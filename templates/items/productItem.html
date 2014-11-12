@@ -1,1 +1,7 @@
-<div> {{ product.name }}</div>
+<li>
+ <img src='{{ product.thumb_s }}' class='pro_pic fl'/>
+ <div class='pro_con fl' >
+     <div class='f15 fcb1'>{{ product.name }}<div>
+	 <div class='desc f13 fcg1'><span class='fcprice'>&yen;{{ product.price}}</span> <span><em class='fchl'>{{ product.usedNum }}</em>用过 {{ product.goodReviewRatio }}%好评率</span></div>
+ </div>
+</li>

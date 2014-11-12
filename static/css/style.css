@@ -6,6 +6,7 @@ ul {list-style:none;}
 li {list-style-type:none;}
 input,select{vertical-align:middle;}
 h1, h2, h3, h4, h5, h6 {font-weight:normal; font-size:12px;}
+b,i,em{font-style:normal;}
 /* 鼠标样式 */
 .pointer{ cursor:pointer;}
 /* 取消边框 */
@@ -53,15 +54,16 @@ html body, html input, html textarea, html select, html button {
 				#main-content {
 				    min-height: 400px;
 					}
-					.s_avatar{width:18px;height:18px;}
+					.s_avatar{width:18px;height:18px;-webkit-border-radius: 18px;-moz-border-radius: 18px;border-radius: 18px;}
 					/*  font color */
 					.fcb1{color:#222222;}/* 主级别文字*/
 					.fcg1{color:#aaaaaa;}/* 弱级别文字*/
 					.fcg2{color:#666666;}/* 次级别文字*/
+					.fchl{color:#ff5346;}
 					.fcprice{color:#cc9793}
 					/*  字号  */
 					.f15{font-size:15px;}
-					.f14{font-size:14px;}
+					.f14{font-size:14px;line-height:20px;}
 					.f13{font-size:13px;line-height:19px;}
 					.f10{font-size:10px;}
 					/*  产品图片边框  */

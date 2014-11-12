@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block script %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/products.css" %}">
+{% endblock %}
+{% block main_content %}
+	<ul class='productList datalist'>
+	    {% for product in products.productList %}
+	        {% include "items/productItem.html" %}
+	    {% endfor %}
+	</ul>
+{% endblock %}

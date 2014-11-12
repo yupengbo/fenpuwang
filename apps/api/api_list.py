@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.conf import settings
 import requests
 
@@ -26,7 +28,9 @@ def get_result(response):
 
 def request(method, api_name, params, time_out=30.0):
     api_str = get_base_url() + api_name
-    return requests.request(method, api_str, params = params, timeout = time_out)
+    print api_str
+    print params
+    return requests.request(method, api_str, data = params, timeout = time_out)
 
 def get_question_detail(question_id, has_question_details, has_related_question, mark):
     params = {'questionId': question_id, 'hasBody': has_question_details,
@@ -46,6 +50,6 @@ def get_product_feeds(category_id = 0, pre = 20, mark = 0):
     params = {'pre': pre, 'mark': mark, 'categoryId': category_id}
     return get_result(request('POST', 'listProductFeeds.do', params))
 
-def search(search_type, pre, mark, keyword):
+def search(keyword, search_type = 0, pre = 20, mark = 0):
     params = {'pre': pre, 'mark': mark, 'type': search_type, 'keyword': keyword}
     return get_result(request('POST', 'search.do', params))

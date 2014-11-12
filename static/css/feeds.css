@@ -4,4 +4,5 @@
 .feedsList li .list_h span{padding:2px 8px;}
 .feedsList li .list_h em{padding:4px 0;}
 .feedsList li .list_c {position:relative;clear:both;}
+.feedsList li .list_c .title,.feedsList li .list_c .content{padding:5px 0;}
 .feedsList li .sp_line {padding:5px 0px;}

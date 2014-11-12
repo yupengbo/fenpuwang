@@ -1,0 +1,9 @@
+.product_body {margin-bottom:12px;}
+.brand_item {height:100px;}
+.brand_item .brand_bg_red {background-color:#762027;}
+.brand_item .brand_bg_blue {background-color:#440065;}
+.brand_item .brand_img {margin:15px 12px;background-color:#ffffff;width:70px;height:70px;}
+.brand_item .brand_img img{width:70px;height:70px;}
+.brand_item .brand_title {margin-top:23px;color:#ffffff;font-size:22px}
+.brand_item .brand_title .brand_suffix {font-size:16px}
+.brand_item .brand_content {display:block;margin-top:10px;color:#fff;filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5}
