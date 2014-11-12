@@ -54,6 +54,7 @@
                     {% include "question/answerItem.html" %}
                 {% endfor %}
             {% endif %}
+            <div class="load_more_answer"> </div>
         {% else %}
              <div class="f10 fcg1">没有回答</div>
         {% endif %}
@@ -61,8 +62,26 @@
 
 </div>
 
+<script type="application/javascript">
+    var mark = {{ question.mark }};
+    var question_id = {{ question_id }};
+    var isLoadingNextPage = false;  //是否正在加载更多答案
+    $(window).scroll(function(){
+        if($(window).scrollTop() == ($(document).height() - $(window).height()) &&
+           mark > 0 && isLoadingNextPage == false) {
+            var url = "/question/" + question_id + "/mark/" + mark + "/";
+            isLoadingNextPage = true;
+            $.get_data(url, null,
+                function(data) {
+                    mark = data.mark;
+                    $(".load_more_answer").before(data.html);
+                },
+                function(xmlReq, textStatus) {
+                   isLoadingNextPage = false;
+                }, 'json');
+        }
+    })
+</script>
 {% endblock %}
 
-<script>
 
-</script>
