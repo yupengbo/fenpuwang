@@ -6,11 +6,12 @@
 <link rel="stylesheet" href="{% static "css/style.css" %}">
 <link rel="stylesheet" href="{% static "css/search.css" %}">
 <link rel="stylesheet" href="{% static "css/product.css" %}">
+<link rel="stylesheet" href="{% static "css/products.css" %}">
 {% endblock %}
 
 {% block main_content %}
 <!--品牌馆-->
-<div class="brand_box">
+<div class="brand_body">
   {% for brand in search.brandList %}
   <div class="brand_item">
     {% ifequal forloop.counter 1 %}
@@ -32,16 +33,24 @@
   </div>
   {% endfor %}
 </div>
+
 <!--产品-->
+<div class="product_body">
+  <ul class="product_list">
+    {% for product in search.productList %}
+      {% include "items/productEffectItem.html" %}
+    {% endfor %}
+  </ul>
+</div>
 
 <!--问答-->
 <div class="question_body">
-<div class="question_overview fcg1 f13">{{search.totalNumber}}个相关回答</div>
-<div class="sp_line"></div>
-<ul class='question_list'>
-  {% for question in search.questionList %}
-    {% include "items/questionItem.html" %}
-  {% endfor %}
-</ul>
+  <div class="question_overview fcg1 f13">{{search.totalNumber}}个相关回答</div>
+  <div class="sp_line"></div>
+  <ul class='question_list'>
+    {% for question in search.questionList %}
+      {% include "items/questionItem.html" %}
+    {% endfor %}
+  </ul>
 </div>
 {% endblock %}
