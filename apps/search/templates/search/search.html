@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %} {{ product.product.name }} {% endblock %}
+
+{% block script %}
+{% load static %}
+<link rel="stylesheet" href="{% static "css/style.css" %}">
+<link rel="stylesheet" href="{% static "css/search.css" %}">
+<link rel="stylesheet" href="{% static "css/product.css" %}">
+{% endblock %}
+
+{% block main_content %}
+<!--品牌馆-->
+<div class="brand_box">
+  {% for brand in search.brandList %}
+  <div class="brand_item">
+    {% ifequal forloop.counter 1 %}
+    <!--品牌1-->
+    <div class="brand_bg_red">
+    {% endifequal %}
+    {% ifequal forloop.counter 2 %}
+    <!--品牌2-->
+    <div class="brand_bg_blue">
+    {% endifequal %}
+      <!--品牌内容-->
+      <div class="brand_img fl"><img src="{{ brand.picUrl }}"/></div>
+      <div class="brand_info fl">
+        <div class="brand_title">{{ brand.name }}&nbsp&nbsp<span class="brand_suffix">品牌馆</span></div>
+        <div class="brand_content f14">共{{ brand.productNum }}款商品</div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+<!--产品-->
+
+<!--问答-->
+<div class="question_body">
+<div class="question_overview fcg1 f13">{{search.totalNumber}}个相关回答</div>
+<div class="sp_line"></div>
+<ul class='question_list'>
+  {% for question in search.questionList %}
+    {% include "items/questionItem.html" %}
+  {% endfor %}
+</ul>
+</div>
+{% endblock %}

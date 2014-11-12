@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render
 from django.http import HttpResponse,Http404
 import requests
@@ -14,7 +16,7 @@ def process_product_data(product_data):
      
   
 def product_detail(request, product_id):
-  has_product_info =  1
+  has_product_info = 1
   product_json = api_list.get_product_detail(product_id, has_product_info)
   try:
     if product_json == None or product_json == "":
