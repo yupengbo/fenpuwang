@@ -2,13 +2,12 @@
 
 {% block script %}
     {% load staticfiles %}
-    <link rel="stylesheet" href="{% static "css/feeds.css" %}">
-    <script type="text/javascript" src="{% static "js/feeds.js" %}"></script>
+	    <link rel="stylesheet" href="{% static "css/feeds.css" %}">
 {% endblock %}
 {% block main_content %}
-<ul class='feedsList datalist'>
+	<ul class='productList datalist'>
     {% for feed in feeds.feedList %}
         {% include "items/feedItems/baseFeedItem.html" %}
     {% endfor %}
-</ul>
+	</ul>
 {% endblock %}

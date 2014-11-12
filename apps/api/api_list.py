@@ -26,6 +26,8 @@ def get_result(response):
 
 def request(method, api_name, params, time_out=30.0):
     api_str = get_base_url() + api_name
+    print api_str
+    print params
     return requests.request(method, api_str, params = params, timeout = time_out)
 
 def get_question_detail(question_id, has_question_details, has_related_question):

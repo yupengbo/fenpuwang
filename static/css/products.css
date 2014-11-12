@@ -1,0 +1,4 @@
+.productList li{clear:both;height:50px;padding:10px 12px;}
+.productList .pro_pic{width:50px;height:50px;-webkit-border-radius: 100px;-moz-border-radius: 100px;border-radius: 100px;margin:0 10px;border:1px #dbdbdb solid;}
+.productList .pro_con{min-width:226px;padding-top:5px;width:75%}
+.productList .desc{padding-top:7px;}
