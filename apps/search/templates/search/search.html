@@ -40,6 +40,9 @@
     {% for product in search.productList %}
       {% include "items/productEffectItem.html" %}
     {% endfor %}
+    {% if search.productNumber > 3 %}
+      <li><div class="more_product"><a href="#" class="block fcg1 f14">查看更多商品</a></div></li>
+    {% endif %}
   </ul>
 </div>
 
