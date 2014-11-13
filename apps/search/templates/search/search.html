@@ -50,10 +50,17 @@
 <div class="question_body">
   <div class="question_overview fcg1 f13">{{search.totalNumber}}个相关回答</div>
   <div class="sp_line"></div>
-  <ul class='question_list'>
-    {% for question in search.questionList %}
-      {% include "items/questionItem.html" %}
-    {% endfor %}
+  <ul class='question_list datalist'>
+  {% with question_list=search.questionList %}
+    {% include "lists/question_list.html" %}
+  {% endwith %}
   </ul>
 </div>
+
+<script type="application/javascript">
+$(".datalist").loaddata({
+  url : "{{ url }}"
+});
+</script>
+
 {% endblock %}

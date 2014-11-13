@@ -39,34 +39,17 @@
 <div class="question_body">
 <div class="question_overview fcg1 f13">{{product.totalNumber}}个相关回答</div>
 <div class="sp_line"></div>
-{% if product.totalNumber > 0 %}
-<ul class='question_list'>
-{% include "product/question_list.html" %}
+<ul class='question_list datalist'>
+{% with question_list=product.questionList %}
+  {% include "lists/question_list.html" %}
+{% endwith %}
 </ul>
-<div class="load_more_question"></div>
-{% else %}
-<div class="f10 fcg1">没有问题</div>
-{% endif %}
 </div>
 
 <script type="application/javascript">
-    var mark = {{ product.mark }};
-    var product_id = {{ product.product.productId }};
-    var isLoadingNextPage = false;  //是否正在加载更多问题
-    $(window).scroll(function(){
-        if($(window).scrollTop() == ($(document).height() - $(window).height()) &&
-           mark > 0 && isLoadingNextPage == false) {
-            var url = "/product/" + product_id + "/mark/" + mark + "/";
-            isLoadingNextPage = true;
-            $.get_data(url, null,
-                function(data) {
-                    mark = data.mark;
-                    $(".question_list").append(data.html); },
-                function(xmlReq, textStatus) {
-                   isLoadingNextPage = false;
-                }, 'json');
-        }
-    })
+$(".datalist").loaddata({
+  url : "{{ url }}"
+});
 </script>
 
 {% endblock %}
