@@ -24,21 +24,12 @@
 </div>
 <div class='feed_filter_box absolute hidden'>
    <ul>
-    <li class='on' category='0'>全部</li>
-    <li category='2'>面霜</li>
-    <li category='4'>乳液</li>
-	<li category='6'>面部精华</li>
-	<li category='8'>眼部护理</li>
-	<li category='10'>化妆水</li>
-	<li category='12'>洁面品</li>
-	<li category='14'>面膜</li>
-	<li category='16'>卸妆</li>
-	<li category='18'>bb/cc霜</li>
-	<li category='20'>粉底</li>
-	<li category='22'>粉饼</li>
-	<li category='24'>散粉</li>
-	<li category='26'>腮红</li>
-	<li category='28'>口红</li>
+    <li class='on' get_data_url='{% url 'feed:feed_list' 0 0 %}'>全部</li>
+    {% if nav_list %}
+	  {% for category,nav in nav_list %}
+	     <li get_data_url='{% url 'feed:feed_list' category 0 %}'>{{ nav }}</li>
+	  {% endfor %}
+	{% endif %}
    </ul>
    <div class='clear'></div>
 </div>
