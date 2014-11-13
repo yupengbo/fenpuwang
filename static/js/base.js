@@ -55,7 +55,7 @@ $.extend({
             dataType: datatype.toLowerCase(),
             url: url,
             data: args,
-            timeout: 1000,
+            timeout: 10000,
             async: true,
             cache: true,
             beforeSend: $.before_send_callback,
@@ -63,16 +63,6 @@ $.extend({
             success: success_cb,
             error: $.error_callback
         });
-    },
-    show_loadding: function (xmlReq) {
-        var ww = $(window).width();
-        var wh = $(window).height();
-        var dw = $(document).width();
-        var dh = $(document).height();
-        $('#data-loadding').width(dw);
-        $('#data-loadding').height(dh);
-        $('#data-loadding img').css('top', (wh / 2 - 24));
-        $('#data-loadding img').css('left', (ww / 2 - 24));
     },
     success_callback: function (xmlReq) {
         $.ajax_complete();
@@ -106,10 +96,5 @@ $.extend({
             default:
                 break;
         }
-        $.ajax_complete();
-    },
-    ajax_complete: function () {
-        /*去掉菊花转*/
-        $('#data-loadding').hide();
     }
 });

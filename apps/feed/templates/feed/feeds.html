@@ -7,8 +7,11 @@
 {% endblock %}
 {% block main_content %}
 <ul class='feedsList datalist'>
-    {% for feed in feeds.feedList %}
-        {% include "items/feedItems/baseFeedItem.html" %}
-    {% endfor %}
+    {% include "feed/feedList.html" %}
 </ul>
+<script>
+$(".datalist").loaddata({
+    url : "{{ url }}"
+});
+</script>
 {% endblock %}

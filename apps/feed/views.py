@@ -1,21 +1,43 @@
+# -*- coding: utf-8 -*-
+
 from django.shortcuts import render
+from django.template import RequestContext, loader
 from django.http import HttpResponse,Http404
 import requests
 from apps.api import api_list
 from apps.utils import data_process_utils
 from apps.utils import string_utils
-
+import json
+from django.core.urlresolvers import reverse
 # Create your views here.
 def index(request):
     try:
-        feed_result = api_list.get_product_feeds()
-        if feed_result['error'] == 0 :
-            process_feed_data(feed_result)
-            return render(request, 'feed/feeds.html', {'feeds' : feed_result})
+        feed_obj = api_list.get_product_feeds()
+        if feed_obj['error'] == 0 :
+            process_feed_data(feed_obj)
+            next_request_url = reverse('feed:feed_list', kwargs ={"categoryid" : 0, "mark" : feed_obj['mark']}) 
+            return render(request, 'feed/feeds.html', {'feeds' : feed_obj['feedList'], 'url' : next_request_url})
     except Exception,e:
         print e
         raise Http404
     raise Http404
+
+def feed_list(request, categoryid, mark):
+    if request.is_ajax(): #仅接受ajax请求
+        try:
+            feed_obj = api_list.get_product_feeds( categoryid, 20, mark)
+            if feed_obj['error'] == 0:
+                process_feed_data(feed_obj)
+                template = loader.get_template('feed/feedList.html')
+                context = RequestContext(request, {'feeds': feed_obj['feedList']})
+                next_request_url = reverse('feed:feed_list', kwargs ={"categoryid" : categoryid, "mark" : feed_obj['mark']})
+                response_json = {'html':template.render(context), 'mark':feed_obj['mark'], 'url':next_request_url}
+                return HttpResponse(json.dumps(response_json), content_type="application/json")
+        except Exception as e:
+            return HttpResponse(e)
+        raise Http404
+    else:
+        raise Http404
 
 def process_feed_data(feed_obj):
     """
