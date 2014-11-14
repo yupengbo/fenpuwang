@@ -24,7 +24,7 @@ def index(request):
     raise Http404
 
 def feed_list(request, categoryid, mark):
-#    if request.is_ajax(): #仅接受ajax请求
+    if request.is_ajax(): #仅接受ajax请求
         try:
             feed_obj = api_list.get_product_feeds( categoryid, 20, mark)
             if feed_obj['error'] == 0:
@@ -32,13 +32,13 @@ def feed_list(request, categoryid, mark):
                 template = loader.get_template('feed/feedList.html')
                 context = RequestContext(request, {'feeds': feed_obj['feedList']})
                 next_request_url = reverse('feed:feed_list', kwargs ={"categoryid" : categoryid, "mark" : feed_obj['mark']})
-                response_json = {'html':template.render(context), 'mark':feed_obj['mark'], 'url':next_request_url}
+                response_json = {'html':template.render(context), 'url':next_request_url}
                 return HttpResponse(json.dumps(response_json), content_type="application/json")
         except Exception as e:
             return HttpResponse(e)
         raise Http404
-#    else:
-#        raise Http404
+    else:
+        raise Http404
 
 def process_feed_data(feed_obj):
     """
