@@ -20,13 +20,12 @@ def process_search_data(search_data):
       product['thumb_s'] = pics[0]['thumb-s']
 
 def question_list(request, keyword, mark):
-  print "=++++++++++++++++"
   if request.is_ajax() == False: #仅接受ajax请求
     raise Http404
   try:
     search_json = api_list.search(keyword, 0, 20, mark) 
     if search_json['error'] != 0:
-      return
+      raise Http404 
     process_search_data(search_json)
     template = loader.get_template("lists/question_list.html")
     context = RequestContext(request, {'question_list':search_json['questionList']})
