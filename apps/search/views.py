@@ -23,7 +23,7 @@ def question_list(request, keyword, mark):
   if request.is_ajax() == False: #仅接受ajax请求
     raise Http404
   try:
-    search_json = api_list.search(keyword, 0, 20, mark) 
+    search_json = api_list.search(keyword, 2, 10, mark) 
     if search_json['error'] != 0:
       raise Http404 
     process_search_data(search_json)
@@ -38,7 +38,29 @@ def question_list(request, keyword, mark):
     print e
     return HttpResponse(e)
     
-  
+def product_list(request, keyword, type, mark):
+   is_ajax = request.is_ajax()
+   try:
+      search_result = api_list.search(keyword, 1, 10, mark)
+      if search_result['error'] == 0 :
+          process_search_data(search_result)
+          next_request_url = ""
+          if str(search_result['mark']) != "0":
+              next_request_url = reverse('search:product_list', kwargs ={"type":type, "keyword":keyword,  "mark":search_result['mark']})
+          meta_data = {'productList' : search_result["productList"], 'url':next_request_url, "keyword":keyword, 'from': 'search' }
+          if is_ajax:
+             context = RequestContext(request, meta_data)
+             template = loader.get_template('products/product_effect_list.html')
+             response_json = {'html':template.render(context), 'url':next_request_url}
+             return HttpResponse(json.dumps(response_json), content_type="application/json")
+          else:
+             return render(request, 'products/products.html', meta_data)
+   except Exception,e:
+      print e
+      raise Http404
+   raise Http404
+
+
 def search(request, keyword):
   search_json = api_list.search(keyword)
   try:
@@ -46,7 +68,7 @@ def search(request, keyword):
       return HttpResponse("search keyword invalid")
     process_search_data(search_json)
     next_request_url = reverse('search:question_list', kwargs = {"keyword":keyword, "mark":search_json['mark']})
-    return render(request, 'search/search.html', {'search':search_json, 'url':next_request_url})
+    return render(request, 'search/search.html', {'search':search_json, 'url':next_request_url, 'keyword':keyword })
   except Exception,e:
     print e
     raise Http404

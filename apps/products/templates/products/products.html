@@ -6,14 +6,21 @@
 	<script type="text/javascript" src="{% static "js/product_list.js" %}"></script>
 {% endblock %}
 {% block main_content %}
+{% if from != 'search' %}
 <ul class='filter_list'>
   <li><div class='p_f_5'></div>明星产品</li>
   <li class='on'><div class='p_f_1'></div>用过人数</li>
   <li><div class='p_f_6'></div>好评率</li>
   <li><div class='p_f_3'></div>价格</li>
 </ul>
+{% endif %}
 <ul class='product_list datalist'>
-  {% include "products/product_list.html" %}
+  {% if from != 'search' %}
+    {% include "products/product_list.html" %}
+  {% endif %}
+  {% if from == 'search' %}
+    {% include "products/product_effect_list.html" %}
+  {% endif %}
 </ul>
 <script>
 $(".datalist").loaddata({

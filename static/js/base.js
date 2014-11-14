@@ -7,15 +7,45 @@ $(function () {
         $('.icon_btn .search_icon').hide();
     }
     $('.icon_btn .search_icon').click(function () {
-        $(this).hide();
         $('.top_search').show();
         $('.nav ul').hide();
+        show_nav_search();
     });
     $('.top_search .close').click(function () {
         $('.top_search').hide();
         $('.nav ul').show();
+		show_nav_search();
     });
-
+    $("#nav_btn_search").click(function(){
+	   search_all($("#nav_keyword").val());
+	});
+	$("#index_btn_search").click(function(){
+       search_all($("#index_keyword").val());
+    });
+    function show_nav_search(){
+	   var srollPos = $(window).scrollTop();
+	   if (isIndexPage) {
+            var flowLine = $('.search_box').outerHeight() + $('.search_box').offset().top;
+            $(".feed_filter_box").hide();
+            if (flowLine < srollPos && $(".top_search").is(":hidden")) {
+                $('.icon_btn .search_icon').show();
+            } else {
+                $('.icon_btn .search_icon').hide();
+            }
+	   }else{
+	       if ($(".top_search").is(":hidden")) {
+		       $('.icon_btn .search_icon').show();
+		   } else {
+		       $('.icon_btn .search_icon').hide();
+		   }
+	   }
+	}
+	function search_all(keyword){
+	    if(keyword && trimStr(keyword)!=""){
+		    window.location = '/search/' + encodeURIComponent(keyword);
+		}
+		return false;
+	}
     $(window).scroll(function () {
         var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
         var flowLine = $('.nav_bar').offset().top;
@@ -24,15 +54,7 @@ $(function () {
         } else {
             $(".nav").css('position', 'relative');
         }
-        if (isIndexPage) {
-            flowLine = $('.search_box').outerHeight() + $('.search_box').offset().top;
-            $(".feed_filter_box").hide();
-            if (flowLine < srollPos && $(".top_search").is(":hidden")) {
-                $('.icon_btn .search_icon').show();
-            } else {
-                $('.icon_btn .search_icon').hide();
-            }
-        }
+		show_nav_search();
     });
     /* feed筛选按钮 */
     $('.icon_btn .feed_filter').click(function () {
@@ -98,3 +120,6 @@ $.extend({
         }
     }
 });
+function trimStr(str){
+    return str.replace("/(^\s*)|(\s*$)/g","");
+}

@@ -31,7 +31,9 @@ def feed_list(request, categoryid, mark):
                 process_feed_data(feed_obj)
                 template = loader.get_template('feed/feedList.html')
                 context = RequestContext(request, {'feeds': feed_obj['feedList']})
-                next_request_url = reverse('feed:feed_list', kwargs ={"categoryid" : categoryid, "mark" : feed_obj['mark']})
+                next_request_url = ""
+                if str(feed_obj['mark']) != "0":
+                    next_request_url = reverse('feed:feed_list', kwargs ={"categoryid" : categoryid, "mark" : feed_obj['mark']})
                 response_json = {'html':template.render(context), 'url':next_request_url}
                 return HttpResponse(json.dumps(response_json), content_type="application/json")
         except Exception as e:
