@@ -1,5 +1,5 @@
 /*product*/
-.product_body {min-height:100px; padding:13px 15px 0 15px;}
+.product_body {padding:13px 15px 0 15px;}
 
 .prodcut_pics {height:145px;}
 .product_pics img{height:145px; margin:0 auto;}
@@ -24,3 +24,7 @@
 .question_body li .title{padding-top:22px;}
 .question_body li .content{padding:12px 0;}
 
+/*product description*/
+.media_logo{padding:16px 13px; width:98px;}
+.product_desc_body{padding:7px 15px 17px 15px;}
+.link_body{min-height:200px;background-color:#f9f9f9;padding:0 15px 20px 15px;}

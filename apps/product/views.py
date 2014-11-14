@@ -13,7 +13,28 @@ def process_product_data(product_data):
   for question in product_data['questionList']:
     if question['relatedAnswer'] != None:
       question['relatedAnswer']['content'] = string_utils.truncate_text(question['relatedAnswer']['content']) 
-     
+
+def process_product_link(product_data):
+  for link in product_data['mapping']:
+    # 官方
+    if link['webId'] == "0" or link['webId'] == 0:
+      link['logo_img'] = "/static/images/icon_prduct_jieshao_web.png"
+    #聚美
+    if link['webId'] == "2" or link['webId'] == 2:
+      link['logo_img'] = "/static/images/icon_prduct_jieshao_jumei.png"
+    #乐蜂
+    if link['webId'] == "3" or link['webId'] == 3:
+      link['logo_img'] = "/static/images/icon_prduct_jieshao_lefeng.png"
+    #丝芙兰
+    if link['webId'] == "4" or link['webId'] == 4:
+      link['logo_img'] = "/static/images/icon_prduct_jieshao_sephora.png"
+    #天猫
+    if link['webId'] == "5" or link['webId'] == 5:
+      link['logo_img'] = "/static/images/icon_prduct_jieshao_tmall.png"
+    #京东
+    if link['webId'] == "6" or link['webId'] == 6:
+      link['logo_img'] = "/static/images/icon_prduct_jieshao_jd.png"
+
 def question_list(request, product_id, mark):
   if request.is_ajax() == False: #仅接受ajax请求
     raise Http404
@@ -46,3 +67,16 @@ def product_detail(request, product_id):
   except Exception,e:
     print e
     raise Http404
+
+def product_official(request, product_id):
+  has_product_info = 1
+  product_json = api_list.get_product_detail(product_id, has_product_info)
+  try:
+    if product_json == None or product_json == "" or product_json['error'] != 0:
+      return HttpResponse("product id invalid")
+    process_product_link(product_json['product'])
+    return render(request, 'product/product_official.html', {'product':product_json['product']})
+  except Exception,e:
+    print e
+    raise Http404
+
