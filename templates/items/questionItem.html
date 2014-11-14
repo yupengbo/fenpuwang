@@ -1,4 +1,5 @@
 <li>
+<a href='{% url 'question:question_details' question.questionId %}'>
 <div class="title fcb1 f15">{{ question.title }}<em></em></div>
 <div class="content fcg1 f14">
   {% ifequal question.relatedAnswer.isBest 1%}
@@ -12,4 +13,5 @@
 <div class='title_rinfo hidden'>{{ question.answerNum }}</div>
 <div class='content_rinfo hidden'>{{ question.relatedAnswer.likeNum }}</div>
 <div class="sp_line"></div>
+</a>
 </li>

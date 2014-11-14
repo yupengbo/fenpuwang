@@ -13,6 +13,7 @@
 <!--品牌馆-->
 <div class="brand_body">
   {% for brand in search.brandList %}
+  <a href='{% url 'products:query_by_category' 3 brand.brandId %}'>
   <div class="brand_item">
     {% ifequal forloop.counter 1 %}
     <!--品牌1-->
@@ -31,6 +32,7 @@
       <div class="clear"></div>
     </div>
   </div>
+  </a>
   {% endfor %}
 </div>
 
