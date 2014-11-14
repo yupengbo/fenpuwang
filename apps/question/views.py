@@ -4,6 +4,7 @@ from django.shortcuts import render
 from django.http import HttpResponse,Http404
 from django.template import RequestContext, loader
 from django.views.decorators.csrf import csrf_exempt
+from django.core.urlresolvers import reverse
 from apps.api import api_list
 from apps.utils import data_process_utils
 import requests
@@ -14,9 +15,14 @@ def question_details(request, question_id):
         question_obj = api_list.get_question_detail(question_id, 1, 1, 0)
         if question_obj['error'] == 0:
             process_question_data(question_obj)
-            return render(request, 'question/question.html', {'question':question_obj, 'question_id':question_id})
+            next_page_url = ''  # for next page ajax loading
+            if int(question_obj['mark']) > 0:
+                next_page_url = reverse('question:answer_list',
+                                        kwargs = {'question_id' : question_id, 'mark' : question_obj['mark']})
+            return render(request, 'question/question.html',
+                          {'question':question_obj, 'question_id':question_id, 'url' : next_page_url})
     except Exception as e:
-        return HttpResponse(e)
+        raise Http404
     raise Http404
 
 @csrf_exempt
@@ -35,11 +41,14 @@ def answer_list(request, question_id, mark):
                 process_answers(answers_obj['answerList']);
                 template = loader.get_template('question/answerList.html')
                 context = RequestContext(request, {'answers': answers_obj['answerList']})
-                response_json = {'html':template.render(context), 'mark':answers_obj['mark']}
+                next_page_url = ''  # for next page ajax loading
+                if int(answers_obj['mark']) > 0:
+                    next_page_url = reverse('question:answer_list',
+                                            kwargs = {'question_id' : question_id, 'mark' : answers_obj['mark']})
+                response_json = {'html':template.render(context), 'mark':answers_obj['mark'], 'url':next_page_url}
                 return HttpResponse(json.dumps(response_json), content_type="application/json")
         except Exception as e:
             raise Http404
-        raise Http404
     else:
         raise Http404
 

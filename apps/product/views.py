@@ -20,17 +20,19 @@ def question_list(request, product_id, mark):
 
   try:
     product_json = api_list.get_product_detail(product_id, 0, 20, mark)
-    if product_json['error'] == 0:
-      process_product_data(product_json)
-      template = loader.get_template("lists/question_list.html")
-      context = RequestContext(request, {'question_list':product_json['questionList']})
-      next_request_url = reverse('product:question_list', kwargs = {"product_id":product_id, "mark":product_json['mark']})
-      response_json = {'html':template.render(context), 'mark':product_json['mark'], 'url':next_request_url}
-      return HttpResponse(json.dumps(response_json), content_type="application/json") 
+    if product_json['error'] != 0:
+      raise Http404
+    process_product_data(product_json)
+    template = loader.get_template("lists/question_list.html")
+    context = RequestContext(request, {'question_list':product_json['questionList']})
+    next_request_url = reverse('product:question_list', kwargs = {"product_id":product_id, "mark":product_json['mark']})
+    if product_json['mark'] == 0 or product_json['mark'] == "0":
+      next_request_url = ""
+    response_json = {'html':template.render(context), 'mark':product_json['mark'], 'url':next_request_url}
+    return HttpResponse(json.dumps(response_json), content_type="application/json") 
   except Exception as e:
     print e
     return HttpResponse(e)
-  raise Http404
   
 def product_detail(request, product_id):
   has_product_info = 1
