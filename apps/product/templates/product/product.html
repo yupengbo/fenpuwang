@@ -29,7 +29,7 @@
   </div>
   <div class="sp_line"></div>
   <div class="product_related">
-    <div class="btn fl"><div class="btn_content fcg1 f13 bg"><div class="porduct_jeshao_img fl"></div>官方介绍</div></div>
+    <a href='{% url 'product:product_official' product.product.productId %}'><div class="btn fl"><div class="btn_content fcg1 f13 bg"><div class="porduct_jeshao_img fl"></div>官方介绍</div></div></a>
     <a href='{% url 'products:query_by_category' 1 product.product.category.categoryId %}'><div class="btn fl"><div class="btn_content fcg1 f13 bg"><div class="porduct_category_img fl"></div>同类别产品</div></div></a>
     <a href='{% url 'products:query_by_category' 3 product.product.brand.brandId %}'><div class="btn fl"><div class="btn_content fcg1 f13 bg"><div class="porduct_brand_img fl"></div>同品牌产品</div></div></a>
   </div>
