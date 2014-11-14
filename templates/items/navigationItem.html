@@ -3,8 +3,8 @@
    <div class='nav'>
        <form>
         <ul class=''>
-	      <li class='on'>首页</li>
-          <li>产品库</li>
+	      <li {% if nav == 'index' %}class='on'{% endif %}><a href='/'>首页</a></li>
+          <li {% if nav == 'products' %}class='on'{% endif %}><a href='{% url 'products:products_index' %}'>产品库</a></li>
         </ul>
         <div class='top_search hidden'>
             <div class='closebox fl'>
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class='icon_btn'>
-            <div class='feed_filter fr bg block' ></div>
+            {% if nav == 'index' %}<div class='feed_filter fr bg block' ></div>{% endif %}
             <div class='search_icon fr bg block' ></div>
         </div>
        </form>
@@ -33,6 +33,7 @@
    </ul>
    <div class='clear'></div>
 </div>
+{% if nav == 'index' %}
 <div class='search_box t_c'>
   <h1 class='bg block'></h1>
   <h2 class='bg block'></h2>
@@ -43,4 +44,5 @@
     <form>
   </div>
 </div>
-																																																																																																				<div class='sp_line2'></div>
+{% endif %}
+<div class='sp_line2'></div>

@@ -16,8 +16,8 @@ def index(request):
         nav_list = static_data.get_nav_data() 
         if feed_obj['error'] == 0 :
             process_feed_data(feed_obj)
-            next_request_url = reverse('feed:feed_list', kwargs ={"categoryid" : 0, "mark" : feed_obj['mark']}) 
-            return render(request, 'feed/feeds.html', {'feeds' : feed_obj['feedList'],'nav_list' : nav_list , 'url' : next_request_url})
+            next_request_url = reverse('feed:feed_list', kwargs ={"categoryid" : 0, "mark": feed_obj['mark']}) 
+            return render(request, 'feed/feeds.html', {'feeds' : feed_obj['feedList'],'nav_list' : nav_list , 'url' : next_request_url, "nav": "index"})
     except Exception,e:
         print e
         raise Http404

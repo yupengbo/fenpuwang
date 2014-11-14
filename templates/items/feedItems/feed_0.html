@@ -1,4 +1,6 @@
-<div class='title f14 fcb1'>{{ feed.question.title }}<em></em></div>
-<div class='content f13 fcg2'>{{ feed.answer.content }}<em></em></div>
-<div class='title_rinfo hidden'>{{ feed.question.answerNum }}个回答</div>
-<div class='title_content hidden'>{{ feed.answer.likeNum }}个赞</div>
+<a href='{% url 'question:question_details' feed.question.questionId %}'>
+ <div class='title f14 fcb1'>{{ feed.question.title }}<em></em></div>
+ <div class='content f13 fcg2'>{{ feed.answer.content }}<em></em></div>
+ <div class='title_rinfo hidden'>{{ feed.question.answerNum }}个回答</div>
+ <div class='title_content hidden'>{{ feed.answer.likeNum }}个赞</div>
+</a>

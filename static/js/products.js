@@ -8,7 +8,7 @@ $(function(){
   $(".product_category_list li").click(function(){
      var url=$(this).find("a").attr("href");
 	 if(url){
-       window.location = $(this).find("a").attr("href");
+       window.location = url;
 	 }
 	 return false;
   });

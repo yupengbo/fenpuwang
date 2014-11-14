@@ -7,6 +7,7 @@ li {list-style-type:none;}
 input,select{vertical-align:middle;}
 h1, h2, h3, h4, h5, h6 {font-weight:normal; font-size:12px;}
 b,i,em{font-style:normal;}
+a{text-decoration:none;}
 /* 鼠标样式 */
 .pointer{ cursor:pointer;}
 /* 取消边框 */
@@ -83,8 +84,9 @@ body {margin: 0px;min-width:320px;}
 .nav img{cursor:pointer;}
 .nav ul{width:80%;}
 .nav ul,.nav .icon_btn{position:absolute;top:13px;}
-.nav ul li{float:left;display:block;padding:0 3%;color:#ffddda;cursor:pointer;}
-.nav ul .on{font-weight:bold;color:#fff;}
+.nav ul li{float:left;display:block;padding:0 3%;}
+.nav ul li a{color:#ffddda;}
+.nav ul .on a{font-weight:bold;color:#fff;}
 .nav .icon_btn{width:40%;right:3%;}
 .nav .top_search{height:44px;}
 .nav .top_search .closebox{width:10%;min-width:40px;}

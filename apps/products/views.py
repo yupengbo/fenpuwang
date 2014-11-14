@@ -10,7 +10,7 @@ from django.core.urlresolvers import reverse
 import json
 def products_index(request):
     data = static_data.get_products_index_data() 
-    return render(request, 'products/products_index.html', {'data' : data})
+    return render(request, 'products/products_index.html', {'data': data ,'nav':'products'})
 # Create your views here.
 def productlist_by_category(request, type=0,category_id=0,order=1,filter=0,mark=0):
     is_ajax = request.is_ajax()
@@ -21,7 +21,7 @@ def productlist_by_category(request, type=0,category_id=0,order=1,filter=0,mark=
             next_request_url = ""
             if str(products_result['mark']) != "0":
                 next_request_url = reverse('products:queryt_by_all', kwargs ={"type":type, "category_id":category_id, "order":order, "filter":filter, "mark":products_result['mark']})
-            meta_data = {'productList' : products_result["productList"], 'url':next_request_url}
+            meta_data = {'productList' : products_result["productList"], 'url':next_request_url ,'nav':'products'}
             if is_ajax:
                 context = RequestContext(request, meta_data)
                 template = loader.get_template('products/product_list.html')

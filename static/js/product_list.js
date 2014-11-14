@@ -13,6 +13,12 @@ $(function(){
 	 }
 	 $(this).addClass('on');
      $(this).siblings().removeClass('on');
-
+  });
+  $(".product_list li").click(function(){
+    var url=$(this).find("div a").attr("href");
+    if(url){
+       window.location = url;
+    }
+    return false;
   });
 });
