@@ -1,5 +1,5 @@
 
-jQuery.fn.loaddata = function( user_setting) {
+jQuery.fn.loaddata = function(user_setting) {
     return this.each(function() {
         
         var opts = jQuery.extend({
