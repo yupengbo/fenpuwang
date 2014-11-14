@@ -77,9 +77,9 @@ jQuery.fn.loaddata = function(user_setting) {
         }
         function load_data(){
            $.loaddata_loadding = true;
-           show_loading();
            var request_url=$(opts.box).attr(sys_opts.url_attr);
            if (request_url){
+               show_loading();
                $.get_data(
                     request_url, 
                     "",

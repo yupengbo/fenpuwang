@@ -116,31 +116,31 @@ body {margin: 0px;min-width:320px;}
 .filter_list{padding:8px 14px;color:#d3b5af;height:53px;}
 .filter_list .on{color:#ff5346;}
 .filter_list li{height:53px;float:left;width:25%;text-align:center;font-size:14px;border-bottom:1px #dbdbdb solid;}
-.filter_list .p_f_1,.filter_list .p_f_2,.filter_list .p_f_3,.filter_list .p_f_4,.filter_list .p_f_5,.filter_list .p_f_6{background-size:24px 24px;width:24px;height:24px;margin:3px auto;}
+.filter_list .p_f_1,.filter_list .p_f_2,.filter_list .p_f_3,.filter_list .p_f_4,.filter_list .p_f_5,.filter_list .p_f_6,.filter_list .p_t_0,.filter_list .p_t_1,.filter_list .p_t_2,.filter_list .p_t_3{background-size:24px 24px;width:24px;height:24px;margin:3px auto;}
 /*  产品筛选 USED_PRODUCT(1),GOOD_PRODUCT(2),PRICE_ASC(3),PRICE_DESC(4),STAR_PRODUCT(5),GOOD_REVIEW_RATIO(6) */
 .filter_list .p_f_1{background:url('../images/icon_category_renshu_normal.png');}
 .filter_list .p_f_2{background:url('../images/icon_category_haoping_normal.png');}
 .filter_list .p_f_3{background:url('../images/icon_category_jiage_normal.png');}
-.filter_list .p_f_4{background:url('../images/icon_category_jiage_highlight_ex_to_ch.png');}
+.filter_list .p_f_4{background:url('../images/icon_category_jiage_normal.png');}
 .filter_list .p_f_5{background:url('../images/icon_category_top_normal.png');}
 .filter_list .p_f_6{background:url('../images/icon_category_haoping_normal.png');}
 /*  产品分类筛选 SKINCARE(0),MAKEUP(1),EFFECT(2),BRAND(3) */
 .filter_list .p_t_0{background:url('../images/icon_category_skin_care_normal.png');}
-.filter_list .p_t_1{background:url('../images/icon_category_skin_makeup_normal.png');}
-.filter_list .p_t_2{background:url('../images/icon_category_skin_virtue_normal.png');}
-.filter_list .p_t_3{background:url('../images/icon_category_skin_brand_normal.png');}
+.filter_list .p_t_1{background:url('../images/icon_category_makeup_normal.png');}
+.filter_list .p_t_2{background:url('../images/icon_category_virtue_normal.png');}
+.filter_list .p_t_3{background:url('../images/icon_category_brand_normal.png');}
 /*  选中状态 */
 .filter_list .on .p_f_1{background:url('../images/icon_category_renshu_highlight.png');}
 .filter_list .on .p_f_2{background:url('../images/icon_category_haoping_highlight.png');}
-.filter_list .on .p_f_3{background:url('../images/icon_category_jiage_highlight.png');}
-.filter_list .on .p_f_4{background:url('../images/icon_category_jiage_highlight_ex_to_ch.png');}
-.filter_list .on .p_f_5{background:url('../images/icon_category_top_hightlight.png');}
-.filter_list .on .p_f_6{background:url('../images/icon_category_haoping_hightlight.png');}
+.filter_list .on .p_f_3{background:url('../images/icon_category_jiage_highlight_ex_to_ch.png');}
+.filter_list .on .p_f_4{background:url('../images/icon_category_jiage_highlight_ch_to_ex.png');}
+.filter_list .on .p_f_5{background:url('../images/icon_category_top_highlight.png');}
+.filter_list .on .p_f_6{background:url('../images/icon_category_haoping_highlight.png');}
 /*  产品分类筛选 SKINCARE(0),MAKEUP(1),EFFECT(2),BRAND(3) */
 .filter_list .on .p_t_0{background:url('../images/icon_category_skin_care_highlight.png');}
-.filter_list .on .p_t_1{background:url('../images/icon_category_skin_makeup_highlight.png');}
-.filter_list .on .p_t_2{background:url('../images/icon_category_skin_virtue_highlight.png');}
-.filter_list .on .p_t_3{background:url('../images/icon_category_skin_brand_highlight.png');}
+.filter_list .on .p_t_1{background:url('../images/icon_category_makeup_highlight.png');}
+.filter_list .on .p_t_2{background:url('../images/icon_category_virtue_highlight.png');}
+.filter_list .on .p_t_3{background:url('../images/icon_category_brand_highlight.png');}
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), not all {
 	.download .btn_download{background-image:url('../images/btn_banner_download_normal@2x.png');}
