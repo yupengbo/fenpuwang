@@ -30,6 +30,8 @@ def question_list(request, keyword, mark):
     template = loader.get_template("lists/question_list.html")
     context = RequestContext(request, {'question_list':search_json['questionList']})
     next_request_url = reverse('search:question_list', kwargs = {"keyword":keyword, "mark":search_json['mark']})
+    if search_json['mark'] == 0 or search_json['mark'] == "0":
+      next_request_url = "" 
     response_json = {'html':template.render(context), 'mark':search_json['mark'], 'url':next_request_url}
     return HttpResponse(json.dumps(response_json), content_type="application/json") 
   except Exception as e:
