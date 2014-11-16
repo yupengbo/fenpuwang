@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 import json
+from django.conf import settings
 """
 static data.
 """
@@ -16,7 +17,7 @@ products_index_data={}
 def get_products_index_data():
    global products_index_data
    if not products_index_data:
-      fp = open("./apps/api/products.json", 'r')
+      fp = open(settings.BASE_DIR + "/products.json", 'r')
       s = json.load(fp)
       fp.close()
       products_index_data = s

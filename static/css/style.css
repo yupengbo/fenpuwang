@@ -135,8 +135,8 @@ body {margin: 0px;min-width:320px;}
 /*  选中状态 */
 .filter_list .on .p_f_1{background:url('../images/icon_category_renshu_highlight.png');}
 .filter_list .on .p_f_2{background:url('../images/icon_category_haoping_highlight.png');}
-.filter_list .on .p_f_3{background:url('../images/icon_category_jiage_highlight_ex_to_ch.png');}
-.filter_list .on .p_f_4{background:url('../images/icon_category_jiage_highlight_ch_to_ex.png');}
+.filter_list .on .p_f_3{background:url('../images/icon_category_jiage_highlight_ch_to_ex.png');}
+.filter_list .on .p_f_4{background:url('../images/icon_category_jiage_highlight_ex_to_ch.png');}
 .filter_list .on .p_f_5{background:url('../images/icon_category_top_highlight.png');}
 .filter_list .on .p_f_6{background:url('../images/icon_category_haoping_highlight.png');}
 /*  产品分类筛选 SKINCARE(0),MAKEUP(1),EFFECT(2),BRAND(3) */

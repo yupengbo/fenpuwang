@@ -22,6 +22,7 @@ def question_details(request, question_id):
             return render(request, 'question/question.html',
                           {'question':question_obj, 'question_id':question_id, 'url' : next_page_url})
     except Exception as e:
+        print e
         raise Http404
     raise Http404
 

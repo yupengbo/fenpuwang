@@ -8,6 +8,7 @@ jQuery.fn.loaddata = function(user_setting) {
             threshold : 100,//滚动加载阈值
             box : ".datalist",//容器
             load_mode : "scroll_append",//scroll_append  click_flush  click_append
+			success : function(){},
             /* config */
         }, user_setting || {});
         
@@ -85,6 +86,7 @@ jQuery.fn.loaddata = function(user_setting) {
                     "",
                     function(data) {
                         process_data(data);
+						opts.success();
                     },
                     function(xmlReq, textStatus) {
                         close_loading();

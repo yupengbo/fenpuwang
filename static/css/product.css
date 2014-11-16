@@ -21,6 +21,7 @@
 /*question list*/
 .question_body{background-color:#f9f9f9;padding:0 15px 20px 15px;}
 .question_overview{padding-top:20px;padding-bottom:10px;height:16px;}
+.question_body li{position: relative;}
 .question_body li .title{padding-top:22px;}
 .question_body li .content{padding:12px 0;}
 

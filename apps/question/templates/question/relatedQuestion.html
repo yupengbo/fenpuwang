@@ -1,8 +1,9 @@
 <div class="related-question-item">
-    <a class="related-question-title f13 fcb1" href="{% url 'question:question_details' q.questionId %}">
+    <a class="f13 fcb1 fl" href="{% url 'question:question_details' q.questionId %}">
         {{ q.title }}
     </a>
-    <div class="related-question-answer-num f10 fcg2">
+    <span class="f10 fcg2 fr">
         {{ q.answerNum }}回答
-    </div>
+    </span>
+	<div class='clear'></div>
 </div>

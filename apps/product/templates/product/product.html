@@ -48,8 +48,11 @@
 
 <script type="application/javascript">
 $(".datalist").loaddata({
-  url : "{{ url }}"
+  url : "{{ url }}",
+  success :show_right_info
 });
+show_right_info();
+
 </script>
 
 {% endblock %}

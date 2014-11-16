@@ -1,4 +1,5 @@
 .product_body {margin-bottom:12px;}
+.question_list li{position: relative;}
 .brand_item {height:100px;}
 .brand_item .brand_bg_red {background-color:#762027;}
 .brand_item .brand_bg_blue {background-color:#440065;}

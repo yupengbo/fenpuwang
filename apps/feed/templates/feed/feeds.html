@@ -11,10 +11,12 @@
 </ul>
 <script>
 $(".datalist").loaddata({
-    url : "{{ url }}"
+    url : "{{ url }}",
+	success :show_right_info 
 });
 $(".feed_filter_box li").loaddata({
     load_mode : "click_flush",
+	success :show_right_info
 });
 </script>
 {% endblock %}

@@ -10,8 +10,9 @@
   {% endifequal  %}
   {{ question.relatedAnswer.content }}<em></em>
 </div>
-<div class='title_rinfo hidden'>{{ question.answerNum }}</div>
-<div class='content_rinfo hidden'>{{ question.relatedAnswer.likeNum }}</div>
+<i target='title' class='rhinfo f10 fcg1 hidden'>{{ question.answerNum }}回答</i>
+<i target='content' class='rhinfo f10 fcg1 hidden'>{{ question.relatedAnswer.likeNum }}赞</i>
 <div class="sp_line"></div>
 </a>
 </li>
+

@@ -1,75 +1,19 @@
-.question-body {
-    width: 100%;
-    min-height: 100px;
-    margin-top: 16px;
-}
-
-.question-avatar {
-    float:left;
-}
-
-.question-title{
-    font-weight:bold;
-}
-.profile-name {
-    float:left;
-    margin-left:20px;
-}
-
-.profile-property {
-    float: left;
-    margin-left:20px;
-}
-
-.post-date {
-    float: right;
-}
-
-.question-desc {
-    line-height: 24px;
-    clear: both;
-}
-
-.answer-body {
-    width: 100%;
-    background-color: #f9f8f5;
-}
-
-.answer-avatar {
-    float: left;
-}
-.answer-profile-property {
-    float: right;
-    margin-left: 20px;
-}
-
-.answer-content {
-    clear: both;
-}
-
-.answer-item {
-
-}
-
-.related-question-body {
-    background-color: #ffffff;
-}
-
-.related-question-item {
-    clear: both;
-    display: inline-block;
-    width: 100%;
-}
-
-.related-question-title {
-    float: left;
-}
-
-.related-question-answer-num {
-    float: right;
-}
-
-.load_more_answer {
-    width: 100%;
-    height: 50px;
-}
+.question-body {padding:16px 12px;}
+.question-title{font-weight:bold;}
+.profile-name {padding:1px 8px;}
+.question-user-profile{padding:6px 0 3px;}
+.profile-property {padding:4px 0;}
+.related-products ul{padding:5px 0px;}
+.related-products ul li{padding:10px 0px;}
+.related-products .subtitle,.answer-body .subtitle{padding:7px 0px;}
+.question-desc {line-height: 24px;clear: both;}
+.related-products, .answer-body{padding:5px 12px;}
+.answer-body {padding-top:10px; background-color: #f9f8f5;}
+.answer-body .answer-item{padding-top:10px;position:relative;}
+.answer-body .answer-item .sp_line{ padding:5px 0px;}
+.answer-user-profile span{padding:1px 8px;}
+.answer-user-profile em{padding:4px 0px;}
+.answer-content {clear: both;}
+.related-question-body {padding:10px 0 0px; background-color: #ffffff;}
+.related-question-item {padding:10px 0px;}
+.load_more_answer { width: 100%; height: 50px;}

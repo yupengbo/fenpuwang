@@ -28,6 +28,7 @@ def productlist_by_category(request, type=0,category_id=0,order=1,filter=0,mark=
                 response_json = {'html':template.render(context), 'url':next_request_url}
                 return HttpResponse(json.dumps(response_json), content_type="application/json")
             else:
+                meta_data = dict(meta_data.items() + {"type":type, "category_id":category_id, "order":order, "filter":filter}.items())
                 return render(request, 'products/products.html', meta_data)
     except Exception,e:
         print e

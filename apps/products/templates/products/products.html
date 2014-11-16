@@ -8,12 +8,13 @@
 {% block main_content %}
 {% if from != 'search' %}
 <ul class='filter_list'>
-  <li><div class='p_f_5'></div>明星产品</li>
-  <li class='on'><div class='p_f_1'></div>用过人数</li>
-  <li><div class='p_f_6'></div>好评率</li>
-  <li><div class='p_f_3'></div>价格</li>
+  <li get_data_url='{% url 'products:queryt_by_all' type category_id 5 0 0 %}'><div class='p_f_5'></div>明星产品</li>
+  <li class='on' get_data_url='{% url 'products:queryt_by_all' type category_id 1 0 0 %}'><div class='p_f_1'></div>用过人数</li>
+  <li get_data_url='{% url 'products:queryt_by_all' type category_id 6 0 0 %}'><div class='p_f_6'></div>好评率</li>
+  <li get_data_url='{% url 'products:queryt_by_all' type category_id 4 0 0 %}' get_data_url_1='{% url 'products:queryt_by_all' type category_id 4 0 0 %}' get_data_url_2='{% url 'products:queryt_by_all' type category_id 3 0 0 %}'><div class='p_f_4'></div>价格</li>
 </ul>
 {% endif %}
+
 <ul class='product_list datalist'>
   {% if from != 'search' %}
     {% include "products/product_list.html" %}
@@ -25,6 +26,9 @@
 <script>
 $(".datalist").loaddata({
     url : "{{ url }}"
+});
+$(".filter_list li").loaddata({
+    load_mode : "click_flush",
 });
 </script>
 {% endblock %}

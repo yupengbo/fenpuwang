@@ -55,3 +55,5 @@ def process_feed_data(feed_obj):
             feed['answer']['content'] = string_utils.truncate_text(feed['answer']['content'])
         if feed.get('question'):
             feed['question']['content'] = string_utils.truncate_text(feed['question']['content'])
+        else:
+            feed['question'] = {"questionId":0}
