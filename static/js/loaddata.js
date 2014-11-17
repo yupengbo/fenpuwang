@@ -86,7 +86,7 @@ jQuery.fn.loaddata = function(user_setting) {
                     "",
                     function(data) {
                         process_data(data);
-						opts.success();
+                        opts.success();
                     },
                     function(xmlReq, textStatus) {
                         close_loading();
@@ -106,7 +106,7 @@ jQuery.fn.loaddata = function(user_setting) {
            }else if(data_mode == DATA_MODE_FLUSH){
               var loaddingTag = "#"+sys_opts.page_loading;
               $loaddingItem = $(loaddingTag);
-              var boxcss = 'background-color:#000;-moz-opacity:0.8; opacity:0.8;-khtml-opacity: 0.8;position:absolute;top:0px;left:0px;z-index:9999;display:hidden;';
+              var boxcss = 'position:absolute;top:0px;left:0px;z-index:9999;display:hidden;';
               if($loaddingItem.length == 0){
                   $loaddingItem = $('<div id="'+data-loadding+'" style="display:none">'+sys_opts.loading_img+'</div>');
                   $("body").prepend($loaddingItem);
@@ -132,6 +132,7 @@ jQuery.fn.loaddata = function(user_setting) {
               $loaddingItem.remove();
            }else if(data_mode == DATA_MODE_FLUSH){
               $loaddingItem.hide();
+              window.scrollTo(0,0);
            }
            $.loaddata_loadding = false;
         }

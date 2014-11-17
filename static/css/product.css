@@ -14,9 +14,9 @@
 .product_related .btn .btn_content {width:85px;margin:0 auto;}
 .product_related {height:13px; padding:13px 0;margin:0 auto;}
 .porduct_jeshao_img,.porduct_category_img,.porduct_brand_img{margin:3px 4px 0 0;background-color:#ffffff;background-size:12px 12px;width:12px;height:12px;}
-.porduct_jeshao_img{background-image:url('/static/images/icon_product_jieshao.png');}
-.porduct_category_img{background-image:url('/static/images/icon_product_leibie.png');}
-.porduct_brand_img{background-image:url('/static/images/icon_product_pinpai.png');}
+.porduct_jeshao_img{background-image:url('/static/images/icon_product_jieshao@2x.png');}
+.porduct_category_img{background-image:url('/static/images/icon_product_leibie@2x.png');}
+.porduct_brand_img{background-image:url('/static/images/icon_product_pinpai@2x.png');}
 
 /*question list*/
 .question_body{background-color:#f9f9f9;padding:0 15px 20px 15px;}

@@ -72,13 +72,14 @@ body {margin: 0px;min-width:320px;}
 .download{height:87px; background-color:#3e3930;}
 .download .close,.download .info,.download .btns{position:absolute;}
 .download .info,.download .btns{width:100%;}
-.download .info{top:12px;}
+.download .info{top:12px; text-align:center;}
 .download .btns{bottom:5px;}
 .download .btns div{width:50%;}
-.download .close{z-index:50;background-image:url('../images/btn_banner_cancel_normal.png');width:15px;height:15px;left:5px;top:5px;}
+.download .close{z-index:50;background-image:url('../images/btn_banner_cancel_normal@2x.png');width:15px;height:15px;left:5px;top:5px;}
 .download .btn_download,.download .btn_openapp{cursor:pointer;background-size:78px 27px;width:78px;height:27px;}
-.download .btn_download{background-image:url('../images/btn_banner_download_normal.png');}
-.download .btn_openapp{background-image:url('../images/btn_banner_open_normal.png');}
+.download .btn_download{background-image:url('../images/btn_banner_download_normal@2x.png');}
+.download .btn_openapp{background-image:url('../images/btn_banner_open_normal@2x.png');}
+.download .info_img{background-size:220px 36px;width:220px;height:36px;background-image:url('../images/img_banner_information@2x.png');margin:0 auto;}
 /*  顶部导航  */
 .nav_bar{height:44px;width:100%;}
 .nav{z-index:999;background-color:#ff5346;height:44px;overflow:hidden;position:relative;left:0;top:0;width:100%;}
@@ -92,58 +93,58 @@ body {margin: 0px;min-width:320px;}
 .nav .top_search{height:44px;}
 .nav .top_search .closebox{width:10%;min-width:40px;}
 .nav .top_search .inputbox{width:80%;min-width:260px;}
-.nav .top_search .close{margin:14px 12px;background-size:16px 16px;width:16px;height:16px;background-image:url('../images/btn_nav_cancel_normal.png');}
+.nav .top_search .close{margin:14px 12px;background-size:16px 16px;width:16px;height:16px;background-image:url('../images/btn_nav_cancel_normal@2x.png');}
 .nav .top_search .keyword{margin-top:6px;width:100%;border:1px  #eeeeee solid;background-color:#fff;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;height:27px;}
 .nav .top_search .search_icon{right:3%;top:14px;}
 .nav .top_search .index{width:75%;min-width:230px;}
-.nav .top_search .on{background-color:#fff;background-image:url('../images/btn_nav_search_pressed.png');}
-.nav .feed_filter{margin:2px 0 0 5%;background-size:21px 13px;width:21px;height:13px;background-image:url('../images/btn_nav_shaixuan_normal.png');}
-.nav .search_icon{border:0px;background-color:#ff5346;background-size:17px 17px;width:17px;height:17px;background-image:url('../images/btn_nav_search_normal.png');}
+.nav .top_search .on{background-color:#fff;background-image:url('../images/btn_nav_search_pressed@2x.png');}
+.nav .feed_filter{margin:2px 0 0 5%;background-size:21px 13px;width:21px;height:13px;background-image:url('../images/btn_nav_shaixuan_normal@2x.png');}
+.nav .search_icon{border:0px;background-color:#ff5346;background-size:17px 17px;width:17px;height:17px;background-image:url('../images/btn_nav_search_normal@2x.png');}
 /*    feeds  filter  */
 .feed_filter_box{z-index:50;background:url('../images/filter_feed_bg_line.png');box-shadow:0 0 5px #999;-webkit-box-shadow:0 0 5px #999;-moz-box-shadow:0 0 5px #999;}
 .feed_filter_box li{color:#d3b5af;display:block;height:13px;padding:17px 25px;font-size:12px;float:left;}
 .feed_filter_box .on{color:#ff5346;}
 /*   search */
 .search_box{height:166px;padding-top:18px;}
-.search_box h1{background-size:48px 22px;width:48px;height:22px;background-image:url('../images/img_fenpu.png');margin:0 auto;}
-.search_box h2{background-size:125px 14px;width:125px;height:14px;background-image:url('../images/img_solo.png');margin:12px auto 0;}
+.search_box h1{background-size:48px 22px;width:48px;height:22px;background-image:url('../images/img_fenpu@2x.png');margin:0 auto;}
+.search_box h2{background-size:125px 14px;width:125px;height:14px;background-image:url('../images/img_solo@2x.png');margin:12px auto 0;}
 .search_box .search_input_box{margin:18px auto 0;}
 .search_box ul{height:45px;margin:0 auto; width:90%;}
 .search_box ul  li{height:45px;}
-.search_box ul .l_b{background:url('../images/bg_input_left.png');width:2px;}
-.search_box ul .c_b{background:url('../images/bg_input_middle.png');width:98%;}
-.search_box ul .r_b{background:url('../images/bg_input_right.png');width:2px;}
+.search_box ul .l_b{background:url('../images/bg_input_left@2x.png');width:2px;}
+.search_box ul .c_b{background:url('../images/bg_input_middle@2x.png');width:98%;}
+.search_box ul .r_b{background:url('../images/bg_input_right@2x.png');width:2px;}
 .search_box #index_keyword{padding-left:3%;left:10%;width:80%;border:1px  #eeeeee solid; background-color:#f9f9f9;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;height:45px;}
-.search_box #index_btn_search{top:16px;border:0px;right:13% ;background-color:#f9f9f9;background-size:17px 17px;width:17px;height:17px;background-image:url('../images/btn_seach_bar_search_normal.png');}
+.search_box #index_btn_search{top:16px;border:0px;right:13% ;background-color:#f9f9f9;background-size:17px 17px;width:17px;height:17px;background-image:url('../images/btn_seach_bar_search_normal@2x.png');}
 /* filter list*/
 .filter_list{padding:8px 14px;color:#d3b5af;height:53px;}
 .filter_list .on{color:#ff5346;}
 .filter_list li{height:53px;float:left;width:25%;text-align:center;font-size:14px;border-bottom:1px #dbdbdb solid;}
 .filter_list .p_f_1,.filter_list .p_f_2,.filter_list .p_f_3,.filter_list .p_f_4,.filter_list .p_f_5,.filter_list .p_f_6,.filter_list .p_t_0,.filter_list .p_t_1,.filter_list .p_t_2,.filter_list .p_t_3{background-size:24px 24px;width:24px;height:24px;margin:3px auto;}
 /*  产品筛选 USED_PRODUCT(1),GOOD_PRODUCT(2),PRICE_ASC(3),PRICE_DESC(4),STAR_PRODUCT(5),GOOD_REVIEW_RATIO(6) */
-.filter_list .p_f_1{background:url('../images/icon_category_renshu_normal.png');}
-.filter_list .p_f_2{background:url('../images/icon_category_haoping_normal.png');}
-.filter_list .p_f_3{background:url('../images/icon_category_jiage_normal.png');}
-.filter_list .p_f_4{background:url('../images/icon_category_jiage_normal.png');}
-.filter_list .p_f_5{background:url('../images/icon_category_top_normal.png');}
-.filter_list .p_f_6{background:url('../images/icon_category_haoping_normal.png');}
+.filter_list .p_f_1{background-image:url('../images/icon_category_renshu_normal@2x.png');}
+.filter_list .p_f_2{background-image:url('../images/icon_category_haoping_normal@2x.png');}
+.filter_list .p_f_3{background-image:url('../images/icon_category_jiage_normal@2x.png');}
+.filter_list .p_f_4{background-image:url('../images/icon_category_jiage_normal@2x.png');}
+.filter_list .p_f_5{background-image:url('../images/icon_category_top_normal@2x.png');}
+.filter_list .p_f_6{background-image:url('../images/icon_category_haoping_normal@2x.png');}
 /*  产品分类筛选 SKINCARE(0),MAKEUP(1),EFFECT(2),BRAND(3) */
-.filter_list .p_t_0{background:url('../images/icon_category_skin_care_normal.png');}
-.filter_list .p_t_1{background:url('../images/icon_category_makeup_normal.png');}
-.filter_list .p_t_2{background:url('../images/icon_category_virtue_normal.png');}
-.filter_list .p_t_3{background:url('../images/icon_category_brand_normal.png');}
+.filter_list .p_t_0{background-image:url('../images/icon_category_skin_care_normal@2x.png');}
+.filter_list .p_t_1{background-image:url('../images/icon_category_makeup_normal@2x.png');}
+.filter_list .p_t_2{background-image:url('../images/icon_category_virtue_normal@2x.png');}
+.filter_list .p_t_3{background-image:url('../images/icon_category_brand_normal@2x.png');}
 /*  选中状态 */
-.filter_list .on .p_f_1{background:url('../images/icon_category_renshu_highlight.png');}
-.filter_list .on .p_f_2{background:url('../images/icon_category_haoping_highlight.png');}
-.filter_list .on .p_f_3{background:url('../images/icon_category_jiage_highlight_ch_to_ex.png');}
-.filter_list .on .p_f_4{background:url('../images/icon_category_jiage_highlight_ex_to_ch.png');}
-.filter_list .on .p_f_5{background:url('../images/icon_category_top_highlight.png');}
-.filter_list .on .p_f_6{background:url('../images/icon_category_haoping_highlight.png');}
+.filter_list .on .p_f_1{background-image:url('../images/icon_category_renshu_highlight@2x.png');}
+.filter_list .on .p_f_2{background-image:url('../images/icon_category_haoping_highlight@2x.png');}
+.filter_list .on .p_f_3{background-image:url('../images/icon_category_jiage_highlight_ch_to_ex@2x.png');}
+.filter_list .on .p_f_4{background-image:url('../images/icon_category_jiage_highlight_ex_to_ch@2x.png');}
+.filter_list .on .p_f_5{background-image:url('../images/icon_category_top_highlight@2x.png');}
+.filter_list .on .p_f_6{background-image:url('../images/icon_category_haoping_highlight@2x.png');}
 /*  产品分类筛选 SKINCARE(0),MAKEUP(1),EFFECT(2),BRAND(3) */
-.filter_list .on .p_t_0{background:url('../images/icon_category_skin_care_highlight.png');}
-.filter_list .on .p_t_1{background:url('../images/icon_category_makeup_highlight.png');}
-.filter_list .on .p_t_2{background:url('../images/icon_category_virtue_highlight.png');}
-.filter_list .on .p_t_3{background:url('../images/icon_category_brand_highlight.png');}
+.filter_list .on .p_t_0{background-image:url('../images/icon_category_skin_care_highlight@2x.png');}
+.filter_list .on .p_t_1{background-image:url('../images/icon_category_makeup_highlight@2x.png');}
+.filter_list .on .p_t_2{background-image:url('../images/icon_category_virtue_highlight@2x.png');}
+.filter_list .on .p_t_3{background-image:url('../images/icon_category_brand_highlight@2x.png');}
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), not all {
 	.download .btn_download{background-image:url('../images/btn_banner_download_normal@2x.png');}
