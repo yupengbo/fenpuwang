@@ -1,6 +1,7 @@
 {% include "items/downloadItem.html" %}
 <div class='nav_bar relative'>
    <div class='nav'>
+       <div class='nav_inner'>
        <form onsubmit='$("#nav_btn_search").click();return false;'>
         <ul class=''>
 	      <li {% if nav == 'index' %}class='on'{% endif %}><a href='/'>首页</a></li>
@@ -20,6 +21,7 @@
             <div class='search_icon fr bg block' ></div>
         </div>
        </form>
+	   </div>
    </div>
 </div>
 <div class='feed_filter_box absolute hidden'>

@@ -47,6 +47,7 @@ html body, html input, html textarea, html select, html button {
 body {margin: 0px;min-width:320px;}
 /* m站主结构  begin */
 #top-navigation-bar,#main-content{width: 100%;}
+#main-content,.nav_inner,.search_box{max-width:800px;margin:0 auto;}
 #main-content {min-height: 400px;}
 .s_avatar{width:18px;height:18px;-webkit-border-radius: 18px;-moz-border-radius: 18px;border-radius: 18px;}
 /*  font color */
@@ -81,8 +82,9 @@ body {margin: 0px;min-width:320px;}
 .download .btn_openapp{background-image:url('../images/btn_banner_open_normal@2x.png');}
 .download .info_img{background-size:220px 36px;width:220px;height:36px;background-image:url('../images/img_banner_information@2x.png');margin:0 auto;}
 /*  顶部导航  */
-.nav_bar{height:44px;width:100%;}
+.nav_bar{height:44px;width:100%;background-color:#ff5346;}
 .nav{z-index:999;background-color:#ff5346;height:44px;overflow:hidden;position:relative;left:0;top:0;width:100%;}
+.nav_inner{position:relative;}
 .nav img{cursor:pointer;}
 .nav ul{width:80%;}
 .nav ul,.nav .icon_btn{position:absolute;top:13px;}

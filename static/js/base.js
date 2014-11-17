@@ -51,8 +51,10 @@ $(function () {
         var flowLine = $('.nav_bar').offset().top;
         if (flowLine < srollPos) {
             $(".nav").css('position', 'fixed');
+			$(".nav").css('left',($(window).width()-$(".nav").width())/2);
         } else {
             $(".nav").css('position', 'relative');
+			$(".nav").css('left',0);
         }
 		show_nav_search();
     });
@@ -66,6 +68,9 @@ $(function () {
             $(".feed_filter_box").hide();
         }
     });
+	$(window).resize(function (){
+	   show_right_info();
+	});
 });
 $.extend({
     get_data: function (url, args, success_cb, completion_cb, datatype) {
