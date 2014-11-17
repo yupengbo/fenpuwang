@@ -41,7 +41,7 @@ INSTALLED_APPS = (
                   'apps.product',
                   'apps.products',
                   'apps.feed',
-                  'apps.search'
+                  'apps.search',
                   )
 
 MIDDLEWARE_CLASSES = (
