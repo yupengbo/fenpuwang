@@ -1,6 +1,6 @@
 #!/bin/bash
 NAME='fenpu-mobile'                            #应用的名称
-DJANGODIR=/home/jihuanli/$NAME                 #django项目的目录
+DJANGODIR=/usr/local/services/$NAME            #django项目的目录
 DJANGO_SETTINGS_MODULE=settings.production     #django生产环境配置文件
 #DJANGO_SETTINGS_MODULE=settings.development   #django开发环境配置文件
 DJANGO_WSGI_MODULE=wsgi                        #wsgi模块
