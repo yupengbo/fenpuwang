@@ -37,27 +37,13 @@
     </div>
 {% endif %}
 <div class="answer-body">
-    <div class="answer-list-section section-block datalist">
+    <div class="answer-list-section section-block">
         {% if question.totalNumber > 0 %}
             <div class="f10 fcg1 subtitle"> {{ question.totalNumber }}条回答</div>
 			<div class='sp_line2'></div>
             {% for answer in question.answerPart1 %}
                 {% include "question/answerItem.html" %}
             {% endfor %}
-            {% if question.relatedQuestionList %}
-                <div class="related-question-body">
-                    <div class="f10 fcg1 subtitle"> 相关问题 </div>
-					<div class='sp_line2'></div>
-                    {% for q in question.relatedQuestionList %}
-                        {% include "question/relatedQuestion.html" %}
-                    {% endfor %}
-                </div>
-            {% endif %}
-            {% if question.answerPart2 %}
-                {% for answer in question.answerPart2 %}
-                    {% include "question/answerItem.html" %}
-                {% endfor %}
-            {% endif %}
         {% else %}
              <div class="f10 fcg1">没有回答</div>
         {% endif %}
@@ -65,6 +51,25 @@
 
 </div>
 
+{% if question.relatedQuestionList %}
+ <div class="related-question-body">
+     <div class="f10 fcg1 subtitle"> 相关问题 </div>
+     <div class='sp_line2'></div>
+     {% for q in question.relatedQuestionList %}
+         {% include "question/relatedQuestion.html" %}
+     {% endfor %}
+ </div>
+{% endif %}
+
+{% if question.answerPart2 %}
+  <div class="answer-body">
+      <div class="answer-list-section section-block datalist">
+         {% for answer in question.answerPart2 %}
+            {% include "question/answerItem.html" %}
+         {% endfor %}
+      </div>
+  </div>
+{% endif %}
 <script type="application/javascript">
 
     $(".datalist").loaddata({

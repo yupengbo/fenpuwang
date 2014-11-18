@@ -47,20 +47,21 @@ html body, html input, html textarea, html select, html button {
 body {margin: 0px;min-width:320px;}
 /* m站主结构  begin */
 #top-navigation-bar,#main-content{width: 100%;}
-#main-content,.nav_inner,.search_box{max-width:800px;margin:0 auto;}
+#main-content,.nav_inner,.search_box,.brand_filter_box{max-width:800px;margin:0 auto;}
 #main-content {min-height: 400px;}
 .s_avatar{width:18px;height:18px;-webkit-border-radius: 18px;-moz-border-radius: 18px;border-radius: 18px;}
 /*  font color */
 .fcb1{color:#222222;}/* 主级别文字*/
 .fcg1{color:#aaaaaa;}/* 弱级别文字*/
-.fcg2{color:#666666;}/* 次级别文字*/
+.fcg2{color:#444444;}/* 次级别文字*/
 .fchl{color:#ff5346;}
 .fcprice{color:#cc9793}
 /*  字号  */
+.f17{font-size:17px;line-height:255.5px;}
 .f16{font-size:16px;line-height:21px;}
-.f15{font-size:15px;}
-.f14{font-size:14px;line-height:20px;}
-.f13{font-size:13px;line-height:19px;}
+.f15{font-size:16px;line-height:25.6px;}
+.f14{font-size:16px;line-height:25.6px;}
+.f13{font-size:14px;line-height:22.4px;}
 .f10{font-size:10px;}
 /*  产品图片边框  */
 .imgborder1{border:1px solid #dbdbdb;}
@@ -70,11 +71,11 @@ body {margin: 0px;min-width:320px;}
 /* m站主结构  end  */
 /* 顶部下载  */
 .bg{background-repeat: no-repeat;background-position:center center;}
-.download{height:87px; background-color:#3e3930;}
+.download{height:88px; background-image:url('../images/bg_download@2x.png');background-size:100% 88px;}
 .download .close,.download .info,.download .btns{position:absolute;}
 .download .info,.download .btns{width:100%;}
-.download .info{top:12px; text-align:center;}
-.download .btns{bottom:5px;}
+.download .info{top:13px; text-align:center;color:#fff;}
+.download .btns{bottom:16px;}
 .download .btns div{width:50%;}
 .download .close{z-index:50;background-image:url('../images/btn_banner_cancel_normal@2x.png');width:15px;height:15px;left:5px;top:5px;}
 .download .btn_download,.download .btn_openapp{cursor:pointer;background-size:78px 27px;width:78px;height:27px;}

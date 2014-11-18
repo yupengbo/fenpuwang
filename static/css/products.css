@@ -2,7 +2,7 @@
 .product_list .pro_pic{width:50px;height:50px;-webkit-border-radius: 100px;-moz-border-radius: 100px;border-radius: 100px;margin:0 10px;border:1px #dbdbdb solid;}
 .product_list .pro_con{min-width:226px;padding-top:5px;width:75%}
 .product_list .desc{padding-top:7px;}
-.brand_filter_btn{background-image:url('../images/icon_pinpai_down@2x.png');width:11px;height:11px;left:90%;top:173px;background-size:11px 11px;}
+.brand_filter_btn{background-image:url('../images/icon_pinpai_down@2x.png');width:11px;height:11px;display:none;top:173px;background-size:11px 11px;}
 .brand_filter_btn_up{background-image:url('../images/icon_pinpai_up@2x.png');}
 .product_category_list{padding:0px 14px;font-size:12px;}
 .product_category_list li{padding:15px 9%;height:14px;border-bottom:1px #dbdbdb solid;color:#aaaaaa;}

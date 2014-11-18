@@ -1,14 +1,14 @@
 <li>
 <a href='{% url 'question:question_details' question.questionId %}'>
-<div class="title fcb1 f15">{{ question.title }}<em></em></div>
-<div class="content fcg1 f14">
+<div class="title fcb1 f15">{{ question.title }}<em>&nbsp;</em></div>
+<div class="content fcg2 f13">
   {% ifequal question.relatedAnswer.isBest 1%}
     最佳回答:&nbsp
   {% endifequal  %}
   {% ifequal question.relatedAnswer.isBest 0%}
     相关回答:&nbsp
   {% endifequal  %}
-  {{ question.relatedAnswer.content }}<em></em>
+  {{ question.relatedAnswer.content }}<em>&nbsp;</em>
 </div>
 <i target='title' class='rhinfo f10 fcg1 hidden'>{{ question.answerNum }}回答</i>
 <i target='content' class='rhinfo f10 fcg1 hidden'>{{ question.relatedAnswer.likeNum }}赞</i>

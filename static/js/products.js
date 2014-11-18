@@ -1,4 +1,6 @@
 $(function(){
+  $(".brand_filter_btn").css('left',($(".p_t_3").offset().left+30));
+  $(".brand_filter_btn").show();
   $(".filter_list li").click(function(){
      $(this).addClass('on');
      $(this).siblings().removeClass('on');
