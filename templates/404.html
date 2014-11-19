@@ -1,5 +1,15 @@
-<html>
-<body>
-<center>it's 404 page</center>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %} 404 {% endblock %}
+
+{% block script %}
+{% load static %}
+<link rel="stylesheet" href="{% static "css/404.css" %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="body404">
+<div class="img404_container bg"><div class="img404"></div></div>
+<div class="message f18 t_c">抱歉，该问题已经被删除</div>
+<div class="navi404 f14 t_c">返回<a href="javascript:history.go(-1)"><span class="pre_page fchl">上一页</span></a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp返回<a href="/"><span class="index_page fchl">粉扑首页</span></a></div>
+</div>
+{% endblock %}
