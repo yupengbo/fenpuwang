@@ -1,5 +1,15 @@
-<html>
-<body>
-<center>it's 404 page</center>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %} 404 {% endblock %}
+
+{% block script %}
+{% load static %}
+<link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="404_body">
+<div class="404_img"><img src="/static/img_error@2x.png"></div>
+<div class="mesage">对不起，404</div>
+<div class="404_navi">返回上一页|返回粉扑首页</div>
+</div>
+{% endblock %}
