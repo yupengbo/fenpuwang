@@ -1,6 +1,4 @@
 $(function(){
-  $(".brand_filter_btn").css('left',($(".p_t_3").offset().left+30));
-  $(".brand_filter_btn").show();
   $(".filter_list li").click(function(){
      $(this).addClass('on');
      $(this).siblings().removeClass('on');
@@ -24,6 +22,7 @@ $(function(){
   function show_filter_brand_box(){
     $brand_filter_btn = $(".brand_filter_btn");
     if($(".brand_filter_box").is(":hidden")){
+	   $(".brand_filter_box").css("top",($(".p_t_3").parent().offset().top+$(".p_t_3").parent().height()));
 	   $(".brand_filter_box").show();
 	   $brand_filter_btn.addClass("brand_filter_btn_up");
 	}else{

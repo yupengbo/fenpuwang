@@ -11,6 +11,9 @@
         {{ answer.content }}<em>&nbsp;</em>
     </div>
 	<i target='answer-content' class='rhinfo f10 fcg1 hidden'>{{ answer.likeNum }}赞</i>
-	<div class='sp_line'></div>
+    {% if notHasLastLine and  forloop.last  %}
+	{% else %}
+    	<div class='sp_line'></div>
+	{% endif %}
 </div>
 

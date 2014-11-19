@@ -3,7 +3,6 @@
 
 {% block script %}
 {% load static %}
-<link rel="stylesheet" href="{% static "css/style.css" %}">
 <link rel="stylesheet" href="{% static "css/product.css" %}">
 {% endblock %}
 
@@ -12,19 +11,20 @@
 <div class="product_body">
   <div class="product_pics t_c">
     {% for pic in product.product.pics %}
-    <img src="{{ pic.org }}"/>
+	  {% if forloop.first %}
+        <img src="{{ pic.org }}"/>
+	  {% endif %}
     {% endfor %}
     <!--img src="{{ product.product.pics }}"/-->
   </div>
   <div class="product_info">
-    <div class="product_detail_name fcb1 f15">{{ product.product.name}}</div>  
+    <div class="product_detail_name fcb1 f17">{{ product.product.name}}</div>  
     <div class="product_detail_size fcg1 f15">
-      <div class="fl">{{ product.product.size }}</div>
-      <div class="product_price fl">参考价:&nbsp<span class="fcprice">¥{{ product.product.price }}</span></div>
+      <div class="product_price fl"><span class="fcprice">¥{{ product.product.price }}</span>/{{ product.product.size }}</div>
     </div>  
     <div class="product_detail_comment">
-      <div class="product_like fcg1 f13 fr"><span class="fcprice">{{ product.product.likeNum }}人</span>认为好用</div>
-      <div class="product_used fcg1 f13 fr"><span class="fcprice">{{ product.product.usedNum }}人</span>用过</div>
+      <div class="product_like fcg1 f13 fr"><span class="fchl">{{ product.product.likeNum }}人</span>认为好用</div>
+      <div class="product_used fcg1 f13 fr"><span class="fchl">{{ product.product.usedNum }}人</span>用过</div>
 	  <div class='clear'></div>
     </div>  
   </div>

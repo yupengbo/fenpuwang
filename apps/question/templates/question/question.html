@@ -41,9 +41,11 @@
         {% if question.totalNumber > 0 %}
             <div class="f10 fcg1 subtitle"> {{ question.totalNumber }}条回答</div>
 			<div class='sp_line2'></div>
-            {% for answer in question.answerPart1 %}
-                {% include "question/answerItem.html" %}
-            {% endfor %}
+			{% with notHasLastLine=True %}
+              {% for answer in question.answerPart1 %}
+                  {% include "question/answerItem.html" %}
+              {% endfor %}
+			{% endwith %}
         {% else %}
              <div class="f10 fcg1">没有回答</div>
         {% endif %}
@@ -60,7 +62,6 @@
      {% endfor %}
  </div>
 {% endif %}
-
 {% if question.answerPart2 %}
   <div class="answer-body">
       <div class="answer-list-section section-block datalist">

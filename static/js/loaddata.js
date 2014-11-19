@@ -16,7 +16,7 @@ jQuery.fn.loaddata = function(user_setting) {
             page_loading : "data-loadding",//整页加载时容器ID
             url_attr : "get_data_url",//容器 加载数据 来源
             data_mode_attr :"data_mode",//设置容器加载数据后 的处理方式的attr
-            loading_img : '<img src="/static/images/icon_feed_loading.gif" />'
+            loading_img : '<img src="/static/images/icon_feed_loading.gif" style="width:24px;height:24px;margin:12px 0px;" />'
         };
         
         var DATA_MODE_APPEND = "append";
