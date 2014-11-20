@@ -8,7 +8,7 @@
 		<div class='clear'></div>
     </div>
     <div class="answer-content  f13 fcg2">
-        {{ answer.content }}<em>&nbsp;</em>
+        {{ answer.content|safe }}<em>&nbsp;</em>
     </div>
 	<i target='answer-content' class='rhinfo f10 fcg1 hidden'>{{ answer.likeNum }}赞</i>
     {% if notHasLastLine and  forloop.last  %}

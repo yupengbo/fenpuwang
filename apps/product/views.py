@@ -8,6 +8,7 @@ import json
 import requests
 from apps.api import api_list
 from apps.utils import string_utils
+import cgi
 
 def process_product_data(product_data):
   for question in product_data['questionList']:
@@ -15,6 +16,9 @@ def process_product_data(product_data):
       question['relatedAnswer']['content'] = string_utils.truncate_text(question['relatedAnswer']['content']) 
 
 def process_product_link(product_data):
+  details = product_data.get("details")
+  if details:
+    product_data["details"] = string_utils.replace_text_newline(cgi.escape(details))
   for link in product_data['mapping']:
     # 官方
     if link['webId'] == "0" or link['webId'] == 0:

@@ -22,7 +22,7 @@
 		<div class='clear'></div>
     </div>
     <div class="question-desc f13 fcg2">
-        {{ question.question.content }}
+        {{ question.question.content|safe }}
     </div>
 </div>
 {% if question.relatedProductList %}

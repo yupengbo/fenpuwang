@@ -6,9 +6,10 @@ from django.template import RequestContext, loader
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from apps.api import api_list
-from apps.utils import data_process_utils
+from apps.utils import data_process_utils,string_utils
 import requests
 import json
+import cgi
 
 def question_details(request, question_id):
     try:
@@ -59,7 +60,9 @@ def process_question_data(question_obj):
     :param question_obj:
     :return:
     """
-
+    content = question_obj.get("content")
+    if content:
+        question_obj["content"] = string_utils.replace_text_newline(cgi.escape(content))
     # 转换时间显示格式
     question_obj['question']['creationTime'] = data_process_utils.get_time_since(question_obj['question']['creationTime'])
 
@@ -82,7 +85,13 @@ def process_answers(answers):
     :param answers:
     :return:
     """
+    has_best_answer = False
     for answer in answers:
+        content = answer.get("content")
+        if content:
+            answer["content"] = string_utils.replace_text_newline(cgi.escape(content))
         answer['user']['profile'] = data_process_utils.get_user_profile_str(answer['user'])
-        if answer['isBest'] > 0:
+
+        if not has_best_answer and answer['isBest'] > 0:
             answer['content'] = u"最佳回答：" +  answer['content']
+            has_best_answer = True
