@@ -12,3 +12,4 @@
 .brand_filter_box li{color:#d3b5af;display:block;height:13px;padding:17px 25px;font-size:12px;float:left;}
 .brand_filter_box li a{color:#d3b5af;}
 .filter_list li{position:relative;}
+.product_sub_name{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;}
