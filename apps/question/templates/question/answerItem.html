@@ -1,13 +1,19 @@
 <div class="answer-item">
     <div class="answer-user-profile">
-        <img class="s_avatar answer-avatar" src="{{ answer.user.avatarURL }}" alt="avatar" />
-        <div class="profile-name f13 fcg1">{{ answer.user.userName }}</div>
-        <div class="answer-profile-property f13 fcg1">
+        <img class="s_avatar fl" src="{{ answer.user.avatarURL }}" alt="avatar" />
+        <span class="f13 fcg1 fl">{{ answer.user.userName }}</span>
+        <em class="f10 fcg1 fr">
             {{ answer.user.profile }}
-        </div>
+        </em>
+		<div class='clear'></div>
     </div>
     <div class="answer-content  f13 fcg2">
-        {{ answer.content }}
+        {{ answer.content|safe }}<em>&nbsp;</em>
     </div>
+	<i target='answer-content' class='rhinfo f10 fcg1 hidden'>{{ answer.likeNum }}赞</i>
+    {% if notHasLastLine and  forloop.last  %}
+	{% else %}
+    	<div class='sp_line'></div>
+	{% endif %}
 </div>
 

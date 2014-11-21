@@ -1,0 +1,11 @@
+.product_body {margin-bottom:12px;}
+.question_list li{position: relative;}
+.brand_item {height:100px;}
+.brand_item .brand_bg_red {background-color:#762027;}
+.brand_item .brand_bg_blue {background-color:#440065;}
+.brand_item .brand_img {margin:15px 12px;background-color:#ffffff;width:70px;height:70px;}
+.brand_item .brand_img img{width:70px;height:70px;}
+.brand_item .brand_title {margin-top:23px;color:#ffffff;font-size:22px}
+.brand_item .brand_title .brand_suffix {font-size:16px}
+.brand_item .brand_content {display:block;margin-top:10px;color:#fff;filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5}
+.product_body .more_product a{margin:0px auto;width:155px;height:41px;background-color:#fff;border:1px solid #e7e7e7;text-decoration:none;text-align:center;line-height:41px;border-radius:7px 7px 7px;}

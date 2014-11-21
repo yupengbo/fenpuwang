@@ -7,3 +7,9 @@ def truncate_text(text, length = 200, suffix = "..."):
   if len(text) > 200:
     text = text[0:200] + str(suffix)
   return text
+
+def replace_text_newline(text):
+  if text:
+    return text.replace(u'\n', u'<br/>')
+  else:
+    return ""

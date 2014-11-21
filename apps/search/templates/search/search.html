@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %} {{ product.product.name }} {% endblock %}
+
+{% block script %}
+{% load static %}
+<link rel="stylesheet" href="{% static "css/style.css" %}">
+<link rel="stylesheet" href="{% static "css/search.css" %}">
+<link rel="stylesheet" href="{% static "css/product.css" %}">
+<link rel="stylesheet" href="{% static "css/products.css" %}">
+{% endblock %}
+
+{% block main_content %}
+<!--品牌馆-->
+<div class="brand_body">
+  {% for brand in search.brandList %}
+  <a href='{% url 'products:query_by_category' 3 brand.brandId %}'>
+  <div class="brand_item">
+    {% ifequal forloop.counter 1 %}
+    <!--品牌1-->
+    <div class="brand_bg_red">
+    {% endifequal %}
+    {% ifequal forloop.counter 2 %}
+    <!--品牌2-->
+    <div class="brand_bg_blue">
+    {% endifequal %}
+      <!--品牌内容-->
+      <div class="brand_img fl"><img src="{{ brand.picUrl }}"/></div>
+      <div class="brand_info fl">
+        <div class="brand_title">{{ brand.name }}&nbsp&nbsp<span class="brand_suffix">品牌馆</span></div>
+        <div class="brand_content f14">共{{ brand.productNum }}款商品</div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+  </a>
+  {% endfor %}
+</div>
+
+<!--产品-->
+<div class="product_body">
+  <ul class="product_list">
+    {% for product in search.productList %}
+      {% include "items/productEffectItem.html" %}
+    {% endfor %}
+    {% if search.productNumber > 3 %}
+      <li><div class="more_product"><a href="{% url 'search:product_list' keyword 2 0 %}" class="block fcg1 f14">查看更多商品</a></div></li>
+    {% endif %}
+  </ul>
+</div>
+
+<!--问答-->
+<div class="question_body">
+  <div class="question_overview fcg1 f13">{{search.totalNumber}}个相关回答</div>
+  <div class="sp_line"></div>
+  <ul class='question_list datalist'>
+  {% with question_list=search.questionList %}
+    {% include "lists/question_list.html" %}
+  {% endwith %}
+  </ul>
+</div>
+
+<script type="application/javascript">
+$(".datalist").loaddata({
+  url : "{{ url }}",
+  success :show_right_info
+});
+show_right_info();
+</script>
+
+{% endblock %}

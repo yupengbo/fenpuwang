@@ -1,6 +1,6 @@
- <div class='title f14 fcb1'>标题 标题i标题 标题标题 标题标题 标题标题 标题标题 标题<em></em>
-      </div>
-	       <div class='content f13 fcg2'>正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文正文 正文<em></em>
-		        </div>
-				     <div class='title_rinfo hidden'>222个回答</div>
-					      <div class='content_rinfo hidden'>222个赞</div>
+<a href='{% url 'question:question_details' feed.question.questionId %}'>
+  <div class='title f14 fcb1'>{{ feed.question.title }}<em>&nbsp;</em></div>
+  <div class='content f13 fcg2'>{{ feed.answer.content }}<em>&nbsp;</em></div>
+  <i target='title' class='rhinfo f10 fcg1 hidden'>{{ feed.question.answerNum }}个回答</i>
+  <i target='content' class='rhinfo f10 fcg1 hidden'>{{ feed.answer.likeNum }}个赞</i>
+</a>

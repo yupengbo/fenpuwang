@@ -1,28 +1,45 @@
 <li>
-  <div class='list_h'>
-        <img class='s_avatar fl' src='{{ feed.user.avatarURL }}' />
-		      <span class='f13 fcg1 fl'>{{ feed.user.userName }}</span>
-			        <em class='f10 fcg1 fr'>{{ feed.user.skinType }},{{ feed.user.ages }}</em>
-					  </div>
-					    <div class='list_c'>
-						    {% ifequal  feed.type 0 %}
-							      {% include "items/feedItems/feed_0.html" %}
-								      {% endifequal  %}
-									      {% ifequal  feed.type 1 %}
-										        {% include "items/feedItems/feed_1.html" %}
-												    {% endifequal %}
-													    {% ifequal  feed.type 2 %}
-														      {% include "items/feedItems/feed_2.html" %}
-															      {% endifequal %}
-																      {% ifequal  feed.type 3 %}
-																	        {% include "items/feedItems/feed_3.html" %}
-																			    {% endifequal %}
-																				    {% ifequal  feed.type 4 %}
-																					      {% include "items/feedItems/feed_4.html" %}
-																						      {% endifequal %}
-																							      {% ifequal  feed.type 5 %}
-																								        {% include "items/feedItems/feed_5.html" %}
-																										    {% endifequal %}
-																											  </div>
-																											    <div class='sp_line'></div>
-																												</li>
+<div class='list_h'><img class='s_avatar fl' src='{{ feed.user.avatarURL }}' />
+<span class='f13 fcg1 fl'>{{ feed.user.userName }} 
+{% ifequal  feed.type 0 %}
+  回答了
+{% endifequal  %}
+{% ifequal  feed.type 1 %}
+  提问
+{% endifequal %}
+{% ifequal  feed.type 2 %}
+  用过
+{% endifequal %}
+{% ifequal  feed.type 3 %}
+  认为好用
+{% endifequal %}
+{% ifequal  feed.type 4 %}
+  看过
+{% endifequal %}
+{% ifequal  feed.type 5 %}
+  赞了
+{% endifequal %}</span>
+<em class='f10 fcg1 fr'>{{ feed.user.profile }}</em>
+</div>
+<div class='list_c'>
+{% ifequal  feed.type 0 %}
+  {% include "items/feedItems/feed_0.html" %}
+{% endifequal  %}
+{% ifequal  feed.type 1 %}
+  {% include "items/feedItems/feed_1.html" %}
+{% endifequal %}
+{% ifequal  feed.type 2 %}
+  {% include "items/feedItems/feed_2.html" %}
+{% endifequal %}
+{% ifequal  feed.type 3 %}
+  {% include "items/feedItems/feed_3.html" %}
+{% endifequal %}
+{% ifequal  feed.type 4 %}
+  {% include "items/feedItems/feed_4.html" %}
+{% endifequal %}
+{% ifequal  feed.type 5 %}
+  {% include "items/feedItems/feed_5.html" %}
+{% endifequal %}
+</div>
+  <div class='sp_line'></div>
+</li>

@@ -1,26 +1,31 @@
 /*product*/
-.product_body {min-height:100px; padding:13px 15px 0 15px;}
+.product_body {padding:13px 15px 0 15px;}
 
 .prodcut_pics {height:145px;}
 .product_pics img{height:145px; margin:0 auto;}
 
-.product_detail_name {height: 17px; padding-top:15px;}
+.product_detail_name {padding-top:15px;font-weight:bold;}
 .product_detail_size {height: 13px; padding-top:12px;}
 .product_detail_size .product_price {padding-left:6px;}
 .product_detail_comment {height: 11px; padding-top:13px;padding-bottom:14px}
 .product_detail_comment .product_like {padding-left:13px;}
 
 .product_related .btn {width:33%;}
-.product_related .btn .btn_content {width:85px;margin:0 auto;}
-.product_related {height:13px; padding:13px 0;margin:0 auto;}
-.porduct_jeshao_img,.porduct_category_img,.porduct_brand_img{margin:3px 4px 0 0;background-color:#ffffff;background-size:12px 12px;width:12px;height:12px;}
-.porduct_jeshao_img{background-image:url('/static/images/icon_product_jieshao.png');}
-.porduct_category_img{background-image:url('/static/images/icon_product_leibie.png');}
-.porduct_brand_img{background-image:url('/static/images/icon_product_pinpai.png');}
+.product_related .btn .btn_content {width:88px;margin:0 auto;}
+.product_related {height:20px; padding:8px 0;margin:0 auto;}
+.porduct_jeshao_img,.porduct_category_img,.porduct_brand_img{margin:5px 4px 0 0;background-color:#ffffff;background-size:12px 12px;width:12px;height:12px;}
+.porduct_jeshao_img{background-image:url('/static/images/icon_product_jieshao@2x.png');}
+.porduct_category_img{background-image:url('/static/images/icon_product_leibie@2x.png');}
+.porduct_brand_img{background-image:url('/static/images/icon_product_pinpai@2x.png');}
 
 /*question list*/
 .question_body{background-color:#f9f9f9;padding:0 15px 20px 15px;}
 .question_overview{padding-top:20px;padding-bottom:10px;height:16px;}
-.question_body li .title{padding-top:22px;}
-.question_body li .content{padding:12px 0;}
+.question_body li{position: relative;}
+.question_body li .title{padding-top:10px;}
+.question_body li .content{padding:8px 0 10px;}
 
+/*product description*/
+.media_logo{padding:16px 13px; width:98px;}
+.product_desc_body{padding:7px 15px 17px 15px;}
+.link_body{min-height:200px;background-color:#f9f9f9;padding:0 15px 20px 15px;}

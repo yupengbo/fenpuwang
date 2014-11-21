@@ -1,55 +1,50 @@
 {% include "items/downloadItem.html" %}
 <div class='nav_bar relative'>
-    <div class='nav'>
-	        <form>
-			        <ul class=''>
-					            <li class='on'>首页</li>
-								            <li>产品库</li>
-											        </ul>
-													        <div class='top_search hidden'>
-															            <div class='closebox fl'>
-																		            <div class='close bg block fl' ></div>
-																					            </div>
-																								            <div  class='inputbox relative fl index'>
-																											                <input id='keyword' name='keyword' class='keyword f13 fcb1 fl'/>
-																															                <input class='search_icon fr bg block absolute on' type='submit' value=''/>
-																																			            </div>
-																																						        </div>
-																																								        <div class='icon_btn'>
-																																										            <div class='feed_filter fr bg block' ></div>
-																																													            <div class='search_icon fr bg block' ></div>
-																																																        </div>
-																																																		        </form>
-																																																				    </div>
-																																																					</div>
-																																																					<div class='feed_filter_box absolute hidden'>
-																																																					    <ul>
-																																																						        <li class='on'>全部</li>
-																																																								        <li>面霜</li>
-																																																										        <li>乳液</li>
-																																																												        <li>面部精华</li>
-																																																														        <li>眼部护理</li>
-																																																																        <li>化妆水</li>
-																																																																		        <li>洁面品</li>
-																																																																				        <li>面膜</li>
-																																																																						        <li>卸妆</li>
-																																																																								        <li>bb/cc霜</li>
-																																																																										        <li>粉底</li>
-																																																																												        <li>粉饼</li>
-																																																																														        <li>散粉</li>
-																																																																																        <li>腮红</li>
-																																																																																		        <li>口红</li>
-																																																																																				    </ul>
-																																																																																					    <div class='clear'></div>
-																																																																																						</div>
-																																																																																						<div class='search_box t_c'>
-																																																																																						    <h1 class='bg block'></h1>
-																																																																																							    <h2 class='bg block'></h2>
-																																																																																								    <div class='search_input_box relative'>
-																																																																																									        <form>
-																																																																																											            <input id='index_keyword' name='indexKeyword' class='f13 absolute' placeholder="搜“小棕瓶和小黑瓶 哪个好用？”试试"/>
-																																																																																														            <input id='index_btn_search' type='submit' value='' class='bg absolute'/>
-																																																																																																	        <form>
-																																																																																																			    </div>
-																																																																																																				</div>
-																																																																																																				<div class='sp_line2'></div>
+   <div class='nav'>
+       <div class='nav_inner'>
+       <form onsubmit='$("#nav_btn_search").click();return false;'>
+        <ul class=''>
+		  <li><div class='bg logo_btn' ></div></li>
+	      <li {% if nav == 'index' %}class='on'{% endif %}><a class='f14' href='/'>首页</a></li>
+          <li {% if nav == 'products' %}class='on'{% endif %}><a class='f14'  href='{% url 'products:products_index' %}'>产品库</a></li>
+        </ul>
+        <div class='top_search hidden'>
+            <div class='closebox fl'>
+              <div class='close bg block fl' ></div>
+            </div>
+            <div  class='inputbox relative fl {% if nav == 'index' %}index{% endif %}'>
+               <input id='nav_keyword' name='keyword' class='keyword f13 fcb1 fl'/>
+               <input id='nav_btn_search' class='search_icon fr bg block absolute on' type='button' value=''/>
+            </div>
+        </div>
+        <div class='icon_btn'>
+            {% if nav == 'index' %}<div class='feed_filter fr bg block' ></div>{% endif %}
+            <div class='search_icon fr bg block' ></div>
+        </div>
+       </form>
+	   </div>
+   </div>
+</div>
+<div class='feed_filter_box absolute hidden'>
+   <ul>
+    <li class='on' get_data_url='{% url 'feed:feed_list' 0 0 %}'>全部</li>
+    {% if nav_list %}
+	  {% for category,nav in nav_list %}
+	     <li get_data_url='{% url 'feed:feed_list' category 0 %}'>{{ nav }}</li>
+	  {% endfor %}
+	{% endif %}
+   </ul>
+   <div class='clear'></div>
+</div>
+{% if nav == 'index' %}
+<div class='search_box t_c'>
+  <h1 class='bg block'></h1>
+  <h2 class='bg block'></h2>
+  <div class='search_input_box relative'>
+    <form onsubmit='$("#index_btn_search").click();return false;'>
+	  <input id='index_keyword' name='indexKeyword' class='f13 absolute' placeholder="搜“小棕瓶和小黑瓶 哪个好用？”试试"/>
+	  <input id='index_btn_search' type='button' value='' class='bg absolute'/>
+    <form>
+  </div>
+</div>
+{% endif %}

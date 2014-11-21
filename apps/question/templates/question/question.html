@@ -7,53 +7,45 @@
 {% endblock %}
 {% block main_content %}
 <div class="question-body">
-    <div class="question-title fcb1">
+    <div class="question-title fcb1 f16">
         {{ question.question.title }}
     </div>
     <div class="question-user-profile">
-        <img class="question-avatar s_avatar" src="{{ question.question.user.avatarURL }}" alt="avatar" />
-        <div class="profile-name f13 fcg1">{{ question.question.user.userName }}</div>
+        <img class="question-avatar s_avatar fl" src="{{ question.question.user.avatarURL }}" alt="avatar" />
+        <div class="profile-name f13 fcg1 fl">{{ question.question.user.userName }}</div>
         {% if question.question.user.profile %}
-            <div class="profile-property f13 fcg1">
+            <div class="profile-property f13 fcg1 fl">
                 （{{ question.question.user.profile }}）
             </div>
         {% endif %}
-        <div class="post-date f10 fcg1">{{ question.question.creationTime }}</div>
+        <div class="f10 fcg1 fr">{{ question.question.creationTime }}</div>
+		<div class='clear'></div>
     </div>
     <div class="question-desc f13 fcg2">
-        {{ question.question.content }}
+        {{ question.question.content|safe }}
     </div>
 </div>
 {% if question.relatedProductList %}
     <div class="related-products section-block">
-        <div class="f10 fcg1"> 提到的商品 </div>
-        <div>
+        <div class="f10 fcg1 subtitle"> 提到的商品 </div>
+		<div class='sp_line2'></div>
+        <ul>
             {% for product in question.relatedProductList %}
-                <div class="fcb1 f13"> {{ product.name }}</div>
+                <li ><a href='{% url 'product:product_detail' product.productId %}' class='fcb1 f13'>{{ product.name }}</a></li>
             {% endfor %}
-        </div>
+        </ul>
     </div>
 {% endif %}
 <div class="answer-body">
     <div class="answer-list-section section-block">
         {% if question.totalNumber > 0 %}
-            <div class="f10 fcg1"> {{ question.totalNumber }}条回答</div>
-            {% for answer in question.answerPart1 %}
-                {% include "question/answerItem.html" %}
-            {% endfor %}
-            {% if question.relatedQuestionList %}
-                <div class="related-question-body">
-                    <div class="f10 fcg1"> 相关问题 </div>
-                    {% for q in question.relatedQuestionList %}
-                        {% include "question/relatedQuestion.html" %}
-                    {% endfor %}
-                </div>
-            {% endif %}
-            {% if question.answerPart2 %}
-                {% for answer in question.answerPart2 %}
-                    {% include "question/answerItem.html" %}
-                {% endfor %}
-            {% endif %}
+            <div class="f10 fcg1 subtitle"> {{ question.totalNumber }}条回答</div>
+			<div class='sp_line2'></div>
+			{% with notHasLastLine=True %}
+              {% for answer in question.answerPart1 %}
+                  {% include "question/answerItem.html" %}
+              {% endfor %}
+			{% endwith %}
         {% else %}
              <div class="f10 fcg1">没有回答</div>
         {% endif %}
@@ -61,8 +53,32 @@
 
 </div>
 
+{% if question.relatedQuestionList %}
+ <div class="related-question-body">
+     <div class="f10 fcg1 subtitle"> 相关问题 </div>
+     <div class='sp_line2'></div>
+     {% for q in question.relatedQuestionList %}
+         {% include "question/relatedQuestion.html" %}
+     {% endfor %}
+ </div>
+{% endif %}
+{% if question.answerPart2 %}
+  <div class="answer-body">
+      <div class="answer-list-section section-block datalist">
+         {% for answer in question.answerPart2 %}
+            {% include "question/answerItem.html" %}
+         {% endfor %}
+      </div>
+  </div>
+{% endif %}
+<script type="application/javascript">
+
+    $(".datalist").loaddata({
+        url : "{{ url }}",
+		success :show_right_info
+    });
+show_right_info();
+</script>
 {% endblock %}
 
-<script>
 
-</script>

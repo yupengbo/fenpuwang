@@ -11,7 +11,7 @@
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-BASE_DIR = os.path.dirname(__file__)
+BASE_DIR = os.path.split(os.path.dirname(__file__))[0]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
@@ -19,14 +19,7 @@ BASE_DIR = os.path.dirname(__file__)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'yee8j&wck@)g27g#q(!zkdud8zrnvj128^=$(^bnht1nk^g!2-'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-#DEBUG = False
-
-TEMPLATE_DEBUG = True
-
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -39,14 +32,15 @@ INSTALLED_APPS = (
                   'django.contrib.staticfiles',
                   'apps.question',
                   'apps.product',
+                  'apps.products',
                   'apps.feed',
-                  'apps.search'
+                  'apps.search',
                   )
 
 MIDDLEWARE_CLASSES = (
                       'django.contrib.sessions.middleware.SessionMiddleware',
                       'django.middleware.common.CommonMiddleware',
-                      'django.middleware.csrf.CsrfViewMiddleware',
+#                      'django.middleware.csrf.CsrfViewMiddleware',
                       'django.contrib.auth.middleware.AuthenticationMiddleware',
                       'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
                       'django.contrib.messages.middleware.MessageMiddleware',
@@ -63,9 +57,9 @@ WSGI_APPLICATION = 'wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-}
+    'ENGINE': 'django.db.backends.sqlite3',
+    'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
 }
 
 # Internationalization
@@ -73,7 +67,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
