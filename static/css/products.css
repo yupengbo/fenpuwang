@@ -8,7 +8,8 @@
 .product_category_list{padding:0px 15px;font-size:14px;}
 .product_category_list li{padding:15px 9%;height:14px;border-bottom:1px #eeeeee solid;color:#aaaaaa;}
 .product_category_list li a{color:#222222;text-decoration:none;padding-right:4%;}
-.brand_filter_box {background-color:#fff;z-index:50;width:100%;box-shadow:0 0 5px #999;-webkit-box-shadow:0 0 5px #999;-moz-box-shadow:0 0 5px #999;}
-.brand_filter_box li{color:#d3b5af;display:block;height:13px;padding:17px 25px;font-size:12px;float:left;}
+.brand_filter_box {background-color:#fff;z-index:9999;width:100%;box-shadow:0 0 5px #999;-webkit-box-shadow:0 0 5px #999;-moz-box-shadow:0 0 5px #999;}
+.brand_filter_box li{color:#d3b5af;display:block;height:13px;padding:17px 25px;font-size:12px;float:left;width:10px;}
 .brand_filter_box li a{color:#d3b5af;}
 .filter_list li{position:relative;}
+.filter_list_box,.filter_flow_box{height:69px;background-color:#fff;width:100%;}

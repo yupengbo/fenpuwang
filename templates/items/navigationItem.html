@@ -3,23 +3,25 @@
    <div class='nav'>
        <div class='nav_inner'>
        <form onsubmit='$("#nav_btn_search").click();return false;'>
-        <ul class=''>
+        <ul >
 		  <li><div class='bg logo_btn' ></div></li>
-	      <li {% if nav == 'index' %}class='on'{% endif %}><a class='f14' href='/'>首页</a></li>
-          <li {% if nav == 'products' %}class='on'{% endif %}><a class='f14'  href='{% url 'products:products_index' %}'>产品库</a></li>
+	      <li {% if nav == 'index' %}class='on'{% endif %}><a  href='/'>首页</a></li>
+          <li {% if nav == 'products' %}class='on'{% endif %}><a   href='{% url 'products:products_index' %}'>产品库</a></li>
         </ul>
-        <div class='top_search hidden'>
-            <div class='closebox fl'>
-              <div class='close bg block fl' ></div>
+
+        <div class='top_search {% if nav == 'index' %}index{% endif %}'>
+            <div class='closebox fl hidden'>
+              <div class='close bg block' ></div>
             </div>
-            <div  class='inputbox relative fl {% if nav == 'index' %}index{% endif %}'>
-               <input id='nav_keyword' name='keyword' class='keyword f13 fcb1 fl'/>
-               <input id='nav_btn_search' class='search_icon fr bg block absolute on' type='button' value=''/>
+			{% if nav == 'index' %}
+			   <div  class='filterbox relative fr'>
+                  <div class='feed_filter bg block absolute' ></div>
+			   </div>
+			{% endif %}
+            <div  class='inputbox relative fr'>
+               <input id='nav_keyword' name='keyword' class='keyword f13 fcb1 fl hidden'/>
+               <input id='nav_btn_search' class='search_icon fr bg absolute {% if nav == 'index' %}hidden{% else %}block{% endif %}' type='button' value=''/>
             </div>
-        </div>
-        <div class='icon_btn'>
-            {% if nav == 'index' %}<div class='feed_filter fr bg block' ></div>{% endif %}
-            <div class='search_icon fr bg block' ></div>
         </div>
        </form>
 	   </div>

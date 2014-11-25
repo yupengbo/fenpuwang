@@ -25,4 +25,15 @@ $(function(){
     }
     return false;
   });
+  $(window).scroll(function () {
+	   var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度
+	   var flowLine = $('.filter_list_box').offset().top-44;
+	   if (flowLine < srollPos) {
+	       $(".filter_flow_box").css('position', 'fixed');
+	       $(".filter_flow_box").css('left',0);
+	       $(".filter_flow_box").css('top',"44px");
+	   } else {
+           $(".filter_flow_box").css('position', 'static');
+       }
+  });
 });

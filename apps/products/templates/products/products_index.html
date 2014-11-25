@@ -1,11 +1,13 @@
 {% extends "base.html" %}
-
+{% block title %} 产品库 {% endblock %}
 {% block script %}
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static "css/products.css" %}" >
 	<script type="text/javascript" src="{% static "js/products.js" %}"></script>
 {% endblock %}
 {% block main_content %}
+<div class='filter_list_box'>
+  <div class='filter_flow_box'>
     <ul class='filter_list'>
 	<li class='on'><div class='p_t_0'></div>护肤</li>
 	<li><div class='p_t_1'></div>彩妆</li>
@@ -14,6 +16,8 @@
 	<a class="brand_filter_btn block absolute" ></a>
 	</li>
 	</ul>
+  </div>
+</div>
 	<div class='brand_filter_box absolute hidden'>
 	   <ul>
         <li><a href='#A'>A</a></li>

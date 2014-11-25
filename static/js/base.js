@@ -6,24 +6,30 @@ $(function () {
     });
 	var closedownload=getCookie("closedownload");
 	if (closedownload==1){
-	  $('.download .close').click(); 
+	  //$('.download .close').click(); 
 	}
     var isIndexPage = $(".search_box").length > 0;
     if (isIndexPage) {
         $('.icon_btn .search_icon').hide();
     }
-    $('.icon_btn .search_icon').click(function () {
-        $('.top_search').show();
-        $('.nav ul').hide();
-        show_nav_search();
-    });
-    $('.top_search .close').click(function () {
-        $('.top_search').hide();
+    
+	$('.top_search .close').click(function () {
         $('.nav ul').show();
+		$("#nav_keyword").hide();
+		$('.top_search .closebox').hide();
+        $("#nav_btn_search").removeClass("on");
 		show_nav_search();
     });
     $("#nav_btn_search").click(function(){
-	   search_all($("#nav_keyword").val());
+	   if($(this).hasClass("on")){
+	      search_all($("#nav_keyword").val());
+	   }else{
+	      $('.top_search .closebox').show();
+		  $("#nav_keyword").show();
+		  $('.nav ul').hide();
+		  $("#nav_keyword").focus();
+		  $(this).addClass("on");
+	   }
 	});
 	$("#index_btn_search").click(function(){
        search_all($("#index_keyword").val());
@@ -33,17 +39,11 @@ $(function () {
 	   if (isIndexPage) {
             var flowLine = $('.search_box').outerHeight() + $('.search_box').offset().top;
             $(".feed_filter_box").hide();
-            if (flowLine < srollPos && $(".top_search").is(":hidden")) {
-                $('.icon_btn .search_icon').show();
+            if (flowLine < srollPos ) {
+                $('#nav_btn_search').show();
             } else {
-                $('.icon_btn .search_icon').hide();
+                $('#nav_btn_search').hide();
             }
-	   }else{
-	       if ($(".top_search").is(":hidden")) {
-		       $('.icon_btn .search_icon').show();
-		   } else {
-		       $('.icon_btn .search_icon').hide();
-		   }
 	   }
 	}
 	function search_all(keyword){
@@ -65,7 +65,7 @@ $(function () {
 		show_nav_search();
     });
     /* feed筛选按钮 */
-    $('.icon_btn .feed_filter').click(function () {
+    $('.feed_filter').click(function () {
         if ($(".feed_filter_box").is(":hidden")) {
             var top = $('.nav').outerHeight() + $('.nav').offset().top;
             $(".feed_filter_box").css('top', top);

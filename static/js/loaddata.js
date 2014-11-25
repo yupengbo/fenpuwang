@@ -93,7 +93,9 @@ jQuery.fn.loaddata = function(user_setting) {
                     }, 
                     'json'
                 );
-           }
+           }else{
+		       $.loaddata_loadding = false;
+		   }
         }
         var $loaddingItem ;
         function show_loading() {
@@ -108,7 +110,7 @@ jQuery.fn.loaddata = function(user_setting) {
               $loaddingItem = $(loaddingTag);
               var boxcss = 'position:absolute;top:0px;left:0px;z-index:9999;display:hidden;';
               if($loaddingItem.length == 0){
-                  $loaddingItem = $('<div id="'+data-loadding+'" style="display:none">'+sys_opts.loading_img+'</div>');
+                  $loaddingItem = $('<div id="'+sys_opts.page_loading+'" style="display:none">'+sys_opts.loading_img+'</div>');
                   $("body").prepend($loaddingItem);
               }
               if(!$loaddingItem.attr("css_loaded")){
