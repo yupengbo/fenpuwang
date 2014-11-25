@@ -1,7 +1,7 @@
 <li>
  <img src='{{ product.thumb_s }}' class='pro_pic fl'/>
  <div class='pro_con fl' >
-     <a class='f15 fcb1' href='{% url 'product:product_detail' product.productId %}'>{{ product.name }}</a>
+     <a class='f15 fcb1 product_sub_name' href='{% url 'product:product_detail' product.productId %}'>{{ product.name }}</a>
 	 <div class='desc f13 fcg1'><span class='fcprice'>&yen;{{ product.price}}</span> <span><em class='fchl'>{{ product.usedNum }}</em>用过 <i>{{ product.goodReviewRatio }}%好评率</i></span></div>
  </div>
 </li>
