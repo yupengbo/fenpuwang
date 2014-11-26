@@ -1,5 +1,6 @@
 .feedsList{background-color:#f9f9f9;}
 .feedsList li{padding:5px 12px;}
+.feedsList li a:active,.feedsList li a:hover {color:red;} 
 .feedsList li .list_h{height:18px;}
 .feedsList li .list_h span{padding:1px 8px;}
 .feedsList li .list_h em{padding:4px 0;}

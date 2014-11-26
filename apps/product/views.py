@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse
 import json
 import requests
 from apps.api import api_list
-from apps.utils import string_utils
+from apps.utils import string_utils, response_data_utils
 import cgi
 
 def process_product_data(product_data):
@@ -42,9 +42,8 @@ def process_product_link(product_data):
 def question_list(request, product_id, mark):
   if request.is_ajax() == False: #仅接受ajax请求
     raise Http404
-
   try:
-    product_json = api_list.get_product_detail(product_id, 0, 20, mark)
+    product_json = api_list.get_product_detail(request, product_id, 0, 20, mark)
     if product_json['error'] != 0:
       raise Http404
     process_product_data(product_json)
@@ -61,25 +60,27 @@ def question_list(request, product_id, mark):
   
 def product_detail(request, product_id):
   has_product_info = 1
-  product_json = api_list.get_product_detail(product_id, has_product_info)
+  product_json = api_list.get_product_detail(request, product_id, has_product_info)
   try:
     if product_json == None or product_json == "" or product_json['error'] != 0:
       return HttpResponse("product id invalid")
     process_product_data(product_json)
     next_request_url = reverse('product:question_list', kwargs ={"product_id":product_id, "mark":product_json['mark']})
-    return render(request, 'product/product.html', {'product':product_json, 'url':next_request_url})
+    meta = response_data_utils.pack_data(request, {'product':product_json, 'url':next_request_url})
+    return render(request, 'product/product.html', meta)
   except Exception,e:
     print e
     raise Http404
 
 def product_official(request, product_id):
   has_product_info = 1
-  product_json = api_list.get_product_detail(product_id, has_product_info)
+  product_json = api_list.get_product_detail(request, product_id, has_product_info)
   try:
     if product_json == None or product_json == "" or product_json['error'] != 0:
       return HttpResponse("product id invalid")
     process_product_link(product_json['product'])
-    return render(request, 'product/product_official.html', {'product':product_json['product']})
+    meta = response_data_utils.pack_data(request, {'product':product_json['product']})
+    return render(request, 'product/product_official.html', meta) 
   except Exception,e:
     print e
     raise Http404

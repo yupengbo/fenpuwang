@@ -1,13 +1,15 @@
 @CHARSET "UTF-8";
 /*   通用样式  begin   */
-html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,em,font,img,small,strong,b,u,i,s,dl,dt,dd,ol,ul,li,fieldset,form,label {padding:0px;margin:0px;}
+html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,em,font,img,small,strong,b,u,i,s,dl,dt,dd,ol,ul,li,fieldset,form,label {padding:0px;margin:0px;-webkit-tap-highlight-color:rgba(0,0,0,0);}
 a,img {border:0;}
 ul {list-style:none;}
 li {list-style-type:none;}
 input,select{vertical-align:middle;padding:0px;}
 h1, h2, h3, h4, h5, h6 {font-weight:normal; font-size:12px;}
-b,i,em{font-style:normal;}
-a{text-decoration:none;}
+b,i,em {font-style:normal;}
+a {text-decoration:none;}
+input {-webkit-appearance: none;}
+a,button,input{-webkit-tap-highlight-color:rgba(0,0,0,0);}
 /* 鼠标样式 */
 .pointer{ cursor:pointer;}
 /* 取消边框 */
@@ -33,6 +35,7 @@ a{text-decoration:none;}
 /* 从页面布局上隐藏元素，从布局上隐藏元素 */
 .hidden{ display:none;}
 .block{ display:block;}
+.bold{font-weight:bold;}
 /* 清理浮动元素,当浮动换行时后面元素不希望浮动，添加此属性，防止IE BUG */
 .clear{ clear:both; height:0px; width:100%; font-size:1px; line-height:0px; visibility:hidden; overflow:hidden;}
 /* 容器 */
@@ -91,6 +94,7 @@ body {margin: 0px;min-width:320px;}
 .nav ul li{float:left;display:block;padding:0 3%;height:44px;}
 .nav ul li a{color:#ffddda; line-height:44px;font-size:15px;}
 .nav ul li .logo_btn{background-size:33px 44px;width:33px;height:44px;background-image:url('../images/img_nav_logo@2x.png');}
+.nav ul li .logo_btn a{width:33px;height:44px;display:block;}
 .nav ul .on a{font-weight:bold;color:#fff;}
 .nav .top_search{width:100%;position:absolute;z-index:8888;top:0px;left:0px;height:44px;}
 .nav .top_search .closebox,.nav .top_search .inputbox,.nav .index .filterbox{height:44px;}
@@ -106,7 +110,7 @@ body {margin: 0px;min-width:320px;}
 
 /*    feeds  filter  */
 .feed_filter_box{z-index:50;background:url('../images/filter_feed_bg_line.png');box-shadow:0 0 5px #999;-webkit-box-shadow:0 0 5px #999;-moz-box-shadow:0 0 5px #999;}
-.feed_filter_box li{color:#d3b5af;display:block;height:13px;padding:16px 25px;font-size:14px;float:left;}
+.feed_filter_box li{color:#999999;display:block;height:13px;padding:16px 15px;font-size:14px;float:left;}
 .feed_filter_box .on{color:#ff5346;}
 /*   search */
 .search_box{height:166px;padding-top:18px;}

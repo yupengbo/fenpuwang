@@ -6,22 +6,22 @@ from django.template import RequestContext, loader
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from apps.api import api_list
-from apps.utils import data_process_utils,string_utils
+from apps.utils import data_process_utils,string_utils, response_data_utils
 import requests
 import json
 import cgi
 
 def question_details(request, question_id):
     try:
-        question_obj = api_list.get_question_detail(question_id, 1, 1, 0)
+        question_obj = api_list.get_question_detail(request, question_id, 1, 1, 0)
         if question_obj['error'] == 0:
             process_question_data(question_obj)
             next_page_url = ''  # for next page ajax loading
             if int(question_obj['mark']) > 0:
                 next_page_url = reverse('question:answer_list',
                                         kwargs = {'question_id' : question_id, 'mark' : question_obj['mark']})
-            return render(request, 'question/question.html',
-                          {'question':question_obj, 'question_id':question_id, 'url' : next_page_url})
+            meta_data = response_data_utils.pack_data(request, {'question':question_obj, 'question_id':question_id, 'url' : next_page_url})
+            return render(request, 'question/question.html', meta_data)
     except Exception as e:
         print e
         raise Http404
@@ -38,7 +38,7 @@ def answer_list(request, question_id, mark):
     """
     if request.is_ajax():
         try:
-            answers_obj = api_list.get_question_detail(question_id, 0, 0, mark)
+            answers_obj = api_list.get_question_detail(request, question_id, 0, 0, mark)
             if answers_obj['error'] == 0:
                 process_answers(answers_obj['answerList']);
                 template = loader.get_template('question/answerList.html')

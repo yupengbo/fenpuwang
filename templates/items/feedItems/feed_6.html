@@ -1,0 +1,6 @@
+<a href='{% url 'question:question_details' feed.question.questionId %}'>
+  <div class='title f14 fcb1 bold'>{{ feed.question.title }}</div>
+  <div class='content f13 fcg2'>{{ feed.answer.content }}</div>
+  <div><span class="f10 fr fchl">{{ feed.question.answerNum }}回答</span></div>
+  <div class='clear'></div>
+</a>

@@ -1,13 +1,9 @@
+var isiOS = navigator.userAgent.match('iPad')|| navigator.userAgent.match('iPhone')|| navigator.userAgent.match('iPod'), isAndroid = navigator.userAgent.match('Android'),isDesktop = !isiOS&&!isAndroid;
 $(function () {
     $('.download .close').click(function () {
         $('.download').hide();
         show_right_info();
-		addCookie('closedownload',1,7*24);
     });
-	var closedownload=getCookie("closedownload");
-	if (closedownload==1){
-	  //$('.download .close').click(); 
-	}
     var isIndexPage = $(".search_box").length > 0;
     if (isIndexPage) {
         $('.icon_btn .search_icon').hide();
@@ -131,6 +127,25 @@ $.extend({
         }
     }
 });
+function openapp(obj){
+   var timeout, t=1000, hasApp = true;
+   setTimeout(function(){
+	 if(!hasApp){
+	   window.location = 'http://www.dabanniu.com/download.phtml';
+	 }
+   },2000);
+   var t1 = Date.now();
+   var ifr = document.createElement("iframe"); 
+   ifr.setAttribute('src', $(obj).attr("schemeUrl")); 
+   document.body.appendChild(ifr); 
+   timeout = setTimeout(function () {  
+       var t2 = Date.now();
+       if (!t1 || t2 - t1 < t + 100) {
+	     hasApp = false;
+       }
+   },t);
+
+}
 function trimStr(str){
     return str.replace("/(^\s*)|(\s*$)/g","");
 }

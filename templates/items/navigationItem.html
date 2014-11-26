@@ -4,7 +4,7 @@
        <div class='nav_inner'>
        <form onsubmit='$("#nav_btn_search").click();return false;'>
         <ul >
-		  <li><div class='bg logo_btn' ></div></li>
+		  <li><div class='bg logo_btn' ><a href='/'></a></div></li>
 	      <li {% if nav == 'index' %}class='on'{% endif %}><a  href='/'>首页</a></li>
           <li {% if nav == 'products' %}class='on'{% endif %}><a   href='{% url 'products:products_index' %}'>产品库</a></li>
         </ul>

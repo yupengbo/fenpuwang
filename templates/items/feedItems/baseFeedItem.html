@@ -1,4 +1,5 @@
 <li>
+{% if feed.type != 6 %}
 <div class='list_h'><img class='s_avatar fl' src='{{ feed.user.avatarURL }}' />
 <span class='f13 fcg1 fl'>{{ feed.user.userName }} 
 {% ifequal  feed.type 0 %}
@@ -21,6 +22,7 @@
 {% endifequal %}</span>
 <em class='f10 fcg1 fr'>{{ feed.user.profile }}</em>
 </div>
+{% endif %}
 <div class='list_c'>
 {% ifequal  feed.type 0 %}
   {% include "items/feedItems/feed_0.html" %}
@@ -39,6 +41,9 @@
 {% endifequal %}
 {% ifequal  feed.type 5 %}
   {% include "items/feedItems/feed_5.html" %}
+{% endifequal %}
+{% ifequal  feed.type 6 %}
+  {% include "items/feedItems/feed_6.html" %}
 {% endifequal %}
 </div>
   <div class='sp_line'></div>

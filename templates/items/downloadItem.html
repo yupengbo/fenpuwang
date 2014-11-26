@@ -1,11 +1,11 @@
 {% load staticfiles %}
-<div class='download relative t_c'>
+<div class='download relative t_c{% if closedownload == 1 %} hidden{% endif %}'>
     <div class='bg close'></div>
     <div class='info'>
 	  “美妆问答社区”
     </div>
     <div class='btns'>
         <div class='fl'><a href='http://www.dabanniu.com/download.phtml' class='bg btn_download block fr'></a></div>
-        <div class='fl'><a href='http://www.dabanniu.com/download.phtml' class='bg btn_openapp block fl'></a></div>
+        <div class='fl'><a href='javascript:void(0);' onclick='openapp(this);return false;' schemeUrl='{% if device == 'ios' %}fenpu://{% elif device == 'android' %}DBN://com.dabanniu.hair/openwith{% else %}http://www.dabanniu.com/download.phtml{% endif %}' class='bg btn_openapp block fl'></a></div>
      </div>
 </div>
