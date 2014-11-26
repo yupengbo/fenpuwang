@@ -18,13 +18,6 @@ $(function(){
 	 $(this).addClass('on');
      $(this).siblings().removeClass('on');
   });
-  $(".product_list li").click(function(){
-    var url=$(this).find("div a").attr("href");
-    if(url){
-       window.location = url;
-    }
-    return false;
-  });
   $(window).scroll(function () {
 	   var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度
 	   var flowLine = $('.filter_list_box').offset().top-44;
