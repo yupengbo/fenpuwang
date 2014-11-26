@@ -13,3 +13,4 @@ def replace_text_newline(text):
     return text.replace(u'\n', u'<br/>')
   else:
     return ""
+						  
