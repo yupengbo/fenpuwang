@@ -3,6 +3,8 @@
 .product_list .pro_con{min-width:194px;padding-top:5px;width:70%}
 .product_list .desc{padding-top:7px;}
 .product_list .desc i{padding-left:5px;}
+.product_list li .fchl{color:#aaaaaa;}
+.used_product_list li .fchl{color:#ff5346;}
 .brand_filter_btn{background-image:url('../images/icon_pinpai_down@2x.png');width:11px;height:11px;background-size:11px 11px;top:35px;left:70%;}
 .brand_filter_btn_up{background-image:url('../images/icon_pinpai_up@2x.png');}
 .product_category_list{padding:0px 15px;font-size:14px;}

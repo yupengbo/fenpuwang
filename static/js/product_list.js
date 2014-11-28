@@ -17,6 +17,11 @@ $(function(){
 	 }
 	 $(this).addClass('on');
      $(this).siblings().removeClass('on');
+     if($(this).find(".p_f_1").length>0){
+        $(".product_list").addClass("used_product_list");
+     }else{
+        $(".product_list").removeClass("used_product_list");
+     }
   });
   $(window).scroll(function () {
 	   var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度

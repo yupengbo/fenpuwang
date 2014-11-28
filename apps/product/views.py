@@ -11,9 +11,10 @@ from apps.utils import string_utils, response_data_utils
 import cgi
 
 def process_product_data(product_data):
-  for question in product_data['questionList']:
-    if question['relatedAnswer'] != None:
-      question['relatedAnswer']['content'] = string_utils.truncate_text(question['relatedAnswer']['content']) 
+  if product_data.get("questionList"):
+    for question in product_data['questionList']:
+      if question['relatedAnswer'] != None:
+        question['relatedAnswer']['content'] = string_utils.truncate_text(question['relatedAnswer']['content']) 
 
 def process_product_link(product_data):
   details = product_data.get("details")
@@ -43,9 +44,9 @@ def question_list(request, product_id, mark):
   if request.is_ajax() == False: #仅接受ajax请求
     raise Http404
   try:
-    product_json = api_list.get_product_detail(request, product_id, 0, 20, mark)
+    product_json = api_list.get_related_question_by_product_id(request, product_id, mark)
     if product_json['error'] != 0:
-      raise Http404
+       return HttpResponse("no question")
     process_product_data(product_json)
     template = loader.get_template("lists/question_list.html")
     context = RequestContext(request, {'question_list':product_json['questionList']})
@@ -60,10 +61,15 @@ def question_list(request, product_id, mark):
   
 def product_detail(request, product_id):
   has_product_info = 1
-  product_json = api_list.get_product_detail(request, product_id, has_product_info)
   try:
+    product_json = api_list.get_product_info_by_id(request, product_id)
+    question_json = api_list.get_related_question_by_product_id(request, product_id, 0)
     if product_json == None or product_json == "" or product_json['error'] != 0:
       return HttpResponse("product id invalid")
+    if question_json and question_json['error'] == 0 and question_json.get("questionList"):
+      product_json["questionList"] = question_json["questionList"]
+      product_json["mark"] = question_json["mark"]
+      product_json["totalNumber"] = question_json["totalNumber"]
     process_product_data(product_json)
     next_request_url = reverse('product:question_list', kwargs ={"product_id":product_id, "mark":product_json['mark']})
     meta = response_data_utils.pack_data(request, {'product':product_json, 'url':next_request_url})
@@ -74,8 +80,8 @@ def product_detail(request, product_id):
 
 def product_official(request, product_id):
   has_product_info = 1
-  product_json = api_list.get_product_detail(request, product_id, has_product_info)
   try:
+    product_json = api_list.get_product_info_by_id(request, product_id)
     if product_json == None or product_json == "" or product_json['error'] != 0:
       return HttpResponse("product id invalid")
     process_product_link(product_json['product'])

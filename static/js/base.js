@@ -3,6 +3,7 @@ $(function () {
     $('.download .close').click(function () {
         $('.download').hide();
         show_right_info();
+		addCookie('closedownload',1,7*24);
     });
     var isIndexPage = $(".search_box").length > 0;
     if (isIndexPage) {

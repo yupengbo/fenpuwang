@@ -55,6 +55,16 @@ def get_product_detail(req, product_id, has_product_details = 0, pre = 20, mark 
     build_params(req,params)
     return get_result(request('POST', 'getProductInfo.do', params))
 
+def get_product_info_by_id(req, product_id ):
+    params = {'productId': product_id }
+    build_params(req,params)
+    return get_result(request('POST', 'getProductInfoById.do', params))
+
+def get_related_question_by_product_id(req, product_id, mark = 0):
+    params = {'productId': product_id, 'mark': mark}
+    build_params(req,params)
+    return get_result(request('POST', 'getRelatedQuestionByProduct.do', params))
+
 def get_product_by_category(req, query_type, order, category_id, filter_category_id, pre, mark):
     params = {'type': query_type, 'order': order, 'pre': pre, 'mark': mark,
               'categoryId': category_id, 'filterCategoryId': filter_category_id}
