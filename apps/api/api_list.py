@@ -18,7 +18,9 @@ def get_base_url():
 def build_error_response(errorString):
     return {'error':1,'errorString':errorString}
 
-def get_result(response):
+def get_result(req, api_url, params):
+    build_params(req,params)
+    response = request('POST', api_url, params);
     result = build_error_response("server is busy-30331")
     try:
         if response.status_code == requests.codes.ok:
@@ -32,6 +34,7 @@ def request(method, api_name, params, time_out=30.0):
     print api_str
     print params
     return requests.request(method, api_str, data = params, timeout = time_out)
+
 def build_params(request,params):
     if not params:
        params = {}
@@ -47,36 +50,38 @@ def build_params(request,params):
 def get_question_detail(req, question_id, has_question_details, has_related_question, mark):
     params = {'questionId': question_id, 'hasBody': has_question_details,
               'hasOtherQuestion':has_related_question, 'mark':mark}
-    build_params(req,params)
-    return get_result(request('POST', 'getQuestionDetail.do', params))
+    return get_result(req , 'getQuestionDetail.do', params)
 
-def get_product_detail(req, product_id, has_product_details = 0, pre = 20, mark = 0):
-    params = {'productId': product_id, 'hasBody': has_product_details, 'pre': pre, 'mark': mark}
-    build_params(req,params)
-    return get_result(request('POST', 'getProductInfo.do', params))
+#def get_product_detail(req, product_id, has_product_details = 0, pre = 20, mark = 0):
+#    params = {'productId': product_id, 'hasBody': has_product_details, 'pre': pre, 'mark': mark}
+#    return get_result(req, 'getProductInfo.do', params)
 
 def get_product_info_by_id(req, product_id ):
     params = {'productId': product_id }
     build_params(req,params)
-    return get_result(request('POST', 'getProductInfoById.do', params))
+    return get_result(req, 'getProductInfoById.do', params)
 
 def get_related_question_by_product_id(req, product_id, mark = 0):
     params = {'productId': product_id, 'mark': mark}
-    build_params(req,params)
-    return get_result(request('POST', 'getRelatedQuestionByProduct.do', params))
+    return get_result(req, 'getRelatedQuestionByProduct.do', params)
 
 def get_product_by_category(req, query_type, order, category_id, filter_category_id, pre, mark):
     params = {'type': query_type, 'order': order, 'pre': pre, 'mark': mark,
               'categoryId': category_id, 'filterCategoryId': filter_category_id}
-    build_params(req,params)
-    return get_result(request('POST', 'listProductsByCategory.do', params))
+    return get_result(req, 'listProductsByCategory.do', params)
 
 def get_product_feeds(req, category_id = 0, pre = 20, mark = 0):
     params = {'pre': pre, 'mark': mark, 'categoryId': category_id, 'onlyFeatureQuestion': 1}
-    build_params(req,params)
-    return get_result(request('POST', 'listProductFeeds.do', params))
+    return get_result(req, 'listProductFeeds.do', params)
 
 def search(req, keyword, search_type = 0, pre = 20, mark = 0):
     params = {'pre': pre, 'mark': mark, 'type': search_type, 'keyword': keyword}
-    build_params(req,params)
-    return get_result(request('POST', 'search.do', params))
+    return get_result(req, 'search.do', params)
+
+def get_feature_topic_list(req, mark = 0):
+    params = {'mark': mark}
+    return get_result(req, 'listFeatureTopic.do', params)
+
+def get_feature_topic_info(req, feature_topic_id):
+    params = {'featureTopicId': feature_topic_id}
+    return get_result(req, 'getFeatureTopicInfo.do', params)

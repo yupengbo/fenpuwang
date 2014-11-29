@@ -1,0 +1,29 @@
+.topic_list{padding:12px;background-color:#ebebeb;}
+.topic_list li{margin-bottom:12px;background-color:#fff; }
+.topic_list img{width:100%;}
+.topic_list .imgBox{ width:100%;overflow:hidden;}
+.topic_list .contentBox{padding:12px 16px 18px; text-align:center;}
+.topic_list .contentBox h2{font-size:18px;line-height:27px;}
+.topic_list .contentBox .introduction{position:relative;padding:0 16px;margin:8px 0 18px;color:#666;font-size:13px;line-height:27px;}
+.topic_list .contentBox .introduction .lq,.contentBox .introduction .rq{position:absolute;background-size:8px 7px;width:8px;height:7px;}
+.topic_list .contentBox .introduction .lq{left:0px;top:0px;background-image:url('../images/img_f_topic_quote_list_left@2x.png');}
+.topic_list .contentBox .introduction .rq{right:0px;bottom:0px;background-image:url('../images/img_f_topic_quote_list_right@2x.png');}
+.topic_list .contentBox .viewBox .line{top:4px;width:40%;border-bottom:1px #aaaaaa solid;left:30%;z-index:1;}
+.topic_list .contentBox .viewBox .viewNum{left:0;top:-7px;width:100%;z-index:2;}
+.topic_list .contentBox .viewBox span{padding:0 3%;background-color:#fff;margin:0 auto;}
+.topic_header {margin-bottom:24px;}
+.topic_header img{width:100%;}
+.topic_header .line{left:0px;height:3px;bottom:-3px;z-index:2;width:100%;}
+.topic_header span{padding:0 6px;font-size:14px;line-height:24px;left:-3px;bottom:-24px;color:#fff;z-index:1;height:24px;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;}
+.topic_content {padding:18px 15px;}
+.topic_content h1.title{font-size:20px;line-height:32px;font-weight:bold;}
+.topic_content .author{text-align:right;font-size:14px;margin:12px 0;color:#666;} 
+.topic_content .introduction {padding:0 21px 24px;}
+.topic_content .conclusion {padding:14px 21px 3px;margin-bottom:36px;}
+.topic_content .introduction .lq,.topic_content .conclusion  .rq{position:absolute;background-size:14px 11px;width:14px;height:11px;}
+.topic_content .introduction .lq{background-image:url('../images/img_f_topic_quote_detail_left@2x.png');top:0px;left:0px;}
+.topic_content .conclusion  .rq{background-image:url('../images/img_f_topic_quote_detail_right@2x.png');bottom:0px;right:0px;}
+.topic_content .content{padding:15px 0px;}
+.topic_content .content img{width:100%;border:1px #dbdbdb solid;}
+.topic_content .content .con{margin-bottom:12px;}
+.topic_content .con{font-size:15px;line-height:30px;}

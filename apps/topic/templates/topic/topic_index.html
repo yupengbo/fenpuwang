@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %} 专题列表 {% endblock %}
+{% block script %}
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static "css/topic.css" %}">
+	<script type="text/javascript" src="{% static "js/topic.js" %}"></script>
+{% endblock %}
+{% block main_content %}
+<ul class='topic_list datalist'>
+   {% include "topic/topic_list.html" %}
+</ul>
+<script>
+$(".datalist").loaddata({
+    url : "{{ url }}"
+});
+</script>
+{% endblock %}

@@ -9,7 +9,8 @@ urlpatterns = patterns('',
     url(r'^(feed/)?', include('apps.feed.urls', namespace='feed')),
     url(r'^question/', include('apps.question.urls', namespace='question')),
     url(r'^product/', include('apps.product.urls', namespace='product')),
-	url(r'^products/', include('apps.products.urls', namespace='products')),
-	url(r'^search/', include('apps.search.urls', namespace='search')),
+    url(r'^products/', include('apps.products.urls', namespace='products')),
+    url(r'^search/', include('apps.search.urls', namespace='search')),
+    url(r'^topic/', include('apps.topic.urls', namespace='topic')),
 )
 

@@ -68,8 +68,6 @@ def product_list(request, keyword, type, mark):
 def search(request, keyword):
   search_json = api_list.search(request, keyword)
   try:
-    print "xxxxxxxxxxxx"
-    print search_json
     if search_json == None or search_json == "" or search_json['error'] != 0:
       return HttpResponse("search keyword invalid")
     process_search_data(search_json)

@@ -1,0 +1,20 @@
+<li>
+  <div class='imgBox'>
+    <a href='{% url 'topic:topic_info' topic.featureTopicId %}' >
+      <img src='{{ topic.org }}' />
+    </a>
+  </div>
+  <div class='contentBox'>
+  <a href='{% url 'topic:topic_info' topic.featureTopicId %}' >
+    <h2 class='fcb1'>{{ topic.title }}</h2>
+	<div class="introduction">
+	  <i class="bg lq"></i><i class="bg rq"></i>
+	  {{ topic.introduction }}
+	</div>
+	<div class="viewBox relative">
+	  <div class='line absolute' > </div>
+      <div class='viewNum  absolute'><span class='fcg1 f10'>{{ topic.viewNum }}浏览</span></div>
+	</div>
+  </a>
+  </div>
+</li>

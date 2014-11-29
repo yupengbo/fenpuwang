@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %} {{ featureTopic.title }} {% endblock %}
+
+{% block script %}
+{% load static %}
+  <link rel="stylesheet" href="{% static "css/topic.css" %}">
+  <script type="text/javascript" src="{% static "js/topic.js" %}"></script>
+{% endblock %}
+
+{% block main_content %}
+<!--专题信息-->
+<div class='topic_header relative'>
+  <img class="fl" src='{{ featureTopic.org }}' />
+  <div class="line fl absolute" style='background-color:#{{ featureTopic.color }}'></div>
+  <span class="absolute" style='background-color:#{{ featureTopic.color }}'>{{ featureTopic.creationTime }}</span>
+  <div class='clear'></div>
+</div>
+<div class='topic_content'>
+ <h1 class='title fcb1'>{{ featureTopic.title  }}</h1>
+ <div class='author'>文/{{ featureTopic.author }}</div>
+ <div class='introduction f13 fcan relative' >
+    <i class="bg lq"></i>
+    {{ featureTopic.introduction }}
+ </div>
+ <div class='sp_line'></div>
+ <div class='content fcb1'>
+   {% for contentInfo in featureTopic.contentList %}
+     <div class="con fcb1">
+     {% if contentInfo.type == 1 %}
+	  <p>
+	    {% for content in contentInfo.content %}
+		   {% if content.link.type %}
+		    <a href='
+		    {% if content.link.type == '0' %}
+	    	  {% url 'products:query_by_category' 3 content.link.data  %}
+	    	{% endif %}
+	    	{% if content.link.type == '1' %}
+	    	  {% url 'product:product_detail' content.link.data %}
+	    	{% endif %}
+	    	{% if content.link.type == '2' %}
+	    	  {% url 'search:search' content.link.data  %}
+	     	{% endif %}
+    		{% if content.link.type == '3' %}
+		      {{ content.link.data }}' target='_blank'
+		    {% endif %}
+			' >
+		   {% endif %}
+           <span  style='font-size:{{ content.fontSize.iPhone }}px;{% if content.color %}color:#{{ content.color }}{% endif %};'>{{ content.text }}</span>
+		   {% if content.link.type %}
+		     </a>
+		   {% endif %}
+		{% endfor %}
+	  </p>
+	 {% endif %}
+     {% if contentInfo.type == 0 %}
+	 <img src='{{ contentInfo.pic.org }}' />
+	 {% endif %}
+	 </div>
+   {% endfor %}
+ </div>
+ <div class='sp_line'></div>
+ <div class='conclusion f13 fcan relative'>
+	<i class="bg rq"></i>
+    {{ featureTopic.conclusion }}
+ </div>
+</div>
+
+{% endblock %}
