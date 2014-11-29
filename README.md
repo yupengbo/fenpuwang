@@ -11,8 +11,8 @@
 - 7.supervisor: apt-get install supervisor  
 
 ###二.django开发环境和生产环境分离
-- 1.配置文件控制：
-通用-生产和开发环境通用的django配置：settings/common.py  
+- 1.配置文件控制：  
+生产和开发环境通用的django配置：settings/common.py  
 开发环境：settings/development.py  
 生产环境：settings/production.py 
   
