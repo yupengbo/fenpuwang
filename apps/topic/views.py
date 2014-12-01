@@ -4,11 +4,12 @@ from django.http import HttpResponse,Http404
 from django.template import RequestContext, loader
 from apps.api import api_list
 import requests
-from apps.utils import string_utils, response_data_utils
+from apps.utils import string_utils, response_data_utils, data_process_utils
 from apps.api import api_list, static_data
 from django.core.urlresolvers import reverse
 import json
 import time
+import cgi
 
 def topic_info(request, topic_id):
     try:
@@ -51,6 +52,16 @@ def process_topic_data(topic_data):
     topic_data['featureTopic']['creationTime'] = time.strftime('%d %b',time.localtime(topic_data['featureTopic']['creationTime']/1000))
     if pics and len(pics) > 0 :
       topic_data['featureTopic']['org'] = pics[0]['org']
+    content_list = topic_data['featureTopic'].get('contentList')
+    if content_list:
+      for content_info in content_list:
+        content_sub_list = content_info.get("content")
+        if content_sub_list:
+           for sub_content_info in content_sub_list:
+             temp_text = sub_content_info.get("text")
+             if temp_text:
+               sub_content_info["text"] = string_utils.replace_text_newline(cgi.escape(temp_text))
+
 
   if topic_data.get('featureTopicList'):
     for topic in topic_data['featureTopicList']:
