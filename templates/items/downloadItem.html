@@ -6,6 +6,6 @@
     </div>
     <div class='btns'>
         <div class='fl'><a onclick="_hmt.push(['_trackEvent', 'software', 'nav_download', 'nav_download']);" id='bd_btn_nav_download' href='http://www.dabanniu.com/download.phtml' class='bg btn_download block fr'></a></div>
-        <div class='fl'><a onclick="_hmt.push(['_trackEvent', 'software', 'openapp', 'nav_openapp']);" id='bd_btn_nav_openapp' href='javascript:void(0);' onclick='openapp(this);return false;' schemeUrl='{% if device == 'ios' %}fenpu://{% elif device == 'android' %}DBN://com.dabanniu.hair/openwith{% else %}http://www.dabanniu.com/download.phtml{% endif %}' class='bg btn_openapp block fl'></a></div>
+        <div class='fl'><a onclick="_hmt.push(['_trackEvent', 'software', 'openapp', 'nav_openapp']);openapp(this);return false;" id='bd_btn_nav_openapp' href='javascript:void(0);' schemeUrl='{% if device == 'ios' %}fenpu://{% elif device == 'android' %}DBN://com.dabanniu.hair/openwith{% else %}http://www.dabanniu.com/download.phtml{% endif %}' class='bg btn_openapp block fl'></a></div>
      </div>
 </div>
