@@ -1,4 +1,5 @@
 var isiOS = navigator.userAgent.match('iPad')|| navigator.userAgent.match('iPhone')|| navigator.userAgent.match('iPod'), isAndroid = navigator.userAgent.match('Android'),isDesktop = !isiOS&&!isAndroid;
+var _hmt = _hmt || [];
 $(function () {
     $('.download .close').click(function () {
         $('.download').hide();

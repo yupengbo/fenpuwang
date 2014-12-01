@@ -46,7 +46,7 @@ def question_list(request, product_id, mark):
   try:
     product_json = api_list.get_related_question_by_product_id(request, product_id, mark)
     if product_json['error'] != 0:
-       return HttpResponse("no question")
+      return render(request, '500.html', {'text': "找不到问题列表！"})
     process_product_data(product_json)
     template = loader.get_template("lists/question_list.html")
     context = RequestContext(request, {'question_list':product_json['questionList']})
@@ -57,7 +57,7 @@ def question_list(request, product_id, mark):
     return HttpResponse(json.dumps(response_json), content_type="application/json") 
   except Exception as e:
     print e
-    return HttpResponse(e)
+    return render(request, '500.html', {'text': "找不到问题列表！"})
   
 def product_detail(request, product_id):
   has_product_info = 1
@@ -65,7 +65,7 @@ def product_detail(request, product_id):
     product_json = api_list.get_product_info_by_id(request, product_id)
     question_json = api_list.get_related_question_by_product_id(request, product_id, 0)
     if product_json == None or product_json == "" or product_json['error'] != 0:
-      return HttpResponse("product id invalid")
+      return render(request, '500.html', {'text': "找不到这个产品！"})
     if question_json and question_json['error'] == 0 and question_json.get("questionList"):
       product_json["questionList"] = question_json["questionList"]
       product_json["mark"] = question_json["mark"]

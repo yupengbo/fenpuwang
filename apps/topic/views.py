@@ -16,7 +16,7 @@ def topic_info(request, topic_id):
         if topic_json == None or topic_json == "" or topic_json['error'] != 0:
            return HttpResponse("topic id invalid")
         process_topic_data(topic_json)
-        meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic']})
+        meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic'],'nav':'topic'})
         return render(request, 'topic/topic.html', meta)
     except Exception,e:
         print e

@@ -1,8 +1,10 @@
 <li>
   <div class='imgBox'>
+    {% if topic.org %}
     <a href='{% url 'topic:topic_info' topic.featureTopicId %}' >
       <img src='{{ topic.org }}' />
     </a>
+	{% endif %}
   </div>
   <div class='contentBox'>
   <a href='{% url 'topic:topic_info' topic.featureTopicId %}' >

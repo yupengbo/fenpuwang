@@ -27,3 +27,5 @@
 .topic_content .content img{width:100%;border:1px #dbdbdb solid;}
 .topic_content .content .con{margin-bottom:12px;}
 .topic_content .con{font-size:15px;line-height:30px;}
+.topic_download {height:45px;background-color:#802923;padding:20px 0px;}
+.topic_download .btn_t_download{background-size:280px 44px;width:280px;height:44px;margin:0px auto;background-image:url('../images/img_download_topic@2x.png');}
