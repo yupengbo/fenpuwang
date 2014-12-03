@@ -10,7 +10,9 @@ from apps.utils import data_process_utils,string_utils, response_data_utils
 import requests
 import json
 import cgi
+import logging
 
+logger = logging.getLogger('django')
 def question_details(request, question_id):
     try:
         question_obj = api_list.get_question_detail(request, question_id, 1, 1, 0)
@@ -22,11 +24,10 @@ def question_details(request, question_id):
                                         kwargs = {'question_id' : question_id, 'mark' : question_obj['mark']})
             meta_data = response_data_utils.pack_data(request, {'question':question_obj, 'question_id':question_id, 'url' : next_page_url})
             return render(request, 'question/question.html', meta_data)
+        else:
+            return response_data_utils.error_response(request, "找不到这个问题！",  __name__, question_obj)
     except Exception as e:
-        print e
-        raise Http404
-    raise Http404
-
+        return response_data_utils.error_response(request,"找不到这个问题！", __name__, e)
 @csrf_exempt
 def answer_list(request, question_id, mark):
     """
@@ -49,10 +50,11 @@ def answer_list(request, question_id, mark):
                                             kwargs = {'question_id' : question_id, 'mark' : answers_obj['mark']})
                 response_json = {'html':template.render(context), 'mark':answers_obj['mark'], 'url':next_page_url}
                 return HttpResponse(json.dumps(response_json), content_type="application/json")
+            else:
+                return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, answers_obj)
         except Exception as e:
-            raise Http404
-    else:
-        raise Http404
+            return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e)
+    return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, "not ajax")
 
 def process_question_data(question_obj):
     """

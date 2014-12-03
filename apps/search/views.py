@@ -10,7 +10,9 @@ import json
 import requests
 from apps.api import api_list
 from apps.utils import string_utils, response_data_utils
+import logging
 
+logger = logging.getLogger('django')
 def process_search_data(search_data):
   if search_data.get('questionList'):
     for question in search_data['questionList']:
@@ -24,11 +26,11 @@ def process_search_data(search_data):
 
 def question_list(request, keyword, mark):
   if request.is_ajax() == False: #仅接受ajax请求
-    raise Http404
+    return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__ , "not ajax") 
   try:
     search_json = api_list.search(request, keyword, 2, 10, mark) 
     if search_json['error'] != 0:
-      raise Http404 
+      return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, search_json)
     process_search_data(search_json)
     template = loader.get_template("lists/question_list.html")
     context = RequestContext(request, {'question_list':search_json['questionList']})
@@ -38,9 +40,9 @@ def question_list(request, keyword, mark):
     response_json = {'html':template.render(context), 'mark':search_json['mark'], 'url':next_request_url}
     return HttpResponse(json.dumps(response_json), content_type="application/json") 
   except Exception as e:
-    print e
-    return HttpResponse(e)
-    
+    return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e)
+
+
 def product_list(request, keyword, type, mark):
    is_ajax = request.is_ajax()
    try:
@@ -60,20 +62,16 @@ def product_list(request, keyword, type, mark):
              meta_data = response_data_utils.pack_data(request, meta_data)
              return render(request, 'products/products.html', meta_data)
    except Exception,e:
-      print e
-      raise Http404
-   raise Http404
-
+     return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e)
 
 def search(request, keyword):
   search_json = api_list.search(request, keyword)
   try:
     if search_json == None or search_json == "" or search_json['error'] != 0:
-      return HttpResponse("search keyword invalid")
+      return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, search_json)
     process_search_data(search_json)
     next_request_url = reverse('search:question_list', kwargs = {"keyword":keyword, "mark":search_json['mark']})
     meta_data = response_data_utils.pack_data(request, {'search':search_json, 'url':next_request_url, 'keyword':keyword })
     return render(request, 'search/search.html', meta_data)
   except Exception,e:
-    print e
-    raise Http404
+    return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e)

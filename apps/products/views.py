@@ -8,6 +8,9 @@ from apps.utils import string_utils, response_data_utils
 from apps.api import api_list, static_data
 from django.core.urlresolvers import reverse
 import json
+import logging
+
+logger = logging.getLogger('django')
 def products_index(request):
     data = static_data.get_products_index_data() 
     meta_data = response_data_utils.pack_data(request, {'data': data ,'nav':'products'})
@@ -33,9 +36,7 @@ def productlist_by_category(request, type=0,category_id=0,order=1,filter=0,mark=
                 meta_data = response_data_utils.pack_data(request, meta_data)
                 return render(request, 'products/products.html', meta_data)
     except Exception,e:
-        print e
-        raise Http404
-    raise Http404
+        return response_data_utils.error_response(request, "该分类下没有产品！",  __name__, e)
 
 def process_product_data(product_data):
     for product in product_data['productList']:

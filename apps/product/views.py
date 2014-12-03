@@ -42,11 +42,11 @@ def process_product_link(product_data):
 
 def question_list(request, product_id, mark):
   if request.is_ajax() == False: #仅接受ajax请求
-    raise Http404
+    return response_data_utils.error_response(request,"找不到问题列表！", __name__, "not ajax")
   try:
     product_json = api_list.get_related_question_by_product_id(request, product_id, mark)
     if product_json['error'] != 0:
-      return render(request, '500.html', {'text': "找不到问题列表！"})
+      return response_data_utils.error_response(request,"找不到问题列表！", __name__, product_json)
     process_product_data(product_json)
     template = loader.get_template("lists/question_list.html")
     context = RequestContext(request, {'question_list':product_json['questionList']})
@@ -56,8 +56,7 @@ def question_list(request, product_id, mark):
     response_json = {'html':template.render(context), 'mark':product_json['mark'], 'url':next_request_url}
     return HttpResponse(json.dumps(response_json), content_type="application/json") 
   except Exception as e:
-    print e
-    return render(request, '500.html', {'text': "找不到问题列表！"})
+    return response_data_utils.error_response(request, "找不到问题列表！", __name__, e)
   
 def product_detail(request, product_id):
   has_product_info = 1
@@ -65,7 +64,8 @@ def product_detail(request, product_id):
     product_json = api_list.get_product_info_by_id(request, product_id)
     question_json = api_list.get_related_question_by_product_id(request, product_id, 0)
     if product_json == None or product_json == "" or product_json['error'] != 0:
-      return render(request, '500.html', {'text': "找不到这个产品！"})
+      return response_data_utils.error_response(request, "找不到这个产品！",  __name__, product_json)
+    product_json["mark"] = 0
     if question_json and question_json['error'] == 0 and question_json.get("questionList"):
       product_json["questionList"] = question_json["questionList"]
       product_json["mark"] = question_json["mark"]
@@ -75,19 +75,17 @@ def product_detail(request, product_id):
     meta = response_data_utils.pack_data(request, {'product':product_json, 'url':next_request_url})
     return render(request, 'product/product.html', meta)
   except Exception,e:
-    print e
-    raise Http404
+    return response_data_utils.error_response(request, "找不到这个产品！",  __name__, e)
 
 def product_official(request, product_id):
   has_product_info = 1
   try:
     product_json = api_list.get_product_info_by_id(request, product_id)
     if product_json == None or product_json == "" or product_json['error'] != 0:
-      return HttpResponse("product id invalid")
+      return response_data_utils.error_response(request, "找不到这个产品的详情！", __name__ , product_json)
     process_product_link(product_json['product'])
-    meta = response_data_utils.pack_data(request, {'product':product_json['product']})
+    meta = response_data_utils.papi.ck_data(request, {'product':product_json['product']})
     return render(request, 'product/product_official.html', meta) 
   except Exception,e:
-    print e
-    raise Http404
+    return response_data_utils.error_response(request, "找不到这个产品的详情！",  __name__, e) 
 

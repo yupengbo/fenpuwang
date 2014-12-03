@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+from django.shortcuts import render
 import string 
+import logging
+logger = logging.getLogger('django')
 
 def pack_data(request,meta):
   if meta:
@@ -21,3 +24,17 @@ def get_user_device(request):
     elif 'android' in http_user_agent :
       device = 'android'
   return device
+
+def error_response(request, message, view_name = "unknow_source", error_info = "unkonw_error"):
+  if not error_info:
+     if message:
+        error_info = message 
+     else:
+        error_info = "unkonw_error"
+  if not message:
+     message = "服务器忙，请稍后重试！"
+  if not view_name:
+     view_name = "unknow_source"
+  view_name = view_name + ":"
+  logger.error(view_name + str(error_info))
+  return render(request, '500.html', {'text': message})

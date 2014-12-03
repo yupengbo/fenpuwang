@@ -10,18 +10,19 @@ from django.core.urlresolvers import reverse
 import json
 import time
 import cgi
+import logging
 
+logger = logging.getLogger('django')
 def topic_info(request, topic_id):
     try:
         topic_json = api_list.get_feature_topic_info(request, topic_id)
         if topic_json == None or topic_json == "" or topic_json['error'] != 0:
-           return HttpResponse("topic id invalid")
+          return response_data_utils.error_response(request,"找不到这个专题", __name__, topic_json)
         process_topic_data(topic_json)
         meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic'],'nav':'topic'})
         return render(request, 'topic/topic.html', meta)
     except Exception,e:
-        print e
-        raise Http404
+       return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e) 
 
 def topic_list(request, mark=0):
     is_ajax = request.is_ajax()
@@ -42,9 +43,7 @@ def topic_list(request, mark=0):
                 meta_data = response_data_utils.pack_data(request, meta_data)
                 return render(request, 'topic/topic_index.html', meta_data)
     except Exception,e:
-        print e
-        raise Http404
-    raise Http404
+        return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e)
 
 def process_topic_data(topic_data):
   if topic_data.get('featureTopic'):

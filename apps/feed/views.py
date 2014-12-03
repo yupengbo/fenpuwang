@@ -9,6 +9,7 @@ from apps.utils import data_process_utils, response_data_utils, string_utils
 import json
 from django.core.urlresolvers import reverse
 # Create your views here.
+
 def index(request):
     try:
         feed_obj = api_list.get_product_feeds(request)
@@ -18,11 +19,10 @@ def index(request):
             next_request_url = reverse('feed:feed_list', kwargs ={"categoryid" : 0, "mark": feed_obj['mark']}) 
             meta = response_data_utils.pack_data(request, {'feeds' : feed_obj['feedList'],'nav_list' : nav_list , 'url' : next_request_url, "nav": "index"})
             return render(request, 'feed/feeds.html', meta)
+        else:
+            return response_data_utils.error_response(request, None, __name__, feed_obj)
     except Exception,e:
-        print e
-        raise Http404
-    raise Http404
-
+        return response_data_utils.error_response(request, None, __name__, e)
 def feed_list(request, categoryid, mark):
     if request.is_ajax(): #仅接受ajax请求
         try:
@@ -36,11 +36,11 @@ def feed_list(request, categoryid, mark):
                     next_request_url = reverse('feed:feed_list', kwargs ={"categoryid" : categoryid, "mark" : feed_obj['mark']})
                 response_json = {'html':template.render(context), 'url':next_request_url}
                 return HttpResponse(json.dumps(response_json), content_type="application/json")
+            else:
+                return response_data_utils.error_response(request, None, __name__, feed_obj)
         except Exception as e:
-            return HttpResponse(e)
-        raise Http404
-    else:
-        raise Http404
+            return response_data_utils.error_response(request, None, __name__, e)
+	return response_data_utils.error_response(request, None,  __name__, " not ajax")
 
 def process_feed_data(feed_obj):
     """
