@@ -50,6 +50,7 @@ $(function () {
 		}
 		return false;
 	}
+	/*
     $(window).scroll(function () {
         var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
         var flowLine = $('.nav_bar').offset().top;
@@ -62,6 +63,7 @@ $(function () {
         }
 		show_nav_search();
     });
+	*/
     /* feed筛选按钮 */
     $('.feed_filter').click(function () {
         if ($(".feed_filter_box").is(":hidden")) {
