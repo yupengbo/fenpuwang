@@ -54,8 +54,14 @@
 	  </p>
 	 {% endif %}
      {% if contentInfo.type == 0 %}
-	 <img src='{{ contentInfo.pic.org }}' />
+      {% if contentInfo.href %}
+	    <a href='{{ contentInfo.href }}' >
+	  {% endif %}
+	   <img src='{{ contentInfo.pic.org }}' />
 	 {% endif %}
+	  {% if contentInfo.href %}
+        </a>
+	  {% endif %}
 	 </div>
    {% endfor %}
  </div>
