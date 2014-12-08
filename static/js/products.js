@@ -26,7 +26,7 @@ $(function(){
 	  if (flowLine < srollPos) {
 	      $(".filter_flow_box").css('position', 'fixed');
 	      $(".filter_flow_box").css('left',0);
-		  $(".filter_flow_box").css('top',"44px");
+		  $(".filter_flow_box").css('top',0);
 	  } else {
 	      $(".filter_flow_box").css('position', 'static');
 	  }
