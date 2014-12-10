@@ -155,7 +155,7 @@ body {margin: 0px;min-width:320px;}
 .filter_list .on .p_t_2{background-image:url('../images/icon_category_virtue_highlight@2x.png');}
 .filter_list .on .p_t_3{background-image:url('../images/icon_category_brand_highlight@2x.png');}
 .footer{height:85px;}
-.footer_download {width:100%;height:45px;background-color:#802923;padding:20px 0px;position:fixed;bottom:0px;left:0px;}
+.footer_download {width:100%;height:45px;background-color:rgba(255,255,255,.95);padding:20px 0px;position:fixed;bottom:0px;left:0px;z-index:9999;}
 .footer_download .btn_t_download{background-size:280px 44px;width:280px;height:44px;margin:0px auto;background-image:url('../images/img_download_topic@2x.png');}
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5), not all {
