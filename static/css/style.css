@@ -162,3 +162,5 @@ body {margin: 0px;min-width:320px;}
 	.download .btn_download{background-image:url('../images/btn_banner_download_normal@2x.png');}
 	.download .btn_openapp{background-image:url('../images/btn_banner_open_normal@2x.png')}
 }
+.back_top_button{right:3%;bottom:100px;position:fixed;height:26px;width:26px;background-image:url('../images/btn_back_nav@2x.png');background-size:26px 26px;}
+
