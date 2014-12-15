@@ -92,6 +92,7 @@ def process_answers(answers):
         content = answer.get("content")
         if content:
             answer["content"] = string_utils.replace_text_newline(cgi.escape(content))
+            answer["content"] = string_utils.replace_link(answer["content"])
         answer['user']['profile'] = data_process_utils.get_user_profile_str(answer['user'])
 
         if not has_best_answer and answer['isBest'] > 0:

@@ -49,7 +49,7 @@ def build_params(request,params):
 
 def get_question_detail(req, question_id, has_question_details, has_related_question, mark):
     params = {'questionId': question_id, 'hasBody': has_question_details,
-              'hasOtherQuestion':has_related_question, 'mark':mark}
+              'hasOtherQuestion':has_related_question, 'mark':mark, 'isRed':1}
     return get_result(req , 'getQuestionDetail.do', params)
 
 #def get_product_detail(req, product_id, has_product_details = 0, pre = 20, mark = 0):
