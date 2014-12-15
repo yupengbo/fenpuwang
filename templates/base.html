@@ -10,10 +10,12 @@
         <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
 		<script type="text/javascript" src="{% static "js/base.js" %}"></script>
 		<script type="text/javascript" src="{% static "js/loaddata.js" %}"></script>
+                <script type="text/javascript" src="{% static "js/back_top.js"%}"></script>
         {% block script %}{% endblock %}
     </head>
 
     <body>
+        <a name="back_top" id="back_top"></a>
         <div id="top-navigation-bar">
 		     {% include "items/navigationItem.html" %}
 		</div>
@@ -26,6 +28,7 @@
 		   </a>
 		  </div>
 		</div>
+        <a href='#back_top'><div class="back_top_button hidden"></div></a>
         <!--baidu-->
         <div class="hidden">
         <script type="text/javascript">
