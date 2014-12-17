@@ -84,7 +84,7 @@ def product_official(request, product_id):
     if product_json == None or product_json == "" or product_json['error'] != 0:
       return response_data_utils.error_response(request, "找不到这个产品的详情！", __name__ , product_json)
     process_product_link(product_json['product'])
-    meta = response_data_utils.papi.ck_data(request, {'product':product_json['product']})
+    meta = response_data_utils.pack_data(request, {'product':product_json['product']})
     return render(request, 'product/product_official.html', meta) 
   except Exception,e:
     return response_data_utils.error_response(request, "找不到这个产品的详情！",  __name__, e) 
