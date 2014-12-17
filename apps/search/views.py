@@ -20,6 +20,9 @@ def process_search_data(search_data):
         question['relatedAnswer']['content'] = string_utils.truncate_text(question['relatedAnswer']['content'])
   if search_data.get('productList'):
     for product in search_data['productList']:
+      effect = product.get('effect')
+      if effect==None:
+          product['effect'] = ""
       pics = product.get('pics')
       if pics and len(pics) > 0:
         product['thumb_s'] = pics[0]['thumb-s']
