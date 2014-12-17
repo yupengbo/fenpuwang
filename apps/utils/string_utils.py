@@ -31,5 +31,8 @@ def replace_link(text):
                     #text=text.replace('"'+letter_group+'"','/search/'+letter_group+'/'+' class='+'"'+'keyword_link'+'"')
                     text = text.replace('"'+letter_group+'"',search_url+' class='+'"'+'keyword_link'+'"')
             return text
+        else:
+            return text
     else:
-        return ""						  
+        return ""
+        						  
