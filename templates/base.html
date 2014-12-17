@@ -6,11 +6,11 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
         <title>{% block title %}首页 - 粉扑{% endblock %}</title>
         {% load static %}
-        <link rel="stylesheet" href="{% static "css/style.css" %}">
+        <link rel="stylesheet" href="{% static "css/style.css" %}?v=1.0">
         <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
-		<script type="text/javascript" src="{% static "js/base.js" %}"></script>
-		<script type="text/javascript" src="{% static "js/loaddata.js" %}"></script>
-                <script type="text/javascript" src="{% static "js/back_top.js"%}"></script>
+		<script type="text/javascript" src="{% static "js/base.js" %}?v=1.0"></script>
+		<script type="text/javascript" src="{% static "js/loaddata.js" %}?v=1.0"></script>
+                <script type="text/javascript" src="{% static "js/back_top.js"%}?v=1.0"></script>
         {% block script %}{% endblock %}
     </head>
 
