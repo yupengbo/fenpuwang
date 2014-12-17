@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import string 
 import re
+from django.core.urlresolvers import reverse
 def truncate_text(text, length = 200, suffix = "..."):
   if text == None:
     return None
@@ -22,11 +23,13 @@ def replace_link(text):
             text=text.replace("keyword","href")
             text=text.replace("<em","<a")
             text=text.replace("em>","a>")
-            pattern = '<a href="[^<]+">(.+)'
+            pattern = '<a href="([^<]+)">'
             for letter in text.split("</a>"):
                 if re.search(pattern,letter):
                     letter_group=re.search(pattern,letter).group(1)
-                    text=text.replace('"'+letter_group+'"','/search/'+letter_group+'/'+' class='+'"'+'keyword_link'+'"')
+                    search_url = reverse('search:search',kwargs={'keyword':letter_group})
+                    #text=text.replace('"'+letter_group+'"','/search/'+letter_group+'/'+' class='+'"'+'keyword_link'+'"')
+                    text = text.replace('"'+letter_group+'"',search_url+' class='+'"'+'keyword_link'+'"')
             return text
     else:
         return ""						  
