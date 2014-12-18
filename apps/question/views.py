@@ -62,9 +62,11 @@ def process_question_data(question_obj):
     :param question_obj:
     :return:
     """
-    content = question_obj.get("content")
+    content = question_obj['question'].get("content")
     if content:
-        question_obj["content"] = string_utils.replace_text_newline(cgi.escape(content))
+        question_obj['question']["content"] = string_utils.replace_text_newline(cgi.escape(content))
+    else:
+        question_obj['question']['content'] = ''
     # 转换时间显示格式
     question_obj['question']['creationTime'] = data_process_utils.get_time_since(question_obj['question']['creationTime'])
 
