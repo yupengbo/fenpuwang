@@ -5,9 +5,9 @@
        <form onsubmit='$("#nav_btn_search").click();return false;'>
         <ul >
 		  <li><div class='bg logo_btn' ><a href='/'></a></div></li>
-	      <li {% if nav == 'index' %}class='on'{% endif %}><a  href='/'>首页</a></li>
-          <li {% if nav == 'products' %}class='on'{% endif %}><a   href='{% url 'products:products_index' %}'>产品库</a></li>
+	      <li {% if nav == 'index' %}class='on'{% endif %}><a  href='/'>问答</a></li>
 		  <li {% if nav == 'topic' %}class='on'{% endif %}><a href='{% url  'topic:topic_index' %}'>专题</a></li>
+          <li {% if nav == 'products' %}class='on'{% endif %}><a   href='{% url 'products:products_index' %}'>美妆库</a></li>
         </ul>
 
         <div class='top_search {% if nav == 'index' %}index{% endif %}'>
@@ -20,7 +20,7 @@
 			   </div>
 			{% endif %}
             <div  class='inputbox relative fr'>
-               <input id='nav_keyword' name='keyword' class='keyword f13 fcb1 fl hidden'/>
+               <input id='nav_keyword' name='keyword' class='keyword f13 fcb1 fl hidden' value='{% if keyword %}{{keyword}}{% endif%}'/>
                <input id='nav_btn_search' class='search_icon fr bg absolute {% if nav == 'index' %}hidden{% else %}block{% endif %}' type='button' value=''/>
             </div>
         </div>
@@ -50,4 +50,11 @@
     <form>
   </div>
 </div>
-{% endif %}
+{% endif%}
+{% if keyword %}
+<script>
+ $(function () {
+    $("#nav_btn_search").click(); 
+ });
+</script>
+{% endif%}
