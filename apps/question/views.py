@@ -63,8 +63,10 @@ def process_question_data(question_obj):
     :return:
     """
     content = question_obj['question'].get("content")
+    question_obj['question']['title'] = string_utils.replace_link(question_obj['question']['title']
     if content:
-        question_obj['question']["content"] = string_utils.replace_text_newline(cgi.escape(content))
+        question_obj['question']['content'] = string_utils.replace_text_newline(cgi.escape(content))
+        question_obj['question']['content'] = string_utils.replace_link(question_obj['question']['content'])
     else:
         question_obj['question']['content'] = ''
     # 转换时间显示格式
