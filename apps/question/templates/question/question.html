@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %} {{ question.question.title }} {% endblock %}
+{% block title %} {{ question.question.normal_title }} {% endblock %}
 {% block script %}
     {% load static %}
     <link rel="stylesheet" href="{% static "css/question.css" %}">
@@ -8,7 +8,7 @@
 {% block main_content %}
 <div class="question-body">
     <div class="question-title fcb1 f16">
-        {{ question.question.title }}
+        {{ question.question.title|safe }}
     </div>
     <div class="question-user-profile">
         <img class="question-avatar s_avatar fl" src="{{ question.question.user.avatarURL }}" alt="avatar" />

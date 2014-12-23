@@ -63,7 +63,9 @@ def process_question_data(question_obj):
     :return:
     """
     content = question_obj['question'].get("content")
-    question_obj['question']['title'] = string_utils.replace_link(question_obj['question']['title']
+    question_obj['question']['normal_title'] = string_utils.clear_link(question_obj['question']['title'])
+    question_obj['question']['title'] = cgi.escape(question_obj['question']['title'])
+    question_obj['question']['title'] = string_utils.replace_link(question_obj['question']['title'])
     if content:
         question_obj['question']['content'] = string_utils.replace_text_newline(cgi.escape(content))
         question_obj['question']['content'] = string_utils.replace_link(question_obj['question']['content'])
