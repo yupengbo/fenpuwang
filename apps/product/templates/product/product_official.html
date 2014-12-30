@@ -14,13 +14,13 @@
 </div>
 
 <!--产品链接-->
-{% for link in product.mapping %}
-    {% if link.url %}
+{% ifnotequal product.mapping|length 0%}
 <div class="link_body">
      <div class="question_overview fcg1 f13">去看看更多信息</div>
      <div class="sp_line"></div>
+     {% for link in product.mapping %}
      <div class="media_logo fl"><a href="{{ link.url }}"><img src="{{ link.logo_img }}"/></a></div>
+     {% endfor %}
 </div>
-    {% endif %}
-{% endfor %}
+{% endifnotequal %}
 {% endblock %}
