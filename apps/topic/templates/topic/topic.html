@@ -69,9 +69,10 @@
           {% if contentInfo.link.type == '1' %}
             <div class='link_cell'>
               <a href='{% url 'product:product_detail' contentInfo.link.data %}'>
-              <li class='fchl'><div class='topic_product fl'></div>相关产品</li>
-              <li><div class='fcb1'>{{ contentInfo.link.title|safe }}<div class='fr'><span class='fr fchl'><strong>></strong></span></div></div></li>
-              <li class='fcg1'>&yen;{{ contentInfo.link.price|safe}}/{{contentInfo.link.size}}&nbsp;&nbsp;{{ contentInfo.link.questionNum|safe}}问答</li>
+              <div class='fchl fl' style='width:100%'><div class='topic_product fl'></div>相关产品</div>
+              <div class='fl fcb1' style='width:100%'>{{ contentInfo.link.title|safe }}</div>
+              <div class='fcg1 fl' style='width:100%'>&yen;{{ contentInfo.link.price|safe}}/{{contentInfo.link.size}}&nbsp;&nbsp;{{ contentInfo.link.questionNum|safe}}问答</div>
+              <div class='link_arrow relative'><i class="bg link_arrow_i"></i></div>
 	      </a>
             </div>
           {% endif %}
@@ -80,7 +81,10 @@
           {% endif %}
           {% if contentInfo.link.type == '3' %}
             <div class='link_newline'>
-              <a href='{{ contentInfo.link.data }}' target='_blank'><span class='fcb1'><strong>{{ contentInfo.link.title|safe }}</strong></span></a>
+              <a href='{{ contentInfo.link.data }}' target='_blank'>
+                <div><span class='fcb1 fl'><strong>{{ contentInfo.link.title|safe }}</strong></span></div>
+                <div class='topic_outlink_img fl bg'></div>
+             </a>
             </div>
           {% endif %}   
           {% if contentInfo.link.type == '4' %}
