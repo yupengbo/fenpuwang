@@ -18,8 +18,12 @@ def topic_info(request, topic_id):
         topic_json = api_list.get_feature_topic_info(request, topic_id)
         if topic_json == None or topic_json == "" or topic_json['error'] != 0:
           return response_data_utils.error_response(request,"找不到这个专题", __name__, topic_json)
+        uid = request.GET.get('dp')
+        bottom_download = request.GET.get('bottom_download')
         process_topic_data(topic_json)
-        meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic'],'nav':'topic'})
+        if uid != None and uid != "":
+          process_topic_url(uid, topic_json)
+        meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic'],'nav':'topic','bottom_download':bottom_download})
         return render(request, 'topic/topic.html', meta)
     except Exception,e:
        return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e) 
@@ -44,6 +48,17 @@ def topic_list(request, mark=0):
                 return render(request, 'topic/topic_index.html', meta_data)
     except Exception,e:
         return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e)
+
+def process_topic_url(uid, topic_data):
+  if topic_data.get('featureTopic'):
+    content_list = topic_data['featureTopic'].get('contentList')
+    if content_list == None:
+      return None
+    for content_info in content_list:
+      link = content_info.get("link")
+      if link and link['data'] and link['data'].startswith("http:"):
+        link['data'] = link['data'] + "?dp=" + str(uid)
+        link['type'] = u'6'
 
 def process_topic_data(topic_data):
   if topic_data.get('featureTopic'):

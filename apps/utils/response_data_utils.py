@@ -7,11 +7,15 @@ logger = logging.getLogger('django')
 def pack_data(request,meta):
   if meta:
     meta["closedownload"] = 0
+    meta["close_bottom_download"] = 0
     if "closedownload" in request.COOKIES :
       value = request.COOKIES["closedownload"]
       if value == "1":
          meta["closedownload"] = 1
+    if meta['bottom_download'] == '0':
+      meta["close_bottom_download"] = 1 
     meta["device"] = get_user_device(request)
+  print meta["close_bottom_download"]
   return meta
 
 def get_user_device(request):

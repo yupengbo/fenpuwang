@@ -82,6 +82,6 @@ def get_feature_topic_list(req, mark = 0):
     params = {'mark': mark}
     return get_result(req, 'listFeatureTopic.do', params)
 
-def get_feature_topic_info(req, feature_topic_id):
-    params = {'featureTopicId': feature_topic_id}
+def get_feature_topic_info(req, feature_topic_id, topicVersion = 1):
+    params = {'featureTopicId': feature_topic_id, 'topicVersion': topicVersion}
     return get_result(req, 'getFeatureTopicInfo.do', params)

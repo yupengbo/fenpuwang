@@ -52,7 +52,7 @@
 		   {% endif %}
 		{% endfor %}
 	  </p>
-	 {% endif %}
+     {% endif %}
      {% if contentInfo.type == 0 %}
       {% if contentInfo.href %}
 	    <a href='{{ contentInfo.href }}' >
@@ -61,8 +61,59 @@
 	 {% endif %}
 	  {% if contentInfo.href %}
         </a>
-	  {% endif %}
-	 </div>
+      {% endif %}
+      {% if contentInfo.type == 2 %}
+          {% if contentInfo.link.type == '0' %}
+            {% url 'products:query_by_category' 3 contentInfo.link.data  %}
+          {% endif %}
+          {% if contentInfo.link.type == '1' %}
+            <div class='link_cell'>
+              <a href='{% url 'product:product_detail' contentInfo.link.data %}'>
+              <li class='fchl'><div class='topic_product fl'></div>相关产品</li>
+              <li><div class='fcb1'>{{ contentInfo.link.title|safe }}<div class='fr'><span class='fr fchl'><strong>></strong></span></div></div></li>
+              <li class='fcg1'>&yen;{{ contentInfo.link.price|safe}}/{{contentInfo.link.size}}&nbsp;&nbsp;{{ contentInfo.link.questionNum|safe}}问答</li>
+	      </a>
+            </div>
+          {% endif %}
+          {% if contentInfo.link.type == '2' %}
+            {% url 'search:search' contentInfo.link.data  %}
+          {% endif %}
+          {% if contentInfo.link.type == '3' %}
+            <div class='link_newline'>
+              <a href='{{ contentInfo.link.data }}' target='_blank'><span class='fcb1'><strong>{{ contentInfo.link.title|safe }}</strong></span></a>
+            </div>
+          {% endif %}   
+          {% if contentInfo.link.type == '4' %}
+            <div class='link_cell'>
+              <a href='{% url 'topic:topic_info' contentInfo.link.data %}'>
+              <li class='fchl'><div class='topic_topic fl'></div>专题</li>
+              <li><div class='fcb1'>{{ contentInfo.link.title|safe }}<div class='fr'><span class='fr fchl'><strong>></strong></span></div></div></li>
+	      </a>
+            </div>
+          {% endif %}   
+          {% if contentInfo.link.type == '5' %}
+            <div class='link_cell'>
+              <a href='{% url 'topic:topic_info' contentInfo.link.data %}'>
+              <li class='fchl'><div class='topic_question fl'></div>精选问答</li>
+              <li><div class='fcb1'>{{ contentInfo.link.title|safe }}<div class='fr'><span class='fr fchl'><strong>></strong></span></div></div></li>
+              <li class='fcg1'>{{ contentInfo.link.questionNum|safe}}回答</li>
+	      </a>
+            </div>
+          {% endif %}   
+          {% if contentInfo.link.type == '6' %}
+            <div class='link_cell'>
+              <a href='{{ contentInfo.link.data }}'>
+              <div class="fl topic_product_img"><img width="78px" height="78px" src='{{ contentInfo.link.product_img }}'></div>
+              <div class="fl topic_product_text">
+                <div class='topic_product_title fcb1'>{{ contentInfo.link.product_name|safe }}</div>
+                <div class='topic_product_price'><span class='fchl'>&yen;{{ contentInfo.link.product_real_price|safe }}</span>&nbsp;&nbsp;<span class='fcg1' style='text-decoration:line-through;'>&yen;{{ contentInfo.link.product_market_price|safe }}</span></div>
+              </div>
+              <div class='link_arrow relative'><i class="bg link_arrow_i"></i></div>
+	      </a>
+            </div>
+          {% endif %}   
+      {% endif %}
+     </div>
    {% endfor %}
  </div>
  <div class='sp_line'></div>
