@@ -12,10 +12,11 @@ def pack_data(request,meta):
       value = request.COOKIES["closedownload"]
       if value == "1":
          meta["closedownload"] = 1
-    if meta['bottom_download'] == '0':
-      meta["close_bottom_download"] = 1 
+    bottom_key = u'bottom_download'
+    if bottom_key in meta:
+      if meta['bottom_download'] == '0':
+        meta["close_bottom_download"] = 1 
     meta["device"] = get_user_device(request)
-  print meta["close_bottom_download"]
   return meta
 
 def get_user_device(request):
