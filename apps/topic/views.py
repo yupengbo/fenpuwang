@@ -21,8 +21,7 @@ def topic_info(request, topic_id):
         uid = request.GET.get('dp')
         bottom_download = request.GET.get('bottom_download')
         process_topic_data(topic_json)
-        if uid != None and uid != "":
-          process_topic_url(uid, topic_json)
+        process_topic_url(uid, topic_json)
         meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic'],'nav':'topic','bottom_download':bottom_download})
         return render(request, 'topic/topic.html', meta)
     except Exception,e:
@@ -57,7 +56,8 @@ def process_topic_url(uid, topic_data):
     for content_info in content_list:
       link = content_info.get("link")
       if link and link['data'] and link['data'].startswith("http:") and link['data'].index('davdian') > 0:
-        link['data'] = link['data'] + "?dp=" + str(uid)
+        if uid != None and uid != "":
+          link['data'] = link['data'] + "?dp=" + str(uid)
         link['type'] = u'6'
 
 def process_topic_data(topic_data):
