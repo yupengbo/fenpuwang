@@ -106,7 +106,7 @@
           {% endif %}   
           {% if contentInfo.link.type == '6' %}
             <div class='link_cell'>
-              <a href='{{ contentInfo.link.data }}'>
+              <a id='bd_davdian_product_click' onclick='ga('send', 'event', '微商', '{{ contentInfo.link.product_name|safe }}', '{{ featureTopic.featureTopicId|safe }}');_hmt.push(['_trackEvent', '微商', '{{ contentInfo.link.product_name|safe }}', '{{ featureTopic.featureTopicId|safe }}']);' href='{{ contentInfo.link.data }}'>
               <div class="fl topic_product_img"><img width="78px" height="78px" src='{{ contentInfo.link.product_img }}'></div>
               <div class="fl topic_product_text">
                 <div class='topic_product_title fcb1'>{{ contentInfo.link.product_name|safe }}</div>
