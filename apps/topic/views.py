@@ -58,7 +58,6 @@ def process_topic_url(uid, topic_data):
       if link and link['data'] and link['data'].startswith("http:") and link['data'].find('davdian') > 0:
         if uid != None and uid != "":
           link['data'] = link['data'] + "?dp=" + str(uid)
-        link['type'] = u'6'
 
 def process_topic_data(topic_data):
   if topic_data.get('featureTopic'):
