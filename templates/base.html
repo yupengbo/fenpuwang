@@ -10,6 +10,10 @@
         <title>{% block title %}粉扑网 - 中国第一美妆问答社区。最全美妆产品库，最赞达人笔记。做美妆功课，来粉扑就够了！{% endblock %}</title>
         {% load static %}
         <link rel="stylesheet" href="{% static "css/style.css" %}?v=1.0">
+        <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/base.js" %}?v=1.1"></script>
+        <script type="text/javascript" src="{% static "js/loaddata.js" %}?v=1.0"></script>
+        <script type="text/javascript" src="{% static "js/back_top.js"%}?v=1.0"></script>
         {% block script %}{% endblock %}
     </head>
 
@@ -32,10 +36,6 @@
         <a href='#back_top' id="back_top_button"  class="back_top_button hidden" ></a>
         <!--baidu begin-->
         <div class="hidden">
-        <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
-        <script type="text/javascript" src="{% static "js/base.js" %}?v=1.1"></script>
-        <script type="text/javascript" src="{% static "js/loaddata.js" %}?v=1.0"></script>
-        <script type="text/javascript" src="{% static "js/back_top.js"%}?v=1.0"></script>
         <script type="text/javascript">
           var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
           document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9c85a2b6ff68abc4a01a855d93ebcbc5' type='text/javascript'%3E%3C/script%3E"));
