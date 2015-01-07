@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+xmlns:mobile="http://www.baidu.com/schemas/sitemap-mobile/1/">
+<url>
+  <loc>http://m.fenpuwang.com/</loc>
+  <mobile:mobile type="autoadapt"/>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://m.fenpuwang.com/topic/</loc>
+  <mobile:mobile type="autoadapt"/>
+  <changefreq>daily</changefreq>
+</url>
+<url>
+  <loc>http://m.fenpuwang.com/products/</loc>
+  <mobile:mobile type="autoadapt"/>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://m.fenpuwang.com/topic/250/</loc>
+  <mobile:mobile type="autoadapt"/>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://m.fenpuwang.com/topic/248/</loc>
+  <mobile:mobile type="autoadapt"/>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://m.fenpuwang.com/topic/236/</loc>
+  <mobile:mobile type="autoadapt"/>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://m.fenpuwang.com/topic/244/</loc>
+  <mobile:mobile type="autoadapt"/>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://m.fenpuwang.com/topic/242/</loc>
+  <mobile:mobile type="autoadapt"/>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://m.fenpuwang.com/topic/240/</loc>
+  <mobile:mobile type="autoadapt"/>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://m.fenpuwang.com/topic/246/</loc>
+  <mobile:mobile type="autoadapt"/>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://m.fenpuwang.com/topic/238/</loc>
+  <mobile:mobile type="autoadapt"/>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://m.fenpuwang.com/topic/226/</loc>
+  <mobile:mobile type="autoadapt"/>
+  <changefreq>weekly</changefreq>
+</url>
+<url>
+  <loc>http://m.fenpuwang.com/topic/222/</loc>
+  <mobile:mobile type="autoadapt"/>
+  <changefreq>weekly</changefreq>
+</url>
+</urlset>
