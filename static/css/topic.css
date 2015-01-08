@@ -37,8 +37,21 @@
 .topic_topic {width:10px;height:12px;margin:6px 2px 0px 2px;background-image:url('../images/icon_f_topic_topic@2x.png');}
 .topic_question {width:10px;height:12px;margin:6px 2px 0px 2px;background-image:url('../images/icon_f_topic_q_and_a@2x.png');}
 .topic_outlink_img {width:10px;height:10px;margin:9px;background-image:url('../images/icon_f_topic_links@2x.png');background-size:10px 10px;}
-.topic_product_img {width:78px;height:78px;}
+.topic_product_img ,.topic_product_img img{width:78px;height:78px;}
 .topic_product_img img{border:none!important;}
-.topic_product_text {width:60%;height:78px;padding-top:6px;font-size:15px;line-height:17px;}
+.link_cell .topic_product_text {width:60%;height:78px;padding-top:6px;font-size:15px;line-height:17px;}
 .topic_product_text .topic_product_title{padding-left:10px;padding-top:5px;height:33px;overflow:hidden;}
 .topic_product_text .topic_product_price{padding-left:12px;padding-top:7px;}
+.footer_product {background-color:rgba(255,255,255,.95);position:fixed;bottom:0px;left:0px;z-index:9999;width:100%;}
+.footer_product_inner {width:100%;max-width:800px;margin:0 auto;height:65px;margin:0 auto;border-top:1px #c9c9c9 solid;padding:6px;}
+.footer_product_inner .topic_product_img,.footer_product_inner .topic_product_img img{width:65px;height:65px;float:left;}
+.footer_product_inner .topic_product_text {height:65px;padding-top:0px;font-size:15px;float:left;}
+.footer_product_inner .footer_product_tip {padding-left:5px;color:#666;font-size:9px;}
+.footer_product_inner .topic_product_title{overflow:hidden;height:17px;padding-left:5px;}
+.footer_product_inner .topic_product_price {padding-left:5px;}
+.footer_product_inner .topic_product_price .fchl{font-size:18px;}
+.footer_product_inner .topic_product_price .fcg1{font-size:13px;color:#999;display:none;}
+.footer_product_inner .seller_name{color:#666;font-size:10px;}
+.footer_product_inner .fenpu_info{color:#cb6356;font-size:10px;display:block;}
+.footer_product_inner .footer_product_seller_info{padding-left:3px;background-color:#f9f8f5;margin-left:3px;}
+.product_cell_link{display:none;}

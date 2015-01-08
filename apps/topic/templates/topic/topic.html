@@ -4,6 +4,7 @@
 {% block script %}
 {% load static %}
   <link rel="stylesheet" href="{% static "css/topic.css" %}?v=1.1">
+  <script type="text/javascript" src="{% static "js/topic.js" %}"></script>
 {% endblock %}
 
 {% block main_content %}
@@ -90,9 +91,9 @@
               </div>
 			{% endif %}
             {% if contentInfo.link.display == 'cell' %}
-              <div class='link_cell'>
+              <div class='link_cell product_cell_link'>
                 <a id='bd_davdian_product_click' onclick='ga('send', 'event', '微商', '{{ contentInfo.link.title|safe }}', '{{ featureTopic.featureTopicId|safe }}');_hmt.push(['_trackEvent', '微商', '{{ contentInfo.link.title|safe }}', '{{ featureTopic.featureTopicId|safe }}']);' href='{{ contentInfo.link.data }}'>
-                  <div class="fl topic_product_img"><img width="78px" height="78px" src='{{ contentInfo.link.product_img }}'></div>
+                  <div class="fl topic_product_img"><img src='{{ contentInfo.link.product_img }}'></div>
                   <div class="fl topic_product_text">
                     <div class='topic_product_title fcb1'>{{ contentInfo.link.title|safe }}</div>
                     <div class='topic_product_price'><span class='fchl'>&yen;{{ contentInfo.link.product_real_price|safe }}</span>&nbsp;&nbsp;<span class='fcg1' style='text-decoration:line-through;'>&yen;{{ contentInfo.link.product_market_price|safe }}</span></div>
