@@ -9,7 +9,10 @@
   {% ifequal question_topic.question.relatedAnswer.isBest 0%}
     相关回答:&nbsp
   {% endifequal  %}
-  {{ question_topic.question.relatedAnswer.content|safe }}<em>&nbsp;</em>
+  {{ question_topic.question.relatedAnswer.content|safe }}
+   {% if question_topic.question.relatedAnswer %}
+      <em>&nbsp;</em>
+   {% endif %}
 </div>
 <i target='title' class='rhinfo f10 fcg1 hidden'>{{ question_topic.question.answerNum }}回答</i>
 <!--i target='content' class='rhinfo f10 fcg1 hidden'>{{ question.relatedAnswer.likeNum }}赞</i-->

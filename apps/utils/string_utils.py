@@ -49,8 +49,8 @@ def replace_link(text):
                     text=text.replace("product_id","href")
                 elif re.search(search_pattern,letter):
                     letter_group=re.search(search_pattern,letter).group(1)
-                    text=text.replace("<a","<em")
-                    text=text.replace("a>","em>")
+                    text=text.replace("<a","<span")
+                    text=text.replace("a>","span>")
                     text = text.replace('"'+letter_group+'"','"'+"color:red;"+'"')
                     text=text.replace("newkeyword","style")
             return text

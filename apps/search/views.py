@@ -30,18 +30,19 @@ def process_search_data(search_data):
       for question_topic in search_data['searchContentList']:
           if question_topic['type'] == 0:
               question_topic['question']['title'] = cgi.escape(question_topic['question']['title'])
-              question_topic['question']['title']=string_utils.replace_newkeyword(question_topic['question']['title'])
+              question_topic['question']['title'] = string_utils.replace_newkeyword(question_topic['question']['title'])
               question_topic['question']['title'] = string_utils.replace_link(question_topic['question']['title'])
-              question_topic['question']['content'] = cgi.escape(question_topic['question']['content'])
-              question_topic['question']['content']=string_utils.replace_newkeyword(question_topic['question']['content'])
-              question_topic['question']['content'] = string_utils.replace_link(question_topic['question']['content'])
+              if question_topic['question'].get('relatedAnswer'):
+                  question_topic['question']['relatedAnswer']['content'] = cgi.escape(question_topic['question']['relatedAnswer']['content'])
+                  question_topic['question']['relatedAnswer']['content'] = string_utils.replace_newkeyword(question_topic['question']['relatedAnswer']['content'])
+                  question_topic['question']['relatedAnswer']['content'] = string_utils.truncate_text(string_utils.replace_link(question_topic['question']['relatedAnswer']['content']))
           if question_topic['type'] == 1:
               question_topic['featureTopic']['title'] = cgi.escape(question_topic['featureTopic']['title'])
-              question_topic['featureTopic']['title']=string_utils.replace_newkeyword(question_topic['featureTopic']['title'])
+              question_topic['featureTopic']['title'] = string_utils.replace_newkeyword(question_topic['featureTopic']['title'])
               question_topic['featureTopic']['title'] = string_utils.replace_link(question_topic['featureTopic']['title'])
               question_topic['featureTopic']['content'] = cgi.escape(question_topic['featureTopic']['content'])
-              question_topic['featureTopic']['content']=string_utils.replace_newkeyword(question_topic['featureTopic']['content'])
-              question_topic['featureTopic']['content'] = string_utils.replace_link(question_topic['featureTopic']['content'])
+              question_topic['featureTopic']['content'] = string_utils.replace_newkeyword(question_topic['featureTopic']['content'])
+              question_topic['featureTopic']['content'] = string_utils.truncate_text(string_utils.replace_link(question_topic['featureTopic']['content']))
       
 
 def question_list(request, keyword, mark):
