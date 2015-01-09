@@ -1,0 +1,30 @@
+<li>
+{% ifequal question_topic.type 0 %}
+<a href='{% url 'question:question_details' question_topic.question.questionId %}'>
+<div class="title fcb1 f15">{{ question_topic.question.title|safe }}<em>&nbsp;</em></div>
+<div class="content fcg2 f13">
+  {% ifequal question_topic.question.relatedAnswer.isBest 1%}
+    最佳回答:&nbsp
+  {% endifequal  %}
+  {% ifequal question_topic.question.relatedAnswer.isBest 0%}
+    相关回答:&nbsp
+  {% endifequal  %}
+  {{ question_topic.question.relatedAnswer.content|safe }}<em>&nbsp;</em>
+</div>
+<i target='title' class='rhinfo f10 fcg1 hidden'>{{ question_topic.question.answerNum }}回答</i>
+<!--i target='content' class='rhinfo f10 fcg1 hidden'>{{ question.relatedAnswer.likeNum }}赞</i-->
+<div class="sp_line"></div>
+</a>
+{% else %}
+<a href='{% url 'topic:topic_info' question_topic.featureTopic.featureTopicId %}'>
+<div class="f10 fcg1 title">专题</div>
+<div class="title fcb1 f15">{{ question_topic.featureTopic.title|safe }}<em>&nbsp;</em></div>
+<div class="content fcg2 f13">
+    {{ question_topic.featureTopic.content|safe }}<em>&nbsp;</em>
+</div>
+<i target='title' class='rhinfo f10 fcg1 hidden'>{{ question_topic.featureTopic.viewNum }}浏览</i>
+<div class="sp_line"></div>
+</a>
+{% endifequal %}
+</li>
+
