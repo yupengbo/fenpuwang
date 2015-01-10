@@ -63,7 +63,7 @@ def get_product_info_by_id(req, product_id ):
 
 def get_related_question_by_product_id(req, product_id, mark = 0):
     params = {'productId': product_id, 'mark': mark}
-    return get_result(req, 'getRelatedQuestionByProduct.do', params)
+    return get_result(req, 'getRelatedContentByProduct.do', params)
 
 def get_product_by_category(req, query_type, order, category_id, filter_category_id, pre, mark):
     params = {'type': query_type, 'order': order, 'pre': pre, 'mark': mark,
