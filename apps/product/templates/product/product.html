@@ -41,8 +41,8 @@
 <div class="question_overview fcg1 f13">{{product.totalNumber}}个相关回答</div>
 <div class="sp_line"></div>
 <ul class='question_list datalist'>
-{% with question_list=product.questionList %}
-  {% include "lists/question_list.html" %}
+{% with question_topic_list=product.contentList %}
+  {% include "lists/question_topic_list.html" %}
 {% endwith %}
 </ul>
 </div>
