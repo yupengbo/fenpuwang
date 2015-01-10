@@ -10,11 +10,17 @@ from apps.api import api_list
 from apps.utils import string_utils, response_data_utils
 import cgi
 
-def process_product_data(product_data):
-  if product_data.get("questionList"):
-    for question in product_data['questionList']:
-      if question['relatedAnswer'] != None:
-        question['relatedAnswer']['content'] = string_utils.truncate_text(question['relatedAnswer']['content']) 
+def process_product_data(product_data):  
+  if product_data.get("contentList"):
+    for content in product_data['contentList']:
+        if content['type'] == 0:
+            if content['question']['relatedAnswer']!=None:     #答案有可能不存在
+                content['question']['relatedAnswer']['content'] = string_utils.truncate_text(content['question']['relatedAnswer']['content'])   
+        if content['type'] == 1:
+            if content['featureTopic'] != None:
+                content['featureTopic']['content'] = string_utils.truncate_text(content['featureTopic']['content'])
+            
+                    
 
 def process_product_link(product_data):
   details = product_data.get("details")
@@ -48,8 +54,8 @@ def question_list(request, product_id, mark):
     if product_json['error'] != 0:
       return response_data_utils.error_response(request,"找不到问题列表！", __name__, product_json)
     process_product_data(product_json)
-    template = loader.get_template("lists/question_list.html")
-    context = RequestContext(request, {'question_list':product_json['questionList']})
+    template = loader.get_template("lists/question_topic_list.html")
+    context = RequestContext(request, {'question_topic_list':product_json['contentList']})
     next_request_url = reverse('product:question_list', kwargs = {"product_id":product_id, "mark":product_json['mark']})
     if product_json['mark'] == 0 or product_json['mark'] == "0":
       next_request_url = ""
@@ -66,8 +72,8 @@ def product_detail(request, product_id):
     if product_json == None or product_json == "" or product_json['error'] != 0:
       return response_data_utils.error_response(request, "找不到这个产品！",  __name__, product_json)
     product_json["mark"] = 0
-    if question_json and question_json['error'] == 0 and question_json.get("questionList"):
-      product_json["questionList"] = question_json["questionList"]
+    if question_json and question_json['error'] == 0 and question_json.get("contentList"):
+      product_json["contentList"] = question_json["contentList"]
       product_json["mark"] = question_json["mark"]
       product_json["totalNumber"] = question_json["totalNumber"]
     process_product_data(product_json)
