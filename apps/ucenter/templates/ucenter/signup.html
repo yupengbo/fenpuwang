@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="baidu-site-verification" content="ZoKaXQ0GoY" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+        <meta name="description" content="粉扑网 - 中国第一美妆问答社区。最全美妆产品库，最赞达人笔记。做美妆功课，来粉扑就够了！"/>
+        <meta name="keywords" content="粉扑,粉扑网,护肤,美妆,问答,社区,海淘,日韩"/>
+        <title>{% block title %}粉扑网 - 中国第一美妆问答社区。最全美妆产品库，最赞达人笔记。做美妆功课，来粉扑就够了！{% endblock %}</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static "css/style.css" %}?v=1.0">
+        <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
+        <script type="text/javascript" src="{% static "js/base.js" %}?v=1.1"></script>
+        <script type="text/javascript" src="{% static "js/loaddata.js" %}?v=1.0"></script>
+        <script type="text/javascript" src="{% static "js/back_top.js"%}?v=1.0"></script>
+        {% block script %}{% endblock %}
+    </head>
+
+    <body>
+        <div id="main-content">
+	      <div style='padding:0 20px;text-align:center;'>
+		      <div style='height:40px;margin:10px 0;'>
+        		  <div style='float:left;width:15%;background-color:#bebebe;height:40px;line-height:40px;color:#000;'>+86</div>
+	        	  <div style='float:left;width:84%;background-color:#eee;'><input  id='phone' style='border:0;height:30px;padding-top:10px;background-color:transparent;' type='text' name='phone' value='' placeholder='请输入手机号码' maxlength='11' ></div>
+    		  </div>
+		      <div style='clear:both;height:40px;margin:10px 0;'>
+        		  <div style='float:left;width:60%;background-color:#eee;'><input id='code' style='width:80%;border:0;height:30px;padding-top:10px;background-color:transparent;' type='text' name='code' value='' placeholder='验证码' maxlength=8></div>
+	        	  <div style='float:right;width:30%;'><input style='width:100%;height:40px;border:0;;background-color:#bebebe;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;' type='button' id='sendCodeBtn' value='发送' onclick='sendSms()' ></div>
+    		  </div>
+			  <div style='clear:both;height:40px;text-align:center;'>
+			     <input type='button' onclick='reg()'  value='注册' style='height:40px;width:100%;color:#ff5346;border:1px #ff5346 solid;background-color:#fff;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;'/>
+			  </div>
+		  </form>
+        </div>
+        <!--baidu begin-->
+        <div class="hidden">
+		<script>
+          function sendSms(){
+		    var mphone = $("#phone").val();
+    		if($.trim(mphone) == "" || $.trim(mphone).length != 11){
+				alert('请输入正确的手机号!');
+		        return false;
+			}
+		    $.get_data( 
+			          "/ucenter/sendCode/",
+				      "phone="+mphone,
+					  function(data) {
+					     if(data['error'] == 0){
+						    var j_btn_send_sms = $("#sendCodeBtn");
+							j_btn_send_sms.attr("disabled","disabled");
+							var s = 60;
+					        var stime = null;
+							var dmFunc = function(){
+								if(s <= 0){ 
+								   j_btn_send_sms.removeAttr("disabled").val("重新发送");
+								   clearTimeout(stime);
+								}else{
+								   j_btn_send_sms.val(s+"秒重新发送");
+							       s--;
+								   stime = setTimeout(dmFunc,1000);
+							    }
+							}
+							stime = setTimeout(dmFunc,1000);
+						 }else{
+						    alert(data['content']);
+						 }
+					  },
+					  function(xmlReq, textStatus) {
+					  },
+				     'json'
+			);
+
+		  }
+          function reg(){
+		    var mphone = $("#phone").val();
+    		if($.trim(mphone) == "" || $.trim(mphone).length != 11){
+				alert('请输入正确的手机号!');
+		        return false;
+			}
+            var code = $("#code").val();
+    		if($.trim(code) == "" ){
+				alert('请输入正确的验证码!');
+		        return false;
+			}
+		    $.get_data( 
+			          "/ucenter/signup/",
+				      "phone="+mphone+"&code="+code,
+					  function(data) {
+					      alert(data['content']);
+					  },
+					  function(xmlReq, textStatus) {
+					  },
+				     'json'
+			);
+
+		  }
+		</script>
+        <script type="text/javascript">
+          var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+          document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9c85a2b6ff68abc4a01a855d93ebcbc5' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+        </div>
+        <!--baidu end-->
+        <!--google begin-->
+        <script>
+          (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+          (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+          })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+          ga('create', 'UA-57617769-1', 'auto');
+          ga('send', 'pageview');
+          
+        </script>
+        <!--google end-->
+    </body>
+
+</html>

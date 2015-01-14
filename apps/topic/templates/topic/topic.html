@@ -3,7 +3,8 @@
 
 {% block script %}
 {% load static %}
-  <link rel="stylesheet" href="{% static "css/topic.css" %}?v=1.1">
+  <link rel="stylesheet" href="{% static "css/topic.css" %}?v=1.6">
+  <script type="text/javascript" src="{% static "js/topic.js" %}?v=1.3"></script>
 {% endblock %}
 
 {% block main_content %}
@@ -80,12 +81,27 @@
             {% url 'search:search' contentInfo.link.data  %}
           {% endif %}
           {% if contentInfo.link.type == '3' %}
-            <div class='link_newline'>
-              <a href='{{ contentInfo.link.data }}' target='_blank'>
-                <div><span class='fcb1 fl'><strong>{{ contentInfo.link.title|safe }}</strong></span></div>
-                <div class='topic_outlink_img fl bg'></div>
-             </a>
-            </div>
+		    {% if contentInfo.link.display == 'newline' or not contentInfo.link.display %}
+              <div class='link_newline'>
+                <a href='{{ contentInfo.link.data }}' target='_blank'>
+                  <div><span class='fcb1 fl'><strong>{{ contentInfo.link.title|safe }}</strong></span></div>
+                  <div class='topic_outlink_img fl bg'></div>
+                </a>
+				<div class="clear"></div>
+              </div>
+			{% endif %}
+            {% if contentInfo.link.display == 'cell' %}
+              <div class='link_cell product_cell_link'>
+                <a id='bd_davdian_product_click' onclick='ga('send', 'event', '微商', '{{ contentInfo.link.title|safe }}', '{{ featureTopic.featureTopicId|safe }}');_hmt.push(['_trackEvent', '微商', '{{ contentInfo.link.title|safe }}', '{{ featureTopic.featureTopicId|safe }}']);' href='{{ contentInfo.link.data }}'>
+                  <div class="fl topic_product_img"><img src='{{ contentInfo.link.product_img }}'></div>
+                  <div class="fl topic_product_text">
+                    <div class='topic_product_title fcb1'>{{ contentInfo.link.title|safe }}</div>
+                    <div class='topic_product_price'><span class='fchl'>&yen;{{ contentInfo.link.product_real_price|safe }}</span><span class='fcg1' style='text-decoration:line-through;'>&yen;{{ contentInfo.link.product_market_price|safe }}</span></div>
+                  </div>
+                  <div class='link_arrow relative'><i class="bg link_arrow_i"></i></div>
+	            </a>
+              </div>
+            {% endif %}   
           {% endif %}   
           {% if contentInfo.link.type == '4' %}
             <div class='link_cell'>
@@ -101,18 +117,6 @@
               <li class='fchl'><div class='topic_question fl'></div>精选问答</li>
               <li><div class='fcb1'>{{ contentInfo.link.title|safe }}<div class='fr'><span class='fr fchl'><strong>></strong></span></div></div></li>
               <li class='fcg1'>{{ contentInfo.link.questionNum|safe}}回答</li>
-	      </a>
-            </div>
-          {% endif %}   
-          {% if contentInfo.link.type == '6' %}
-            <div class='link_cell'>
-              <a id='bd_davdian_product_click' onclick='ga('send', 'event', '微商', '{{ contentInfo.link.product_name|safe }}', '{{ featureTopic.featureTopicId|safe }}');_hmt.push(['_trackEvent', '微商', '{{ contentInfo.link.product_name|safe }}', '{{ featureTopic.featureTopicId|safe }}']);' href='{{ contentInfo.link.data }}'>
-              <div class="fl topic_product_img"><img width="78px" height="78px" src='{{ contentInfo.link.product_img }}'></div>
-              <div class="fl topic_product_text">
-                <div class='topic_product_title fcb1'>{{ contentInfo.link.product_name|safe }}</div>
-                <div class='topic_product_price'><span class='fchl'>&yen;{{ contentInfo.link.product_real_price|safe }}</span>&nbsp;&nbsp;<span class='fcg1' style='text-decoration:line-through;'>&yen;{{ contentInfo.link.product_market_price|safe }}</span></div>
-              </div>
-              <div class='link_arrow relative'><i class="bg link_arrow_i"></i></div>
 	      </a>
             </div>
           {% endif %}   

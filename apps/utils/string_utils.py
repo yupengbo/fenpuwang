@@ -19,6 +19,12 @@ def clear_link(text):
   if text:
     return text.replace(u'<(.*?)>', u"")  
 
+def replace_newkeyword(text):
+  if text:
+      if "keyword" in text:
+          return text.replace('keyword','newkeyword')
+      else:
+          return text
 def replace_link(text):
     if text:
         if "&lt;/em&gt;" in text:
@@ -28,6 +34,7 @@ def replace_link(text):
             text=text.replace("em>","a>")
             keyword_pattern = '<a keyword="([^<]+)">'
             product_pattern = '<a product_id=([^<]+)>'
+            search_pattern  = '<a newkeyword="([^<]+)">'
             for letter in text.split("</a>"):
                 if re.search(keyword_pattern,letter):
                     letter_group=re.search(keyword_pattern,letter).group(1)
@@ -40,6 +47,12 @@ def replace_link(text):
                     product_url = reverse('product:product_detail',kwargs={'product_id':letter_group})
                     text = text.replace(letter_group,"\"" +product_url+'\" class='+'"'+'keyword_link'+'"')
                     text=text.replace("product_id","href")
+                elif re.search(search_pattern,letter):
+                    letter_group=re.search(search_pattern,letter).group(1)
+                    text=text.replace("<a","<span")
+                    text=text.replace("a>","span>")
+                    text = text.replace('"'+letter_group+'"','"'+"color:red;"+'"')
+                    text=text.replace("newkeyword","style")
             return text
         else:
             return text

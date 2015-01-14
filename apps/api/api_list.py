@@ -3,7 +3,7 @@
 from django.conf import settings
 import requests
 from apps.utils import response_data_utils
-
+import json
 """
 Get base url for api request.
 """
@@ -63,7 +63,7 @@ def get_product_info_by_id(req, product_id ):
 
 def get_related_question_by_product_id(req, product_id, mark = 0):
     params = {'productId': product_id, 'mark': mark}
-    return get_result(req, 'getRelatedQuestionByProduct.do', params)
+    return get_result(req, 'getRelatedContentByProduct.do', params)
 
 def get_product_by_category(req, query_type, order, category_id, filter_category_id, pre, mark):
     params = {'type': query_type, 'order': order, 'pre': pre, 'mark': mark,
@@ -74,9 +74,9 @@ def get_product_feeds(req, category_id = 0, pre = 20, mark = 0):
     params = {'pre': pre, 'mark': mark, 'categoryId': category_id, 'onlyFeatureQuestion': 1}
     return get_result(req, 'listProductFeeds.do', params)
 
-def search(req, keyword, search_type = 0, pre = 20, mark = 0):
-    params = {'pre': pre, 'mark': mark, 'type': search_type, 'keyword': keyword}
-    return get_result(req, 'search.do', params)
+def search(req, keyword, search_type = 0, pre = 20, mark = 0,isRed = 1,order = 0):
+    params = {'pre': pre, 'mark': mark, 'type': search_type, 'keyword': keyword,'isRed':isRed,'order':order}
+    return get_result(req, 'searchAll.do', params)
 
 def get_feature_topic_list(req, mark = 0):
     params = {'mark': mark}
@@ -85,3 +85,4 @@ def get_feature_topic_list(req, mark = 0):
 def get_feature_topic_info(req, feature_topic_id, topicVersion = 1):
     params = {'featureTopicId': feature_topic_id, 'topicVersion': topicVersion}
     return get_result(req, 'getFeatureTopicInfo.do', params)
+

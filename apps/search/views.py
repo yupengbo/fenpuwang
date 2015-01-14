@@ -11,7 +11,7 @@ import requests
 from apps.api import api_list
 from apps.utils import string_utils, response_data_utils
 import logging
-
+import cgi
 logger = logging.getLogger('django')
 def process_search_data(search_data):
   if search_data.get('questionList'):
@@ -26,6 +26,24 @@ def process_search_data(search_data):
       pics = product.get('pics')
       if pics and len(pics) > 0:
         product['thumb_s'] = pics[0]['thumb-s']
+  if search_data.get('searchContentList'):
+      for question_topic in search_data['searchContentList']:
+          if question_topic['type'] == 0:
+              question_topic['question']['title'] = cgi.escape(question_topic['question']['title'])
+              question_topic['question']['title'] = string_utils.replace_newkeyword(question_topic['question']['title'])
+              question_topic['question']['title'] = string_utils.replace_link(question_topic['question']['title'])
+              if question_topic['question'].get('relatedAnswer'):
+                  question_topic['question']['relatedAnswer']['content'] = cgi.escape(question_topic['question']['relatedAnswer']['content'])
+                  question_topic['question']['relatedAnswer']['content'] = string_utils.replace_newkeyword(question_topic['question']['relatedAnswer']['content'])
+                  question_topic['question']['relatedAnswer']['content'] = string_utils.truncate_text(string_utils.replace_link(question_topic['question']['relatedAnswer']['content']))
+          if question_topic['type'] == 1:
+              question_topic['featureTopic']['title'] = cgi.escape(question_topic['featureTopic']['title'])
+              question_topic['featureTopic']['title'] = string_utils.replace_newkeyword(question_topic['featureTopic']['title'])
+              question_topic['featureTopic']['title'] = string_utils.replace_link(question_topic['featureTopic']['title'])
+              question_topic['featureTopic']['content'] = cgi.escape(question_topic['featureTopic']['content'])
+              question_topic['featureTopic']['content'] = string_utils.replace_newkeyword(question_topic['featureTopic']['content'])
+              question_topic['featureTopic']['content'] = string_utils.truncate_text(string_utils.replace_link(question_topic['featureTopic']['content']))
+      
 
 def question_list(request, keyword, mark):
   if request.is_ajax() == False: #仅接受ajax请求
@@ -35,8 +53,8 @@ def question_list(request, keyword, mark):
     if search_json['error'] != 0:
       return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, search_json)
     process_search_data(search_json)
-    template = loader.get_template("lists/question_list.html")
-    context = RequestContext(request, {'question_list':search_json['questionList']})
+    template = loader.get_template("lists/question_topic_list.html")
+    context = RequestContext(request, {'question_topic_list':search_json['searchContentList']})
     next_request_url = reverse('search:question_list', kwargs = {"keyword":keyword, "mark":search_json['mark']})
     if search_json['mark'] == 0 or search_json['mark'] == "0":
       next_request_url = "" 
@@ -78,3 +96,12 @@ def search(request, keyword):
     return render(request, 'search/search.html', meta_data)
   except Exception,e:
     return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e)
+
+
+    
+  
+
+
+
+
+

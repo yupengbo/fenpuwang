@@ -36,6 +36,7 @@ INSTALLED_APPS = (
                   'apps.feed',
                   'apps.search',
                   'apps.topic',
+                  'apps.ucenter',
                   )
 
 MIDDLEWARE_CLASSES = (

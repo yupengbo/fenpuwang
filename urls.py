@@ -12,5 +12,6 @@ urlpatterns = patterns('',
     url(r'^products/', include('apps.products.urls', namespace='products')),
     url(r'^search/', include('apps.search.urls', namespace='search')),
     url(r'^topic/', include('apps.topic.urls', namespace='topic')),
+	url(r'^ucenter/', include('apps.ucenter.urls', namespace='ucenter')),
 )
 
