@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% block keywords %} {{ question.question.normal_title }} {% endblock %}
+{% block description %} {{ question.question.content }}-粉扑网 {% endblock %}
 {% block title %} {{ question.question.normal_title }} {% endblock %}
 {% block script %}
     {% load static %}
