@@ -1,7 +1,7 @@
 {% extends "base.html" %}
-{% block keywords %} 产品库 {% endblock %}
-{% block description %} 产品库-粉扑网 {% endblock %}
-{% block title %} 产品库 {% endblock %}
+{% block keywords %} 美妆库 {% endblock %}
+{% block description %} 美妆库-粉扑网 {% endblock %}
+{% block title %} 美妆库 {% endblock %}
 {% block script %}
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static "css/products.css" %}">
@@ -12,10 +12,9 @@
 <div class='filter_list_box'>
   <div class='filter_flow_box'>
     <ul class='filter_list'>
-       <li get_data_url='{% url 'products:queryt_by_all' type category_id 5 0 0 %}'><div class='p_f_5'></div>明星产品</li>
-       <li class='on' get_data_url='{% url 'products:queryt_by_all' type category_id 1 0 0 %}'><div class='p_f_1'></div>用过人数</li>
-       <li get_data_url='{% url 'products:queryt_by_all' type category_id 6 0 0 %}'><div class='p_f_6'></div>好评率</li>
-       <li get_data_url='{% url 'products:queryt_by_all' type category_id 4 0 0 %}' get_data_url_1='{% url 'products:queryt_by_all' type category_id 4 0 0 %}' get_data_url_2='{% url 'products:queryt_by_all' type category_id 3 0 0 %}'><div class='p_f_4'></div>价格</li>
+       <li class='wli {% if order == '5' %}on{% endif %}' get_data_url='{% url 'products:query_by_all' type category_id 5 0 0 %}'><div class='p_f_5'></div>明星产品</li>
+       <li class='wli{% if order == '7' %} on{% endif %}' get_data_url='{% url 'products:query_by_all' type category_id 7 0 0 %}'><div class='p_f_7'></div>问答数</li>
+       <li class='wli' get_data_url='{% url 'products:query_by_all' type category_id 4 0 0 %}' get_data_url_1='{% url 'products:query_by_all' type category_id 4 0 0 %}' get_data_url_2='{% url 'products:query_by_all' type category_id 3 0 0 %}'><div class='p_f_4'></div>价格</li>
     </ul>
   </div>
 </div>
