@@ -9,6 +9,7 @@ import json
 from django.core.urlresolvers import reverse
 # Create your views here.
 
+
 def signup(request):
    if request.is_ajax(): #仅接受ajax请求
       response_json = {'error':1 ,'content': u"无效的验证码"};
@@ -16,6 +17,13 @@ def signup(request):
    else:
       return render(request, 'ucenter/signup.html')
 
+def change(request):
+      sessionKey = request.META.get("HTTP_SESSIONKEY")
+      if not sessionKey:
+           sessionKey = request.REQUEST.get("sessionKey")
+      if not sessionKey:
+           return response_data_utils.error_response(request, None,  __name__, " not find sessionKey")
+      return render(request, 'ucenter/change.html', {'sessionKey': sessionKey})
 
 def sendCode(request):
    if request.is_ajax(): #仅接受ajax请求
