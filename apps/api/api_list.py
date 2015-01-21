@@ -86,3 +86,10 @@ def get_feature_topic_info(req, feature_topic_id, topicVersion = 1):
     params = {'featureTopicId': feature_topic_id, 'topicVersion': topicVersion}
     return get_result(req, 'getFeatureTopicInfo.do', params)
 
+def get_user_change_log(req, sessionKey, mark = 0):
+    params = {'sessionKey': sessionKey,  'mark': mark}
+    return get_result(req, 'listUserChangeLog.do', params)
+
+def get_user_change_info(req, sessionKey):
+    params = {'sessionKey': sessionKey}
+    return get_result(req, 'getUserChangeInfo.do', params)

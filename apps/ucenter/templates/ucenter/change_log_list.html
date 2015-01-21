@@ -1,0 +1,11 @@
+{% for log in userChangeLogList %}
+  <li>
+  <h2>购买{{ log.num }}个<em class='fr'>{{ log.creationTime }}</em></h2>
+  <div class='log'>
+    <div class='p_name fl'>{{ log.text }}</div>
+	<em class='fr'>元</em>
+	<b class='fr'>{{ log.totalFee }}</b>
+	<div class='clear'></div>
+  </div>
+  </li>
+{% endfor %}
