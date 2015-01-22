@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-
 import string
 from django.shortcuts import render
 from django.http import HttpResponse,Http404
@@ -13,6 +12,7 @@ from apps.utils import string_utils, response_data_utils
 import logging
 import cgi
 logger = logging.getLogger('django')
+
 def process_search_data(search_data):
   if search_data.get('questionList'):
     for question in search_data['questionList']:
@@ -37,9 +37,12 @@ def process_search_data(search_data):
                   question_topic['question']['relatedAnswer']['content'] = string_utils.replace_newkeyword(question_topic['question']['relatedAnswer']['content'])
                   question_topic['question']['relatedAnswer']['content'] = string_utils.truncate_text(string_utils.replace_link(question_topic['question']['relatedAnswer']['content']))
           if question_topic['type'] == 1:
-              question_topic['featureTopic']['title'] = cgi.escape(question_topic['featureTopic']['title'])
-              question_topic['featureTopic']['title'] = string_utils.replace_newkeyword(question_topic['featureTopic']['title'])
-              question_topic['featureTopic']['title'] = string_utils.replace_link(question_topic['featureTopic']['title'])
+              if question_topic['featureTopic']['title'] != None:
+                question_topic['featureTopic']['title'] = cgi.escape(question_topic['featureTopic']['title'])
+                question_topic['featureTopic']['title'] = string_utils.replace_newkeyword(question_topic['featureTopic']['title'])
+                question_topic['featureTopic']['title'] = string_utils.replace_link(question_topic['featureTopic']['title'])
+              else:
+                question_topic['featureTopic']['title'] = ""
               question_topic['featureTopic']['content'] = cgi.escape(question_topic['featureTopic']['content'])
               question_topic['featureTopic']['content'] = string_utils.replace_newkeyword(question_topic['featureTopic']['content'])
               question_topic['featureTopic']['content'] = string_utils.truncate_text(string_utils.replace_link(question_topic['featureTopic']['content']))
