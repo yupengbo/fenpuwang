@@ -6,6 +6,7 @@ from django.http import HttpResponse,Http404
 import requests
 from apps.utils import data_process_utils, response_data_utils, string_utils
 import json
+import time
 from apps.api import api_list
 from django.core.urlresolvers import reverse
 # Create your views here.
@@ -21,7 +22,8 @@ def signup(request):
 def process_log_data(logs):
    if logs:
       for log in logs:
-          log['creationTime'] = data_process_utils.get_time_since(log['creationTime'])       
+           log['creationTime'] = time.strftime('%Y-%m-%d %H:%M',time.localtime(log['creationTime']/1000))
+#          log['creationTime'] = data_process_utils.get_time_since(log['creationTime'])       
 
 def change(request, sessionKey = '', mark = 0):
     is_ajax = request.is_ajax()
@@ -53,6 +55,7 @@ def change(request, sessionKey = '', mark = 0):
         else:
            return response_data_utils.error_response(request, "找不到这个页面！",  __name__, logs)
     except Exception as e:
+        print e
         return response_data_utils.error_response(request,"找不到这个页面！", __name__, e)
 
 def sendCode(request):
