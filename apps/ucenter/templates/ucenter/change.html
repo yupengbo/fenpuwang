@@ -24,15 +24,27 @@
         <a name="back_top" id="back_top"></a>
         <div id="main-content">
 		   <div class='change_banner relative'>
-		      <img src='{% static "images/img_my_income.png"%}' />
+		      <img src='{% static "images/img_my_income.png"%}' class='fl'/>
 			  <span class='absolute'>累计收益</span>
 			  <div class='total absolute'><b>{{ change_info.change }}</b>元</div>
+		   <div class='tip_info fl'>
+		     <h2>分享笔记，就可以获得收益哦</h2>
+			 <div class='con'>若有人不从你的分享中购买，你将获得<span>价格*10%</span>的收益</div>
+		   </div>
+		   <div class='clear'></div>
 		   </div>
 		  <div class='change_content'>
              <h1>收益详情</h1>
-			 <ul class='datalist loglist'>
-			   {% include "ucenter/change_log_list.html" %} 
-			 </ul>
+			 {% if not userChangeLogList %}
+			   <div class='tip'>
+			      你还没有任何收益哦
+			   </div> 
+			 {% endif %} 
+			 {% if userChangeLogList %}
+			   <ul class='datalist loglist'>
+			     {% include "ucenter/change_log_list.html" %} 
+  			   </ul>
+			 {% endif %} 
 		  </div>
         </div>
         <a href='#back_top' id="back_top_button"  class="back_top_button hidden" ></a>
