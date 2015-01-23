@@ -1,0 +1,4 @@
+body{background-color:#ff5346;}
+.down_icon{background-size:87px 80px;width:87px;height:80px;background-image:url('../images/img_logo.png');margin:31px auto;}
+.down_tip{background-size:261px 40px;width:261px;height:40px;background-image:url('../images/img_words.png');margin:31px auto;}
+.down_btn{background-size:261px 61px;width:261px;height:61px;background-image:url('../images/btn_app_download_normal.png');margin:44px auto;display:block;}
