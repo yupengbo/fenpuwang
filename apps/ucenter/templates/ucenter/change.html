@@ -12,6 +12,7 @@
         <link rel="icon" href="/static/images/Icon-Small.ico" mce_href="/static/images/Icon-Small.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="/static/images/Icon-Small.ico" type="image/x-icon" />
         <link rel="stylesheet" href="{% static "css/style.css" %}?v=1.1">
+		<link rel="stylesheet" href="{% static "css/change.css" %}?v=1.2">
         <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
         <script type="text/javascript" src="{% static "js/base.js" %}?v=1.1"></script>
         <script type="text/javascript" src="{% static "js/loaddata.js" %}?v=1.0"></script>
@@ -21,18 +22,31 @@
 
     <body>
         <a name="back_top" id="back_top"></a>
-        <div id="top-navigation-bar">
-		     {% include "items/navigationItem.html" %}
-		</div>
         <div id="main-content">
-            {% block main_content %}{% endblock %}
-        </div>
-		<div class="footer">
-          <div  class="footer_download">
-		   <a id='bd_topic_download' onclick="ga('send', 'event', '应用', '下载', '底部');_hmt.push(['_trackEvent', 'software', 'download', 'topic_info_{{ featureTopic.featureTopicId }}']);"  href='http://www.dabanniu.com/download.phtml' class="bg btn_t_download block" target="_blank">
-		   </a>
+		   <div class='change_banner relative'>
+		      <img src='{% static "images/img_my_income.png"%}' class='fl'/>
+			  <span class='absolute'>累计收益</span>
+			  <div class='total absolute'><b>{{ change_info.change }}</b>元</div>
+		   <div class='tip_info fl'>
+		     <h2>分享笔记，就可以获得收益哦</h2>
+			 <div class='con'>若有人从你的分享中购买，你将获得<span>价格*10%</span>的收益</div>
+		   </div>
+		   <div class='clear'></div>
+		   </div>
+		  <div class='change_content'>
+             <h1>收益详情</h1>
+			 {% if not userChangeLogList %}
+			   <div class='tip'>
+			      你还没有任何收益哦
+			   </div> 
+			 {% endif %} 
+			 {% if userChangeLogList %}
+			   <ul class='datalist loglist'>
+			     {% include "ucenter/change_log_list.html" %} 
+  			   </ul>
+			 {% endif %} 
 		  </div>
-		</div>
+        </div>
         <a href='#back_top' id="back_top_button"  class="back_top_button hidden" ></a>
         <!--baidu begin-->
         <div class="hidden">
@@ -41,6 +55,11 @@
           document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9c85a2b6ff68abc4a01a855d93ebcbc5' type='text/javascript'%3E%3C/script%3E"));
         </script>
         </div>
+		<script type="application/javascript">
+		    $(".datalist").loaddata({
+			    url : "{{ url }}",
+		    });
+	    </script>
         <!--baidu end-->
         <!--google begin-->
         <script>

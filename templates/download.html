@@ -12,28 +12,19 @@
         <link rel="icon" href="/static/images/Icon-Small.ico" mce_href="/static/images/Icon-Small.ico" type="image/x-icon" />
         <link rel="shortcut icon" href="/static/images/Icon-Small.ico" type="image/x-icon" />
         <link rel="stylesheet" href="{% static "css/style.css" %}?v=1.1">
-        <script type="text/javascript" src="{% static "js/jquery.min.js" %}"></script>
-        <script type="text/javascript" src="{% static "js/base.js" %}?v=1.1"></script>
-        <script type="text/javascript" src="{% static "js/loaddata.js" %}?v=1.0"></script>
-        <script type="text/javascript" src="{% static "js/back_top.js"%}?v=1.0"></script>
+        <link rel="stylesheet" href="{% static "css/download.css" %}?v=1.1">
         {% block script %}{% endblock %}
     </head>
 
     <body>
-        <a name="back_top" id="back_top"></a>
-        <div id="top-navigation-bar">
-		     {% include "items/navigationItem.html" %}
-		</div>
-        <div id="main-content">
-            {% block main_content %}{% endblock %}
-        </div>
-		<div class="footer">
-          <div  class="footer_download">
-		   <a id='bd_topic_download' onclick="ga('send', 'event', '应用', '下载', '底部');_hmt.push(['_trackEvent', 'software', 'download', 'topic_info_{{ featureTopic.featureTopicId }}']);"  href='http://www.dabanniu.com/download.phtml' class="bg btn_t_download block" target="_blank">
-		   </a>
+	    <div id="main-content">
+		  <div style="height:1px;"></div>
+	      <div class='down_icon'>
+	      </div>
+		  <div class='down_tip'>
 		  </div>
+		  <a class='down_btn' href='http://www.dabanniu.com/download.phtml'></a>
 		</div>
-        <a href='#back_top' id="back_top_button"  class="back_top_button hidden" ></a>
         <!--baidu begin-->
         <div class="hidden">
         <script type="text/javascript">

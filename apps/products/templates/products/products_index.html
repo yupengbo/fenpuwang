@@ -9,9 +9,9 @@
 <div class='filter_list_box'>
   <div class='filter_flow_box'>
     <ul class='filter_list'>
-	<li class='on'><div class='p_t_0'></div>护肤</li>
-	<li><div class='p_t_1'></div>彩妆</li>
-	<li><div class='p_t_2'></div>功效</li>
+	<li  class='on'><div class='p_t_2'></div>功效</li>
+	<li><div class='p_t_0'></div>护肤</li>
+	<li><div class='p_t_1'></div>美妆</li>
 	<li><div class='p_t_3'></div>品牌
 	<a class="brand_filter_btn block absolute" ></a>
 	</li>
@@ -49,7 +49,7 @@
 	   </ul>
       <div class='clear'></div>
     </div>
-	<ul class='p_t_0_list product_category_list' >
+	<ul class='p_t_0_list product_category_list hidden' >
 	    {% for category in data.skincareCategoryList %}
 	        <li><a href='{% url 'products:query_by_category' 0 category.categoryId  %}'>{{ category.name }}</a></li>
 	    {% endfor %}
@@ -59,7 +59,7 @@
 	        <li><a href='{% url 'products:query_by_category' 1 category.categoryId  %}'>{{ category.name }}</a></li>
 	    {% endfor %}
 	</ul>
-    <ul class='p_t_2_list product_category_list hidden' >
+    <ul class='p_t_2_list product_category_list' >
 	    {% for category in data.effectList %}
 	        <li><a href='{% url 'products:query_by_category' 2 category.categoryId  %}'>{{ category.name }}</a></li>
 	    {% endfor %}
@@ -68,7 +68,7 @@
 	    {% for brandList in data.brandList %}
              <li><em class='fchl''>{{ brandList.key }}</em><a  name='{{ brandList.key }}'></a></li>
              {% for category in brandList.list %}
-                <li><a href='{% url 'products:query_by_category' 3 category.categoryId  %}'>{{ category.name }}</a>{{ category.enName }}</li>
+                <li><a href='{% url 'products:query_by_category_order' 3 category.categoryId 7 %}'>{{ category.name }}</a>{{ category.enName }}</li>
             {% endfor %}
 	    {% endfor %}
 	</ul>
