@@ -21,7 +21,7 @@ def question_list(request,mark=0):                                      #kim
             process_question_time(question_list_json)
             next_page_url = ""
             if question_list_json['mark']!=0:
-                next_page_url = reverse("question:question_list_ajax",kwargs={'mark':question_list_json['mark']})
+                next_page_url = reverse("question:question_list_choice",kwargs={'mark':question_list_json['mark']})
             meta_data = {'questionList':question_list_json['feedList'],'url':next_page_url, 'nav':'question'}
             if is_ajax:
                 template = loader.get_template("question/questionList.html")
