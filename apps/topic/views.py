@@ -123,8 +123,6 @@ def process_topic_data(topic_data):
       topic['creationTime']  = time.strftime('%d %b',time.localtime(topic['creationTime']/1000))
       if pics and len(pics) > 0 :
         topic['org'] = pics[0]['org']
-     # if topic.get('content'):
-     #     topic['content'] = string_utils.truncate_two_line(topic['content'])     
 
 
 
