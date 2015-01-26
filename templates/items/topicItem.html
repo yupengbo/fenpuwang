@@ -6,17 +6,26 @@
     </a>
 	{% endif %}
   </div>
-  <div class='contentBox'>
+  <div class="topic_list_user">
   <a href='{% url 'topic:topic_info' topic.featureTopicId %}' >
-    <h2 class='fcb1'>{{ topic.title }}</h2>
-	<div class="introduction">
-	  <i class="bg lq"></i><i class="bg rq"></i>
-	  {{ topic.introduction }}
-	</div>
-	<div class="viewBox relative">
-	  <div class='line absolute' > </div>
-      <div class='viewNum  absolute'><span class='fcg1 f10'>{{ topic.viewNum }}浏览</span></div>
-	</div>
+    <div class="height_oe marg_b_t">
+        {% if topic.user.avatarURL %}
+        <div class="float_l height_oe width_oe"><img src="{{ topic.user.avatarURL }}" class="topic_list_user_avatars"></div>
+        {% else %}
+        <div class="float_l height_oe width_oe"><img src="../static/images/img_user_avatars_default@2x.png" class="topic_list_user_avatars"></div>
+        {% endif %}
+        <div class="topic_list_user_name float_l">{{ topic.user.userName }}</div>
+    </div>
+    {% if topic.title %}
+    <div class="topic_list_title">{{ topic.title }}</div>
+    {% endif %}
+    <div class="topic_list_content">{{ topic.content }}</div>
+    <div class="height_ot">
+      <div class="float_l topic_list_likeIcon"></div>
+      <div class="float_l topic_list_likeNum">&nbsp;粉{{ topic.likeNum }}&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <div class="float_l topic_list_commentIcon"></div>
+      <div class="float_l topic_list_commentNum">&nbsp;评论{{ topic.commentNum }}</div>
+    </div>
   </a>
   </div>
 </li>

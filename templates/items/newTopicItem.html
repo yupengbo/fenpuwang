@@ -1,0 +1,32 @@
+<li>
+  <div class='imgBox'>
+    {% if newTopic.org %}
+    <a href='{% url 'topic:topic_info' newTopic.featureTopicId %}' >
+      <img src='{{ newTopic.org }}' />
+    </a>
+    {% endif %}
+  </div>
+  <div class="topic_list_user">
+    <a href='{% url 'topic:topic_info' newTopic.featureTopicId %}' >
+      <div class="height_oe marg_b_t">
+        {% if newTopic.user.avatarURL %}
+        <div class="float_l height_oe width_oe"><img src="{{ newTopic.user.avatarURL }}" class="topic_list_user_avatars"></div>
+        {% else %}
+        <div class="float_l height_oe width_oe"><img src="../static/images/img_user_avatars_default@2x.png" class="topic_list_user_avatars"></div>
+        {% endif %}
+        <div class="topic_list_user_name float_l">{{ newTopic.user.userName }}</div>
+      </div>
+      {% if newTopic.title %}
+      <div class="topic_list_title">{{ newTopic.title }}</div>
+      {% endif %}
+      <div class="topic_list_content">{{ newTopic.content }}</div>
+      <div class="height_ot">
+        <div class="float_l topic_list_likeIcon"></div>
+        <div class="float_l topic_list_likeNum">&nbsp;粉{{ newTopic.likeNum }}&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        <div class="float_l topic_list_commentIcon"></div>
+        <div class="float_l topic_list_commentNum">&nbsp;评论{{ newTopic.commentNum }}</div>
+      </div>
+    </a>
+  </div>
+</li>
+
