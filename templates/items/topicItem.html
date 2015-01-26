@@ -19,8 +19,10 @@
     </div>
     {% if topic.title %}
     <div class="topic_list_title">{{ topic.title }}</div>
-    {% endif %}
     <div class="topic_list_content">{{ topic.content }}</div>
+    {% else %}
+    <div class="topic_list_content_notitle">{{ topic.content }}</div>
+    {% endif %}
     <div class="height_ot">
       <div class="float_l topic_list_likeIcon"></div>
       <div class="float_l topic_list_likeNum">&nbsp;{{ topic.likeNum }}&nbsp;&nbsp;&nbsp;&nbsp;</div>
