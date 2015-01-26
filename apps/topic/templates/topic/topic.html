@@ -169,9 +169,9 @@
  <div class='comment_divide_line'></div>
  <div class='height_three_five'>
    {% if comment.user.avatarURL %}
-   <div class='float_l user_avatars' style='background-image:url('{{ featureTopic.user.avatarURL }}');'></div>
+   <div class='float_l user_avatars' style="background-image:url('{{ comment.user.avatarURL }}');"></div>
    {% else %}
-   <div class='float_l user_avatars' style='background-image:url('{% static "images/img_user_avatars_default@2x.png" %}');'></div>
+   <div class='float_l user_avatars' style="background-image:url('{% static "images/img_user_avatars_default@2x.png" %}');"></div>
    {% endif %}
    <div class='float_l pad_l_e'>
        <div class='user_name'>{{ comment.user.userName }}</div>

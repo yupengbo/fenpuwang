@@ -82,6 +82,7 @@ def new_topic_list(request,mark=0,order=0):                  #kim
             response_json = {'html':template.render(context), 'url':next_request_url}
             return HttpResponse(json.dumps(response_json), content_type="application/json")
     except Exception,e:
+        print e
         return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__,e) 
 
        
