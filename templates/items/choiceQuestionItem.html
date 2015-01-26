@@ -1,0 +1,28 @@
+<li>
+  <div class="question_list_section">
+   <a href='{% url 'question:question_details' question_list.question.questionId %}' >
+     <div class="height_oe marg_b_t">
+         {% if question_list.user.avatarURL %}
+         <div class="float_l height_oe width_oe"><img src="{{ question_list.user.avatarURL }}" class="question_list_user_avatars"></div>
+         {% else %}
+         <div class="float_l height_oe width_oe"><img src="../static/images/img_user_avatars_default@2x.png"  class="question_list_user_avatars"></div>
+         {% endif %}
+         <div class="question_list_user_name float_l">{{ question_list.user.userName }}</div>
+     </div>
+     <div class="question_list_title">{{ question_list.question.title }}</div>
+    {% if question_list.answer.content %}
+     <div class="question_list_content">{{ question_list.answer.content }}</div>
+    {% endif %}
+    {% if question_list.question.answerNum %}
+     <div class="height_ot">
+       <div class="float_r question_list_answerNum">{{ question_list.question.answerNum }}答案</div>
+     </div>
+    {% else %}
+     <div class="height_ot">
+       <div class="float_r question_list_answerTime">刚刚提问</div>
+     </div>
+    {% endif %}
+   </a>
+  </div>
+</li>
+
