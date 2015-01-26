@@ -6,15 +6,16 @@
 .width_per_all{width:100%;}
 .topic_choice{line-height:32px;height:32px;text-align:center;margin:0px auto;width:100px;border-bottom:2px solid #ff5346;font-size:14px;color:#444;}
 .topic_new{line-height:32px;height:32px;text-align:center;margin:0px auto;width:100px;border-bottom:2px solid #fff;font-size:14px;color:#999;}
-.topic_list_title{font-size:14px;color:#222;margin-bottom:10px;}
-.topic_list_content{font-size:12px;color:#666666;line-height:19px;margin-bottom:8px;max-height:38px;overflow:hidden;text-overflow:ellipsis;}
+.topic_list_title{font-size:14px;color:#222;margin-bottom:6px;line-height:14px;}
+.topic_list_content{font-size:12px;color:#666666;line-height:19px;margin-bottom:8px;max-height:38px;overflow:hidden;}
+.topic_list_content_notitle{font-size:12px;color:#666666;line-height:19px;margin-bottom:8px;max-height:57px;overflow:hidden;}
 .topic_list_user_name{font-size:13px;color:#CB6356;line-height:18px;margin-left:9px;}
 .topic_list_likeNum{font-size:12px;color:#999;line-height:12px;}
 .topic_list_commentNum{font-size:12px;color:#999;line-height:12px;}
 .topic_list_user_avatars{border-radius:50%;float:left;height:18px;width;18px;}
 .topic_list_user{padding-top:10px;padding-left:12px;padding-right:12px;padding-bottom:12px;}
 .topic_list_likeIcon{height:12px;width:12px;background-image:url('../images/icon_f_topic_collected@2x.png');background-size:12px 12px;}
-.topic_list_commentIcon{height:12px;width:13px;background-image:url('../images/icon_f_topic_comment@2x.png');background-size:12px 13px;}
+.topic_list_commentIcon{height:12px;width:13px;background-image:url('../images/icon_f_topic_comment@2x.png');background-size:13px 12px;}
 .topic_detail_time{font-size:10px;color:#aaa;}
 .topic_detail_user_name{font-size:14px;margin-bottom:8px;color:#666;}
 .topic_detail_user_avatars{width:34px;height:34px;float:left;border-radius:50%;background-size:34px 34px;}
