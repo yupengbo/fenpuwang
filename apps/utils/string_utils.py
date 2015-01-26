@@ -9,6 +9,13 @@ def truncate_text(text, length = 200, suffix = "..."):
     text = text[0:200] + str(suffix)
   return text
 
+def truncate(text,suffix="..."):             #kim
+   if text == None:
+       return None
+   if len(text)>60:
+       text = text[0:60] + str(suffix)
+   return text
+
 def replace_text_newline(text):
   if text:
     return text.replace(u'\n', u'<br/>')
@@ -19,13 +26,13 @@ def clear_link(text):
   if text:
     return text.replace(u'<(.*?)>', u"")  
 
-def replace_newkeyword(text):
+def replace_newkeyword(text):               #kim
   if text:
       if "keyword" in text:
           return text.replace('keyword','newkeyword')
       else:
           return text
-def replace_link(text):
+def replace_link(text):                     #kim
     if text:
         if "&lt;/em&gt;" in text:
             text=text.replace("&lt;","<")

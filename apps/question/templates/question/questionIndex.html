@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %} 问答列表 {% endblock %}
+{% block script %}
+     {% load staticfiles %}
+     <link rel="stylesheet" href="{% static "css/topic.css" %}">
+     <link rel="stylesheet" href="{% static "css/question_test.css" %}">
+{% endblock %}
+{% block main_content %}
+<div class='height_tf'>
+      <div class="float_l width_per_half">
+         <div class='question_choice' id ='select' get_data_url='{%  url 'question:question_list_choice' 0  %}'>精选</div>
+      </div>
+      <div class="float_l width_per_half">
+       <div class='question_new' id ='new' get_data_url='{%  url 'question:question_list_new' 0 %}'>最新</div>
+     </div>
+</div>
+<ul class='question_list datalist'>
+     {% include "question/questionList.html" %}
+</ul>
+<script>
+    $(".datalist").loaddata({
+        url : "{{ url }}"
+    });
+    $(".width_per_half div").loaddata({
+       load_mode : "click_flush",
+    });
+</script>
+<script>
+     $(document).ready(function(){
+        $("#select").click(function(){
+             $("#select").css({"border-bottom":"2px solid #ff5346","color":"#444"});
+             $("#new").css({"border-bottom":"2px solid #fff","color":"#999"});
+          });
+        $("#new").click(function(){
+             $("#select").css({"border-bottom":"2px solid #fff","color":"#999"});
+             $("#new").css({"border-bottom":"2px solid #ff5346","color":"#444"});
+          });
+     });
+</script>
+{% endblock %}
+

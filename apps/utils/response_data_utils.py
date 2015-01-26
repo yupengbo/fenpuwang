@@ -30,7 +30,7 @@ def get_user_device(request):
       device = 'android'
   return device
 
-def error_response(request, message, view_name = "unknow_source", error_info = "unkonw_error"):
+def error_response(request, message, view_name = "unknow_source", error_info = "unknow_error"):
   if not error_info:
      if message:
         error_info = message 
@@ -43,3 +43,12 @@ def error_response(request, message, view_name = "unknow_source", error_info = "
   view_name = view_name + ":"
   logger.error(view_name + str(error_info))
   return render(request, '500.html', {'text': message})
+
+def error_comments(request, message, view_name = "unknown_souurce", error_info="unkonw_error"):
+  if not view_name:
+      view_name = "unknown_source"
+  view_name = view_name + ":"
+  logger.error(view_name+message)    
+
+
+

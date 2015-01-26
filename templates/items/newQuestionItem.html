@@ -1,0 +1,29 @@
+{% load static %}
+<li>
+  <div class="question_list_section">
+     <a href='{% url 'question:question_details' question_new.questionId %}' >
+       <div class="height_oe marg_b_t">
+          {% if question_new.user.avatarURL %}
+          <div class="float_l height_oe width_oe"><img src="{{ question_new.user.avatarURL }}" class="question_list_user_avatars"></div>
+          {% else %} 
+          <div class="float_l height_oe width_oe"><img src="{% static "images/img_user_avatars_default@2x.png" %}" class="question_list_user_avatars"></div>
+          {% endif %}
+          <div class="question_list_user_name float_l">{{ question_new.user.userName }}</div>
+       </div>
+       <div class="question_list_title">{{ question_new.title }}</div>
+       {% if question_new.relatedAnswer.content %}
+       <div class="question_list_content">{{ question_new.relatedAnswer.content }}</div>
+       {% endif %}
+       {% if question_new.answerNum %}
+       <div class="height_ot">
+         <div class="float_r question_list_answerNum">{{ question_new.answerNum}}答案</div>
+       </div> 
+       {% else %}
+       <div class="height_ot">
+         <div class="float_r question_list_answerTime">刚刚提问</div>
+       </div>
+       {% endif %}
+     </a>
+  </div>
+</li>
+

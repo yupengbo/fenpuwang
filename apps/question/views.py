@@ -13,6 +13,57 @@ import cgi
 import logging
 
 logger = logging.getLogger('django')
+def question_list(request,mark=0):                                      #kim
+    is_ajax = request.is_ajax()
+    question_list_json = api_list.get_product_feeds(request,mark)
+    try:
+        if question_list_json and question_list_json['error']==0:
+            process_question_time(question_list_json)
+            next_page_url = ""
+            if question_list_json['mark']!=0:
+                next_page_url = reverse("question:question_list_choice",kwargs={'mark':question_list_json['mark']})
+            meta_data = {'questionList':question_list_json['feedList'],'url':next_page_url, 'nav':'question'}
+            if is_ajax:
+                template = loader.get_template("question/questionList.html")
+                context = RequestContext(request,meta_data)
+                response_json = {'html':template.render(context),'url':next_page_url}
+                response_json = json.dumps(response_json)
+                return HttpResponse(response_json,content_type="application/json")
+            else:
+                meta_data = response_data_utils.pack_data(request,meta_data)
+                return render(request,'question/questionIndex.html',meta_data) 
+    except Exception,e:
+        return response_data_utils.error_response(request,None, __name__, e)
+
+def new_question_list(request,mark):                                    #kim
+    question_new_json = api_list.get_question_new(request,mark)
+    try:
+        if question_new_json and question_new_json['error']==0:
+            process_question_time(question_new_json)
+            next_page_url=""
+            if question_new_json['mark']!=0:
+                next_page_url = reverse("question:question_list_new",kwargs={'mark':question_new_json['mark']})
+            meta_data = {'questionNew':question_new_json['questionList'],'url':next_page_url}
+            template = loader.get_template("question/questionNew.html")
+            context = RequestContext(request,meta_data)
+            response_json = {'html':template.render(context),'url':next_page_url}
+            response_json = json.dumps(response_json)
+            return HttpResponse(response_json,content_type="application/json")
+    except Exception,e:
+        return response_data_utils.error_response(request,None, __name__, e)
+
+def process_question_time(data):                                #kim
+    if data.get('feedList'):
+        for question in data['feedList']:
+            if question['question'].get('creationTime'):
+                question['question']['creationTime'] = data_process_utils.get_time_since(question['question']['creationTime']) 
+    if data.get('questionList'):
+        for new_question in data['questionList']:
+            if new_question.get('creationTime'):
+                new_question['creationTime'] = data_process_utils.get_time_since(new_question['creationTime'])
+  
+
+       
 def question_details(request, question_id):
     try:
         question_obj = api_list.get_question_detail(request, question_id, 1, 1, 0)

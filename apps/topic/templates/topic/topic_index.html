@@ -3,14 +3,38 @@
 {% block script %}
     {% load staticfiles %}
     <link rel="stylesheet" href="{% static "css/topic.css" %}">
+    <link rel="stylesheet" href="{% static "css/topic_test.css" %}">
 {% endblock %}
 {% block main_content %}
+<div class='height_tf'>
+    <div class="float_l width_per_half">
+        <div class='topic_choice' id ='select' get_data_url='{%  url 'topic:topic_list' 0  %}'>精选</div>
+    </div>
+    <div class="float_l width_per_half">  
+      <div class='topic_new' id ='new' get_data_url='{%  url 'topic:new_topic_list' 0 %}'>最新</div>
+    </div>
+</div>
 <ul class='topic_list datalist'>
    {% include "topic/topic_list.html" %}
 </ul>
 <script>
-$(".datalist").loaddata({
-    url : "{{ url }}"
-});
+  $(".datalist").loaddata({
+      url : "{{ url }}"
+  });
+  $(".width_per_half div").loaddata({
+     load_mode : "click_flush",
+  });
+</script>
+<script>
+   $(document).ready(function(){
+      $("#select").click(function(){
+           $("#select").css({"border-bottom":"2px solid #ff5346","color":"#444"});
+           $("#new").css({"border-bottom":"2px solid #fff","color":"#999"});
+        });
+      $("#new").click(function(){
+           $("#select").css({"border-bottom":"2px solid #fff","color":"#999"});
+           $("#new").css({"border-bottom":"2px solid #ff5346","color":"#444"});
+        });
+   });
 </script>
 {% endblock %}

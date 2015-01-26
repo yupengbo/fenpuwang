@@ -9,9 +9,9 @@
         <meta name="keywords" content="{% block keywords %}粉扑,粉扑网,护肤,美妆,问答{% endblock %}"/>
         <title>{% block title %}粉扑网 - 中国第一美妆问答社区！{% endblock %}</title>
         {% load static %}
-        <link rel="icon" href="/static/images/Icon-Small.ico" mce_href="/static/images/Icon-Small.ico" type="image/x-icon" />
-        <link rel="shortcut icon" href="/static/images/Icon-Small.ico" type="image/x-icon" />
-        <link rel="stylesheet" href="{% static "css/style.css" %}?v=1.1">
+		<link rel="icon" href="{% static "images/Icon-Small.ico" %}" mce_href="{% static "images/Icon-Small.ico" %}" type="image/x-icon" />
+		<link rel="shortcut icon" href="{% static "images/Icon-Small.ico" %}" type="image/x-icon" />
+		<link rel="stylesheet" href="{% static "css/style.css" %}?v=1.1">
         <link rel="stylesheet" href="{% static "css/download.css" %}?v=1.1">
         {% block script %}{% endblock %}
     </head>

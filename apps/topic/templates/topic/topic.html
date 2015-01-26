@@ -6,6 +6,8 @@
 {% block script %}
 {% load static %}
   <link rel="stylesheet" href="{% static "css/topic.css" %}?v=1.6">
+  <link rel="stylesheet" href="{% static "css/topic_test.css" %}">
+  <script type="text/javascript" src="{% static "js/topic.js" %}?v=1.3"></script>
   <script type="text/javascript" src="{% static "js/new_topic.js" %}?v=1.3"></script>
 {% endblock %}
 
@@ -13,19 +15,42 @@
 <!--专题信息-->
 <div class='topic_header relative'>
   {% if featureTopic.org %}
-  <img class="fl" src='{{ featureTopic.org }}' />
+  <img  src='{{ featureTopic.org }}' />
   {% endif %}
-  <div class="line fl absolute" style='background-color:#{{ featureTopic.color }}'></div>
-  <span class="absolute" style='background-color:#{{ featureTopic.color }}'>{{ featureTopic.creationTime }}</span>
-  <div class='clear'></div>
 </div>
 <div class='topic_content'>
- <h1 class='title fcb1'>{{ featureTopic.title  }}</h1>
+ {% if featureTopic.title %}
+ <h1 class='title fcb1'>{{ featureTopic.title }}</h1>
+ {% endif %}
+{% if featureTopic.user %}
+ <div class="height_fz marg_t_of">
+    {% if featureTopic.user.avatarURL %}
+     <div class="topic_detail_user_avatars" style="background-image:url('{{ featureTopic.user.avatarURL }}');"></div>
+   {% else %}
+     <div class="topic_detail_user_avatars" style="background-image:url('{% static "images/img_user_avatars_default@2x.png" %}');"></div>
+   {% endif %}
+   <div class="float_l pad_l_e">
+        <div class="topic_detail_user_name">{{ featureTopic.user.userName }}</div>
+        <div class="topic_detail_time">{{ featureTopic.digitalTime }}</div>
+   </div>
+ </div>
+ <div class="height_ot bgc_w marg_b_oe">
+    <div class="float_r height_ot">
+      <div class="float_l topic_detail_likeIcon"></div>
+      <div class="float_l topic_detal_likeNum">&nbsp;{{ featureTopic.likeNum }}&nbsp;&nbsp;&nbsp;&nbsp;</div>
+      <div class="float_l topic_detail_commentIcon"></div>
+      <div class="float_l topic_detail_commentNum">&nbsp;{{ featureTopic.commentNum }}</div>
+    </div>
+ </div>    
+{% else %}
  <div class='author'>文/{{ featureTopic.author }}</div>
+{% endif %}
+ {% if featureTopic.introduction%}
  <div class='introduction f13 fcan relative' >
     <i class="bg lq"></i>
     {{ featureTopic.introduction }}
  </div>
+ {% endif %}
  <div class='sp_line'></div>
  <div class='content fcb1'>
    {% for contentInfo in featureTopic.contentList %}
@@ -126,10 +151,43 @@
      </div>
    {% endfor %}
  </div>
+ {% if  featureTopic.conclusion %}
  <div class='sp_line'></div>
  <div class='conclusion f13 fcan relative'>
 	<i class="bg rq"></i>
     {{ featureTopic.conclusion }}
  </div>
+ {% endif %}
+</div>
+<div class='divide_line'></div>
+<div class='comment_mainbody'>
+ <div class="typeface">全部评论&nbsp;{{ commentsTopic.totalNumber}}</div>
+ {% for comment in commentsTopic.commentList %}
+ <div class='comment_divide_line'></div>
+ <div class='height_three_five'>
+   {% if comment.user.avatarURL %}
+   <div class='float_l user_avatars' style="background-image:url('{{ comment.user.avatarURL }}');"></div>
+   {% else %}
+   <div class='float_l user_avatars' style="background-image:url('{% static "images/img_user_avatars_default@2x.png" %}');"></div>
+   {% endif %}
+   <div class='float_l pad_l_e'>
+       <div class='user_name'>{{ comment.user.userName }}</div>
+       <div class='comment_time'>{{ comment.creationTime }}</div>
+   </div>
+ </div>
+ <div class='comment_content'>{{ comment.content }}</div>
+  {% if comment.rComment %}
+ <div class='be_comment_section'>{{ comment.rComment.content}}</div>
+  {% endif %}
+ {% endfor %}
 </div>
 {% endblock %}
+
+
+
+
+
+
+
+
+
