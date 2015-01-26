@@ -62,7 +62,6 @@ def topic_list(request, mark=0):
                 meta_data = response_data_utils.pack_data(request, meta_data)
                 return render(request, 'topic/topic_index.html', meta_data)
     except Exception,e:
-        print e
         return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e)
 
 def new_topic_list(request,mark=0,order=0):                  #kim
@@ -123,8 +122,6 @@ def process_topic_data(topic_data):
       topic['creationTime']  = time.strftime('%d %b',time.localtime(topic['creationTime']/1000))
       if pics and len(pics) > 0 :
         topic['org'] = pics[0]['org']
-     # if topic.get('content'):
-     #     topic['content'] = string_utils.truncate_two_line(topic['content'])     
 
 
 

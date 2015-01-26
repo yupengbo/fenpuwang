@@ -16,13 +16,6 @@ def truncate(text,suffix="..."):             #kim
        text = text[0:60] + str(suffix)
    return text
 
-def truncate_two_line(text,suffix="..."):     #kim
-   if text == None:
-       return None
-   if len(text)>130:
-       text = text[0:130] + str(suffix) 
-   return text
-
 def replace_text_newline(text):
   if text:
     return text.replace(u'\n', u'<br/>')

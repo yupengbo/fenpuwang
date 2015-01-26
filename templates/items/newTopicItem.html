@@ -1,3 +1,4 @@
+{% load static %}
 <li>
   <div class='imgBox'>
     {% if newTopic.org %}
@@ -12,7 +13,7 @@
         {% if newTopic.user.avatarURL %}
         <div class="float_l height_oe width_oe"><img src="{{ newTopic.user.avatarURL }}" class="topic_list_user_avatars"></div>
         {% else %}
-        <div class="float_l height_oe width_oe"><img src="../static/images/img_user_avatars_default@2x.png" class="topic_list_user_avatars"></div>
+        <div class="float_l height_oe width_oe"><img src="{% static "images/img_user_avatars_default@2x.png" %}" class="topic_list_user_avatars"></div>
         {% endif %}
         <div class="topic_list_user_name float_l">{{ newTopic.user.userName }}</div>
       </div>
