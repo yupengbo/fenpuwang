@@ -70,19 +70,27 @@ def get_product_by_category(req, query_type, order, category_id, filter_category
               'categoryId': category_id, 'filterCategoryId': filter_category_id}
     return get_result(req, 'listProductsByCategory.do', params)
 
-def get_product_feeds(req, category_id = 0, pre = 20, mark = 0):
+def get_product_feeds(req, category_id = 0, pre = 20, mark = 0 ):                             #kim
     params = {'pre': pre, 'mark': mark, 'categoryId': category_id, 'onlyFeatureQuestion': 1}
     return get_result(req, 'listProductFeeds.do', params)
 
-def search(req, keyword, search_type = 0, pre = 20, mark = 0,isRed = 1,order = 0):
+def get_question_new(req,mark = 0,pre=20):                                                 #kim
+    params = {'pre':pre,'mark':mark}
+    return get_result(req,'listNewQuestion.do',params)
+
+def search(req, keyword, search_type = 0, pre = 20, mark = 0,isRed = 1,order = 0):            #kim
     params = {'pre': pre, 'mark': mark, 'type': search_type, 'keyword': keyword,'isRed':isRed,'order':order}
     return get_result(req, 'searchAll.do', params)
 
-def get_feature_topic_list(req, mark = 0):
-    params = {'mark': mark}
+def get_feature_topic_list(req, mark = 0,order = 1):                                          #kim
+    params = {'mark': mark,'order':order}
     return get_result(req, 'listFeatureTopic.do', params)
 
-def get_feature_topic_info(req, feature_topic_id, topicVersion = 1):
+def get_feature_topic_info(req, feature_topic_id, topicVersion = 1):                          #kim
     params = {'featureTopicId': feature_topic_id, 'topicVersion': topicVersion}
     return get_result(req, 'getFeatureTopicInfo.do', params)
 
+def get_feature_topic_comments(req, feature_topic_id, rCommentId = 0,pre = 20, mark = 0):      #kim
+    params ={'featureTopicId': feature_topic_id,'rCommentId':rCommentId,'pre':pre,'mark':mark}
+    return get_result(req,'listFeatureTopicComments.do',params)
+    
