@@ -1,0 +1,60 @@
+{% include "items/downloadItem.html" %}
+<div class='nav_bar relative'>
+   <div class='nav'>
+       <div class='nav_inner'>
+       <form onsubmit='$("#nav_btn_search").click();return false;'>
+        <ul >
+		  <li><div class='bg logo_btn' ><a href='/'></a></div></li>
+	      <li {% if nav == 'index' %}class='on'{% endif %}><a  href='/'>问答</a></li>
+		  <li {% if nav == 'topic' %}class='on'{% endif %}><a href='{% url  'topic:topic_index' %}'>专题</a></li>
+          <li {% if nav == 'products' %}class='on'{% endif %}><a   href='{% url 'products:products_index' %}'>笔记详情页</a></li>
+        </ul>
+
+        <div class='top_search {% if nav == 'index' %}index{% endif %}'>
+            <div class='closebox fl hidden'>
+              <div class='close bg block' ></div>
+            </div>
+			{% if nav == 'index' %}
+			   <div  class='filterbox relative fr'>
+                  <div class='feed_filter bg block absolute' ></div>
+			   </div>
+			{% endif %}
+            <div  class='inputbox relative fr'>
+               <input id='nav_keyword' name='keyword' class='keyword f13 fcb1 fl hidden' value='{% if keyword %}{{keyword}}{% endif%}'/>
+               <input id='nav_btn_search' class='search_icon fr bg absolute {% if nav == 'index' %}hidden{% else %}block{% endif %}' type='button' value=''/>
+            </div>
+        </div>
+       </form>
+	   </div>
+   </div>
+</div>
+<div class='feed_filter_box absolute hidden'>
+   <ul>
+    <li class='on' get_data_url='{% url 'feed:feed_list' 0 0 %}'>全部</li>
+    {% if nav_list %}
+	  {% for category,nav in nav_list %}
+	     <li get_data_url='{% url 'feed:feed_list' category 0 %}'>{{ nav }}</li>
+	  {% endfor %}
+	{% endif %}
+   </ul>
+   <div class='clear'></div>
+</div>
+{% if nav == 'index' %}
+<div class='search_box t_c'>
+  <h1 class='bg block'></h1>
+  <h2 class='bg block'></h2>
+  <div class='search_input_box relative'>
+    <form onsubmit='$("#index_btn_search").click();return false;'>
+	  <input id='index_keyword' name='indexKeyword' class='f13 absolute' placeholder="小棕瓶和小黑瓶哪个好用"/>
+	  <input id='index_btn_search' type='button' value='' class='bg absolute'/>
+    <form>
+  </div>
+</div>
+{% endif%}
+{% if keyword %}
+<script>
+ $(function () {
+    $("#nav_btn_search").click(); 
+ });
+</script>
+{% endif%}
