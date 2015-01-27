@@ -113,7 +113,12 @@ def process_topic_data(topic_data):
              temp_text = sub_content_info.get("text")
              if temp_text:
                sub_content_info["text"] = string_utils.replace_text_newline(cgi.escape(temp_text))
-    
+    if topic_data['featureTopic'].get("introduction"):
+        if not topic_data['featureTopic']['introduction'].strip():
+            topic_data['featureTopic']['introduction'] = topic_data['featureTopic']['introduction'].strip()
+    if topic_data['featureTopic'].get("conclusion"):
+        if not topic_data['featureTopic']['conclusion'].strip():
+            topic_data['featureTopic']['conclusion'] = topic_data['featureTopic']['conclusion'].strip()
 
 
   if topic_data.get('featureTopicList'):
