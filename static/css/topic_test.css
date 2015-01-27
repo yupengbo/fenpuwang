@@ -13,7 +13,7 @@
 .topic_list_likeNum{font-size:12px;color:#999;line-height:12px;}
 .topic_list_commentNum{font-size:12px;color:#999;line-height:12px;}
 .topic_list_user_avatars{border-radius:50%;float:left;height:18px;width;18px;}
-.topic_list_user{padding-top:10px;padding-left:12px;padding-right:12px;padding-bottom:12px;}
+.topic_list_user{padding-top:10px;padding-left:12px;padding-right:12px;padding-bottom:12px;border-bottom:1px solid #dbdbdb;}
 .topic_list_likeIcon{height:12px;width:12px;background-image:url('../images/icon_f_topic_collected@2x.png');background-size:12px 12px;}
 .topic_list_commentIcon{height:12px;width:13px;background-image:url('../images/icon_f_topic_comment@2x.png');background-size:13px 12px;}
 .topic_detail_time{font-size:10px;color:#aaa;}
@@ -22,7 +22,7 @@
 .topic_detal_likeNum{font-size:12px;line-height:12px;}
 .topic_detail_commentNum{font-size:12px;line-height:12px;}
 .topic_detail_likeIcon{height:12px;width:12px;background-image:url('../images/icon_f_topic_collected@2x.png');background-size:12px 12px;}
-.topic_detail_commentIcon{height:12px;width:13px;background-image:url('../images/icon_f_topic_comment@2x.png');background-size:12px 13px;}
+.topic_detail_commentIcon{height:12px;width:13px;background-image:url('../images/icon_f_topic_comment@2x.png');background-size:13px 12px;}
 .divide_line{border-bottom:2px solid #ebebeb;}
 .typeface{padding-bottom:8px;padding-top:20px;font-size:11px;color:gray;}
 .comment_mainbody{padding-left:12px;padding-right:12px;padding-bottom:12px;background-color:#f9f8f5;}
@@ -31,7 +31,7 @@
 .comment_divide_line{border-bottom:1px solid #f3f3f1;margin-bottom:10px;}
 .user_name{font-size:12px;color:#666;}
 .user_avatars{width:24px;height:24px;border-radius:50%;background-size:24px 24px;}
-.be_comment_section{font-size:11px;color:#999;height:28px;background-color:#f4f3ef;line-height:16px;margin-bottom:12px;padding:8px;}
+.be_comment_section{font-size:11px;color:#999;background-color:#f4f3ef;line-height:16px;margin-bottom:12px;padding:6px 8px;}
 .bgc_w{background-color:white;}
 .height_three_five{height:35px;}
 .height_tf{height:34px;}
