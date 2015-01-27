@@ -24,7 +24,7 @@ bind = "0.0.0.0:8888"
 workers = multiprocessing.cpu_count()×2\+1
 </pre></code>
 - 3.开发环境服务单进程启动：  
-./manage.py runserver 0.0.0.0:8003 --settings=settings.development
+python manage.py runserver 0.0.0.0:8003 --settings=settings.development
 
 ###三.线上服务启动
 1.gunicorn_start 脚本
@@ -71,13 +71,13 @@ hello: added process group
 </pre></code>
 4.同时你还可以检查app的状态、启动、停止、重启
 <pre><code>
-$ sudo supervisorctl status hello
+$ sudo supervisorctl status fenpu-mobile 
 hello                RUNNING
-$ sudo supervisorctl stop hello 
+$ sudo supervisorctl stopfenpu-mobile 
 hello: stopped
-$ sudo supervisorctl start hello 
+$ sudo supervisorctl start fenpu-mobile 
 hello: started
-$sudo supervisorctl restart hello 
+$sudo supervisorctl restart fenpu-mobile 
 hello:stoped
 hello:started
 </pre></code>  
