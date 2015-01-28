@@ -13,11 +13,11 @@
 
 {% block main_content %}
 <!--专题信息-->
+{% if featureTopic.org %}
 <div class='topic_header relative'>
-  {% if featureTopic.org %}
   <img  src='{{ featureTopic.org }}' />
-  {% endif %}
 </div>
+{% endif %}
 <div class='topic_content'>
  {% if featureTopic.title %}
  <h1 class='title fcb1'>{{ featureTopic.title }}</h1>
@@ -50,8 +50,8 @@
     <i class="bg lq"></i>
     {{ featureTopic.introduction }}
  </div>
- {% endif %}
  <div class='sp_line'></div>
+ {% endif %}
  <div class='content fcb1'>
    {% for contentInfo in featureTopic.contentList %}
      <div class="con fcb1">
