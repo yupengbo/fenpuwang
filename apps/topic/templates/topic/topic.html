@@ -1,7 +1,13 @@
 {% extends "base.html" %}
 {% block keywords %} {{ featureTopic.title }} {% endblock %}
 {% block description %} {{ featureTopic.title }}-粉扑网 {% endblock %}
-{% block title %} {{ featureTopic.title }} {% endblock %}
+{% block title %} 
+  {% if featureTopic.title %}
+    {{ featureTopic.title }} 
+  {% else %}
+    {{ featureTopic.content }}
+  {% endif %}
+{% endblock %}
 
 {% block script %}
 {% load static %}
