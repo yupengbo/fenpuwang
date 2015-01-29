@@ -42,11 +42,12 @@ def activity(request, activity_id):
     if session: 
         print "=================>" + session
         user_activity_info = api_list.get_activity_info(request, session, activity_id)
+        print user_activity_info
         meta_data['session'] = session
 
     meta_data['share_activity_fee'] = user_activity_info.get("shareActivity")
     meta_data['bonus_fee'] = user_activity_info.get("bonus")
-    meta_data['bonus_fee'] = get_request_from(request) 
+    meta_data['request_from'] = get_request_from(request) 
     meta_data['activity_id'] = activity_id
     #获取用户信息
     print meta_data
