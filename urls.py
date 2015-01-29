@@ -15,5 +15,6 @@ urlpatterns = patterns('',
     url(r'^(topic/)?', include('apps.topic.urls', namespace='topic')),
 	url(r'^ucenter/', include('apps.ucenter.urls', namespace='ucenter')),
     url(r'^download/$', views.download, name='download'),
+    url(r'^activities/', include('apps.activities.urls', namespace='activities')),
 )
 

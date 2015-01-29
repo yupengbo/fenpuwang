@@ -98,7 +98,18 @@ def get_user_change_log(req, sessionKey, mark = 0):
     params = {'sessionKey': sessionKey,  'mark': mark}
     return get_result(req, 'listUserChangeLog.do', params)
 
-def get_user_change_info(req, sessionKey):
-    params = {'sessionKey': sessionKey}
-    return get_result(req, 'getUserChangeInfo.do', params)
+def get_activity_info(req, sessionKey, activity_id = 0):
+    params = {'sessionKey': sessionKey, 'activityId': activity_id}
+    return get_result(req, 'getActivityInfo.do', params)
 
+def open_bonus(req, sessionKey, activity_id = 0):
+    params = {'sessionKey': sessionKey, 'activityId': activity_id}
+    return get_result(req, 'openBonus.do', params)
+
+def check_login(req, weixin_webchat_code):
+    params = {"weixinWebChatCode": weixin_webchat_code}
+    return get_result(req, 'checkLogin.do', params)
+
+def user_share_log(req, sessionKey, target_id, share_type = 0, share_channel = 0 ):
+    params = {'sessionKey': sessionKey, "type": share_type, "targetId": target_id, "shareChannel": share_channel}
+    return get_result(req, 'userShareLog.do', params)
