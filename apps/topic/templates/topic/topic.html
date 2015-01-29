@@ -3,11 +3,25 @@
 {% block description %} {{ featureTopic.title }}-粉扑网 {% endblock %}
 {% block title %} 
   {% if featureTopic.title %}
-    {{ featureTopic.title }} 
+    {{ featureTopic.title|striptags }}
   {% else %}
-    {{ featureTopic.content }}
+    {{ featureTopic.content|truncatechars:100|striptags }}
   {% endif %}
 {% endblock %}
+{% block description %}
+  {% if featureTopic.content %}
+    {{ featureTopic.content|truncatechars:100|striptags }}
+  {% else %}
+    {{ featureTopic.title|striptags }}
+  {% endif %}
+{% endblock %}
+{% block title %}
+   {% if featureTopic.title %}
+     {{ featureTopic.title|truncatechars:20|striptags }}_粉扑网
+   {% else %}
+     {{ featureTopic.content|truncatechars:20|striptags }}_粉扑网
+   {% endif %}
+ {% endblock %}
 
 {% block script %}
 {% load static %}
@@ -21,7 +35,7 @@
 <!--专题信息-->
 {% if featureTopic.org %}
 <div class='topic_header relative'>
-  <img  src='{{ featureTopic.org }}' />
+  <img  src='{{ featureTopic.org }}' alt='{{ featureTopic.content|truncatechars:20 }}'/>
 </div>
 {% endif %}
 <div class='topic_content'>
@@ -91,7 +105,7 @@
       {% if contentInfo.href %}
 	    <a href='{{ contentInfo.href }}' >
 	  {% endif %}
-	   <img src='{{ contentInfo.pic.org }}' />
+	   <img src='{{ contentInfo.pic.org }}' alt='{{ featureTopic.content|truncatechars:20 }}'/>
 	 {% endif %}
 	  {% if contentInfo.href %}
         </a>
@@ -126,7 +140,7 @@
             {% if contentInfo.link.display == 'cell' %}
               <div class='link_cell product_cell_link'>
                 <a id='bd_davdian_product_click' onclick='ga('send', 'event', '微商', '{{ contentInfo.link.title|safe }}', '{{ featureTopic.featureTopicId|safe }}');_hmt.push(['_trackEvent', '微商', '{{ contentInfo.link.title|safe }}', '{{ featureTopic.featureTopicId|safe }}']);' href='{{ contentInfo.link.data }}'>
-                  <div class="fl topic_product_img"><img src='{{ contentInfo.link.product_img }}'></div>
+                  <div class="fl topic_product_img"><img src='{{ contentInfo.link.product_img }}' alt='{{ featureTopic.content|truncatechars:20 }}'></div>
                   <div class="fl topic_product_text">
                     <div class='topic_product_title fcb1'>{{ contentInfo.link.title|safe }}</div>
                     <div class='topic_product_price'><span class='fchl'>&yen;{{ contentInfo.link.product_real_price|safe }}</span><span class='fcg1' style='text-decoration:line-through;'>&yen;{{ contentInfo.link.product_market_price|safe }}</span></div>
