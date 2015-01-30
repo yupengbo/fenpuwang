@@ -16,6 +16,10 @@
 授权回来：{{ session }}<br/>
 分享收益：{{ share_activity_fee }}<br/>
 红包收益：{{ bonus_fee }}<br/>
+appId: '{{ appid }}',
+timestamp: {{ timestamp }},
+nonceStr: '{{ nonceStr }}',
+signature: '{{ signature }}',
 <div style='display:{% if session %}block{% else %}none{% endif %};'>
 <input type='button' value='打开红包' onclick='open_bonus()'/>
 </div>
@@ -24,76 +28,23 @@
 </div>
 </div>
 <script>
-function addCookie(objName,objValue,objHours){//添加cookie
-    var str = objName + "=" + escape(objValue);
-    if(objHours > 0){//为0时不设定过期时间，浏览器关闭时cookie自动消失
-        var date = new Date();
-        var ms = objHours*3600*1000;
-        date.setTime(date.getTime() + ms);
-        str += "; expires=" + date.toGMTString() + ";path=/";
-     }
-     document.cookie = str;
-}
 
-function getCookie(objName){//获取指定名称的cookie的值
-    var arrStr = document.cookie.split("; ");
-    for(var i = 0;i < arrStr.length;i ++){
-        var temp = arrStr[i].split("=");
-        if(temp[0] == objName) return unescape(temp[1]);
-    }
-}
-$.extend({
-   get_data: function (url, args, success_cb, completion_cb, datatype) {
-         datatype = (datatype == null ? 'text' : datatype.toUpperCase());
-         success_cb = (success_cb === null ? $.success_callback : success_cb);
-         completion_cb = (completion_cb === null ? $.complete_callback : completion_cb);
-         $.ajax({
-             type: 'POST',
-             dataType: datatype.toLowerCase(),
-             url: url,
-             data: args,
-             timeout: 10000,
-             async: true,
-             cache: true,
-             beforeSend: $.before_send_callback,
-             complete: completion_cb,
-             success: success_cb,
-             error: $.error_callback
-         });
-   },
-   success_callback: function (xmlReq) {
-        $.ajax_complete();
-   },
-   before_send_callback: function (xmlReq) {
-   },
-   complete_callback: function (xmlReq, textStatus) {
-      /**
-      * 数据获取完成时执行
-      */
-   },
-      /**
-	  * 请求出现错误 responseText 请求的数据 data || textStatus 文本状态 eg：success
-	  */
-   error_callback: function (xmlReq, textStatus) {
-       switch (xmlReq.status) {
-	      case 404: // Not Found
-		     alert("XmlHttpRequest status: [404] \nThe requested URL was not found on this server.");
-		     break;
-          case 500:
-	         alert("XmlHttpRequest status: [500] Service Unavailable");
-		 	 break;
-		  case 400:
-			 alert("XmlHttpRequest status: [400] Bad Request");
-		     break;
-		  case 503: // Service Unavailable
-			 alert("XmlHttpRequest status: [503] Service Unavailable");
-			 break;
-		  default:
-			 break;
-		}
-   }
+wx.config({
+      debug: true,
+      appId: '{{ appid }}',
+      timestamp: {{ timestamp }},
+      nonceStr: '{{ nonceStr }}',
+      signature: '{{ signature }}',
+      jsApiList: [
+        'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo'
+     ]
 });
-//addCookie('xx',1,7*24);
+
+wx.ready(function(){
 wx.onMenuShareTimeline({
     title: '', // 分享标题
     link: '', // 分享链接
@@ -106,19 +57,23 @@ wx.onMenuShareTimeline({
     // 用户取消分享后执行的回调函数
     }
 });
-wx.onMenuShareQQ({
+
+wx.onMenuShareAppMessage({
     title: '', // 分享标题
     desc: '', // 分享描述
     link: '', // 分享链接
-    imgUrl: '' // 分享图标
+    imgUrl: '', // 分享图标
+    type: '', // 分享类型,music、video或link，不填默认为link
+    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
     success: function () { 
-       // 用户确认分享后执行的回调函数
-	   share_activity();
-	   alert("分享成功");
+    // 用户确认分享后执行的回调函数
+	  alert(2);
+	  share_activity();
     },
     cancel: function () { 
-       // 用户取消分享后执行的回调函数
-										      }
+    // 用户取消分享后执行的回调函数
+    }
+});
 });
 function share_activity(){
   $.get_data(
@@ -134,6 +89,7 @@ function share_activity(){
      'json'
   );
 }
+
 function open_bonus(){  
   $.get_data(
      '{%  url 'activities:open_bonus' activity_id %}',
@@ -165,7 +121,7 @@ $.get_data(
   alert("无session");
 {% else %}
   alert("重写{{ session }}");
-  addCookie('session','{{ session }}',7*24);
+  addCookie('session','{{ session }}', 0);
 {% endif %}
 alert(getCookie('session'));
 </script>

@@ -7,16 +7,22 @@ from urllib import urlencode
 
 appid = 'wxb37b8b2babf1f511'
 app_secret = '9e289e06befd94ef1cf49f484ce9dd86'
+
+def get_appid():
+   return appid
+
 def url_encode(uri):
    data = {'': uri}
    uri = urlencode(data)
    return uri[1:]
 
 def get_base_uri(request):
-   base_uri = request.META.get("HTTP_ORIGIN") 
+   base_uri = request.META.get("HTTP_ORIGIN")
+   if not base_uri:
+       base_uri = 'http://wxtest.fenpuwang.com'
    port = request.META.get("SERVER_PORT")
-   if port != '80':
-      base_url = base_uri + "/" + port 
+   #if port != '80':
+   #   base_uri = base_uri + ":" + port 
    return base_uri
 
 def code2token (code):
