@@ -13,8 +13,9 @@ urlpatterns = patterns('',
     url(r'^products/', include('apps.products.urls', namespace='products')),
     url(r'^search/', include('apps.search.urls', namespace='search')),
     url(r'^(topic/)?', include('apps.topic.urls', namespace='topic')),
-	url(r'^ucenter/', include('apps.ucenter.urls', namespace='ucenter')),
+    url(r'^ucenter/', include('apps.ucenter.urls', namespace='ucenter')),
     url(r'^download/$', views.download, name='download'),
     url(r'^activities/', include('apps.activities.urls', namespace='activities')),
+    url(r'^activity/',include('apps.activity.urls',namespace='activity')),
 )
 
