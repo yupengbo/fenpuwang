@@ -2,7 +2,7 @@
 
 from django.shortcuts import render
 from django.template import RequestContext, loader
-from django.http import HttpResponse,Http404
+from django.http import HttpResponse,Http404,HttpResponseRedirect
 import requests
 from apps.utils import data_process_utils, response_data_utils, string_utils
 import json
@@ -21,32 +21,28 @@ def get_request_from(request):
 
 def get_sign_info(request, ticket, self_uri):
     meta_data = {}
-
-    timestamp = request.COOKIES.get("timestamp")
-    if not timestamp:
-       timestamp = 0
-    meta_data['timestamp'] = timestamp
-
-    nonceStr = request.COOKIES.get("nonceStr")
-    if not nonceStr:
-       nonceStr= ""
-    meta_data['nonceStr'] = nonceStr
-
-    signature = request.COOKIES.get("signature")
-    if not signature:
-       signature = ""
-    meta_data['signature'] = signature
     if ticket:
         sign = Sign(ticket, self_uri)
         meta_data = sign.sign()
+
+    if not meta_data.get('timestamp'):
+        meta_data['timestamp'] = 0
+
+    if not meta_data.get('nonceStr'):
+       meta_data['nonceStr'] = "" 
+
+    if not meta_data.get('signature'):
+       meta_data['signature'] = "" 
+
     return meta_data
 
 def activity(request, activity_id):
-    session = request.COOKIES.get("session")
     session = None
+    session = request.COOKIES.get("session")
+    ticket = None
     user_activity_info = {}
     user_info = {}
-    ticket = None
+
     request_from = get_request_from(request)
     base_uri = weixin_utils.get_base_uri(request)
     self_uri = reverse("activities:activity",kwargs={'activity_id': activity_id})
@@ -55,7 +51,10 @@ def activity(request, activity_id):
        query_str = "?" + query_str
     else:
        query_str = ''
-    self_uri = base_uri + self_uri + query_str
+    share_uri = base_uri + self_uri
+    self_uri = share_uri + query_str
+    
+    authuri = weixin_utils.build_auth_uri(self_uri)
     if not session:
        code = request.REQUEST.get("code")
        user_info = {}
@@ -65,38 +64,52 @@ def activity(request, activity_id):
               user_info=user_info.get("userInfo")
            if user_info:
               session = user_info.get("sessionKey")
-              ticket = user_info.get("ticket")
-    meta_data = get_sign_info(request, ticket, self_uri)
+
+    if not session:
+        return HttpResponseRedirect(authuri)
 
     if session: 
         user_activity_info = api_list.get_activity_info(request, session, activity_id)
-        meta_data['session'] = session
 
+    if user_activity_info.get("error") == None or str(user_activity_info["error"]) != "0":
+        user_activity_info["shareActivity"] = 0
+        user_activity_info["bonus"] = 0
+    else:
+        ticket = user_activity_info.get("ticket")
+
+    meta_data = get_sign_info(request, ticket, self_uri)
+    meta_data['session'] = session
     meta_data['appid'] = weixin_utils.get_appid()
     meta_data['share_activity_fee'] = user_activity_info.get("shareActivity")
     meta_data['bonus_fee'] = user_activity_info.get("bonus")
-    meta_data['request_from'] = get_request_from(request) 
-    meta_data['activity_id'] = activity_id
-    return render(request, 'activities/activity.html', meta_data) 
-
-def wx_auth(request, activity_id):
-    is_ajax = request.is_ajax()
-    if is_ajax:
-        request_from = get_request_from(request)
-        base_uri = weixin_utils.get_base_uri(request)
-        redirect_uri = reverse("activities:activity",kwargs={'activity_id': activity_id}) + "?from=" + request_from 
-        authuri = weixin_utils.build_auth_uri(base_uri + str(redirect_uri))
-        response_json = { 'uri' : authuri }
-        response_json = json.dumps(response_json)
-        return HttpResponse(response_json,content_type="application/json")
+    meta_data['total_fee'] = meta_data['bonus_fee'] + meta_data['share_activity_fee']
+    meta_data['view'] = 'share_bonus'
+    if request_from == 'weixin' :
+        if  meta_data['share_activity_fee'] >0 :
+            meta_data['view'] = 'view_result'
+        else:
+            meta_data['view'] = 'share_bonus'
     else:
-        return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, "not ajax") 
+        if  meta_data['share_activity_fee'] >0 and meta_data['bonus_fee'] > 0:
+            meta_data['view'] = 'view_result'
+        elif meta_data['bonus_fee'] == 0 :
+            meta_data['view'] = 'open_bonus'
+        else:
+            meta_data['view'] = 'opened'
+
+    meta_data['request_from'] = request_from 
+    meta_data['activity_id'] = activity_id
+    meta_data['share_uri'] = share_uri
+    response_data_utils.pack_data(request,meta_data)
+    return render(request, 'activities/activity.html', meta_data) 
 
 def share_activity(request, activity_id):
     is_ajax = request.is_ajax()
-    session = request.COOKIES.get("session")
-    if is_ajax and session:
-        result = api_list.share_activity(request, session, activity_id, 10, 1)
+    session = request.REQUEST.get("session")
+    if not session:
+        session = request.COOKIES.get("session")
+    if session:
+        result = api_list.user_share_log(request, session, activity_id, 10, 1)
         response_json = json.dumps(result)
         return HttpResponse(response_json,content_type="application/json")
     else:
@@ -105,7 +118,9 @@ def share_activity(request, activity_id):
 
 def open_bonus(request, activity_id):
     is_ajax = request.is_ajax()
-    session = request.COOKIES.get("session")
+    session = request.REQUEST.get("session")
+    if not session:
+        session = request.COOKIES.get("session")
     if is_ajax and session:
         result = api_list.open_bonus(request, session, activity_id)
         response_json = json.dumps(result)

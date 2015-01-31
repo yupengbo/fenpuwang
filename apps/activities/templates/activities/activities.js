@@ -9,10 +9,7 @@ function openapp(obj){
    },2000);
    var t1 = Date.now();
    var ifr = document.createElement("iframe");
-   alert( $(obj).attr("schemeUrl"));
    ifr.setAttribute('src', $(obj).attr("schemeUrl"));
-   ifr.setAttribute('width','0');
-   ifr.setAttribute('height','0');
    document.body.appendChild(ifr);
    timeout = setTimeout(function () {
       var t2 = Date.now();

@@ -17,10 +17,10 @@ def url_encode(uri):
    return uri[1:]
 
 def get_base_uri(request):
-   base_uri = request.META.get("HTTP_ORIGIN")
-   if not base_uri:
-       base_uri = 'http://wxtest.fenpuwang.com'
-   port = request.META.get("SERVER_PORT")
+#   base_uri = request.META.get("HTTP_ORIGIN")
+#   if not base_uri:
+   base_uri = 'http://wxtest.fenpuwang.com'
+#   port = request.META.get("SERVER_PORT")
    #if port != '80':
    #   base_uri = base_uri + ":" + port 
    return base_uri
