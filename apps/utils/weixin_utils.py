@@ -19,7 +19,7 @@ def url_encode(uri):
 def get_base_uri(request):
 #   base_uri = request.META.get("HTTP_ORIGIN")
 #   if not base_uri:
-   base_uri = 'http://wxtest.fenpuwang.com'
+   base_uri = 'http://m.fenpuwang.com'
 #   port = request.META.get("SERVER_PORT")
    #if port != '80':
    #   base_uri = base_uri + ":" + port 
