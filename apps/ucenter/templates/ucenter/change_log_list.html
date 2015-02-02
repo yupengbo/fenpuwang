@@ -36,6 +36,24 @@
 	<div class='clear'></div>
   </div>
   {% endif %}
+  {% if log.type = 5 %}
+  <h2>分享活动<em class='fr'>{{ log.creationTime }}</em></h2>
+  <div class='log'>
+    <div class='p_name fl'>{{ log.text }}</div>
+	<em class='fr'>元</em>
+	<b class='fr'>{{ log.totalFee }}</b>
+	<div class='clear'></div>
+  </div>
+  {% endif %}
+  {% if log.type = 6 %}
+  <h2>活动红包<em class='fr'>{{ log.creationTime }}</em></h2>
+  <div class='log'>
+    <div class='p_name fl'>{{ log.text }}</div>
+	<em class='fr'>元</em>
+	<b class='fr'>{{ log.totalFee }}</b>
+	<div class='clear'></div>
+  </div>
+  {% endif %}
   {% if log.type = 0 %}
   <h2>卖出{{ log.num }}个<em class='fr'>{{ log.creationTime }}</em></h2>
   <div class='log'>
