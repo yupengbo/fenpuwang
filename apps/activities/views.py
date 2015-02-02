@@ -96,7 +96,7 @@ def activity(request, activity_id):
             meta_data['view'] = 'open_bonus'
         else:
             meta_data['view'] = 'opened'
-
+    meta_data['base_uri'] = base_uri
     meta_data['request_from'] = request_from 
     meta_data['activity_id'] = activity_id
     meta_data['share_uri'] = share_uri

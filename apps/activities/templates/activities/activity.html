@@ -102,7 +102,7 @@ wx.ready(function(){
   wx.onMenuShareTimeline({
     title: '红包快来领~【粉扑红包】', // 分享标题
     link: '{{ share_uri }}', // 分享链接
-    imgUrl: '', // 分享图标
+    imgUrl: '{{ base_uri }}{% static "images/bonus_img" %}', // 分享图标
     success: function () { 
 		shared();
     },
@@ -114,7 +114,7 @@ wx.ready(function(){
     title: '红包快来领~【粉扑红包】', // 分享标题
     desc: '粉扑红包可提现，快来领取吧', // 分享描述
     link: '{{ share_uri }}', // 分享链接
-    imgUrl: '', // 分享图标
+    imgUrl: '{{ base_uri }}{% static "images/bonus_img" %}', // 分享图标
     success: function () { 
 	  shared();
     },
