@@ -30,8 +30,8 @@
 </div>
 <div id='open_bonus' class="pad_t_fs{% if view != "open_bonus" %} hidden{% endif %}">                  <!--抢红包-->
    <div style="text-align:center;">
-      <img src="{% static "images/send_bonus_button.png "%}" class="grab_user_avatar">
-      <div class="grab_user_name">姓名</div>
+      <img src="{{ avatarURL }}" class="grab_user_avatar">
+      <div class="grab_user_name">{{ nickName }}</div>
    </div>
    <div class="grab_pic_section div_center relative">
       <img src="{% static "images/grab_bonus.png" %}" class="grab_pic">

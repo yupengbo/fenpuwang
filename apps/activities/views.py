@@ -13,6 +13,12 @@ from apps.utils.sign import Sign
 from django.core.urlresolvers import reverse
 # Create your views here.
 
+def get_view_uid(request):
+    view_uid = 0 
+    if request.REQUEST.get("fromuid"):
+        view_uid = request.REQUEST.get("fromuid")
+    return view_uid
+
 def get_request_from(request):
     request_from = 'timeline'
     if request.REQUEST.get("from"):
@@ -42,7 +48,8 @@ def activity(request, activity_id):
     ticket = None
     user_activity_info = {}
     user_info = {}
-
+    
+	view_uid = get_view_uid(request)
     request_from = get_request_from(request)
     base_uri = weixin_utils.get_base_uri(request)
     self_uri = reverse("activities:activity",kwargs={'activity_id': activity_id})
@@ -69,7 +76,7 @@ def activity(request, activity_id):
         return HttpResponseRedirect(authuri)
 
     if session: 
-        user_activity_info = api_list.get_activity_info(request, session, activity_id)
+        user_activity_info = api_list.get_activity_info(request, session, activity_id, view_uid)
 
     if user_activity_info.get("error") == None or str(user_activity_info["error"]) != "0":
         user_activity_info["shareActivity"] = 0
@@ -82,6 +89,8 @@ def activity(request, activity_id):
     meta_data['appid'] = weixin_utils.get_appid()
     meta_data['share_activity_fee'] = user_activity_info.get("shareActivity")
     meta_data['bonus_fee'] = user_activity_info.get("bonus")
+    meta_data['nickName'] = user_activity_info.get("nickName")
+    meta_data['avatarURL'] = user_activity_info.get("avatarURL")
     meta_data['total_fee'] = meta_data['bonus_fee'] + meta_data['share_activity_fee']
     meta_data['view'] = 'share_bonus'
     if request_from == 'weixin' :
