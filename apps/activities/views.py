@@ -49,7 +49,7 @@ def activity(request, activity_id):
     user_activity_info = {}
     user_info = {}
     
-	view_uid = get_view_uid(request)
+    view_uid = get_view_uid(request)
     request_from = get_request_from(request)
     base_uri = weixin_utils.get_base_uri(request)
     self_uri = reverse("activities:activity",kwargs={'activity_id': activity_id})
