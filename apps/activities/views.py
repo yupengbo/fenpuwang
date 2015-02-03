@@ -58,7 +58,6 @@ def activity(request, activity_id):
        query_str = "?" + query_str
     else:
        query_str = ''
-    share_uri = base_uri + self_uri + "?fromuid=" + view_uid
     self_uri = share_uri + query_str
     
     authuri = weixin_utils.build_auth_uri(self_uri)
@@ -84,12 +83,21 @@ def activity(request, activity_id):
     else:
         ticket = user_activity_info.get("ticket")
 
+    user_uid = user_activity_info.get("uID")
+    if not user_uid:
+        user_uid = 0
+    share_uri = base_uri + self_uri + "?fromuid=" + user_uid
+
     meta_data = get_sign_info(request, ticket, self_uri)
     meta_data['session'] = session
     meta_data['appid'] = weixin_utils.get_appid()
     meta_data['share_activity_fee'] = user_activity_info.get("shareActivity")
     meta_data['bonus_fee'] = user_activity_info.get("bonus")
     meta_data['nickName'] = user_activity_info.get("nickName")
+    if not meta_data.get('nickName'):
+       meta_data['nickName'] = '粉扑'
+    if not meta_data.get('avatarURL'):
+       meta_data['avatarURL'] = 'http://dabanniu.oss.aliyuncs.com/img_user_avatars_default@2x.png'
     meta_data['avatarURL'] = user_activity_info.get("avatarURL")
     meta_data['total_fee'] = meta_data['bonus_fee'] + meta_data['share_activity_fee']
     meta_data['view'] = 'share_bonus'
