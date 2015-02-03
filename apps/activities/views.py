@@ -58,7 +58,7 @@ def activity(request, activity_id):
        query_str = "?" + query_str
     else:
        query_str = ''
-    share_uri = base_uri + self_uri
+    share_uri = base_uri + self_uri + "?fromuid=" + view_uid
     self_uri = share_uri + query_str
     
     authuri = weixin_utils.build_auth_uri(self_uri)
