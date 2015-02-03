@@ -6,8 +6,8 @@
 {% block script %}
     {% load static %}
 	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-	<script type="text/javascript" src="{% static "js/activities.js" %}?v=1.5"></script>
-	<link rel='stylesheet' href='{% static 'css/activity.css' %}?v=1.5' type='text/css'>
+	<script type="text/javascript" src="{% static "js/activities.js" %}?v=1.7"></script>
+	<link rel='stylesheet' href='{% static 'css/activity.css' %}?v=1.7' type='text/css'>
 {% endblock %}
 {% block main_content %}
 
@@ -34,7 +34,7 @@
       <div class="grab_user_name">{{ nickName }}</div>
    </div>
    <div class="grab_pic_section div_center relative">
-      <img src="{% static "images/grab_bonus.png" %}" class="grab_pic">
+      <img src="{% static "images/grab_bonus.png" %}?v=1.2" class="grab_pic">
       <a href="javascript:void(0);" onclick='open_bonus();return false;' ><div class="absolute grab_button"></div></a>
    </div>
    <div class="center absolute grab_character_section">本活动的最终解释权归粉扑所有</div>
@@ -42,7 +42,7 @@
 <div id='opened' class="pad_t_n{% if view != "opened" %} hidden{% endif %}">                             <!--得到红包-->
   <div class="relative">
     <div class="get_pic_section div_center relative">
-      <img src="{% static "images/get_bonus.png" %}" class="get_pic"/>
+      <img src="{% static "images/get_bonus.png" %}?v=1.1" class="get_pic"/>
       <a href="javascript:void(0);" onclick='to_share();return false;' ><div class="absolute get_share_button"></div></a>
       <div class="absolute get_download"> <a onclick="ga('send', 'event', '应用', '下载', '活动');_hmt.push(['_trackEvent', 'software', 'download', 'activity_download']);" id='bd_btn_nav_download' href='http://www.dabanniu.com/download.phtml' class="get_download_color">下载粉扑</a></div>
     </div>
@@ -155,6 +155,9 @@ function open_bonus(){
      'json'
   );
 }
+$(".weixin_share").click(function(){
+   $(".weixin_share").hide();
+});
 {% if session %}
   addCookie('session','{{ session }}', 2);
 {% endif %}

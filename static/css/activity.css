@@ -32,6 +32,7 @@ ul li{list-style:none;font-size:10px;color:#401512;margin-top:5px;}
 .get_money{left:0px;top:120px;width:100%;font-size:73px;color:#f33a2c;font-family:helvetica;}
 .get_share_button{height:36px;width:180px;top:284px;left:70px;}
 .get_download{top:330px;width:100%;text-align:center;font-size:11px;}
+.get_download a{color:#ffcd81}
 .get_download_color{color:#ffcd81;}
 .get_pic_section{height:351px;width:320px;}
 .get_pic{height:351px;width:320px;}
