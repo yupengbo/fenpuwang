@@ -105,7 +105,7 @@ wx.config({
 
 wx.ready(function(){
   wx.onMenuShareTimeline({
-    title: '{{ nickName }}给你发红包啦，快来领~', // 分享标题
+    title: '{{ shareUserName }}给你发红包啦，快来领~', // 分享标题
     link: '{{ share_uri }}', // 分享链接
     imgUrl: '{{ base_uri }}{% static "images/bonus_img.jpg" %}', // 分享图标
     success: function () { 
