@@ -1,7 +1,7 @@
 {% extends "base_no_nav.html" %}
 
-{% block keywords %} 春节红包发！发！发！ -粉扑网 {% endblock %}
-{% block description %} 分享内容换取红包 -粉扑网 {% endblock %}
+{% block keywords %} 春节红包发！发！发！ {% endblock %}
+{% block description %} 分享内容换取红包  {% endblock %}
 {% block title %} 春节红包发！发！发！ {% endblock %}
 {% block script %}
     {% load static %}
@@ -17,7 +17,7 @@
      <img src="{% static "images/bonus_share_arrow.png" %}" class="weixin_pic">
   </div>
   <div class="weixin_character_section">
-      <div class="float_r weixin_character">点击分享到朋友圈</div>
+      <div class="float_r weixin_character">点击分享给好友</div>
   </div>
 </div>
 <div id='share_bonus' class="pad_t_tn{% if view != "share_bonus" %} hidden{% endif %}">                                        <!--发红包-->
@@ -57,9 +57,10 @@
        <ul>
          <li>①&nbsp;每人默认可领取一次；</li>
          <li>②&nbsp;分享后可额外领取一次；</li>
-         <li>③&nbsp;护肤基金可提现；</li>
-         <li>④&nbsp;提现时须使用获得收益的微信账号登陆粉扑；</li>
-         <li>⑤&nbsp;本活动的最终解释权归粉扑所有。</li>
+         <li>③&nbsp;红包可提现；</li>
+         <li>④&nbsp;提现时须使用获得收益的微信账号登录粉扑；</li>
+         <li>⑤&nbsp;本活动真实有效，红包客服QQ；1121919411；</li>
+         <li>⑥&nbsp;本活动的最终解释权归粉扑所有。</li>
        </ul> 
    </div>
   </div>
@@ -80,7 +81,7 @@
             <div class="float_l total_block"></div>
             <div class="float_l total_extract">&nbsp;提现方式</div>
          </div>
-         <div class="total_step">下载 "粉扑" —— 我 —— 设置 —— 我的收益</div>
+         <div class="total_step">下载 "粉扑" —— 我 —— 设置 —— 我的收益<br/>本活动真实有效，红包客服QQ；1121919411<br/>本活动的最终解释权归粉扑所有。</div>
      </div>
    </div>
 </div>
@@ -104,7 +105,7 @@ wx.config({
 
 wx.ready(function(){
   wx.onMenuShareTimeline({
-    title: '红包快来领~【粉扑红包】', // 分享标题
+    title: '{{ nickName }}给你发红包啦，快来领~', // 分享标题
     link: '{{ share_uri }}', // 分享链接
     imgUrl: '{{ base_uri }}{% static "images/bonus_img.jpg" %}', // 分享图标
     success: function () { 
@@ -115,7 +116,7 @@ wx.ready(function(){
   });
 
   wx.onMenuShareAppMessage({
-    title: '红包快来领~【粉扑红包】', // 分享标题
+    title: '{{ nickName }}给你发红包啦，快来领~', // 分享标题
     desc: '粉扑红包可提现，快来领取吧', // 分享描述
     link: '{{ share_uri }}', // 分享链接
     imgUrl: '{{ base_uri }}{% static "images/bonus_img.jpg" %}', // 分享图标

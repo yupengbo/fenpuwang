@@ -31,7 +31,7 @@ function bonus_opend(fee){
   }else{
     $("#opened").show();
   }
-  change_tip();
+  change_tip(fee);
 }
 function activity_shared(fee){
   if (share_fee==0){
@@ -40,12 +40,12 @@ function activity_shared(fee){
   $("#share_bonus").hide();
   $("#opened").hide();
   $("#view_result").show();
-  change_tip();
+  change_tip(fee);
 }
-function change_tip(){
+function change_tip(fee){
    var total_fee = share_fee + bonus_fee;
    $(".get_money").html("¥" + bonus_fee);
-   $(".total_money").html(total_fee);
+   $(".total_money").html(fee);
    var bonus_num = '一';
    if(share_fee>0 && bonus_fee>0){
       bonus_num = "两";
