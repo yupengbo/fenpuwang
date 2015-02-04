@@ -95,6 +95,9 @@ def activity(request, activity_id):
     meta_data['share_activity_fee'] = user_activity_info.get("shareActivity")
     meta_data['bonus_fee'] = user_activity_info.get("bonus")
     meta_data['nickName'] = user_activity_info.get("nickName")
+    meta_data['shareUserName'] = user_activity_info.get("shareUserName")
+    if not meta_data.get('shareUserName'):
+       meta_data['shareUserName'] = '粉扑'
     if not meta_data.get('nickName'):
        meta_data['nickName'] = '粉扑'
     if not meta_data.get('avatarURL'):

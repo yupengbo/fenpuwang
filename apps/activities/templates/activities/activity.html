@@ -22,7 +22,7 @@
 </div>
 <div id='share_bonus' class="pad_t_tn{% if view != "share_bonus" %} hidden{% endif %}">                                        <!--发红包-->
    <div class="center">
-       <img src="{% static "images/send_bonus.png" %}" class="send_pic">
+       <a href="javascript:void(0);" onclick='to_share();return false;' ><img src="{% static "images/send_bonus.png" %}" class="send_pic"></a>
    </div>
    <div class="marg_t_ft center">
        <a href="javascript:void(0);" onclick='to_share();return false;' ><img src="{% static "images/send_bonus_button.png" %}" class="send_button"></a>
@@ -116,7 +116,7 @@ wx.ready(function(){
   });
 
   wx.onMenuShareAppMessage({
-    title: '{{ nickName }}给你发红包啦，快来领~', // 分享标题
+    title: '{{ shareUserName }}给你发红包啦，快来领~', // 分享标题
     desc: '粉扑红包可提现，快来领取吧', // 分享描述
     link: '{{ share_uri }}', // 分享链接
     imgUrl: '{{ base_uri }}{% static "images/bonus_img.jpg" %}', // 分享图标
