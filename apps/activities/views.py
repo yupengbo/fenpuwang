@@ -52,12 +52,13 @@ def activity(request, activity_id):
     view_uid = get_view_uid(request)
     request_from = get_request_from(request)
     base_uri = weixin_utils.get_base_uri(request)
-    self_uri = reverse("activities:activity",kwargs={'activity_id': activity_id})
+    path_uri = reverse("activities:activity",kwargs={'activity_id': activity_id})
     query_str = request.META['QUERY_STRING']
     if query_str and len(query_str)>0:
        query_str = "?" + query_str
     else:
        query_str = ''
+    share_uri = base_uri + path_uri 
     self_uri = share_uri + query_str
     
     authuri = weixin_utils.build_auth_uri(self_uri)
@@ -86,7 +87,7 @@ def activity(request, activity_id):
     user_uid = user_activity_info.get("uID")
     if not user_uid:
         user_uid = 0
-    share_uri = base_uri + self_uri + "?fromuid=" + user_uid
+    share_uri = base_uri + path_uri + "?fromuid=" + str(user_uid)
 
     meta_data = get_sign_info(request, ticket, self_uri)
     meta_data['session'] = session
