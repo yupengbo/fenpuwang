@@ -114,6 +114,11 @@ def activity(request, activity_id):
             meta_data['view'] = 'open_bonus'
         else:
             meta_data['view'] = 'opened'
+
+    bonus_num = "两"
+    if meta_data.get('bonus_fee') == 0 or meta_data.get('share_activity_fee') == 0:
+        bonus_num = "一"
+
     meta_data['base_uri'] = base_uri
     meta_data['request_from'] = request_from 
     meta_data['activity_id'] = activity_id
