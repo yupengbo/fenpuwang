@@ -120,6 +120,7 @@ def activity(request, activity_id):
         bonus_num = "一"
 
     meta_data['base_uri'] = base_uri
+    meta_data['bonus_num'] = bonus_num
     meta_data['request_from'] = request_from 
     meta_data['activity_id'] = activity_id
     meta_data['share_uri'] = share_uri
