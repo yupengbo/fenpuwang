@@ -16,7 +16,7 @@ ul li{list-style:none;font-size:10px;color:#401512;margin-top:5px;}
 .marg_t_on{margin-top:19px;}
 .height_os{height:16px;}
 .width_ttz{width:320px;}
-.weixin_share{z-index:9999;height:100%;width:100%;background-color:#000000;filter:alpha(opacity:60);opacity:0.6;-moz-opacity:0.6;-khtml-opacity:0.6}
+.weixin_share{z-index:9999;height:100%;width:100%;background-color:#000000;filter:alpha(opacity:60);opacity:0.6;-moz-opacity:0.6;-khtml-opacity:0.6;}
 .weixin_pic_section{height:34px;margin-top:5px;}
 .weixin_pic{height:34px;width:27px;margin-right:47px;float:right;}
 .weixin_character_section{height:18px;margin-top:7px;}
