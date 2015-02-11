@@ -17,5 +17,8 @@ urlpatterns = patterns('',
     url(r'^download/$', views.download, name='download'),
     url(r'^activities/', include('apps.activities.urls', namespace='activities')),
     url(r'^activity/',include('apps.activity.urls',namespace='activity')),
+    url(r'^shopping/',include('apps.shopping.urls',namespace='shopping')),
+    url(r'^orders/',include('apps.orders.urls',namespace='orders')),
+    url(r'^order/',include('apps.order.urls',namespace='order')),
 )
 

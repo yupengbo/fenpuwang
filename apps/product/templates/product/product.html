@@ -10,31 +10,57 @@
 
 {% block main_content %}
 <!--产品信息-->
-<div class="product_body">
+<div class="product_body relative">
   <div class="product_pics t_c">
     {% for pic in product.product.pics %}
 	  {% if forloop.first %}
-        <img src="{{ pic.org }}"/>
+        <img src="{{ pic.org }}" class="product_pics_img"/>
 	  {% endif %}
     {% endfor %}
     <!--img src="{{ product.product.pics }}"/-->
   </div>
+  <div style="position:absolute;width:100%;left:0px;top:15px;">
+      <div style="float:right;height:39px;width:48px;position:relative;">
+           <img src="../../static/images/btn_products_detail_shopping_cart.png" width="48px" height="39px">
+           <div style="position:absolute;width:100%;left:0px;top:3px;">
+                 <div style="text-align:center;border-radius:6px;;line-height:12px;color:white;font-size:8px;height:12px;width:20px;background-color:rgb(0,183,191);float:right;margin-right:5px;">12</div>
+           </div>
+      </div>
+  </div>
+
   <div class="product_info">
     <div class="product_detail_name fcb1 f17">{{ product.product.name}}</div>  
-    <div class="product_detail_size fcg1 f15">
-      <div class="product_price fl"><span class="fchl">¥{{ product.product.price }}</span>/{{ product.product.size }}</div>
-    </div>  
-    <div class="product_detail_comment">
-      <div class="product_like fcg1 f13 fr"><span class="fchl">{{ product.product.likeNum }}人</span>认为好用</div>
-      <div class="product_used fcg1 f13 fr"><span class="fchl">{{ product.product.usedNum }}人</span>用过</div>
-	  <div class='clear'></div>
-    </div>  
+    <div style="height:15px;margin-top:12px;padding-bottom:50px;line-height:15px;position:relative;">
+      <div style="float:left;"><span style="font-size:16px;">¥{{ product.product.price }}</span><span style="color:rgb(153,153,153);font-size:13px;">/{{ product.product.size }}</span></div>
+      <img src="../../static/images/img_product_detail_price@2x.png" height="15px" width="30px" style="float:left;margin-left:9px;">
+      <div style="position:absolute;width:100%;left:0px;bottom:15px;">
+           <div style="height:44px;float:right;font-size:12px;color:#999999;line-height:77px;overflow:hidden;margin-left:8px;">{{ product.product.likeNum}}</div>
+           <img height="44px" width="44px" src="../../static/images/btn_product_collected_pressed.png" style="float:right;border-radius:50%;">
+      </div>
+    </div> 
   </div>
   <div class="sp_line"></div>
   <div class="product_related">
     <a href='{% url 'product:product_official' product.product.productId %}'><div class="btn fl"><div class="btn_content fcg1 f13 bg"><div class="porduct_jeshao_img fl"></div>官方介绍</div></div></a>
     <a href='{% url 'products:query_by_category' 1 product.product.category.categoryId %}'><div class="btn fl"><div class="btn_content fcg1 f13 bg"><div class="porduct_category_img fl"></div>同类别产品</div></div></a>
     <a href='{% url 'products:query_by_category' 3 product.product.brand.brandId %}'><div class="btn fl"><div class="btn_content fcg1 f13 bg"><div class="porduct_brand_img fl"></div>同品牌产品</div></div></a>
+  </div>
+  <div class="sp_line"></div>
+  <div style="padding-top:14px;padding-bottom:14px;position:relative;">
+    <div style="color:#FF5346;font-size:22px;">¥799.0</div>
+    <div style="margin-top:11px;font-size:12px;color:#999999;">卖家：面膜卖出银河系</div>
+    <div style="position:absolute;width:100%;left:0px;bottom:19px;height:30px;">
+        <div style="text-align:center;line-height:30px;font-size:12px;height:30px;width:85px;color:#FFFFFF;background-color:rgb(255,83,70);float:right;border-radius:7%;">加到购物车</div>
+    </div>
+  </div>
+  <div class="sp_line"></div>
+  <div style="padding-top:17px;padding-bottom:17px;position:relative;height:15px;">
+    <img src="../../static/images/img_product_detail_q_note@2x.png" style="float:left;height:15px;width:15px;">
+    <div style="color:#CB6358;float:left;font-size:13px;margin-left:6px;">粉扑如何保证正品？</div>
+    <div style="position:absolute;width:100%;left:0px;bottom:16px;height:17px;">
+        <div style="color:#666666;float:right;margin-left:6px;font-size:12px;">联系客服</div>
+        <img src="../../static/images/btn_product_detail_feedback_normal@2x.png" style="height:17px;width:19px;float:right;">
+    </div>
   </div>
 </div>
 

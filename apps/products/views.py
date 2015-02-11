@@ -15,6 +15,37 @@ def products_index(request):
     data = static_data.get_products_index_data() 
     meta_data = response_data_utils.pack_data(request, {'data': data ,'nav':'products'})
     return render(request, 'products/products_index.html', meta_data)
+
+def products_recommend(request):                                                        #kim 
+    products_promote_result = api_list.get_promote_product_list(request)
+    products_feature_result = api_list.get_feature_product_list(request)
+    if not products_promote_result or products_promote_result['error']==1:
+        return response_data_utils.error_response(request, "主推产品不存在！",__name__, products_promote_result)
+    if not products_feature_result or products_feature_result['error']!=0:
+        return response_data_utils.error_response(request,"推荐产品不存在",__name__,products_feature_result)
+    try: 
+        process_products_promote(products_promote_result)
+        process_products_feature(products_feature_result)
+        meta_data = {"products_promote_list":products_promote_result['productList'],"products_feature_list":products_feature_result['productList']}
+        return render(request,'products/products_recommend.html',meta_data)
+    except Exception,e:
+        print e
+        return response_data_utils.error_response(request, "推荐产品不存在！",__name__, e)
+
+def process_products_promote(data):                                                 #kim
+    for product in data['productList']:
+        pics = product.get('pics')
+        if pics:
+            product['org'] = pics[0]['org']
+
+def process_products_feature(data):                                                  #kim                                                  
+    for product in data['productList']:
+        pics = product.get('pics')
+        if pics and len(pics)>0:
+            product['thumb_s'] = pics[0]['thumb-s']
+        if not product.get("name_decoration"):
+            product["name_decoration"]=""
+
 # Create your views here.
 def productlist_by_category(request, type=0,category_id=0,order=5,filter=0,mark=0):
     is_ajax = request.is_ajax()

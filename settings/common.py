@@ -39,6 +39,8 @@ INSTALLED_APPS = (
                   'apps.ucenter',
                   'apps.activities',
                   'apps.activity',
+                  'apps.orders',
+                  'apps.order',
                   )
 
 MIDDLEWARE_CLASSES = (
