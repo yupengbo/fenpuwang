@@ -40,6 +40,8 @@ INSTALLED_APPS = (
                   'apps.activities',
                   'apps.activity',
                   'apps.cart',
+                  'apps.orders',
+                  'apps.order',
                   )
 
 MIDDLEWARE_CLASSES = (

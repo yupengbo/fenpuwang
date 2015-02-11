@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block keywords %} 美妆库 {% endblock %}
+{% block description %} 美妆库-粉扑网 {% endblock %}
+{% block title %} 美妆库 {% endblock %}
+{% block script %}
+  {% load staticfiles %}
+  <link rel="stylesheet" href="{% static "css/products.css" %}">
+  <script type="text/javascript" src="{% static "js/product_list.js" %}"></script>
+{% endblock %}
+{% block main_content %}
+<div style="height:16px;margin-top:10px;position:relative;">
+  <div style="float:left;height:16px;width:4px;background-color:red;"></div>
+  <div style="float:left;margin-left:9px;color:#FF5346;font-size:12px;">今日推荐</div>
+  <div style="float:left;margin-left:5px;font-size:10px;color:#999999;line-height:150%;">每日10点&nbsp;&nbsp;准时上新</div>
+  <div style="position:absolute;laft:0px;top:0px;width:100%;">
+     <img src="../../static/images/btn_products_category.png" height="39px" width="48px" style="float:right;filter:alpha(opacity=80);opacity:0.8;-moz-opacity:0.8;-khtml-opacity:0.8;">
+  </div>
+</div>
+{% for products_promote in products_promote_list %}
+<div style="padding-left:12px;padding-right:12px;padding-top:4px;padding-bottom:18px;">
+  <img src="{{ products_promote.org }}"  width="100%">
+  <div style="margin-top:9px;font-weight:bold;font-size:16px;line-height:150%;color:#222222;">{{ products_promote.name_decoration }}</div>
+  <div style="color:#AAAAAA;margin-top:10px;font-size:11px;line-height:137%;">{{ products_promote.topicNum }}笔记&nbsp;&nbsp;&nbsp;{{products_promote.questionNum }}问答</div>
+  <div style="margin-top:10px;font-size:12px;color:#666666;line-height:150%;">{{ products_promote.details }}</div>
+  <div style="margin-top:18px;text-align:right;"><span style="font-size:22px;font-weight:bold;color:#444444;">¥{{ products_promote.price }}</span><span style="font-size:13px;color:#999999;">{% if products_promote.size %}/{{ products_promote.size }}{% endif %}</span></div>
+</div>
+{% endfor %}
+<div style="border:1px solid #eee;"></div>
+<div style="background-color:rgb(241, 240, 237);">
+ <div style="font-size:11px;padding-left:12px;padding-top:16px;padding-bottom:8px;color:#999999;">热门推荐</div>
+ {% for products_feature in products_feature_list %}
+ <div style="background-color:white;">
+   <div style="border:1px solid #eee;"></div>
+   <div style="padding:12px;position:relative;">
+     <img src="{{ products_feature.thumb_s }}" width="29%" style="float:left;">   
+     <div style="float:left;margin-left:12px;width:67%;">
+         <div style="size:15px;color:#222222;line-height:150%;font-weight:bold;">{{ products_feature.name_decoration }}</div>
+         <div style="margin-top:10px;color:#AAAAAA;font-size:11px;">{{ products_feature.topicNum }}笔记&nbsp;&nbsp;&nbsp;{{ products_feature.questionNum }}问答</div>
+     </div>
+     <div style="clear:both;"></div>
+     <div style="position:absolute;width:100%;left:0px;bottom:12px;">
+          <div style="text-align:right;margin-right:12px;"><span style="font-size:16px;color:#444444;">¥{{ products_feature.price }}</span><span style="font-size:11px;color:#999999;">/{{ products_feature.size }}</span></div>
+     </div>
+   </div>
+   <div style="border:1px solid #eee;"></div>
+   <div style="height:10px;background-color:rgb(241, 240, 237);"></div>
+ </div>
+ {% endfor %}
+</div>
+{% endblock %}

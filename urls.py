@@ -18,5 +18,8 @@ urlpatterns = patterns('',
     url(r'^activities/', include('apps.activities.urls', namespace='activities')),
     url(r'^activity/',include('apps.activity.urls',namespace='activity')),
     url(r'^cart/',include('apps.cart.urls',namespace='cart')),
+    url(r'^shopping/',include('apps.shopping.urls',namespace='shopping')),
+    url(r'^orders/',include('apps.orders.urls',namespace='orders')),
+    url(r'^order/',include('apps.order.urls',namespace='order')),
 )
 

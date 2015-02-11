@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#-*- coding: utf-8 -*-
 
 from django.conf import settings
 import requests
@@ -56,7 +56,7 @@ def get_question_detail(req, question_id, has_question_details, has_related_ques
 #    params = {'productId': product_id, 'hasBody': has_product_details, 'pre': pre, 'mark': mark}
 #    return get_result(req, 'getProductInfo.do', params)
 
-def get_product_info_by_id(req, product_id ):
+def get_product_info_by_id(req, product_id ):                               #产品详情页
     params = {'productId': product_id }
     build_params(req,params)
     return get_result(req, 'getProductInfoById.do', params)
@@ -117,3 +117,43 @@ def check_login(req, weixin_webchat_code):
 def user_share_log(req, sessionKey, target_id, share_type = 0, share_channel = 0 ):
     params = {'sessionKey': sessionKey, "type": share_type, "targetId": target_id, "shareChannel": share_channel}
     return get_result(req, 'userShareLog.do', params)
+
+def get_promote_product_list(req):                                                #kim
+    params = {}
+    return get_result(req,'getPromoteProductList.do',params)
+
+def get_feature_product_list(req,pre=6,mark=0):                                  #kim       
+    params = {"pre":pre,"mark":mark}
+    return get_result(req,'getFeatureProductList.do',params)
+
+def add_goods_in_cart(req,goods_id,product_id,num=1):                            #kim
+    params = {"goodsId":goods_id,"productId":product_id,"num":num}
+    return get_result(req,"addGoodsInCart.do",params)  
+  
+def delete_goods_in_cart(req,goods_id):                                          #kim
+    params = {"goodsId":goods_id}
+    return get_result(req,"deleteGoodsInCart.do",params)
+
+def get_shopping_cart(req):                                                      #kim
+    params = {}
+    return get_result(req,"getShoppingCart.do",params)
+
+def get_goods_num_in_cart(req):                                                  #kim
+    params = {}
+    return get_result(req,"getGoodsNumInCart.do",params)
+
+def update_shopping_cart(req,cart_info):                                         #kim
+    params = {"cartInfo":cart_info} 
+    return get_result(req,"updateShoppingCart.do",params)   
+
+def list_my_product_order(req,mark):                                                 #kim
+    params = {"mark":mark}
+    return get_result(req,"listMyProductOrder.do",params)
+   
+def get_product_order(req,order_id):                                                      #kim
+    params = {"orderId":order_id}
+    return get_result(req,"getProductOrder.do",params)    
+
+
+
+ 
