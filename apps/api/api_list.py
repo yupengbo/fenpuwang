@@ -146,12 +146,12 @@ def update_shopping_cart(req,cart_info):                                        
     params = {"cartInfo":cart_info} 
     return get_result(req,"updateShoppingCart.do",params)   
 
-def list_my_product_order(req,mark):                                                 #kim
-    params = {"mark":mark}
+def list_my_product_order(req,mark=0):                                             #kim
+    params = {"mark":mark,"sessionKey":"10E5C27B3AA37718CFF61A6CA32135196E4636F6500251D3801C302B9F68B58F"}
     return get_result(req,"listMyProductOrder.do",params)
    
-def get_product_order(req,order_id):                                                      #kim
-    params = {"orderId":order_id}
+def get_product_order(req,order_id):                                             #kim
+    params = {"orderId":order_id,"sessionKey":"10E5C27B3AA37718CFF61A6CA32135196E4636F6500251D3801C302B9F68B58F"}
     return get_result(req,"getProductOrder.do",params)    
 
 
