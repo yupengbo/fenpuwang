@@ -3,6 +3,7 @@ import string
 import json
 import requests
 from django.http import HttpResponseRedirect
+from django.shortcuts import render
 from urllib import urlencode
 from apps.api import api_list
 
@@ -16,6 +17,9 @@ def url_encode(uri):
    return uri[1:]
 
 def get_base_uri(request):
+   return_uri = request.META.get("HTTP_HOST")
+   if return_uri:
+      return "http://"+return_uri
    return base_uri
 
  
@@ -25,7 +29,7 @@ def build_auth_uri(redirect_uri):
     auth_uri = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s&response_type=code&scope=snsapi_userinfo&state=123#wechat_redirect' % (appid, redirect_uri)
     return auth_uri
 
-def get_session_key(request):
+def get_user_info(request):
    session = None
    session = request.COOKIES.get("session")
    if not session:
@@ -42,20 +46,39 @@ def get_session_key(request):
 
    authuri = build_auth_uri(self_uri)
 
+   code = None
    if not session:
       code = request.REQUEST.get("code")
 
-   user_info = {}
-
-   if code:
-      user_info = api_list.check_login(request,code)
-      if user_info:
-         user_info=user_info.get("userInfo")
-      if user_info:
-         session = user_info.get("sessionKey")
-
+   user_info = get_api_user_info(request, session, code) 
+   session = user_info.get("session")
    if not session:
-       return HttpResponseRedirect(authuri)
+       return {'redirect':authuri}
+   return user_info
 
-   if session:
-      user_info = api_list.get_user_info(request, session)
+def get_api_user_info(request, sessionKey, code):
+  user_info = {}
+  session = sessionKey
+  if sessionKey:
+     user_info = api_list.get_user_info(request, sessionKey)
+  elif code:
+     print "===>" + code
+     user_info = api_list.check_login(request,code)
+
+  if not user_info:
+     return {}
+
+  user_info=user_info.get("userInfo")
+  if user_info:
+      if user_info.get("sessionKey"):
+          session = user_info.get("sessionKey")
+      user_info["sessionKey"] = None
+      user_info["session"] = session
+      return user_info
+  return {}
+
+def fp_render(request, template_name,context,sessionKey):
+   response  = render(request, template_name, context)
+   if sessionKey:
+      response.set_cookie('session',sessionKey)
+   return response

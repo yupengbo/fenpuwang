@@ -146,8 +146,8 @@ def get_goods_num_in_cart(req):                                                 
     params = {}
     return get_result(req,"getGoodsNumInCart.do",params)
 
-def update_shopping_cart(req,cart_info):                                         #kim
-    params = {"cartInfo":cart_info} 
+def update_shopping_cart(req, sessionKey, cart_info):                                         #kim
+    params = {'sessionKey': sessionKey, "cartInfo":cart_info} 
     return get_result(req,"updateShoppingCart.do",params)   
 
 def list_my_product_order(req,mark):                                                 #kim
