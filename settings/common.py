@@ -38,9 +38,7 @@ INSTALLED_APPS = (
                   'apps.topic',
                   'apps.ucenter',
                   'apps.activities',
-                  'apps.activity',
                   'apps.cart',
-                  'apps.orders',
                   'apps.order',
                   )
 
