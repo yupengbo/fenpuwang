@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import codecs
+import md5
 import string 
 import re
 from django.core.urlresolvers import reverse
@@ -65,3 +67,7 @@ def replace_link(text):                     #kim
             return text
     else:
         return ""
+def get_md5(to_md5_str):
+    m = md5.new()
+    m.update(to_md5_str)
+    return m.hexdigest()
