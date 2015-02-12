@@ -6,7 +6,7 @@
 	 <script type="text/javascript" src="{% static "js/cart.js"%}"></script>
 {% endblock %}
 {% block main_content %}
-<form  id='order_form' action='{% url 'cart:set_contact' %}' method='POST'>
+<form  id='order_form' action='{% url 'cart:order_pay %}' method='POST'>
 <div class='order_title'>
   <div class='bg transport_icon'></div>
   收货信息

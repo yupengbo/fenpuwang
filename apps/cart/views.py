@@ -11,6 +11,9 @@ import requests
 import json
 import cgi
 import logging
+import time
+import codecs
+import md5
 
 logger = logging.getLogger('django')
 def process_cartinfo_data(cart_info_data):
@@ -55,3 +58,50 @@ def set_contact(request):
     print result
     meta_data = {'cartInfo': json.dumps(result)}
     return render(request,'cart/setcontact.html',meta_data)
+
+# 传入参数:中文需要gbk编码
+# 订单id
+#
+#
+def order_pay(request) :
+    agent_bill_id = request.REQUEST.get("order_id") 
+    pay_amt = request.REQUEST.get("total_fee") 
+    pay_code = request.REQUEST.get("bank_type") 
+    goods_num = request.REQUEST.get("goods_num") 
+    user_ip = "114_243_214_122"
+
+    version = "1"
+    agent_id = "1956513"  #汇付宝商户id
+    key = "1A5D243267734BD68DB904EA" #商户秘钥
+    agent_bill_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
+    pay_type = "20" 
+    notify_url = "http://www.baidu.com"
+    return_url = "http://www.baidu.com"
+    goods_name = "0000"
+    goods_note = ""
+    remark = ""
+
+    # 计算md5签名
+    sign_str = ""
+    sign_str += 'version=' + version;
+    sign_str += '&agent_id=' + agent_id;
+    sign_str += '&agent_bill_id=' + agent_bill_id;
+    sign_str += '&agent_bill_time=' + agent_bill_time;
+    sign_str += '&pay_type=' + pay_type;
+    sign_str += '&pay_amt=' + pay_amt;
+    sign_str += '&notify_url=' + notify_url;
+    sign_str += '&return_url=' + return_url;
+    sign_str += '&user_ip=' + user_ip;
+    sign_str += '&key=' + key;
+    print sign_str
+    print agent_bill_time
+    
+    sign = string_utils.get_md5(sign_str)
+    meta_data = {'version':version, 'agent_id':agent_id, 'agent_bill_id':agent_bill_id,
+                  'agent_bill_time':agent_bill_time, 'pay_type':pay_type, 'pay_code':pay_code,
+                  'pay_amt':pay_amt, 'notify_url':notify_url, 'return_url':return_url,
+                  'user_ip':user_ip, 'goods_name':goods_name, 'goods_num':goods_num,
+                  'goods_note':goods_note, "remark":remark, "sign":sign}
+
+    return render(request, 'cart/order_pay.html', meta_data)
+
