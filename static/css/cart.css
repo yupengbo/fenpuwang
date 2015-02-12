@@ -1,0 +1,32 @@
+.cart_list{}
+.cart_list li{border-bottom:1px #e4e4e4 solid;height:80px;padding:12px;}
+.total_info{border-bottom:1px #e4e4e4 solid;height:50px;line-height:50px;padding:0px 12px;}
+.total_info .total_num,.total_info .fee{color:#aaa;font-size:12px;}
+.total_info .total_num em {color:#222;}
+.total_info .fee em{color:#ff5346;font-size:22px;padding-left:12px;}
+.transport_fee{border-bottom:1px #e4e4e4 solid;padding:0px 12px;height:50px;line-height:50px;}
+.transport_fee .tip{color:#222;font-size:13px;}
+.transport_fee .fee{color:#aaa;font-size:12px;}
+.transport_fee .fee em{color:#222;padding-left:12px;}
+.invalid_tip{color:#aaa;font-size:12px;border-bottom:1px #e4e4e4 solid;height:30px;line-height:30px;padding:20px 12px 0;}
+.invalid{}
+.total_fee_box{border-top:1px #e4e4e4 solid;background-color:rgba(248,245,240,.96);height:65px;line-height:65px;width:100%;position:fixed;bottom:0px;left:0px;z-index:10000;padding:0px 12px;}
+.total_fee_box .total_fee{color:#aaa;font-size:12px;}
+.total_fee_box .total_fee em{color:#ff5346;font-size:22px;padding-left:22px;line-height:33px;}
+.total_fee_box .submitOrder{border:None;width:77px;height:38px;background-color:#ff8263;color:#ffccb2;;font-size:20px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;margin:13px 30px 0 0;}
+.selector_box{padding-top:29px;width:22px;height:41px;}
+.selector_box .selector{background-image:url('../images/btn_shopping_cart_uncheck@2x.png');width:22px;height:22px;background-size:22px 22px;}
+.selector_box .selector.on{background-image:url('../images/btn_shopping_cart_checked@2x.png');}
+.product_img{background-size: 80px;width:80px; height:80px;border:1px #eee solid;margin-left:12px;}
+.cart_list li .con{height:80px;padding-left:12px;width:56%;min-width:168px;}
+.cart_list li .con h2{font-size:13px;color:#222;line-height:131%;}
+.cart_list li .con .goods_size{font-size:13px;color:#ff5346;padding:4px 0;}
+.cart_list li .con .goods_size em{color:#aaa;}
+.cart_list li .controll_box{bottom:0px;left:12px;width:100%;}
+.controll_box .num_box{width:110px;height:22px;border:1px #eee solid;}
+.controll_box .minus{background-image:url('../images/btn_shopping_cart_minus_normal@2x.png');width:30px;height:22px;background-size:30px 22px;top:0px;left:0px;z-index:2;}
+.controll_box .plus{background-image:url('../images/btn_shopping_cart_plus_normal@2x.png');width:30px;height:22px;background-size:30px 22px;top:0px;right:0px;z-index:2;}
+.controll_box .num_input{border:None;text-align:center;z-index:1;width:110px;font-size:12px;color:#444;line-height:22px;height:22px;}
+.controll_box .del_btn{background-image:url('../images/btn_s_cart_delete_normal@2x.png');width:22px;height:22px;background-size:22px 22px;margin-left:40px;}
+.invalid .selector_box{visibility:hidden;}
+.invalid .num_box{visibility:hidden;}

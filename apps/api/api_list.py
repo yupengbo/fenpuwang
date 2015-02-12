@@ -134,8 +134,8 @@ def delete_goods_in_cart(req,goods_id):                                         
     params = {"goodsId":goods_id}
     return get_result(req,"deleteGoodsInCart.do",params)
 
-def get_shopping_cart(req):                                                      #kim
-    params = {}
+def get_shopping_cart(req, sessionKey):                                                      #kim
+    params = {'sessionKey': sessionKey }
     return get_result(req,"getShoppingCart.do",params)
 
 def get_goods_num_in_cart(req):                                                  #kim
