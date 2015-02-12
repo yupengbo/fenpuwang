@@ -1,0 +1,21 @@
+<li>
+<div class='fl selector_box'>
+<div class='bg selector on'></div>
+</div>
+<div class='fl bg product_img' style="background-image:url('{{ cart_info.product.thumb_s }}');"></div>
+ <input type='hidden' name='goods_id' value='{{ cart_info.goods.goodsId }}'>
+ <input type='hidden' class='price_input'  name='goods_price' value='{{ cart_info.goods.goodsPrice }}'>
+<div class='fl con relative'>
+ <h2>{{ cart_info.product.name }}</h2>
+ <span class='goods_size block'>￥{{ cart_info.goods.goodsPrice }}<em>/{{ cart_info.goods.size }}</em></span>
+ <div class='controll_box absolute'>
+   <div class='num_box relative fl'>
+      <div class='bg absolute minus'></div>
+	  <div class='bg absolute plus'></div>
+      <input class='num_input absolute' maxlength='4' type='text' name='num' value='{{ cart_info.num }}'>
+   </div>
+   <div class='fl del_btn'></div>
+ </div>
+</div>
+<div class='clear'></div>
+</li>
