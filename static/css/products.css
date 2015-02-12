@@ -16,3 +16,39 @@
 .filter_list li{position:relative;}
 .filter_list_box,.filter_flow_box{height:69px;background-color:#fff;width:100%;}
 .product_sub_name{text-overflow:ellipsis;white-space:nowrap;overflow:hidden;display:block;}
+
+.products_banner{height:16px;margin-top:10px;}
+.products_banner_block{height:16px;width:4px;background-color:red;}
+.products_banner_theme{margin-left:9px;color:#FF5346;font-size:12px;}
+.products_banner_time{margin-left:5px;font-size:10px;color:#999999;line-height:150%;}
+.products_cb{left:0px;top:0px;width:100%;}
+.products_category_btn{height:39px;width:48px;filter:alpha(opacity=80);opacity:0.8;-moz-opacity:0.8;-khtml-opacity:0.8;}
+.promote_section{padding-left:12px;padding-right:12px;padding-top:4px;padding-bottom:18px;}
+.promote_img{width:100%;}
+.promote_name{margin-top:9px;font-weight:bold;font-size:16px;line-height:150%;color:#222222;}
+.promote_topic_question{color:#AAAAAA;margin-top:10px;font-size:11px;line-height:137%;}
+.promote_content{margin-top:10px;font-size:12px;color:#666666;line-height:150%;}
+.promote_price_size{margin-top:18px;text-align:right;}
+.promote_price{font-size:22px;font-weight:bold;color:#444444;}
+.promote_size{font-size:13px;color:#999999;}
+.products_line{border:1px solid #eee;}
+.feature_background{background-color:rgb(241, 240, 237);}
+.feature_title{font-size:11px;padding-left:12px;padding-top:16px;padding-bottom:8px;color:#999999;}
+.feature_info_background{background-color:white;}
+.feature_info{padding:12px;}
+.feature_img{width:100px}
+.feature_ntq{margin-left:12px;width:65%;}
+.feature_name{size:15px;color:#222222;line-height:150%;font-weight:bold;}
+.feature_topic_question{margin-top:10px;color:#AAAAAA;font-size:11px;}
+.feature_ps{width:100%;left:0px;bottom:12px;}
+.feature_price_size{text-align:right;margin-right:12px;}
+.feature_price{font-size:16px;color:#444444;}
+.feature_size{font-size:11px;color:#999999;}
+.feature_color_block{height:10px;background-color:rgb(241, 240, 237);}
+.clear{clear:both;}
+.float_l{float:left;}
+.float_r{float:right;}
+.absolue{position:absolute;}
+.relative{position:relative;}
+
+

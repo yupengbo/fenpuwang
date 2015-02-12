@@ -5,58 +5,80 @@
 {% block title %} {{ question.question.normal_title }} {% endblock %}
 {% block script %}
      {% load static %}
-     <link rel="stylesheet" href="{% static "css/question.css" %}">
+     <link rel="stylesheet" href="{% static "css/order.css" %}">
 {% endblock %}
 {% block main_content %}
-<div style="background-color:rgb(249, 248, 245);height:100%;">
-<div style="height:36px;background-color:#5F1309;position:relative;padding-top:14px;padding-bottom:14px;">
-  <img src="../static/images/img_order_detail_deliery@2x.png" height="30px" width="30px" style="float:left;margin-top:3px;">
-  <div style="float:left;">
-     <div style="font-size:16px;color:#FFFFFF;height:16px;line-height:16px;">已发货</div>
-     <div style="font-size:11px;color:#FFFFFF;margin-top:9px;height:11px;line-height:11px;">顺丰速运 运单单号：397500825434030394</div>
+<div class="order_background">
+<div class="relative order_express_info">
+  {% ifequal order.productOrder.status 3 %}
+  <img src="{% static "images/img_order_detail_deliery@2x.png" %}" class="float_l order_express_btn">
+  <div class="float_l">
+     <div class="order_express_status">已发货</div>
+     <div class="order_express_num">{{ order.productOrder.transportNum }}</div>
   </div>
-  <div style="position:absolute;width:100%;top:14px;left:0px;height:33px;">
-       <div style="float:right;text-align:center;margin-right:17px;">
-          <img src="../static/images/btn_order_detail_feedback_normal@2x.png" width="19px" height="17px;">
-          <div style="font-size:11px;color:#FFFFFF;margin-top:5px;height:11px;line-height:11px;">联系客服</div>
+  {% endifequal %}
+  {% ifequal order.productOrder.status 0 %}
+   <img src="{% static "images/img_order_detail_to_paid@2x.png" %}" class="float_l order_express_btn">
+   <div class="float_l">
+      <div class="order_express_other_status">待付款</div>
+  </div>   
+  {% endifequal %}
+  {% ifequal order.productOrder.status 2 %}
+  <img src="{% static "images/img_order_detail_undeliery@2x.png" %}" class="float_l order_express_btn">
+  <div class="float_l">
+      <div class="order_express_other_status">待发货</div>
+  </div>
+  {% endifequal %}
+  {% ifequal order.productOrder.status 9999 %}
+  <img src="{% static "images/img_order_detail_errror@2x.png" %}" class="float_l order_express_btn">
+  <div class="float_l">
+      <div class="order_express_other_status">订单已失效</div>
+  </div>
+  {% endifequal %}
+  <div class="absolute order_service_section">
+       <div class="float_r center marg_r_os">
+          <img src="{% static "images/btn_order_detail_feedback_normal@2x.png" %}" class="order_service_btn">
+          <div class="order_service_character">联系客服</div>
        </div>
   </div>
 </div>
-<div style="border:solid 1px #eee;margin-top:10px;"></div>
-<div style="padding:12px;position:relative;background-color:#FFFFFF;">
-    <div style="font-size:16px;height:16px;line-height:16px;">收货人：张无敌</div>
-    <div style="position:absolute;width:100%;left:0px;top:12px;">
-        <div style="float:right;margin-right:12px;font-size:16px;height:16px;">13269536396</div>
+<div class="order_line marg_t_oz"></div>
+<div class="relative order_buyer_info">
+    <div class="order_buyer_name">收货人：{{ order.productOrder.userName}}</div>
+    <div class="absolute order_buyer_t">
+        <div class="float_r order_buyer_telephone">{{ order.productOrder.mobile }}</div>
     </div>
-    <div style="margin-top:14px;">
-        <div style="color:#666666;font-size:12px;float:left;">收货地址：</div>
-        <div style="color:#666666;font-size:12px;float:left;width:81%;">北京市海淀区学院路30号 北京科技大学计算机与通信学院北京市海淀区学院路30号 北京科技大学计算机与通信学院北京市海淀区学院路30号 北京科技大学计算机与通信学院北京市海淀区学院路30号 北京科技大学计算机与通信学院北京市海淀区学院路30号 北京科技大学计算机与通信学院</div>
-        <div style="clear:both;"></div>
+    <div class="marg_t_one_four">
+        <div class="float_l order_buyer_character">收货地址：</div>
+        <div class="float_l order_buyer_address">{{ order.productOrder.address}}</div>
+        <div class="clear"></div>
     </div>
 </div>
-<div style="border:solid 1px #eee;"></div>
-<div style="border:solid 1px #eee;margin-top:10px;"></div> 
-<div style="padding-left:12px;padding-right:12px;position:relative;background-color:#FFFFFF;">
-   <div style="font-size:11px;padding-top:17px;">订单编号：2849480323</div>  
-   <div style="position:absolute;width:100%;left:0px;top:17px;">
-       <div style="float:right;font-size:9px;margin-right:12px;color:#AAAAAA;">2015-2-9  18:31</div>
+<div class="order_line"></div>
+<div class="order_line marg_t_oz"></div> 
+<div class="relative order_order_goods_total">
+   <div class="order_order_num">订单编号：{{ order.productOrder.orderId}}</div>  
+   <div class="absolute order_order_t">
+       <div class="float_r order_order_time">{{ order.productOrder.creationTime }}</div>
    </div>
-   <div style="margin-top:15px;border:solid 1px #eee;"></div>
-   <div style="padding-top:12px;padding-bottom:12px;">
-     <img src="../static/images/bonus_background.jpg" style="float:left;" width="100px">
-     <div style="float:left;width:65%;margin-left:12px;">
-         <div>SK-ILL护肤精华露</div>
-         <div style="margin-top:9px;">899/250mg</div>
+   <div class="marg_t_of order_line"></div>
+   {% for product  in order.productOrder.orderInfoList %}
+   <div class="order_goods_info">
+     <img src="{{ product.goods_pic }}" class="float_l order_goods_img">
+     <div class="float_l order_goods_name_size">
+         <div class="order_goods_name">{{ product.goods_name }}</div>
+         <div class="order_goods_size">{{ product.price }}/{{ product.size }}</div>
      </div>
-     <div style="clear:both;"></div>
+     <div class="clear"></div>
    </div>    
-   <div style="border:solid 1px #eee;"></div> 
-   <div style="padding-top:15px;padding-bottom:19px;">共2件产品</div>
-   <div style="position:absolute;left:0px;bottom:19px;width:100%;">
-       <div style="float:right;margin-right:12px;">运费0&nbsp;&nbsp;&nbsp;&nbsp;合计：345</div>
+   <div class="order_line"></div> 
+   {% endfor %}
+   <div class="order_total_num color_99">共<span class="color_22">{{ order.productOrder.goodsNum }}</span>件产品</div>
+   <div class="absolute order_total_s">
+       <div class="float_r order_total_statistics color_99"><span class="order_total_freight">运费<span class="color_22">{{ order.productOrder.transportFee }}</span>&nbsp;&nbsp;&nbsp;&nbsp;合计：</span><span class="order_total_price">¥{{ order.productOrder.totalFee }}</span></div>
    </div>
 </div>
-<div style="border:solid 1px #eee;"></div>
+<div class="order_line"></div>
 </div>
 {% endblock %}
 
