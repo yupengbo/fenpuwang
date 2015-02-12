@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %} 填写收货人 {% endblock %}
+{% block script %}
+     {% load staticfiles %}
+     <link rel="stylesheet" href="{% static "css/cart.css" %}">
+	 <script type="text/javascript" src="{% static "js/cart.js"%}"></script>
+{% endblock %}
+{% block main_content %}
+<form  id='order_form' action='{% url 'cart:set_contact' %}' method='POST'>
+<div class='order_title'>
+  <div class='bg transport_icon'></div>
+  收货信息
+</div>
+<div class='line'>
+  <div class='label'>收货人</div>
+  <div class='input'><input type='text' name='contact'></div>
+</div>
+<div class='line'>
+  <div class='label'>联系电话</div>
+  <div class='input'><input type='text' name='contactPhone'></div>
+</div>
+<div class='line'>
+  <div class='label'>收货地址</div>
+  <div class='input'><input type='text' name='address'></div>
+</div>
+<input type='text' id='cartInfo' name='cartInfo' value='{{ cartInfo }}' />
+<input type='submit' value='确认支付' />
+</form>
+{% endblock %}
+

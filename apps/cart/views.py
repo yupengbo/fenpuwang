@@ -42,9 +42,16 @@ def cart_index(request):
         return response_data_utils.error_response(request,None, __name__, e)
 
 def set_contact(request):                                      
-    num = request.REQUEST.get('num')
+    num = request.REQUEST.getlist('num')
     total_num =request.REQUEST.get('total_fee')
-    goods_ids = request.REQUEST.get('goods_id')
-    print num
-    print total_num
-    print goods_ids
+    goods_ids = request.REQUEST.getlist('goods_id')
+    print request.get_host()
+    print request.get_full_path()
+    print request.META
+    print 222222222222222
+    result = []
+    for m in range(len(num)):
+        result.append({'goodsId': goods_ids[m], 'num': num[m]})
+    print result
+    meta_data = {'cartInfo': json.dumps(result)}
+    return render(request,'cart/setcontact.html',meta_data)

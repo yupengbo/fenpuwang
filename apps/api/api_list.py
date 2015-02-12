@@ -102,6 +102,10 @@ def get_user_change_info(req, sessionKey):
     params = {'sessionKey': sessionKey}
     return get_result(req, 'getUserChangeInfo.do', params)
 
+def get_user_info(req, sessionKey):
+    params = {'sessionKey': sessionKey}
+    return get_result(req, 'getUserInfo.do', params)
+
 def get_activity_info(req, sessionKey, activity_id = 0, view_uid = 0):
     params = {'sessionKey': sessionKey, 'activityId': activity_id, 'uID': view_uid}
     return get_result(req, 'getActivityInfo.do', params)
