@@ -23,7 +23,7 @@
       <div class="float_r relative product_cart">
            <img src="{% static "images/btn_products_detail_shopping_cart.png" %}" class="product_cart_btn">
            <div class="absolute product_cn">
-                 <div class="center float_r product_cart_num">12</div>
+                 <div class="center float_r product_cart_num">{{ product.cartNum }}</div>
            </div>
       </div>
   </div>
@@ -51,7 +51,7 @@
     <div><span class="product_fenpu_price">¥{{ goods.goodsPrice }}</span><span class="product_fenpu_size">&nbsp;/{{ goods.size }}</span></div>
     <div class="product_fenpu_seller">卖家：{{ goods.seller_name }}</div>
     <div class="absolute product_in_cart_b">
-        <div class="center float_r product_in_cart_btn">加到购物车</div>
+        <div class="center float_r product_in_cart_btn" get_goods_id="{{ goods.id }}">加到购物车</div>
     </div>
   </div>
   <div class="sp_line"></div>
@@ -84,6 +84,31 @@ $(".datalist").loaddata({
 });
 show_right_info();
 
+$(document).ready(function(){
+  $(".product_in_cart_btn").click({
+      function(){
+        var goods_id = $(this).attr("get_goods_id");
+        $.get_data(
+         '{%  url 'product:add_in_cart' %}',
+         "goodsId="+goods_id+"&productId="+{{ product.product.productId }},
+         function(){
+          var cart_num_str = $(".product_cart_num").text();
+          var new_cart_num = parseInt(cart_num_str)+1;
+          $(".product_cart_num").text(new_cart_num);   
+        }
+   );
+   }
+ });
+});
+   
+
 </script>
 
 {% endblock %}
+
+
+
+
+
+
+
