@@ -29,7 +29,6 @@ def products_recommend(request):                                                
         meta_data = {"products_promote_list":products_promote_result['productList'],"products_feature_list":products_feature_result['productList']}
         return render(request,'products/products_recommend.html',meta_data)
     except Exception,e:
-        print e
         return response_data_utils.error_response(request, "推荐产品不存在！",__name__, e)
 
 def process_products_promote(data):                                                 #kim
