@@ -143,7 +143,7 @@ def get_shopping_cart(req, sessionKey):                                         
     return get_result(req,"getShoppingCart.do",params)
 
 def get_goods_num_in_cart(req):                                                  #kim
-    params = {}
+    params = {"sessionKey":"10E5C27B3AA37718CFF61A6CA32135196E4636F6500251D3801C302B9F68B58F"}
     return get_result(req,"getGoodsNumInCart.do",params)
 
 def update_shopping_cart(req,cart_info):                                         #kim

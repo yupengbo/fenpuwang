@@ -69,6 +69,7 @@ def product_detail(request, product_id):
   try:
     product_json = api_list.get_product_info_by_id(request, product_id)
     question_json = api_list.get_related_question_by_product_id(request, product_id, 0)
+    cart_num_json = api_list.get_goods_num_in_cart(request)
     if product_json == None or product_json == "" or product_json['error'] != 0:
       return response_data_utils.error_response(request, "找不到这个产品！",  __name__, product_json)
     product_json["mark"] = 0
@@ -76,12 +77,19 @@ def product_detail(request, product_id):
       product_json["contentList"] = question_json["contentList"]
       product_json["mark"] = question_json["mark"]
       product_json["totalNumber"] = question_json["totalNumber"]
+    if cart_num_json and cart_num_json['error'] == 0 and cart_num_json.get('totalNum'):
+      product_json["cartNum"] = cart_num_json["totalNum"]
     process_product_data(product_json)
     next_request_url = reverse('product:question_list', kwargs ={"product_id":product_id, "mark":product_json['mark']})
     meta = response_data_utils.pack_data(request, {'product':product_json, 'url':next_request_url})
     return render(request, 'product/product.html', meta)
   except Exception,e:
+    print e
     return response_data_utils.error_response(request, "找不到这个产品！",  __name__, e)
+
+def add_in_cart(request,goods_id,product_id):
+    api_list.add_goods_in_cart(request,goods_id,product_id)
+
 
 def product_official(request, product_id):
   has_product_info = 1
