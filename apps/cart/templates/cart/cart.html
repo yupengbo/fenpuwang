@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block title %} 购物车列表 {% endblock %}
+{% block script %}
+     {% load staticfiles %}
+     <link rel="stylesheet" href="{% static "css/cart.css" %}">
+	 <script type="text/javascript" src="{% static "js/cart.js"%}"></script>
+{% endblock %}
+{% block main_content %}
+<form  id='cart_form' action='{% url 'cart:set_contact' %}' method='POST'>
+<input type='hidden' id='order_total_fee' name='total_fee' value='0' />
+<ul class='cart_list'>
+   {% include "cart/goodsList.html" %}
+</ul>
+</form>
+<div class='clear'></div>
+<div class='total_info'>
+<span class='fl total_num'>共<em>-</em>件商品</span>
+<span class='fr fee'>总价<em>-</em></span>
+<div class='clear'></div>
+</div>
+
+<div class='clear'></div>
+<div class='transport_fee'>
+<span class='fl tip'>全场包邮</span>
+<span class='fr fee'>运费<em>0</em></span>
+<div class='clear'></div>
+</div>
+
+{% if invalid_cart_info_list %}
+<div class='clear'></div>
+<h2 class='invalid_tip'>这些商品失效啦</h2>
+
+<div class='clear'></div>
+<ul class='cart_list invalid'>
+   {% with cart_info_list=invalid_cart_info_list %}
+   {% include "cart/goodsList.html" %}
+   {% endwith %}
+</ul>
+{% endif %}
+<div class='total_fee_box'>
+  <span class='total_fee'>合计<em>-</em></span>
+  <input class='submitOrder fr' type='button' value='结算'>
+  <div class='clear'></div>
+</div>
+{% endblock %}
+
