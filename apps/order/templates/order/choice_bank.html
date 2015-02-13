@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %} 选择银行 {% endblock %}
+{% block script %}
+     {% load staticfiles %}
+     <link rel="stylesheet" href="{% static "css/cart.css" %}?v=4">
+	 <script type="text/javascript" src="{% static "js/cart.js"%}"></script>
+{% endblock %}
+{% block main_content %}
+<form  id='order_form' action='{% url 'order:pay_order' %}' method='POST'>
+<input type='hidden' name='order_id' value='{{ order_id }}' />
+<input type='hidden' name='goods_num' value='{{ goods_num }}' />
+<input type='hidden' name='total_fee' value='{{ total_fee }}' />
+<input type='hidden' name='bank_type' value='{{ bank_type }}' id='bank_type' />
+<ul class='bank_list'>
+  <li class='bank_item bank_gs on' bank_code='001'></li>
+  <li class='bank_item bank_zs' bank_code='002'></li>
+  <li class='bank_item bank_js' bank_code='003'></li>
+  <li class='bank_item bank_zg' bank_code='004'></li>
+  <li class='bank_item bank_ny' bank_code='005'></li>
+  <li class='bank_item bank_jt' bank_code='006'></li>
+  <li class='bank_item bank_shpd' bank_code='007'></li>
+  <li class='bank_item bank_gdfz' bank_code='008'></li>
+  <li class='bank_item bank_zx' bank_code='009'></li>
+  <li class='bank_item bank_gd' bank_code='010'></li>
+  <li class='bank_item bank_xy' bank_code='011'></li>
+  <li class='bank_item bank_pa' bank_code='012'></li>
+  <li class='bank_item bank_zgms' bank_code='013'></li>
+  <li class='bank_item bank_hx' bank_code='014'></li>
+  <li class='bank_item bank_zgyz' bank_code='020'></li>
+  <li class='bank_item bank_nb' bank_code='024'></li>
+  <li class='bank_item bank_dy' bank_code='031'></li>
+  <li class='bank_item bank_shns' bank_code='032'></li>
+  <li class='bank_item bank_nj' bank_code='033'></li>
+  <li class='bank_item bank_gz' bank_code='034'></li>
+  <li class='bank_item bank_bh' bank_code='035'></li>
+  <li class='bank_item bank_dl' bank_code='036'></li>
+  <li class='bank_item bank_hs' bank_code='037'></li>
+  <li class='bank_item bank_jiangs' bank_code='038'></li>
+  <li class='bank_item bank_ql' bank_code='039'></li>
+  <li class='bank_item bank_zd' bank_code='040'></li>
+  <li class='bank_item bank_szns' bank_code='041'></li>
+  <li class='bank_item bank_wz' bank_code='042'></li>
+  <li class='bank_item bank_xm' bank_code='043'></li>
+  <li class='bank_item bank_zes' bank_code='044'></li>
+</ul>
+</form>
+{% endblock %}
+

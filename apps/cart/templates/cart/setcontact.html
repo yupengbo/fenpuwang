@@ -2,29 +2,30 @@
 {% block title %} 填写收货人 {% endblock %}
 {% block script %}
      {% load staticfiles %}
-     <link rel="stylesheet" href="{% static "css/cart.css" %}">
+     <link rel="stylesheet" href="{% static "css/cart.css" %}?v=1">
 	 <script type="text/javascript" src="{% static "js/cart.js"%}"></script>
 {% endblock %}
 {% block main_content %}
-<form  id='order_form' action='{% url 'cart:order_pay %}' method='POST'>
-<div class='order_title'>
-  <div class='bg transport_icon'></div>
-  收货信息
-</div>
+<form  id='order_form' action='{% url 'order:submit_order' %}' method='POST'>
 <div class='line'>
   <div class='label'>收货人</div>
-  <div class='input'><input type='text' name='contact'></div>
+  <div class='input'><input type='text' name='contact' value='{{ contact }}'></div>
 </div>
 <div class='line'>
   <div class='label'>联系电话</div>
-  <div class='input'><input type='text' name='contactPhone'></div>
+  <div class='input'><input type='text' name='contactPhone' value='{{ contactPhone }}'></div>
 </div>
 <div class='line'>
   <div class='label'>收货地址</div>
-  <div class='input'><input type='text' name='address'></div>
+  <div class='input'><input type='text' name='address' value='{{ address }}' ></div>
 </div>
-<input type='text' id='cartInfo' name='cartInfo' value='{{ cartInfo }}' />
-<input type='submit' value='确认支付' />
+<div class='line'>
+  <span class='price_label'>总价</span><em class='price_info'>￥{{ total_num }}</em>
+</div>
+<div class='line no_b'>
+  <input type='hidden' id='cartInfo' name='cartInfo' value='{{ cartInfo }}' />
+  <input class='to_pay block' type='submit' value='确认支付' />
+</div>
 </form>
 {% endblock %}
 

@@ -158,7 +158,6 @@ def get_product_order(req, sessionKey, order_id):                               
     params = {"orderId": order_id,"sessionKey": sessionKey}
     return get_result(req,"getProductOrder.do",params)    
 
-def submit_order(req, sessionKey, cartInfo , contact,  address,  contactPhone):
-    params = {"sessionKey": sessionKey,'cartInfo': cartInfo, 'contact': contact, 'address': address, 'contactPhone': contactPhone}
-    return get_result(req,"submitOrder.do",params)
+
+
  

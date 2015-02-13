@@ -30,46 +30,5 @@
 .controll_box .del_btn{background-image:url('../images/btn_s_cart_delete_normal@2x.png');width:22px;height:22px;background-size:22px 22px;margin-left:40px;}
 .invalid .selector_box{visibility:hidden;}
 .invalid .num_box{visibility:hidden;}
-.line{height:50px;border-bottom:1px #e4e4e4 solid;line-height:50px;padding:0 12px;}
-.line .label,.line .input{font-size:14px;color:#222;float:left;}
-.line .label{width:20%;min-width:70px;}
-.line .input{width:70%;min-width:210px;}
-.line .input input{width:90%;height:30px;line-height:30px;}
-.line .price_label{color:#aaa;font-size:12px;}
-.line .price_info{color:#ff5346;font-size:22px;}
-.line .price_label,.line .price_info{height:50px;line-height:50px;display:block;float:left;}
-.line .to_pay{width:90%;border:None;height:40px;background-color:#ff5346;font-size:15px;color:#fff;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;margin:5px auto;}
-.no_b {border:None;}
-.bank_list{width:96%;margin:0 auto;}
-.bank_list .on{border:2px red solid;}
-.bank_item{border:2px #e4e4e4 solid;width:115px;height:45px;background-size:115px 45px;float:left;margin:5px 5px;background-repeat: no-repeat;background-position:center center;}
-.bank_gs{background-image:url('../images/bank_gs.png');}
-.bank_zs{background-image:url('../images/bank_zs.png');}
-.bank_js{background-image:url('../images/bank_js.png');}
-.bank_zg{background-image:url('../images/bank_zg.png');}
-.bank_ny{background-image:url('../images/bank_ny.png');}
-.bank_jt{background-image:url('../images/bank_jt.png');}
-.bank_shpd{background-image:url('../images/bank_shpd.png');}
-.bank_gdfz{background-image:url('../images/bank_gdfz.png');}
-.bank_zx{background-image:url('../images/bank_zx.png');}
-.bank_gd{background-image:url('../images/bank_gd.png');}
-.bank_xy{background-image:url('../images/bank_xy.png');}
-.bank_pa{background-image:url('../images/bank_pa.jpg');}
-.bank_zgms{background-image:url('../images/bank_zgms.png');}
-.bank_hx{background-image:url('../images/bank_hx.png');}
-.bank_zgyz{background-image:url('../images/bank_zgyz.png');}
-.bank_nb{background-image:url('../images/bank_nb.png');}
-.bank_dy{background-image:url('../images/bank_dy.jpg');}
-.bank_shns{background-image:url('../images/bank_shns.jpg');}
-.bank_nj{background-image:url('../images/bank_nj.jpg');}
-.bank_gz{background-image:url('../images/bank_gz.jpg');}
-.bank_bh{background-image:url('../images/bank_bh.jpg');}
-.bank_dl{background-image:url('../images/bank_dl.png');}
-.bank_hs{background-image:url('../images/bank_hs.jpg');}
-.bank_jiangs{background-image:url('../images/bank_jiangs.png');}
-.bank_ql{background-image:url('../images/bank_ql.jpg');}
-.bank_zd{background-image:url('../images/bank_zd.jpg');}
-.bank_szns{background-image:url('../images/bank_szns.jpg');}
-.bank_wz{background-image:url('../images/bank_wz.png');}
-.bank_xm{background-image:url('../images/bank_xm.jpg');}
-.bank_zes{background-image:url('../images/bank_zes.png');}
+.line{height:50px;border-bottom:1px #eee solid;line-height:50px;}
+.line .label,.line .input{font-size:14px;color:#222;}

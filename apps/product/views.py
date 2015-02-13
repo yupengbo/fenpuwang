@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render
-from django.http import HttpResponse,Http404
+from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.core.urlresolvers import reverse
 import json
 import requests
 from apps.api import api_list
-from apps.utils import string_utils, response_data_utils
+from apps.utils import string_utils, response_data_utils, weixin_auth_utils
 import cgi
 
 def process_product_data(product_data):  
@@ -65,11 +65,16 @@ def question_list(request, product_id, mark):
     return response_data_utils.error_response(request, "找不到问题列表！", __name__, e)
   
 def product_detail(request, product_id):
+  user_info = weixin_auth_utils.get_user_info(request)
+  authuri = user_info.get('redirect')
+  session = user_info.get('session')
+  if authuri:
+      return HttpResponseRedirect(authuri)
   has_product_info = 1
   try:
     product_json = api_list.get_product_info_by_id(request, product_id)
     question_json = api_list.get_related_question_by_product_id(request, product_id, 0)
-    cart_num_json = api_list.get_goods_num_in_cart(request)
+    cart_num_json = api_list.get_goods_num_in_cart(request, session)
     if product_json == None or product_json == "" or product_json['error'] != 0:
       return response_data_utils.error_response(request, "找不到这个产品！",  __name__, product_json)
     product_json["mark"] = 0
@@ -77,7 +82,7 @@ def product_detail(request, product_id):
       product_json["contentList"] = question_json["contentList"]
       product_json["mark"] = question_json["mark"]
       product_json["totalNumber"] = question_json["totalNumber"]
-    if cart_num_json and cart_num_json['error'] == 0 and cart_num_json.get('totalNum'):
+    if cart_num_json and cart_num_json['error'] == 0:
       product_json["cartNum"] = cart_num_json["totalNum"]
     process_product_data(product_json)
     next_request_url = reverse('product:question_list', kwargs ={"product_id":product_id, "mark":product_json['mark']})
@@ -87,8 +92,18 @@ def product_detail(request, product_id):
     print e
     return response_data_utils.error_response(request, "找不到这个产品！",  __name__, e)
 
-def add_in_cart(request,goods_id,product_id):
-    api_list.add_goods_in_cart(request,goods_id,product_id)
+def add_in_cart(request):
+    is_ajax = request.is_ajax()
+    session = request.COOKIES.get("session")
+    if not session:
+        return response_data_utils.error_response(request, "invalid session!",  __name__, "invalid session")
+    if not is_ajax:
+        return response_data_utils.error_response(request, "非ajax!",  __name__, "no ajax")
+    goods_id = request.REQUEST.get('goodsId')
+    product_id =request.REQUEST.get('productId')
+    print api_list.add_goods_in_cart(request,session, goods_id,product_id)
+    response_json = {'error': 0}
+    return HttpResponse(json.dumps(response_json), content_type="application/json")
 
 
 def product_official(request, product_id):

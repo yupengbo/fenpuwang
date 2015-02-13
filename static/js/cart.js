@@ -72,6 +72,10 @@ $(function(){
 	$(this).val(num);
     reset_val();
   });
+  $(".bank_item").click(function(){
+    $("#bank_type").val($(this).attr("bank_code"));
+    $("#order_form").submit();
+  });
   reset_val();
   $(".footer_download").hide();
 })
