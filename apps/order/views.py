@@ -115,6 +115,9 @@ def pay_order(request):
     print pay_code
     return render(request, 'order/order_pay.html', meta_data)
 
+def order_ali_pay(request):
+    meta_data= {}
+    return render(request, 'order/order_ali_pay.html', meta_data)
 
 def build_huifubao_meta(meat_dict):
     agent_bill_id = meat_dict.get("order_id") 
