@@ -73,6 +73,8 @@ $(function(){
     reset_val();
   });
   $(".bank_item").click(function(){
+    $(this).siblings().removeClass('on');
+    $(this).addClass("on");
     $("#bank_type").val($(this).attr("bank_code"));
     $("#order_form").submit();
   });

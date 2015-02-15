@@ -42,7 +42,7 @@
 .no_b {border:None;}
 .bank_list{width:96%;margin:0 auto;}
 .bank_list .on{border:2px red solid;}
-.bank_item{border:2px #e4e4e4 solid;width:115px;height:45px;background-size:115px 45px;float:left;margin:5px 5px;background-repeat: no-repeat;background-position:center center;}
+.bank_item{border:2px #e4e4e4 solid;width:115px;height:45px;background-size:115px 45px;float:left;margin:10px 25px;background-repeat: no-repeat;background-position:center center;}
 .bank_gs{background-image:url('../images/bank_gs.png');}
 .bank_zs{background-image:url('../images/bank_zs.png');}
 .bank_js{background-image:url('../images/bank_js.png');}

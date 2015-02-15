@@ -128,12 +128,12 @@ def build_huifubao_meta(meat_dict):
     key = "1A5D243267734BD68DB904EA" #商户秘钥
     agent_bill_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
     pay_type = "20" 
-    notify_url = "http://wxtest.fenpuwang.com"
-    return_url = "http://wxtest.fenpuwang.com"
+    notify_url = "http://api.dabanniu.com/v2/huifubao/dbnNotify.do"
+    return_url = "http://wxtest.fenpuwang.com/order/detail/" + agent_bill_id
     goods_name = "0000"
     goods_note = ""
     remark = ""
-
+    agent_bill_id = "po_" + agent_bill_id + "-" + str(int(time.time()*1000))
     # 计算md5签名
     sign_str = ""
     sign_str += 'version=' + version;
@@ -146,11 +146,12 @@ def build_huifubao_meta(meat_dict):
     sign_str += '&return_url=' + return_url;
     sign_str += '&user_ip=' + user_ip;
     sign_str += '&key=' + key;
-    print sign_str
-    print agent_bill_time
     
     sign = string_utils.get_md5(sign_str)
     meta_data = {'version':version, 'agent_id':agent_id, 'agent_bill_id':agent_bill_id, 'agent_bill_time':agent_bill_time,\
 	             'pay_type':pay_type, 'pay_code':pay_code, 'pay_amt':pay_amt, 'notify_url':notify_url, 'return_url':return_url,\
 				 'user_ip':user_ip, 'goods_name':goods_name, 'goods_num':goods_num, 'goods_note':goods_note, "remark":remark, "sign":sign}
+    print sign_str
+    print agent_bill_time
+    print sign
     return meta_data
