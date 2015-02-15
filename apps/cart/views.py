@@ -49,6 +49,7 @@ def cart_index(request):
         return response_data_utils.error_response(request,None, __name__, e)
 
 def set_contact(request):                                      
+    #return render(request,'cart/setcontact.html',{})
     user_info = weixin_auth_utils.get_user_info(request)
     authuri = user_info.get('redirect')
     session = user_info.get('session')

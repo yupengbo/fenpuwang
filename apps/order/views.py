@@ -69,7 +69,7 @@ def submit_order(request) :
     contactPhone =request.REQUEST.get('contactPhone')
     address = request.REQUEST.get('address')
     cartInfo = request.REQUEST.get('cartInfo')
-    paymentId = request.REQUEST.get('paymentId')
+    payment = request.REQUEST.get('payment')
     if not cartInfo:
        return response_data_utils.error_response(request, "没有选择商品！", __name__, "没有选择商品")
 
@@ -98,7 +98,27 @@ def submit_order(request) :
         product_order = order_info.get("productOrder") 
         meta_data["goods_num"] = product_order.get("goodsNum")
         meta_data["total_fee"] = product_order.get("totalFee")
-    return render(request, 'order/choice_bank.html', meta_data)
+    if payment == "0":
+        return HttpResponseRedirect(authuri)
+    else:
+        return render(request, 'order/choice_bank.html', meta_data)
+
+def alipay_order(rqeuest):
+    session = request.REQUERST.get('session')
+    order_id = request.REQUEST.get('orderId')
+    user_agent = request.META.get('HTTP_USER_AGENT')
+    is_mm = None
+    if "micromessenger" in user_agent:
+        is_mm = 1
+    order_info = api_list.get_product_order(request, session, order_id)
+    meta_data = {"is_mm": is_mm}
+    if order_info and order_info.get("productOrder"):
+        product_order = order_info.get("productOrder") 
+        paymentHTML = product_order.get("webPayInfo"); 
+        meta_data['paymentHTML'] = paymentHTML
+        return render(request, 'order/alipay_pay.html', meta_data)
+    else:
+        return response_data_utils.error_response(request, order_info.get("errorString"), __name__, order_info)
 
 def pay_order(request):
     agent_bill_id = request.REQUEST.get("order_id") 
