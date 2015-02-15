@@ -8,6 +8,7 @@ input,select{vertical-align:middle;padding:0px;}
 h1, h2, h3, h4, h5, h6 {font-weight:normal; font-size:12px;}
 b,i,em {font-style:normal;}
 a {text-decoration:none;}
+a:visited{color:#e4e4e4;}
 input {-webkit-appearance: none;}
 a,button,input{-webkit-tap-highlight-color:rgba(0,0,0,0);}
 /* 鼠标样式 */

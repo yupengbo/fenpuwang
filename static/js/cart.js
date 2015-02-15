@@ -80,4 +80,9 @@ $(function(){
   });
   reset_val();
   $(".footer_download").hide();
+  $('.pay_selector').click(function(){
+     $("#payment").val($(this).attr("payment_code"));
+     $('.pay_selector').removeClass("on");
+	 $(this).addClass("on");
+  });
 })
