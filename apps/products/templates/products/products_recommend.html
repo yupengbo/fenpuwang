@@ -17,13 +17,15 @@
   </div>
 </div>
 {% for products_promote in products_promote_list %}
+<a href="{% url "product:product_detail" products_promote.productId %}">
 <div class="promote_section">
   <img src="{{ products_promote.org }}"  class="promote_img">
-  <a href="{% url "product:product_detail" products_promote.productId %}"><div class="promote_name">{{ products_promote.name_decoration }}</div></a>
+  <div class="promote_name">{{ products_promote.name_decoration }}</div>
   <div class="promote_topic_question">{{ products_promote.topicNum }}笔记&nbsp;&nbsp;&nbsp;{{products_promote.questionNum }}问答</div>
   <div class="promote_content">{{ products_promote.details }}</div>
   <div class="promote_price_size"><span class="promote_price">¥{{ products_promote.price }}</span><span class="promote_size">{% if products_promote.size %}/{{ products_promote.size }}{% endif %}</span></div>
 </div>
+</a>
 {% endfor %}
 <div class="products_line"></div>
 <div class="feature_background">
@@ -31,6 +33,7 @@
  {% for products_feature in products_feature_list %}
  <div class="feature_info_background">
    <div class="products_line"></div>
+   <a href="{% url "product:product_detail"  products_feature.productId %}">
    <div class="feature_info relative">
      {% if products_feature.thumb_s %}
      <img src="{{ products_feature.thumb_s }}" class="float_l feature_img">   
@@ -38,7 +41,7 @@
      <img src="{% static "images/img_product_place_holder.png"%}" class="float_l feature_img">
      {% endif %}
      <div class="float_l feature_ntq">
-         <a href="{% url "product:product_detail"  products_feature.productId %}"><div class="feature_name">{{ products_feature.name_decoration }}</div></a>
+         <div class="feature_name">{{ products_feature.name_decoration }}</div>
          <div class="feature_topic_question">{{ products_feature.topicNum }}笔记&nbsp;&nbsp;&nbsp;{{ products_feature.questionNum }}问答</div>
      </div>
      <div class="clear"></div>
@@ -46,6 +49,7 @@
          <div class="feature_price_size"><span class="feature_price">¥{{ products_feature.price }}</span><span class="feature_size">/{{ products_feature.size }}</span></div>
      </div>
    </div>
+   </a>
    <div class="products_line"></div>
    <div class="feature_color_block"></div>
  </div>
