@@ -1,6 +1,6 @@
 #coding:UTF-8
 from django.shortcuts import render
-from django.http import HttpResponse,Http404
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import RequestContext, loader
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
@@ -86,7 +86,6 @@ def submit_order(request) :
     alipay_sign = ""
     if result and result.get("orderId"):
         order_id = result.get("orderId")
-        alipay_sign = result.get("webAlipaySign")
     else:
         return response_data_utils.error_response(request, result.get("errorString"), __name__, result)
     if order_id == 0:
@@ -98,8 +97,11 @@ def submit_order(request) :
         product_order = order_info.get("productOrder") 
         meta_data["goods_num"] = product_order.get("goodsNum")
         meta_data["total_fee"] = product_order.get("totalFee")
+        alipay_sign = product_order.get("webPayInfo")
+
+    print "=============" + alipay_sign 
     if payment == "0":
-        return HttpResponseRedirect(authuri)
+        return HttpResponse(alipay_sign)
     else:
         return render(request, 'order/choice_bank.html', meta_data)
 
@@ -116,7 +118,7 @@ def alipay_order(rqeuest):
         product_order = order_info.get("productOrder") 
         paymentHTML = product_order.get("webPayInfo"); 
         meta_data['paymentHTML'] = paymentHTML
-        return render(request, 'order/alipay_pay.html', meta_data)
+        return render(request, 'order/order_ali_pay.html', meta_data)
     else:
         return response_data_utils.error_response(request, order_info.get("errorString"), __name__, order_info)
 
@@ -134,10 +136,6 @@ def pay_order(request):
     print "====================="
     print pay_code
     return render(request, 'order/order_pay.html', meta_data)
-
-def order_ali_pay(request):
-    meta_data= {}
-    return render(request, 'order/order_ali_pay.html', meta_data)
 
 def build_huifubao_meta(meat_dict):
     agent_bill_id = meat_dict.get("order_id") 

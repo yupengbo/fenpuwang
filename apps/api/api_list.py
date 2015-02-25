@@ -25,6 +25,7 @@ def get_result(req, api_url, params):
     try:
         if response.status_code == requests.codes.ok:
             result = response.json()
+            print result
     except Exception,e:
         result = build_error_response("server is busy-30332")
     return result
