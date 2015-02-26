@@ -53,7 +53,7 @@
 .bank_item{border:2px #e4e4e4 solid;width:115px;height:45px;background-size:115px 45px;float:left;margin:10px 25px;background-repeat: no-repeat;background-position:center center;}
 .bank_gs{background-image:url('../images/bank_gs.png');}
 .bank_zs{background-image:url('../images/bank_zs.png');}
-.bank_js{background-image:url('../images/bank_js.png');}
+.bank_js{background-image:url('../images/bank_js.jpg');}
 .bank_zg{background-image:url('../images/bank_zg.png');}
 .bank_ny{background-image:url('../images/bank_ny.png');}
 .bank_jt{background-image:url('../images/bank_jt.png');}
@@ -74,7 +74,7 @@
 .bank_bh{background-image:url('../images/bank_bh.jpg');}
 .bank_dl{background-image:url('../images/bank_dl.png');}
 .bank_hs{background-image:url('../images/bank_hs.jpg');}
-.bank_jiangs{background-image:url('../images/bank_jiangs.png');}
+.bank_jiangs{background-image:url('../images/bank_jiangs.jpg');}
 .bank_ql{background-image:url('../images/bank_ql.jpg');}
 .bank_zd{background-image:url('../images/bank_zd.jpg');}
 .bank_szns{background-image:url('../images/bank_szns.jpg');}
