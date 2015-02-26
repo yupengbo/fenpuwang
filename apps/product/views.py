@@ -92,6 +92,7 @@ def product_detail(request, product_id):
     print e
     return response_data_utils.error_response(request, "找不到这个产品！",  __name__, e)
 
+
 def add_in_cart(request):
     is_ajax = request.is_ajax()
     session = request.COOKIES.get("session")
@@ -105,6 +106,17 @@ def add_in_cart(request):
     response_json = {'error': 0}
     return HttpResponse(json.dumps(response_json), content_type="application/json")
 
+def del_in_cart(request):
+    is_ajax = request.is_ajax()
+    session = request.COOKIES.get("session")
+    if not session:
+        return response_data_utils.error_response(request, "invalid session!",  __name__, "invalid session")
+    if not is_ajax:
+        return response_data_utils.error_response(request, "非ajax!",  __name__, "no ajax")
+    goods_id = request.REQUEST.get('goodsId')
+    print api_list.delete_goods_in_cart(request,session, goods_id)
+    response_json = {'error': 0}
+    return HttpResponse(json.dumps(response_json), content_type="application/json")
 
 def product_official(request, product_id):
   has_product_info = 1

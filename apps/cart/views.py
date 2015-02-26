@@ -54,7 +54,7 @@ def set_contact(request):
     #return render(request,'cart/setcontact.html',{})
     user_info = weixin_auth_utils.get_user_info(request)
     authuri = user_info.get('redirect')
-    session = user_info.get('session')
+
     if authuri:
         return HttpResponseRedirect(authuri)
     num = request.REQUEST.getlist('num')

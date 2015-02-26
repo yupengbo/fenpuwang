@@ -49,8 +49,17 @@ $(function(){
 	 reset_val();
   });
   $('.del_btn').click(function(){
-     $(this).parent().parent().remove();
-	 reset_val();
+     $(this).parent().parent().parent().parent().remove();
+	 $.get_data(
+	    '/product/del_in_cart/?goodsId='+$(this).attr("goodsId"),
+    	function(data) {
+	       if(data['error']==0){
+    	},
+	    function(xmlReq, textStatus) {
+	    },
+	    'json'
+	);
+	reset_val();
   });
   $('.controll_box .minus').click(function(){
     var	num = get_num($(this).parent().find(".num_input").val(),1);

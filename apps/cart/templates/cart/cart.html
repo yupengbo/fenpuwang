@@ -3,7 +3,7 @@
 {% block script %}
      {% load staticfiles %}
      <link rel="stylesheet" href="{% static "css/cart.css" %}">
-	 <script type="text/javascript" src="{% static "js/cart.js"%}"></script>
+	 <script type="text/javascript" src="{% static "js/cart.js"%}?v=1.0"></script>
 {% endblock %}
 {% block main_content %}
 <form  id='cart_form' action='{% url 'cart:set_contact' %}' method='POST'>

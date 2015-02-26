@@ -60,9 +60,9 @@
   {% endfor %}
   <div class="relative product_consult">
     <img src="{% static "images/img_product_detail_q_note@2x.png" %}" class="float_l product_why_btn">
-    <div class="float_l product_why_character">粉扑如何保证正品？</div>
+    <div class="float_l product_why_character"><a href='{% url 'topic:topic_info' 3756 %}'>粉扑如何保证正品？</a></div>
     <div class="absolute product_service_cb">
-        <div class="float_r product_service_character">联系客服</div>
+        <div class="float_r product_service_character"><a href='#'>联系客服</a></div>
         <img src="{% static "images/btn_product_detail_feedback_normal@2x.png" %}" class="product_service_btn float_r">
     </div>
   </div>
