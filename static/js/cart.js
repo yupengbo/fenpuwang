@@ -35,10 +35,10 @@ $(function(){
 	 }
   });
   function reset_val(){
-    $('.total_fee em').html(yen_char + get_total_fee());
+    $('.total_fee em').html(yen_char + get_total_fee().toFixed(2));
     $('.total_num em').html( get_goods_num());
     $('.total_info .fee em').html($('.total_fee em').html());
-	$('#order_total_fee').val(get_total_fee());
+	$('#order_total_fee').val(get_total_fee().toFixed(2));
   }
   $('.selector').click(function(){
 	 if($(this).hasClass("on")){
@@ -49,11 +49,10 @@ $(function(){
 	 reset_val();
   });
   $('.del_btn').click(function(){
-     $(this).parent().parent().parent().parent().remove();
+     $(this).parent().parent().parent().remove();
 	 $.get_data(
 	    '/product/del_in_cart/?goodsId='+$(this).attr("goodsId"),
     	function(data) {
-	       if(data['error']==0){
     	},
 	    function(xmlReq, textStatus) {
 	    },

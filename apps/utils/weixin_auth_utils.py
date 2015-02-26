@@ -32,8 +32,6 @@ def build_auth_uri(redirect_uri):
 def get_user_info(request):
    session = None
    session = request.COOKIES.get("session")
-   print "cookie"
-   print session
    if not session:
       session = request.REQUEST.get("session")
    host = get_base_uri(request)

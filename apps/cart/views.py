@@ -33,6 +33,7 @@ def process_itemlist_data(cart_item_list_data):
 
 
 def cart_index(request):
+    #return render(request,'cart/cart.html',{})
     user_info = weixin_auth_utils.get_user_info(request)
     authuri = user_info.get('redirect')
     session = user_info.get('session')
@@ -54,7 +55,7 @@ def set_contact(request):
     #return render(request,'cart/setcontact.html',{})
     user_info = weixin_auth_utils.get_user_info(request)
     authuri = user_info.get('redirect')
-
+    session = user_info.get('session')
     if authuri:
         return HttpResponseRedirect(authuri)
     num = request.REQUEST.getlist('num')
@@ -71,8 +72,7 @@ def set_contact(request):
     meta_data = {'cartInfo': cartInfo,'contact': clean_none(user_info.get("contact")),\
 	'address': clean_none(user_info.get("address")),'contactPhone': clean_none(user_info.get("contactPhone")),\
 	'total_num': total_num}
-    
-    return render(request,'cart/setcontact.html',meta_data)
+    return weixin_auth_utils.fp_render(request,'cart/setcontact.html',meta_data, session) 
 
 def clean_none(s):
    if not s:

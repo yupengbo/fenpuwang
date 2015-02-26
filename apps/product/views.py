@@ -87,7 +87,7 @@ def product_detail(request, product_id):
     process_product_data(product_json)
     next_request_url = reverse('product:question_list', kwargs ={"product_id":product_id, "mark":product_json['mark']})
     meta = response_data_utils.pack_data(request, {'product':product_json, 'url':next_request_url})
-    return render(request, 'product/product.html', meta)
+    return weixin_auth_utils.fp_render(request,'product/product.html',meta, session)
   except Exception,e:
     print e
     return response_data_utils.error_response(request, "找不到这个产品！",  __name__, e)
