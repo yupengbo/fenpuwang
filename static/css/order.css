@@ -28,6 +28,7 @@
 .order_order_num{font-size:12px;padding-top:17px;color:#666666;}
 .order_order_t{width:100%;left:0px;top:17px;}
 .order_order_time{font-size:10px;margin-right:12px;color:#AAAAAA;}
+.order_goods_num{text-align:right;font-size:18px;color:#aaa;}
 .orders_goods_info,.order_goods_info{padding-top:12px;padding-bottom:12px;}
 .orders_goods_img,.order_goods_img{width:100px;}
 .orders_goods_name_size,.order_goods_name_size{width:65%;margin-left:12px;}

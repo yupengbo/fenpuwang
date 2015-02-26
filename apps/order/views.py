@@ -28,6 +28,7 @@ def order_list(request):                                                        
     if not order_list_result or order_list_result["error"]!=0:
         return response_data_utils.error_response(request,"服务器忙，请稍后重试！",__name__,order_list_result)    
     try:
+        process_order_detail(order_list_result)
         meta_data = {"order_list":order_list_result["productOrderList"]}
         return render(request,"order/orders.html",meta_data)
     except Exception,e:
@@ -54,10 +55,14 @@ def order_detail(request,order_id):                                            #
         return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e)
 
 def process_order_detail(data):
-    if data["productOrder"].get("creationTime"):
+    if data.get("productOrder") and data.get("productOrder").get("creationTime"):
         time_tuple = time.localtime(data["productOrder"]["creationTime"]/1000)
         data["productOrder"]["creationTime"] =  time.strftime("%Y-%m-%d %H:%M",time_tuple)
-    
+    if data.get("productOrderList"):
+        for order in data["productOrderList"]:
+            if order.get("creationTime"):
+               time_tuple = time.localtime(order["creationTime"]/1000)
+               order["creationTime"] = time.strftime("%Y-%m-%d %H:%M",time_tuple)
 def submit_order(request) :
     #return render(request, 'order/choice_bank.html', {})
     user_info = weixin_auth_utils.get_user_info(request)
@@ -83,7 +88,6 @@ def submit_order(request) :
     
     result = api_list.submit_order(request, session, cartInfo , contact,  address,  contactPhone)
     order_id = 0
-    alipay_sign = ""
     if result and result.get("orderId"):
         order_id = result.get("orderId")
     else:
@@ -97,19 +101,19 @@ def submit_order(request) :
         product_order = order_info.get("productOrder") 
         meta_data["goods_num"] = product_order.get("goodsNum")
         meta_data["total_fee"] = product_order.get("totalFee")
-        alipay_sign = product_order.get("webPayInfo")
 
-    print "=============" + alipay_sign 
     if payment == "0":
-        return HttpResponse(alipay_sign)
+        alipay_url = reverse("order:alipay_order",kwargs={})
+        return HttpResponseRedirect(alipay_url + "?orderId=" + str(order_id) +"&session=" + session )
     else:
         return render(request, 'order/choice_bank.html', meta_data)
 
-def alipay_order(rqeuest):
-    session = request.REQUERST.get('session')
+def alipay_order(request):
+    session = request.REQUEST.get('session')
     order_id = request.REQUEST.get('orderId')
     user_agent = request.META.get('HTTP_USER_AGENT')
     is_mm = None
+    user_agent = user_agent.lower()
     if "micromessenger" in user_agent:
         is_mm = 1
     order_info = api_list.get_product_order(request, session, order_id)
@@ -172,7 +176,19 @@ def build_huifubao_meta(meat_dict):
     meta_data = {'version':version, 'agent_id':agent_id, 'agent_bill_id':agent_bill_id, 'agent_bill_time':agent_bill_time,\
 	             'pay_type':pay_type, 'pay_code':pay_code, 'pay_amt':pay_amt, 'notify_url':notify_url, 'return_url':return_url,\
 				 'user_ip':user_ip, 'goods_name':goods_name, 'goods_num':goods_num, 'goods_note':goods_note, "remark":remark, "sign":sign}
-    print sign_str
-    print agent_bill_time
-    print sign
+    print version
+    print agent_id
+    print agent_bill_id
+    print agent_bill_time 
+    print pay_type
+    print pay_code
+    print pay_amt
+    print notify_url
+    print return_url
+    print user_ip
+    print goods_name
+    print goods_num
+    print goods_note
+    print remark
+    print sign 
     return meta_data

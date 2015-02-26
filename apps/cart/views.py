@@ -43,6 +43,8 @@ def cart_index(request):
         if item_list_json and item_list_json['error']==0:
             process_cartinfo_data(item_list_json)
             meta_data = {'cart_info_list':item_list_json['validCartItemList'],'invlid_cart_info_list':item_list_json['invalidCartItemList']}
+            if len(item_list_json['validCartItemList']) == 0 and len(item_list_json['invalidCartItemList']) == 0:
+                return response_data_utils.error_response(request,"您的购物车空空如也", __name__, "购物车为空")
             meta_data = response_data_utils.pack_data(request,meta_data)
             return weixin_auth_utils.fp_render(request,'cart/cart.html',meta_data, session) 
     except Exception,e:
@@ -54,11 +56,13 @@ def set_contact(request):
     authuri = user_info.get('redirect')
     session = user_info.get('session')
     if authuri:
-         print 1
-#        return HttpResponseRedirect(authuri)
+        return HttpResponseRedirect(authuri)
     num = request.REQUEST.getlist('num')
     total_num =request.REQUEST.get('total_fee')
     goods_ids = request.REQUEST.getlist('goods_id')
+    if not total_num:
+        return response_data_utils.error_response(request,"非法请求", __name__, "非法请求")
+
     result = []
     for m in range(len(num)):
         result.append({'goodsId': goods_ids[m], 'num': num[m]})

@@ -5,7 +5,7 @@
 {% block title %} {{ question.question.normal_title }} {% endblock %}
 {% block script %}
      {% load static %}
-     <link rel="stylesheet" href="{% static "css/order.css" %}">
+     <link rel="stylesheet" href="{% static "css/order.css" %}?v=1.0">
 {% endblock %}
 {% block main_content %}
 <div class="order_background">
@@ -65,10 +65,12 @@
    {% for product  in order.productOrder.orderInfoList %}
    <div class="order_goods_info">
      <img src="{{ product.goods_pic }}" class="float_l order_goods_img">
-     <div class="float_l order_goods_name_size">
+     <div class="float_l order_goods_name_size" >
          <div class="order_goods_name">{{ product.goods_name }}</div>
-         <div class="order_goods_size">{{ product.price }}/{{ product.size }}</div>
+         <div class="order_goods_size">￥{{ product.price }}/{{ product.size }}</div>
      </div>
+	 <div class='order_goods_num'>×{{ product.num }}
+	 </div>
      <div class="clear"></div>
    </div>    
    <div class="order_line"></div> 

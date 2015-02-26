@@ -1,6 +1,6 @@
 <form id='frmSubmit' method='post' name='frmSubmit' action='https://pay.heepay.com/Payment/Index.aspx'>
-  <input type='hidden' name='version' value={{ version }} />
-  <!--input type='hidden' name='is_phone' value='1'/-->
+  <input type='hidden' name='version' value='{{ version }}' />
+  <input type='hidden' name='is_phone' value='1'>
   <input type='hidden' name='agent_id' value='{{ agent_id }}' />
   <input type='hidden' name='agent_bill_id' value='{{ agent_bill_id }}' />
   <input type='hidden' name='agent_bill_time' value='{{ agent_bill_time }}'/>
