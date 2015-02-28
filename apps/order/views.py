@@ -188,7 +188,7 @@ def build_huifubao_meta(meat_dict):
     agent_bill_time = time.strftime('%Y%m%d%H%M%S', time.localtime(time.time()))
     pay_type = "20" 
     notify_url = "http://api.dabanniu.com/v2/huifubao/dbnNotify.do"
-    return_url = "http://wxtest.fenpuwang.com/order/detail/" + agent_bill_id
+    return_url = "http://m.fenpuwang.com/order/detail/" + agent_bill_id
     goods_name = "0000"
     goods_note = ""
     remark = ""

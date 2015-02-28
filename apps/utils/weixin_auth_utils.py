@@ -10,7 +10,7 @@ import datetime
 
 appid = 'wxb37b8b2babf1f511'
 app_secret = '9e289e06befd94ef1cf49f484ce9dd86'
-base_uri = 'http://wxtest.fenpuwang.com'
+base_uri = 'http://m.fenpuwang.com'
 
 def url_encode(uri):
    data = {'': uri}
