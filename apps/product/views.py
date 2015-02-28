@@ -69,7 +69,15 @@ def product_detail(request, product_id):
   user_info = weixin_auth_utils.get_user_info(request)
   authuri = user_info.get('redirect')
   session = user_info.get('session')
-  if authuri:
+
+  # 是否来自微信
+  user_agent = request.META.get('HTTP_USER_AGENT')
+  is_mm = None
+  user_agent = user_agent.lower()
+  if "micromessenger" in user_agent:
+    is_mm = 1
+
+  if authuri and is_mm == 1:
       return HttpResponseRedirect(authuri)
   has_product_info = 1
   try:
@@ -83,6 +91,8 @@ def product_detail(request, product_id):
       product_json["contentList"] = question_json["contentList"]
       product_json["mark"] = question_json["mark"]
       product_json["totalNumber"] = question_json["totalNumber"]
+
+    product_json["cartNum"] = 0
     if cart_num_json and cart_num_json['error'] == 0:
       product_json["cartNum"] = cart_num_json["totalNum"]
     process_product_data(product_json)
