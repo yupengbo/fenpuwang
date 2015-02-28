@@ -22,11 +22,11 @@
 {% else %}
 <a href='{% url 'topic:topic_info' question_topic.featureTopic.featureTopicId %}'>
 <div style="position:relative;padding:12px;">
-  <img src="{{ question_topic.featureTopic.org }}" style="float:left;width:100px;">
-  <div style="float:left;width:59%;margin-left:12px;">
+  <img src="{{ question_topic.featureTopic.org }}" style="float:left;width:80px;">
+  <div style="float:left;width:64%;margin-left:12px;">
      {% if question_topic.featureTopic.title %}
-     <div class="fcb1 f15">{{ question_topic.featureTopic.title|safe }}<em>&nbsp;</em></div>
-     <div class="fcg2" style="margin-bottom:12px;margin-top:8px;overflow:hidden;max-height:44px;font-size:14px;line-height:22px;"> {{ question_topic.featureTopic.content|safe }}<em>&nbsp;</em></div>
+     <div class="fcb1 f15" style="max-height:25.6px;overflow:hidden;">{{ question_topic.featureTopic.title|safe }}<em>&nbsp;</em></div>
+     <div class="fcg2" style="margin-bottom:12px;margin-top:4px;overflow:hidden;max-height:44px;font-size:14px;line-height:22px;"> {{ question_topic.featureTopic.content|safe }}<em>&nbsp;</em></div>
      {% else %}
      <div class="fcg2" style="overflow:hidden;max-height:66px;font-size:14px;line-height:22px;"> {{ question_topic.featureTopic.content|safe }}<em>&nbsp;</em></div>
      {% endif %}
