@@ -8,7 +8,7 @@
 .related-products .subtitle,.answer-body .subtitle,.related-question-body .subtitle{padding:17px 0px 7px;}
 .question-desc {line-height: 24px;clear: both;}
 .related-products{padding:5px 12px;}
-.answer-body {padding:0px 12px; background-color: #f9f8f5;}
+.answer-body {padding:0px 12px 12px 12px; background-color: #f9f8f5;}
 .answer-body .answer-item{padding-top:10px;position:relative;}
 .answer-body .answer-item .sp_line{ padding:5px 0px;}
 .answer-user-profile span{padding:1px 8px;}
