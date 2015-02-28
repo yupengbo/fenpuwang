@@ -73,7 +73,7 @@ def question_details(request, question_id):
             if int(question_obj['mark']) > 0:
                 next_page_url = reverse('question:answer_list',
                                         kwargs = {'question_id' : question_id, 'mark' : question_obj['mark']})
-            meta_data = response_data_utils.pack_data(request, {'question':question_obj, 'question_id':question_id, 'url' : next_page_url})
+            meta_data = response_data_utils.pack_data(request, {'navTitle':'问答详情', 'question':question_obj, 'question_id':question_id, 'url' : next_page_url})
             return render(request, 'question/question.html', meta_data)
         else:
             return response_data_utils.error_response(request, "找不到这个问题！",  __name__, question_obj)
