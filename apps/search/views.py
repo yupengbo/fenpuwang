@@ -46,6 +46,7 @@ def process_search_data(search_data):
               question_topic['featureTopic']['content'] = cgi.escape(question_topic['featureTopic']['content'])
               question_topic['featureTopic']['content'] = string_utils.replace_newkeyword(question_topic['featureTopic']['content'])
               question_topic['featureTopic']['content'] = string_utils.truncate_text(string_utils.replace_link(question_topic['featureTopic']['content']))
+              question_topic['featureTopic']['org'] = question_topic['featureTopic']['pics'][0]['org']
       
 
 def question_list(request, keyword, mark):
