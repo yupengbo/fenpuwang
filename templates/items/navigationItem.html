@@ -6,9 +6,9 @@
         <ul >
 	   <li><div class='bg logo_btn' ><a href='/'></a></div></li>                                 
            <li {% if nav == 'topic' %}class='on'{% endif %}><a href='{% url  'topic:topic_index' %}'>笔记</a></li>
-           <li {% if nav == 'question' %}class='on'{% endif %}><a  href='{% url 'question:question_list'%}'>问答</a></li>
-           <li {% if nav == 'products' %}class='on'{% endif %}><a   href='{% url 'products:products_recommend' %}'>美妆库</a></li>
-           <li {% if nav == 'order' %}class='on'{% endif %}><a   href='{% url 'order:order_list' %}'>订单</a></li>
+           <li {% if nav == 'question' %}class='on'{% endif %}><a href='{% url 'question:question_list'%}'>问答</a></li>
+           <li {% if nav == 'products' %}class='on'{% endif %}><a href='{% url 'products:products_recommend' %}'>美妆库</a></li>
+           <li {% if nav == 'order' %}class='on'{% endif %}><a href='{% url 'order:order_list' %}'>订单</a></li>
         </ul>
 
         <div class='top_search {% if nav == 'index' %}index{% endif %}'>

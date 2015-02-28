@@ -4,9 +4,9 @@
        <div class='nav_inner'>
        <form onsubmit='$("#nav_btn_search").click();return false;'>
         <ul>
-           <a href='{% url  'topic:topic_index' %}'><li><div class='bg arrow_btn'></div></li></a>
+           <a href='javascript:history.go(-1)'><li><div class='bg arrow_btn'></div></li></a>
            <li class="width_per_tf"></li>
-           <li class='on width_per_fe'>笔记详情</li>
+           <li class='on width_per_fe'>{{ navTitle }}</li>
         </ul>
         <div class='top_search {% if nav == 'index' %}index{% endif %}'>
             <div class='closebox fl hidden'>

@@ -1,9 +1,9 @@
-{% extends "base.html" %}
-{% block title %} 购物车列表 {% endblock %}
+{% extends "base_topic.html" %}
+{% block title %} 购物车 {% endblock %}
 {% block script %}
      {% load staticfiles %}
-     <link rel="stylesheet" href="{% static "css/cart.css" %}">
-	 <script type="text/javascript" src="{% static "js/cart.js"%}?v=1.3"></script>
+     <link rel="stylesheet" href="{% static "css/cart.css" %}?v=2.6">
+     <script type="text/javascript" src="{% static "js/cart.js"%}?v=1.3"></script>
 {% endblock %}
 {% block main_content %}
 <form  id='cart_form' action='{% url 'cart:set_contact' %}' method='POST'>

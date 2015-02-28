@@ -13,7 +13,7 @@
 .total_fee_box{border-top:1px #e4e4e4 solid;background-color:rgba(248,245,240,.96);height:65px;line-height:65px;width:100%;position:fixed;bottom:0px;left:0px;z-index:10000;padding:0px 12px;}
 .total_fee_box .total_fee{color:#aaa;font-size:12px;}
 .total_fee_box .total_fee em{color:#ff5346;font-size:22px;padding-left:22px;line-height:33px;}
-.total_fee_box .submitOrder{border:None;width:77px;height:38px;background-color:#ff8263;color:#ffccb2;;font-size:20px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;margin:13px 30px 0 0;}
+.total_fee_box .submitOrder{border:None;width:77px;height:38px;background-color:#ff5346;color:#fff;;font-size:16px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;margin:13px 30px 0 0;}
 .selector_box{padding-top:29px;width:22px;height:41px;}
 .selector{background-image:url('../images/btn_shopping_cart_uncheck@2x.png');width:22px;height:22px;background-size:22px 22px;}
 .selector.on{background-image:url('../images/btn_shopping_cart_checked@2x.png');}
@@ -45,8 +45,8 @@
 .pay_selector{background-image:url('../images/btn_shopping_cart_uncheck@2x.png');width:22px;height:22px;background-size:22px 22px;}
 .pay_selector.on{background-image:url('../images/btn_shopping_cart_checked@2x.png');}
 .payment .pay_selector{margin-top:10px;}
-.payment .alipay{background-image:url('../images/img_order_confirm_alipay.png');width:60px;height:40px;background-size:60px 40px;}
-.payment .bank_pay{background-image:url('../images/img_order_confirm_unionpay.png');width:60px;height:40px;background-size:60px 40px;}
+.payment .alipay{background-image:url('../images/img_order_confirm_alipay.png');width:90px;height:40px;background-size:90px 40px;}
+.payment .bank_pay{background-image:url('../images/img_order_confirm_unionpay.png');width:90px;height:40px;background-size:90px 40px;}
 .no_b {border:None;}
 .bank_list{width:96%;margin:0 auto;}
 .bank_list .on{border:2px red solid;}

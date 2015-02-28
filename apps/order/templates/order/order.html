@@ -5,7 +5,7 @@
 {% block title %} {{ question.question.normal_title }} {% endblock %}
 {% block script %}
      {% load static %}
-     <link rel="stylesheet" href="{% static "css/order.css" %}?v=1.0">
+     <link rel="stylesheet" href="{% static "css/order.css" %}?v=1.2">
 {% endblock %}
 {% block main_content %}
 <div class="order_background">
@@ -35,12 +35,14 @@
       <div class="order_express_other_status">订单已失效</div>
   </div>
   {% endifequal %}
+  <a href="http://mp.weixin.qq.com/s?__biz=MzAxOTE4MjA1Nw==&mid=204366285&idx=1&sn=a4651bf822f260d369e6b46f5f3a3fe6">
   <div class="absolute order_service_section">
        <div class="float_r center marg_r_os">
           <img src="{% static "images/btn_order_detail_feedback_normal@2x.png" %}" class="order_service_btn">
           <div class="order_service_character">联系客服</div>
        </div>
   </div>
+  </a>
 </div>
 <div class="order_line marg_t_oz"></div>
 <div class="relative order_buyer_info">
@@ -82,12 +84,18 @@
 </div>
 <div class="order_line"></div>
 </div>
+<div class='to_pay_hidden hidden'>
+  <form method='post' action='{% url 'cart:set_contact' %}' method='POST'>
+    <input type='hidden' name='orderId' value='{{ order.productOrder.orderId }}' />
+    <input type='hidden' name='total_fee' value='{{ order.productOrder.totalFee }}' />
+    <input class='to_pay_btn block fr' type='submit' value='去支付' />
+  </form>
+</div>
+{% ifequal order.productOrder.status 0 %}
+ <script>
+   $(function () {
+      $(".footer_download").html($(".to_pay_hidden").html());
+   });   
+ </script>
+{% endifequal %}
 {% endblock %}
-
-
-
-
-
-
-
-

@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from urllib import urlencode
 from apps.api import api_list
+import datetime
 
 appid = 'wxb37b8b2babf1f511'
 app_secret = '9e289e06befd94ef1cf49f484ce9dd86'
@@ -80,5 +81,6 @@ def get_api_user_info(request, sessionKey, code):
 def fp_render(request, template_name,context,sessionKey):
    response  = render(request, template_name, context)
    if sessionKey:
-      response.set_cookie('session',sessionKey)
+      dt = datetime.datetime.now() + datetime.timedelta(hours = int(168))
+      response.set_cookie('session',sessionKey,expires=dt)
    return response

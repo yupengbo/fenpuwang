@@ -9,7 +9,7 @@
 .marg_t_one_four{margin-top:14px;}
 .marg_r_os{margin-right:17px;}
 .order_background,.orders_background{background-color:rgb(249, 248, 245);height:100%;}
-.orders_line,.order_line{border:solid 1px #eee;}
+.orders_line,.order_line{border:thin solid 1px #eee;}
 .order_express_info{height:36px;background-color:#5F1309;padding-top:14px;padding-bottom:14px;}
 .order_express_btn{height:30px;width:30px;margin-top:3px;}
 .order_express_status{font-size:16px;color:#FFFFFF;height:16px;line-height:16px;}
@@ -51,5 +51,5 @@
 .color_66{color:#666666;}
 .color_99{color:#999999;}
 .color_22{color:#222222;}
-
+.to_pay_btn{width:80px;border:None;height:40px;background-color:#ff5346;font-size:15px;color:#fff;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;margin-right:20px;}
 

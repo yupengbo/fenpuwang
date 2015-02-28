@@ -16,17 +16,43 @@ def products_index(request):
     meta_data = response_data_utils.pack_data(request, {'data': data ,'nav':'products'})
     return render(request, 'products/products_index.html', meta_data)
 
+def products_recommend_list(request,mark=0):                                                        #kim 
+    is_ajax = request.is_ajax()
+    if not is_ajax:
+        return response_data_utils.error_response(request, "非法请求！",__name__, "not ajax")
+    products_feature_result = api_list.get_feature_product_list(request,6 ,mark)
+    if not products_feature_result or products_feature_result['error']!=0:
+        return response_data_utils.error_response(request,"推荐产品不存在",__name__,products_feature_result)
+    try: 
+        process_products_feature(products_feature_result)
+        next_request_url = ""
+        if str(products_feature_result['mark']) != "0":
+           next_request_url = reverse('products:products_recommend_list', kwargs ={"mark":products_feature_result['mark']})
+        meta_data = {'url':next_request_url, "products_feature_list":products_feature_result.get('productList')}
+        context = RequestContext(request, meta_data)
+        template = loader.get_template('products/products_recommend_list.html')
+        response_json = {'html':template.render(context), 'url':next_request_url}
+        return HttpResponse(json.dumps(response_json), content_type="application/json")
+    except Exception,e:
+        print e
+        return response_data_utils.error_response(request, "推荐产品不存在！",__name__, e)
+
 def products_recommend(request):                                                        #kim 
     products_promote_result = api_list.get_promote_product_list(request)
     products_feature_result = api_list.get_feature_product_list(request)
     if not products_promote_result or products_promote_result['error']==1:
         return response_data_utils.error_response(request, "主推产品不存在！",__name__, products_promote_result)
-    if not products_feature_result or products_feature_result['error']!=0:
+    if ( not products_feature_result ) or products_feature_result['error']!=0:
         return response_data_utils.error_response(request,"推荐产品不存在",__name__,products_feature_result)
     try: 
         process_products_promote(products_promote_result)
         process_products_feature(products_feature_result)
-        meta_data = {"products_promote_list":products_promote_result['productList'],"products_feature_list":products_feature_result['productList']}
+        next_request_url = ""
+        if str(products_feature_result['mark']) != "0":
+           next_request_url = reverse('products:products_recommend_list', kwargs ={"mark":products_feature_result['mark']})
+        
+        meta_data = {'url':next_request_url, 'nav':'products',"products_promote_list":products_promote_result.get('productList'),"products_feature_list":products_feature_result.get('productList')}
+        meta_data = response_data_utils.pack_data(request, meta_data)
         return render(request,'products/products_recommend.html',meta_data)
     except Exception,e:
         return response_data_utils.error_response(request, "推荐产品不存在！",__name__, e)

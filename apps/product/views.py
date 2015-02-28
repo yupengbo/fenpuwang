@@ -19,6 +19,7 @@ def process_product_data(product_data):
         if content['type'] == 1:
             if content['featureTopic'] != None:
                 content['featureTopic']['content'] = string_utils.truncate_text(content['featureTopic']['content'])
+                content['featureTopic']['org'] = content['featureTopic']['pics'][0]['org']
             
                     
 

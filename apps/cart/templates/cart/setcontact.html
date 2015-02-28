@@ -1,12 +1,14 @@
-{% extends "base.html" %}
-{% block title %} 填写收货人 {% endblock %}
+{% extends "base_topic.html" %}
+{% block title %} 支付 {% endblock %}
 {% block script %}
      {% load staticfiles %}
-     <link rel="stylesheet" href="{% static "css/cart.css" %}?v=1.2">
+     <link rel="stylesheet" href="{% static "css/cart.css" %}?v=1.4">
 	 <script type="text/javascript" src="{% static "js/cart.js"%}"></script>
 {% endblock %}
 {% block main_content %}
 <form  id='order_form' action='{% url 'order:submit_order' %}' method='POST'>
+<input type='hidden' name='orderId' value='{{ orderId }}'>
+{% if not readonly %}
 <div class='line'>
   <div class='label'>收货人</div>
   <div class='input'><input type='text' name='contact' value='{{ contact }}'></div>
@@ -19,6 +21,7 @@
   <div class='label'>收货地址</div>
   <div class='input'><input type='text' name='address' value='{{ address }}' ></div>
 </div>
+{% endif %}
 <div class='line'>
   <span class='price_label'>总价</span><em class='price_info'>￥{{ total_num }}</em>
 </div>

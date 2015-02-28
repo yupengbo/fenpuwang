@@ -5,66 +5,16 @@
 {% block title %} {{ question.question.normal_title }} {% endblock %}
 {% block script %}
       {% load static %}
-      <link rel="stylesheet" href="{% static "css/order.css" %}">
+      <link rel="stylesheet" href="{% static "css/order.css" %}"?v=1.3>
 {% endblock %}
 {% block main_content %}
-<div class="orders_background">
-{% for order in order_list%}
-<div class="orders_line"></div>
-<div class="orders_line marg_t_oz"></div>
-<a href="{% url "order:order_detail" order.orderId%}">
-<div class="relative orders_order_info">
-    {% ifequal order.status 0 %}
-    <img src="{% static "images/img_order_list_to_paid@2x.png" %}" class="float_l orders_order_btn">
-    {% endifequal %}
-    {% ifequal order.status 2 %}
-    <img src="{% static "images/img_order_list_undeliery@2x.png" %}" class="float_l orders_order_btn">
-    {% endifequal %}
-    {% ifequal order.status 3 %}
-    <img src="{% static "images/img_order_list_deliery@2x.png" %}" class="float_l orders_order_btn">
-    {% endifequal %}
-    {% ifequal order.status 9999 %}
-    <img src="{% static "images/img_order_list_error@2x.png" %}" class="float_l orders_order_btn">
-    {% endifequal %}
-    <div class="float_l orders_order_num_time">
-       <div class="orders_order_num">订单单号：{{ order.orderId }}</div>
-       <div class="orders_order_time">{{ order.creationTime }}</div>
-    </div>
-    <div class="absolute orders_order_s">
-            {% ifequal order.status 0 %}
-            <div class="float_r orders_order_status color_FF">待付款</div>
-            {% endifequal %}
-            {% ifequal order.status 2 %}
-            <div class="float_r orders_order_status color_66">待发货</div>
-            {% endifequal %}
-            {% ifequal order.status 3 %}    
-            <div class="float_r orders_order_status color_66">已发货</div>
-            {% endifequal %}
-            {% ifequal order.status 9999 %}
-            <div class="float_r orders_order_status color_66">已失效</div>
-            {% endifequal %}
-    </div>
+<div class="orders_background datalist">
+	{% include "order/orders_list.html" %}
 </div>
-<div class="relative orders_goods_total">
-    <div class="orders_line"></div>
-    {% for goods in order.orderInfoList%}
-    <div class="orders_goods_info">
-      <img src="{{ goods.goods_pic }}" class="float_l orders_goods_img">
-      <div class="float_l orders_goods_name_size">
-          <div class="orders_goods_name color_22">{{ goods.goods_name }}</div>
-          <div class="orders_goods_size">{{ goods.price }}/{{ goods.size }}</div>
-      </div>
-      <div class="clear"></div>
-    </div>
-    <div class="orders_line"></div>
-    {% endfor %}
-    <div class="orders_total_num color_99">共<span class="color_22">{{ order.goodsNum }}</span>件产品</div>
-    <div class="absolute orders_total_s">
-        <div class="float_r orders_total_statistics color_99"><span class="orders_total_freight">运费<span class="color_22">{{ order.transportFee }}</span>&nbsp;&nbsp;&nbsp;&nbsp;合计：</span><span class="orders_total_price">¥{{ order.totalFee }}</span></div>
-    </div>
-</div>
-</a>
-{% endfor %}
-</div>
+<script type="application/javascript">
+$(".datalist").loaddata({
+  url : "{{ url }}"
+});
+</script>
 {% endblock %}
 
