@@ -6,7 +6,7 @@
         <ul>
            <a href='javascript:history.go(-1)'><li><div class='bg arrow_btn'></div></li></a>
            <li class="width_per_tf"></li>
-           <li class='on width_per_fe'>{{ navTitle }}</li>
+           <li class='on width_per_fe'>{% if navTitle %}{{ navTitle }}{% endif %}</li>
         </ul>
         <div class='top_search {% if nav == 'index' %}index{% endif %}'>
             <div class='closebox fl hidden'>
