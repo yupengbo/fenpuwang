@@ -140,6 +140,7 @@ def submit_order(request) :
         alipay_url = reverse("order:alipay_order",kwargs={})
         return HttpResponseRedirect(alipay_url + "?orderId=" + str(orderId) +"&session=" + session )
     else:
+        meta_data["navTitle"] = "选择银行"
         return render(request, 'order/choice_bank.html', meta_data)
 
 def alipay_order(request):
