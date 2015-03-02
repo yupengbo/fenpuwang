@@ -21,21 +21,21 @@
 </a>
 {% else %}
 <a href='{% url 'topic:topic_info' question_topic.featureTopic.featureTopicId %}'>
-<div style="position:relative;padding:12px;">
-  <img src="{{ question_topic.featureTopic.org }}" style="float:left;width:80px;">
-  <div style="float:left;width:64%;margin-left:12px;">
+<div class="relative product_topic_topic">
+  <img src="{{ question_topic.featureTopic.org }}" class="float_l product_topic_img">
+  <div class="float_l product_topic_tc">
      {% if question_topic.featureTopic.title %}
-     <div class="fcb1 f15" style="max-height:25.6px;overflow:hidden;">{{ question_topic.featureTopic.title|safe }}<em>&nbsp;</em></div>
-     <div class="fcg2" style="margin-bottom:12px;margin-top:4px;overflow:hidden;max-height:44px;font-size:14px;line-height:22px;"> {{ question_topic.featureTopic.content|safe }}<em>&nbsp;</em></div>
+     <div class="fcb1 f15 product_topic_title">{{ question_topic.featureTopic.title|safe }}<em>&nbsp;</em></div>
+     <div class="fcg2 product_topic_content"> {{ question_topic.featureTopic.content|safe }}<em>&nbsp;</em></div>
      {% else %}
-     <div class="fcg2" style="overflow:hidden;max-height:66px;font-size:14px;line-height:22px;"> {{ question_topic.featureTopic.content|safe }}<em>&nbsp;</em></div>
+     <div class="fcg2 product_topic_no_title"> {{ question_topic.featureTopic.content|safe }}<em>&nbsp;</em></div>
      {% endif %}
   </div>
-  <div style="clear:both;"></div>
-  <div style="position:absolute;width:100%;height:12px;bottom:12px;left:0px;">
-    <div style="float:right;margin-right:12px;height:12px;">
-       <img src="{% static "images/icon_f_topic_collected@2x.png" %}" style="float:left;height:12px;width:12px;">
-       <div style="float:left;height:12px;line-height:12px;font-size:11px;" class="fcb1">&nbsp;{{ question_topic.featureTopic.likeNum }}&nbsp;&nbsp;&nbsp;{{ question_topic.featureTopic.commentNum }}&nbsp;评论</div>
+  <div class="clear"></div>
+  <div class="absolute product_topic_lc_section">
+    <div class="float_r product_topic_lc">
+       <img src="{% static "images/icon_f_topic_collected@2x.png" %}" class="float_l product_topic_like_btn">
+       <div class="float_l product_topic_like_comment fcb1">&nbsp;{{ question_topic.featureTopic.likeNum }}&nbsp;&nbsp;&nbsp;{{ question_topic.featureTopic.commentNum }}&nbsp;评论</div>
     </div>
   </div>
 </div>
@@ -43,4 +43,9 @@
 </a>
 {% endifequal %}
 </li>
+<script>
+  $(document).ready(function(){
+      $(".product_topic_tc").css("width",parseInt($(".product_topic_topic").width())-92);
+  });
+</script>
 

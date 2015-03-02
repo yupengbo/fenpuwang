@@ -22,8 +22,13 @@
      </div>
    </div>
    </a>
-
+   
    <div class="products_line"></div>
    <div class="feature_color_block"></div>
  </div>
+ <script>
+  $(document).ready(function(){
+     $(".feature_ntq").css("width",parseInt($(".feature_info").width())-132);
+  });
+ </script>
  {% endfor %}
