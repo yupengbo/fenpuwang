@@ -4,7 +4,7 @@
        <div class='nav_inner'>
        <form onsubmit='$("#nav_btn_search").click();return false;'>
         <ul>
-           <a href='javascript:history.go(-1)'><li><div class='bg arrow_btn'></div></li></a>
+           <a href='javascript:go_back()'><li><div class='bg arrow_btn'></div></li></a>
            <li class="width_per_tf"></li>
            <li class='on width_per_fe'>
            {% if navTitle %}
@@ -57,8 +57,21 @@
 {% endif%}
 {% if keyword %}
 <script>
- $(function () {
+  $(function () {
     $("#nav_btn_search").click(); 
- });
+  });
 </script>
 {% endif%}
+<script>
+  function go_back() {
+    var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+    if(isChrome && history.length == 2) {
+      window.location = "/";  
+    } else if(!isChrome && history.length == 1) {
+      window.location = "/";  
+    } else {
+      history.go(-1);
+    }
+  };
+</script>
+
