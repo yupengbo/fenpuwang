@@ -24,7 +24,7 @@ def topic_info(request, topic_id):
         process_topic_data(topic_json)
         process_topic_url(uid, topic_json)
         topic_comments_json = topic_comments(request,topic_id)
-        meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic'],'commentsTopic':topic_comments_json,'nav':'topic','navTitle':'笔记详情','referer':'referer';'bottom_download':bottom_download})
+        meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic'],'commentsTopic':topic_comments_json,'nav':'topic','navTitle':'笔记详情','referer':'referer','bottom_download':bottom_download})
         return render(request, 'topic/topic.html', meta)
     except Exception,e:
        return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e) 

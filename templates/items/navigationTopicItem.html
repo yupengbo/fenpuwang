@@ -66,7 +66,7 @@
   function go_back() {
     var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
     var referer = '{{ referer }}';
-    if ( referer.indexOf("fenpuwang") != -1) {
+    if ( referer.indexOf("fenpuwang") == -1) {
       window.location = "/";
     } else if(isChrome && history.length == 2) {
       window.location = "/";  
