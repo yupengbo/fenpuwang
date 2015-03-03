@@ -14,6 +14,7 @@ import logging
 
 logger = logging.getLogger('django')
 def topic_info(request, topic_id):
+    referer = request.META.get('HTTP_REFERER')
     try:
         topic_json = api_list.get_feature_topic_info(request, topic_id)
         if topic_json == None or topic_json == "" or topic_json['error'] != 0:
@@ -23,7 +24,7 @@ def topic_info(request, topic_id):
         process_topic_data(topic_json)
         process_topic_url(uid, topic_json)
         topic_comments_json = topic_comments(request,topic_id)
-        meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic'],'commentsTopic':topic_comments_json,'nav':'topic','navTitle':'笔记详情','bottom_download':bottom_download})
+        meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic'],'commentsTopic':topic_comments_json,'nav':'topic','navTitle':'笔记详情','referer':'referer';'bottom_download':bottom_download})
         return render(request, 'topic/topic.html', meta)
     except Exception,e:
        return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e) 
@@ -127,7 +128,3 @@ def process_topic_data(topic_data):
       topic['creationTime']  = time.strftime('%d %b',time.localtime(topic['creationTime']/1000))
       if pics and len(pics) > 0 :
         topic['org'] = pics[0]['org']
-
-
-
-
