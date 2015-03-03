@@ -73,6 +73,7 @@ def product_detail(request, product_id):
   # 是否来自微信
   user_agent = request.META.get('HTTP_USER_AGENT')
   referer = request.META.get('HTTP_REFERER')
+  print referer
 
   is_mm = None
   user_agent = user_agent.lower()
