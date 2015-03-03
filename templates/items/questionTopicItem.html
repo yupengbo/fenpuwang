@@ -22,7 +22,11 @@
 {% else %}
 <a href='{% url 'topic:topic_info' question_topic.featureTopic.featureTopicId %}'>
 <div class="relative product_topic_topic">
-  <img src="{{ question_topic.featureTopic.org }}" class="float_l product_topic_img">
+  {%if question_topic.featureTopic.org %}
+    <img src="{{ question_topic.featureTopic.org }}" class="float_l product_topic_img">
+  {% else %}
+    <img src="{% static "images/img_activity_biji_empty.png" %}" class="float_l product_topic_img">
+  {% endif %}
   <div class="float_l product_topic_tc">
      {% if question_topic.featureTopic.title %}
      <div class="fcb1 f15 product_topic_title">{{ question_topic.featureTopic.title|safe }}<em>&nbsp;</em></div>
