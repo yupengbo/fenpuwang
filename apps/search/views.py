@@ -21,7 +21,7 @@ def process_search_data(search_data):
   if search_data.get('productList'):
     for product in search_data['productList']:
       effect = product.get('effect')
-      if effect==None:
+      if effect == None:
           product['effect'] = ""
       pics = product.get('pics')
       if pics and len(pics) > 0:
@@ -46,8 +46,8 @@ def process_search_data(search_data):
               question_topic['featureTopic']['content'] = cgi.escape(question_topic['featureTopic']['content'])
               question_topic['featureTopic']['content'] = string_utils.replace_newkeyword(question_topic['featureTopic']['content'])
               question_topic['featureTopic']['content'] = string_utils.truncate_text(string_utils.replace_link(question_topic['featureTopic']['content']))
-              question_topic['featureTopic']['org'] = question_topic['featureTopic']['pics'][0]['org']
-      
+              if question_topic['featureTopic']['pics'] and len(question_topic['featureTopic']['pics']) >= 1:
+                question_topic['featureTopic']['org'] = question_topic['featureTopic']['pics'][0]['org']
 
 def question_list(request, keyword, mark):
   if request.is_ajax() == False: #仅接受ajax请求
