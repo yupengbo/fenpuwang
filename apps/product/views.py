@@ -72,8 +72,6 @@ def product_detail(request, product_id):
 
   # 是否来自微信
   user_agent = request.META.get('HTTP_USER_AGENT')
-  referer = request.META.get('HTTP_REFERER')
-  print referer
 
   is_mm = None
   user_agent = user_agent.lower()
@@ -100,7 +98,7 @@ def product_detail(request, product_id):
       product_json["cartNum"] = cart_num_json["totalNum"]
     process_product_data(product_json)
     next_request_url = reverse('product:question_list', kwargs ={"product_id":product_id, "mark":product_json['mark']})
-    meta = response_data_utils.pack_data(request, {'navTitle':'产品详情','referer':'referer','product':product_json, 'url':next_request_url})
+    meta = response_data_utils.pack_data(request, {'navTitle':'产品详情','product':product_json, 'url':next_request_url})
     return weixin_auth_utils.fp_render(request,'product/product.html', meta, session)
   except Exception,e:
     print e
