@@ -5,6 +5,7 @@ import logging
 logger = logging.getLogger('django')
 
 def pack_data(request,meta):
+  referer = request.META.get('HTTP_REFERER')
   if meta:
     meta["closedownload"] = 0
     meta["close_bottom_download"] = 0
@@ -17,6 +18,7 @@ def pack_data(request,meta):
       if meta['bottom_download'] == '0':
         meta["close_bottom_download"] = 1 
     meta["device"] = get_user_device(request)
+    meta["referer"] = referer
   return meta
 
 def get_user_device(request):

@@ -64,14 +64,12 @@
 {% endif%}
 <script>
   function go_back() {
-    var isChrome = window.navigator.userAgent.indexOf("Chrome") !== -1;
+    var isChrome = window.navigator.userAgent.indexOf("Chrome") != -1;
     var referer = '{{ referer }}';
-    if ( referer.indexOf("fenpuwang") == -1) {
+    if (referer == '' || referer.indexOf("referer") != -1) {
+      history.go(-1);
+    } else if (referer.indexOf("fenpuwang") == -1) {
       window.location = "/";
-    } else if(isChrome && history.length == 2) {
-      window.location = "/";  
-    } else if(!isChrome && history.length == 1) {
-      window.location = "/";  
     } else {
       history.go(-1);
     }
