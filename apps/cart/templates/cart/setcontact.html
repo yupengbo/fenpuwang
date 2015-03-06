@@ -1,9 +1,9 @@
 {% extends "base_topic.html" %}
 {% block title %} 支付 {% endblock %}
 {% block script %}
-     {% load staticfiles %}
-     <link rel="stylesheet" href="{% static "css/cart.css" %}?v=1.4">
-	 <script type="text/javascript" src="{% static "js/cart.js"%}"></script>
+   {% load staticfiles %}
+   <link rel="stylesheet" href="{% static "css/cart.css" %}?v=3.0">
+   <script type="text/javascript" src="{% static "js/cart.js"%}?v=1.0"></script>
 {% endblock %}
 {% block main_content %}
 <form  id='order_form' action='{% url 'order:submit_order' %}' method='POST'>
@@ -27,19 +27,21 @@
 </div>
 <div class='line payment_list'>
   <span class='price_label'>选择支付方式</span>
-  <input type='hidden' id='payment' name='payment' value='0' />
+  <input type='hidden' id='payment' name='payment' value='2' />
   <div class='clear'></div>
   <ul>
-  <li class='payment'>
-     <div class='fl pay_selector on' payment_code='0'></div>
-	 <div class='fl alipay'></div>
-	 <div class='clear'></div>
-  </li>
-  <!--li class='payment'>
-     <div class='fl pay_selector' payment_code='1'></div>
-	 <div class='fl bank_pay'></div>
-	 <div class='clear'></div>
-  </li-->
+    <li class='payment'>
+      <div class='fl wxpay bg'></div>
+      <div class="fl pay_type">微信支付</div>
+      <div class='fr pay_selector on' payment_code='2'></div>
+      <div class='clear'></div>
+    </li>
+    <li class='payment'>
+      <div class='fl alipay bg'></div>
+      <div class='fl pay_type'>支付宝支付</div>
+      <div class='fr pay_selector' payment_code='0'></div>
+      <div class='clear'></div>
+    </li>
   </ul>
 </div>
 <div class='line no_b'>

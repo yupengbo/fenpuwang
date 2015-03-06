@@ -74,7 +74,7 @@ def set_contact(request):
     for m in range(len(num)):
         result.append({'goodsId': goods_ids[m], 'num': num[m]})
     cartInfo = json.dumps(result)
-    api_list.update_shopping_cart(request, cartInfo, session)
+    api_list.update_shopping_cart(request,session,cartInfo)
     meta_data = {'cartInfo': cartInfo,'contact': clean_none(user_info.get("contact")),'orderId': orderId, 'readonly': readonly, \
 	'address': clean_none(user_info.get("address")),'contactPhone': clean_none(user_info.get("contactPhone")),\
 	'total_num': total_num,'navTitle':'支付'}

@@ -38,15 +38,17 @@
 .line .price_label{color:#aaa;font-size:12px;}
 .line .price_info{color:#ff5346;font-size:22px;}
 .line .price_label,.line .price_info{height:50px;line-height:50px;display:block;float:left;}
-.line .to_pay{width:90%;border:None;height:40px;background-color:#ff5346;font-size:15px;color:#fff;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;margin:5px auto;}
-.payment_list{height:115px;}
-.payment_list ul{width:78%;margin:0 auto;}
-.payment{float:left;width:48%;}
+.line .to_pay{width:90%;border:None;height:40px;background-color:#ff5346;font-size:15px;color:#fff;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;margin:10px auto;}
+.payment_list{height:135px;}
+.payment_list ul{width:94%;margin:0 auto;}
+.payment{float:left;width:100%;border-top:1px #eeeeee solid;}
 .pay_selector{background-image:url('../images/btn_shopping_cart_uncheck@2x.png');width:22px;height:22px;background-size:22px 22px;}
 .pay_selector.on{background-image:url('../images/btn_shopping_cart_checked@2x.png');}
 .payment .pay_selector{margin-top:10px;}
-.payment .alipay{background-image:url('../images/img_order_confirm_alipay.png');width:90px;height:40px;background-size:90px 40px;}
-.payment .bank_pay{background-image:url('../images/img_order_confirm_unionpay.png');width:90px;height:40px;background-size:90px 40px;}
+.payment .pay_type{font-size:14px;color:#444;line-height:40px;height:40px;}
+.payment .alipay{background-image:url('../images/icon_pay_alipay.png');width:30px;height:30px;background-size:30px 30px;padding:0px 7px;margin-top:5px;}
+.payment .bank_pay{background-image:url('../images/img_order_confirm_unionpay.png');width:22px;height:22px;background-size:22px 22px;padding:4 7px;}
+.payment .wxpay{background-image:url('../images/icon_pay_wechat.png');width:30px;height:30px;background-size:30px 30px;padding:0px 7px;margin-top:5px;}
 .no_b {border:None;}
 .bank_list{width:96%;margin:0 auto;}
 .bank_list .on{border:2px red solid;}

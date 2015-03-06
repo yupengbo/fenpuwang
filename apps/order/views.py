@@ -139,9 +139,27 @@ def submit_order(request) :
     if payment == "0":
         alipay_url = reverse("order:alipay_order",kwargs={})
         return HttpResponseRedirect(alipay_url + "?orderId=" + str(orderId) +"&session=" + session )
-    else:
+    elif payment == "1":
         meta_data["navTitle"] = "选择银行"
         return render(request, 'order/choice_bank.html', meta_data)
+    elif payment == "2": 
+        wxpay_url = reverse("order:wxpay_order",kwargs={})
+        return HttpResponseRedirect(wxpay_url + "?orderId=" + str(orderId) +"&session=" + session )
+
+def wxpay_order(request):
+    session = request.REQUEST.get('session')
+    order_id = request.REQUEST.get('orderId')
+    user_agent = request.META.get('HTTP_USER_AGENT')
+    order_info = api_list.get_product_order(request, session, order_id)
+    meta_data = {}
+    meta_data['order_id'] = order_id;
+    if order_info and order_info.get("productOrder"):
+      product_order = order_info.get("productOrder");
+      meta_data["wxJsApiParameters"] = product_order.get("wxJsApiParameters"); 
+      meta_data["wxQrcodeUrl"] = product_order.get("wxQrcodeUrl");
+      meta_data["totalFee"] = product_order.get("totalFee");
+      meta_data["goodsDesc"] = product_order.get("goodsDesc");
+    return render(request, 'order/order_wx_pay.html', meta_data);
 
 def alipay_order(request):
     session = request.REQUEST.get('session')
@@ -172,8 +190,6 @@ def pay_order(request):
     meta["bank_type"] = pay_code
     meta["goods_num"] = goods_num
     meta_data = build_huifubao_meta(meta) 
-    print "====================="
-    print pay_code
     return render(request, 'order/order_pay.html', meta_data)
 
 def build_huifubao_meta(meat_dict):
@@ -209,21 +225,6 @@ def build_huifubao_meta(meat_dict):
     
     sign = string_utils.get_md5(sign_str)
     meta_data = {'version':version, 'agent_id':agent_id, 'agent_bill_id':agent_bill_id, 'agent_bill_time':agent_bill_time,\
-	             'pay_type':pay_type, 'pay_code':pay_code, 'pay_amt':pay_amt, 'notify_url':notify_url, 'return_url':return_url,\
-				 'user_ip':user_ip, 'goods_name':goods_name, 'goods_num':goods_num, 'goods_note':goods_note, "remark":remark, "sign":sign}
-    print version
-    print agent_id
-    print agent_bill_id
-    print agent_bill_time 
-    print pay_type
-    print pay_code
-    print pay_amt
-    print notify_url
-    print return_url
-    print user_ip
-    print goods_name
-    print goods_num
-    print goods_note
-    print remark
-    print sign 
+	         'pay_type':pay_type, 'pay_code':pay_code, 'pay_amt':pay_amt, 'notify_url':notify_url, 'return_url':return_url,\
+		 'user_ip':user_ip, 'goods_name':goods_name, 'goods_num':goods_num, 'goods_note':goods_note, "remark":remark, "sign":sign}
     return meta_data

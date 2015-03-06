@@ -38,7 +38,7 @@ $(function(){
     $('.total_fee em').html(yen_char + get_total_fee().toFixed(2));
     $('.total_num em').html( get_goods_num());
     $('.total_info .fee em').html($('.total_fee em').html());
-	$('#order_total_fee').val(get_total_fee().toFixed(2));
+    $('#order_total_fee').val(get_total_fee().toFixed(2));
   }
   $('.selector').click(function(){
 	 if($(this).hasClass("on")){
@@ -88,9 +88,10 @@ $(function(){
   });
   reset_val();
   $(".footer_download").hide();
-  $('.pay_selector').click(function(){
-     $("#payment").val($(this).attr("payment_code"));
-     $('.pay_selector').removeClass("on");
-	 $(this).addClass("on");
+  $('.payment').click(function(){
+    var $sel = $(this).find('.pay_selector');
+    $("#payment").val($sel.attr("payment_code"));
+    $('.pay_selector').removeClass("on");
+    $sel.addClass("on");
   });
 })

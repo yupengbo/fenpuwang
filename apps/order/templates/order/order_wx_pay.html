@@ -1,0 +1,196 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta http-equiv="Pragma" content="no-cache">  
+    <meta http-equiv="Cache-Control" content="no-cache">  
+    <meta http-equiv="Expires" content="0"> 
+
+    <title>收银台</title>
+    {% load static %}
+    <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript">
+      //调用微信JS api 支付
+      function jsApiCall() {
+	WeixinJSBridge.invoke(
+	  'getBrandWCPayRequest',
+	  {{ wxJsApiParameters|safe }},
+	  function(res){
+	    if (res.err_msg=="get_brand_wcpay_request:ok") {
+              window.location = '{% url 'order:order_detail' order_id%}';
+            } else {
+              document.getElementById('wx_pay_button').style.display = "none";
+              document.getElementById('qcode').style.display = "";
+              window.scrollTo(0,1);
+            }
+          });
+      }
+
+      function callpay() {
+	if (typeof WeixinJSBridge == "undefined"){
+	    if( document.addEventListener ){
+	        document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+	    }else if (document.attachEvent){
+	        document.attachEvent('WeixinJSBridgeReady', jsApiCall); 
+		document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+	    }
+        }else{
+	    jsApiCall();
+	}
+      }
+    </script>
+    <style>
+    header{
+      overflow: hidden;
+    }
+    footer{
+      margin: 10px 0 0 0;
+      line-height: 26px;
+      text-align: center;
+      font-size: 14px;
+      font-size: 0.7rem;
+      color: #999999;
+    }
+    body {
+      font-size: 125%;
+      -webkit-text-size-adjust: 100%;
+      -ms-text-size-adjust: 100%;
+    }
+    body {
+      background: #f2f2f2;
+      color: #737373;
+      padding: 0;
+      margin: 0;
+      font-family: normal normal "microsoft yahei", Arial, sans-serif;
+      line-height: 1;
+      position: relative;
+      cursor: default;
+    }
+      .page-title{
+        height: 20px;
+        background: #FFFFFF;
+        width: 100%;
+        padding: 20px 0;
+      }
+      .page-title .left{
+        float:left;
+        width:30%;
+        margin: 0px 0px 0px 12px;
+        border-left: 3px solid #3aae36;
+        height: 20px;
+        line-height: 20px;
+        text-align: left;
+        padding-left: 5px;
+        color: #111111;
+        font-size: 18px;
+      }
+      .page-title .right{
+        float:right;
+        width:30%;
+        margin: 0px 0px 0px 12px;
+        height: 20px;
+        line-height: 20px;
+        text-align: left;
+        padding-left: 5px;
+        color: #111111;
+        font-size: 18px;
+      }
+      .page-title .right a {
+        color:#444;
+        text-decoration:none;
+      }
+      .row-p{
+        line-height: 25px;
+        font-size: 20px;
+        margin-bottom: 8px;
+        color: #666666;
+        text-align: left;
+      } 
+      .row {
+        width: 100%;
+        max-width: 768px;
+        margin: 0 auto;
+        *zoom: 1;
+        font-size: 0.7rem;
+      }
+      .row:before,
+      .row:after {
+        content: " ";
+        display: table;
+      }
+     .row:after {
+       clear: both;
+      }
+     .row .row.collapse {
+       margin: 0;
+      } 
+     .row-fluid {
+       font-size: 0.7rem;
+       border: 0;
+       border-radius: 3px;
+       margin: 10px 20px;
+       position: relative;
+       padding: 8px 0 3px 0;
+     }
+     .row-p{
+    line-height: 25px;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: #666666;
+    text-align: left;
+}
+.row-fluid .row-p{
+    margin-bottom: 0px;
+    height: 24px;
+    line-height: 24px;
+
+}
+.row h1{
+    font-size: 16px;
+    font-size: 0.8rem;
+    height: 30px;
+    line-height: 30px;
+    margin: 0;
+}
+.row h2{
+    font-size: 18px;
+    font-size: 0.9rem;
+    height: 30px;
+    line-height: 30px;
+    margin: 0;
+    text-align: center;
+}
+
+    </style>
+</head>
+<body style="background:#f1f1f1;">
+    <header>
+      <div class="page-title"><div class="left">支付中心</div><div class="right"><a href="{% url 'order:order_detail' order_id%}">查看订单&gt;</a></div></div>
+      
+      <div class="row">
+        <div class="row-fluid" style="padding:0;">
+          <div class="row-p new_url_container" id="qcode" style="display:none;height:auto;margin-bottom:5px;border-bottom:1px solid #ddd;">
+            <p>抱歉，支付失败<br/>
+            如果提示的是“不允许跨号支付”，请长按下方二维码，点击“识别图中二维码”重新支付<br/>
+            如果是错误点击“取消”，请点击左上角“返回“重新支付</p>
+            <img style="width:100%" src="http://qr.liantu.com/api.php?text={{ wxQrcodeUrl }}">
+          </div>
+          <div class="row-p" style="height:auto;margin-bottom:5px;border-bottom:1px solid #ddd;padding: 10px 5px;">
+            商品：<span class="green">{{ goodsDesc}}</span></div>
+          <div class="row-p" style="margin-top:10px;margin-bottom:10px;height:auto;padding:0 5px;">
+            金额：<span class="color:red;font-size:18px;">{{ totalFee }}元</span></div>
+
+        </div>
+      </div>
+    </header>
+    <div class="wx_pay_button" style="padding:12px 12px;" id="wx_pay_button">
+      <button style="width:100%; height:40px;background-color:green; border:0px #FE6714 solid; cursor: pointer; color:white;  font-size:16px;" type="button" onclick="callpay()">微信安全支付</button>
+    </div>
+
+    <div id="bankForm"></div>
+    <footer><div style="margin: 10px 0;font-size: 12px;text-align: center;">版权所有©2014-2015 粉扑</div></footer>
+</body>
+</html>

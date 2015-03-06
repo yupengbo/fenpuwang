@@ -9,6 +9,7 @@ urlpatterns = patterns('',
   url(r'^submit/$', views.submit_order, name='submit_order'),
   url(r'^bankpay/$', views.pay_order, name='pay_order'),
   url(r'^alipay/$', views.alipay_order, name='alipay_order'),
+  url(r'^wxpay/$', views.wxpay_order, name='wxpay_order'),
 #  url(r'^cart_num/$',views.cart_num,name="cart_num"),
 )
 

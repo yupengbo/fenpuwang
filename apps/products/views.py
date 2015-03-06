@@ -67,7 +67,7 @@ def process_products_feature(data):                                             
     for product in data['productList']:
         pics = product.get('pics')
         if pics and len(pics)>0:
-            product['thumb_s'] = pics[0]['thumb-s']
+            product['thumb_s'] = pics[0]['thumb-b']
         if not product.get("name_decoration"):
             product["name_decoration"]=""
 
