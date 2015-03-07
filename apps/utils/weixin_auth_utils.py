@@ -81,6 +81,6 @@ def get_api_user_info(request, sessionKey, code):
 def fp_render(request, template_name,context,sessionKey):
    response  = render(request, template_name, context)
    if sessionKey:
-      dt = datetime.datetime.now() + datetime.timedelta(hours = int(168))
+      dt = datetime.datetime.now() + datetime.timedelta(hours = int(12))
       response.set_cookie('session',sessionKey,expires=dt)
    return response
