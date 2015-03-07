@@ -92,6 +92,7 @@ def process_order_detail(data):
             if order.get("creationTime"):
                time_tuple = time.localtime(order["creationTime"]/1000)
                order["creationTime"] = time.strftime("%Y-%m-%d %H:%M",time_tuple)
+
 def submit_order(request) :
     #return render(request, 'order/choice_bank.html', {})
     user_info = weixin_auth_utils.get_user_info(request)
@@ -125,7 +126,7 @@ def submit_order(request) :
     
     if orderId == 0:
         return response_data_utils.error_response(request, "服务器忙，请稍后重试！", __name__, result)
-    print orderId 
+
     order_info = api_list.get_product_order(request, session, orderId) 
     if not order_info or order_info["error"]!=0:
         return response_data_utils.error_response(request, "找不到对应的订单！", __name__, order_info)
