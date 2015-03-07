@@ -5,6 +5,7 @@
 {% block script %}
   {% load staticfiles %}
   <link rel="stylesheet" href="{% static "css/products.css" %}?v=2.5">
+  <link rel="stylesheet" href="{% static "css/product.css" %}?v=2.5">
   <script type="text/javascript" src="{% static "js/product_list.js" %}"></script>
 {% endblock %}
 {% block main_content %}
@@ -36,9 +37,26 @@
  {% include "products/products_recommend_list.html" %} 
  </div>
 </div>
+
+<div class='product_cart_container'>
+  <div class='cart_download fl'><a id='bd_topic_download' onclick="ga('send', 'event', '应用', '下载', '底部');_hmt.push(['_trackEvent', 'software', 'download','topic_info_{{ featureTopic.featureTopicId }}']);" href='http://www.dabanniu.com/download.phtml' class="bg btn_t_download block" target="_blank"></a></div>
+  <div class='show_cart fr fcb1'>
+    <div class="relative fl product_cart">
+       <img style="padding:7px 0px" src="{% static "images/icon_products_detail_shopping_cart.png" %}" class="product_cart_btn">
+       <div class="absolute product_cn">
+         <div class="center float_r product_cart_num">{{ cartNum }}</div>
+       </div>
+    </div>
+    <a class="product_cart_in" href="{% url 'cart:cart_index' %}">查看购物车</a></div>
+  <div class='clear'></div>
+</div>
+</div>
 <script type="application/javascript">
 $(".datalist").loaddata({
   url : "{{ url }}"
+});
+$(document).ready(function(){
+  $(".footer_download").hide();
 });
 </script>
 {% endblock %}

@@ -4,7 +4,7 @@ from django.http import HttpResponse,Http404
 from django.template import RequestContext, loader
 from apps.api import api_list
 import requests
-from apps.utils import string_utils, response_data_utils
+from apps.utils import string_utils, response_data_utils, weixin_auth_utils
 from apps.api import api_list, static_data
 from django.core.urlresolvers import reverse
 import json
@@ -38,8 +38,14 @@ def products_recommend_list(request,mark=0):                                    
         return response_data_utils.error_response(request, "推荐产品不存在！",__name__, e)
 
 def products_recommend(request):                                                        #kim 
+    user_info = weixin_auth_utils.get_user_info(request)
+    authuri = user_info.get('redirect')
+    session = user_info.get('session')
+
     products_promote_result = api_list.get_promote_product_list(request)
     products_feature_result = api_list.get_feature_product_list(request)
+    cart_num_json = api_list.get_goods_num_in_cart(request, session)
+
     if not products_promote_result or products_promote_result['error']==1:
         return response_data_utils.error_response(request, "主推产品不存在！",__name__, products_promote_result)
     if ( not products_feature_result ) or products_feature_result['error']!=0:
@@ -50,8 +56,12 @@ def products_recommend(request):                                                
         next_request_url = ""
         if str(products_feature_result['mark']) != "0":
            next_request_url = reverse('products:products_recommend_list', kwargs ={"mark":products_feature_result['mark']})
-        
-        meta_data = {'url':next_request_url, 'nav':'products',"products_promote_list":products_promote_result.get('productList'),"products_feature_list":products_feature_result.get('productList')}
+
+        cartNum = 0
+        if cart_num_json and cart_num_json['error'] == 0:
+           cartNum = cart_num_json["totalNum"]
+ 
+        meta_data = {'cartNum':cartNum,'url':next_request_url, 'nav':'products',"products_promote_list":products_promote_result.get('productList'),"products_feature_list":products_feature_result.get('productList')}
         meta_data = response_data_utils.pack_data(request, meta_data)
         return render(request,'products/products_recommend.html',meta_data)
     except Exception,e:
