@@ -1,6 +1,8 @@
+<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
     <meta name="format-detection" content="telephone=no">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -117,6 +119,11 @@
         margin: 0 auto;
         *zoom: 1;
         font-size: 0.7rem;
+      }
+      *:after {
+       -moz-box-sizing: border-box;
+       -webkit-box-sizing: border-box;
+       box-sizing: border-box;
       }
       .row:before,
       .row:after {
