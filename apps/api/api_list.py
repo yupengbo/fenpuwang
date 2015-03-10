@@ -106,6 +106,14 @@ def get_user_info(req, sessionKey):
     params = {'sessionKey': sessionKey}
     return get_result(req, 'getUserInfo.do', params)
 
+def bind_user(req, sessionKey, bind_to):
+    params = {'sessionKey': sessionKey, 'bind_to' : bind_to }
+    return get_result(req, 'bindUser.do', params)
+
+def get_user_info_by_uid(req, uid):
+    params = {'uID': uid}
+    return get_result(req, 'getUserInfo.do', params)
+
 def get_activity_info(req, sessionKey, activity_id = 0, view_uid = 0):
     params = {'sessionKey': sessionKey, 'activityId': activity_id, 'uID': view_uid}
     return get_result(req, 'getActivityInfo.do', params)
@@ -158,7 +166,7 @@ def get_product_order(req, sessionKey, order_id):                               
     params = {"orderId": order_id,"sessionKey": sessionKey}
     return get_result(req,"getProductOrder.do",params)    
 
-def submit_order(req, sessionKey, cartInfo , contact,  address,  contactPhone):
+def submit_order(req, sessionKey, cartInfo, contact,  address,  contactPhone):
     params = {"sessionKey": sessionKey,'cartInfo': cartInfo, 'contact': contact, 'address': address, 'contactPhone': contactPhone}
     return get_result(req,"submitOrder.do",params)
  

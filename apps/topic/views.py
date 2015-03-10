@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
-from django.http import HttpResponse,Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import RequestContext, loader
 from apps.api import api_list
 import requests
-from apps.utils import string_utils, response_data_utils, data_process_utils
+from apps.utils import string_utils, response_data_utils, data_process_utils, weixin_auth_utils
 from apps.api import api_list, static_data
 from django.core.urlresolvers import reverse
 import json
@@ -14,6 +14,33 @@ import logging
 
 logger = logging.getLogger('django')
 def topic_info(request, topic_id):
+    dp = request.REQUEST.get('dp')
+    #微信中用户信息获取及授权处理
+    user_info = weixin_auth_utils.get_user_info(request)
+    authuri = user_info.get('redirect')
+    session = user_info.get('session')
+
+    user_agent = request.META.get('HTTP_USER_AGENT')
+ 
+    is_mm = None
+    user_agent = user_agent.lower()
+    if "micromessenger" in user_agent:
+      is_mm = 1
+
+    if authuri and is_mm == 1 and dp != None and dp != "":
+      return HttpResponseRedirect(authuri)
+    from_user_name = None;
+    if dp != "" and dp != None:
+      api_list.bind_user(request, session, dp)
+      from_user_info = api_list.get_user_info_by_uid(request, dp)
+      print "==0-00-" + str(from_user_info)
+      if from_user_info != None:
+        from_user_name = from_user_info.get("userInfo").get('userName')
+        print from_user_name
+    else:
+      dp = None
+    # end 
+
     try:
         topic_json = api_list.get_feature_topic_info(request, topic_id)
         if topic_json == None or topic_json == "" or topic_json['error'] != 0:
@@ -23,7 +50,7 @@ def topic_info(request, topic_id):
         process_topic_data(topic_json)
         process_topic_url(uid, topic_json)
         topic_comments_json = topic_comments(request,topic_id)
-        meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic'],'commentsTopic':topic_comments_json,'nav':'topic','navTitle':'笔记详情','bottom_download':bottom_download})
+        meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic'],'commentsTopic':topic_comments_json,'nav':'topic','navTitle':'笔记详情','bottom_download':bottom_download, 'fromUserName':from_user_name})
         return render(request, 'topic/topic.html', meta)
     except Exception,e:
        return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e) 

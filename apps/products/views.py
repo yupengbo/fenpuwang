@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.shortcuts import render
-from django.http import HttpResponse,Http404
+from django.http import HttpResponse, Http404, HttpResponseRedirect
 from django.template import RequestContext, loader
 from apps.api import api_list
 import requests
@@ -37,10 +37,28 @@ def products_recommend_list(request,mark=0):                                    
         print e
         return response_data_utils.error_response(request, "推荐产品不存在！",__name__, e)
 
-def products_recommend(request):                                                        #kim 
+def products_recommend(request):                                               #kim 
+    dp = request.REQUEST.get('dp')
+    #微信中用户信息获取及授权处理
     user_info = weixin_auth_utils.get_user_info(request)
     authuri = user_info.get('redirect')
     session = user_info.get('session')
+
+    user_agent = request.META.get('HTTP_USER_AGENT')
+ 
+    is_mm = None
+    user_agent = user_agent.lower()
+    if "micromessenger" in user_agent:
+      is_mm = 1
+
+    if authuri and is_mm == 1 and dp != None and dp != "":
+      return HttpResponseRedirect(authuri)
+
+    if dp != "" and dp != None:
+      api_list.bind_user(request, session, dp)
+    else:
+      dp = None
+    # end 
 
     products_promote_result = api_list.get_promote_product_list(request)
     products_feature_result = api_list.get_feature_product_list(request)

@@ -66,11 +66,11 @@ def question_list(request, product_id, mark):
     return response_data_utils.error_response(request, "找不到问题列表！", __name__, e)
   
 def product_detail(request, product_id):
+  #微信中用户信息获取及授权处理
   user_info = weixin_auth_utils.get_user_info(request)
   authuri = user_info.get('redirect')
   session = user_info.get('session')
 
-  # 是否来自微信
   user_agent = request.META.get('HTTP_USER_AGENT')
 
   is_mm = None
@@ -80,6 +80,12 @@ def product_detail(request, product_id):
 
   if authuri and is_mm == 1:
       return HttpResponseRedirect(authuri)
+
+  dp = request.REQUEST.get('dp')
+  if dp != "" and dp != None:
+    api_list.bind_user(request, session, dp)
+  # end
+
   has_product_info = 1
   try:
     product_json = api_list.get_product_info_by_id(request, product_id)

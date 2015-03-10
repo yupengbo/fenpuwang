@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import render
-from django.http import HttpResponse,Http404
+from django.http import HttpResponse,Http404,HttpResponseRedirect
 from django.template import RequestContext, loader
 from django.views.decorators.csrf import csrf_exempt
 from django.core.urlresolvers import reverse
 from apps.api import api_list
-from apps.utils import data_process_utils,string_utils, response_data_utils
+from apps.utils import data_process_utils,string_utils, response_data_utils, weixin_auth_utils
 import requests
 import json
 import cgi
@@ -62,9 +62,28 @@ def process_question_time(data):                                #kim
             if new_question.get('creationTime'):
                 new_question['creationTime'] = data_process_utils.get_time_since(new_question['creationTime'])
   
-
-       
 def question_details(request, question_id):
+    dp = request.REQUEST.get('dp')
+    #微信中用户信息获取及授权处理
+    user_info = weixin_auth_utils.get_user_info(request)
+    authuri = user_info.get('redirect')
+    session = user_info.get('session')
+
+    user_agent = request.META.get('HTTP_USER_AGENT')
+ 
+    is_mm = None
+    user_agent = user_agent.lower()
+    if "micromessenger" in user_agent:
+      is_mm = 1
+
+    if authuri and is_mm == 1 and dp != None and dp != "":
+      return HttpResponseRedirect(authuri)
+
+    if dp != "" and dp != None:
+      api_list.bind_user(request, session, dp)
+    else:
+      dp = None
+    # end 
     try:
         question_obj = api_list.get_question_detail(request, question_id, 1, 1, 0)
         if question_obj['error'] == 0:
