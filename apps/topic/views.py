@@ -33,12 +33,10 @@ def topic_info(request, topic_id):
     if dp != "" and dp != None:
       api_list.bind_user(request, session, dp)
       from_user_info = api_list.get_user_info_by_uid(request, dp)
-      print "==0-00-" + str(from_user_info)
       if from_user_info != None:
         from_user_name = from_user_info.get("userInfo").get('userName')
-        print from_user_name
     else:
-      dp = None
+      dp = None;
     # end 
 
     try:
@@ -121,7 +119,6 @@ def process_topic_url(uid, topic_data):
       if link and link['data'] and link['data'].startswith("http:"):
         if uid != None and uid != "":
           link['data'] = link['data'] + "?dp=" + str(uid)
-          print link['data']
 
 def process_topic_data(topic_data):
   if topic_data.get('featureTopic'):
