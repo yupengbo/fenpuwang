@@ -9,6 +9,11 @@
 {% endblock %}
 
 {% block main_content %}
+{% if fromUserName %}
+  <div style="width:80%;padding:17px 14px 0px 14px;height:22px;line-hegint:22px;font-size:12px;">
+  <div class="fl" style="color:#999;padding:5px 8px;-moz-border-radius: 15px; -webkit-border-radius: 15px;border-radius:15px;background-color:#eee">来自<span class="fcb1" style="color:#666">{{fromUserName}}</span>的分享</div>
+  </div>
+{% endif %}
 <!--产品信息-->
 <div class="product_body relative">
   <div class="product_pics t_c">

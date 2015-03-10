@@ -35,8 +35,6 @@ def topic_info(request, topic_id):
       from_user_info = api_list.get_user_info_by_uid(request, dp)
       if from_user_info != None:
         from_user_name = from_user_info.get("userInfo").get('userName')
-    else:
-      dp = None;
     # end 
 
     try:
