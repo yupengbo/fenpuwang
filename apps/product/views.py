@@ -67,6 +67,7 @@ def question_list(request, product_id, mark):
   
 def product_detail(request, product_id):
   #微信中用户信息获取及授权处理
+  dp = request.REQUEST.get('dp')
   user_info = weixin_auth_utils.get_user_info(request)
   authuri = user_info.get('redirect')
   session = user_info.get('session')
@@ -81,7 +82,6 @@ def product_detail(request, product_id):
   if authuri and is_mm == 1 and dp != None and dp != "":
       return HttpResponseRedirect(authuri)
   from_user_name = None;
-  dp = request.REQUEST.get('dp')
   if dp != "" and dp != None:
     api_list.bind_user(request, session, dp)
     from_user_info = api_list.get_user_info_by_uid(request, dp)
