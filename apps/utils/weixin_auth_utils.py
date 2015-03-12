@@ -82,5 +82,6 @@ def fp_render(request, template_name,context,sessionKey):
    response  = render(request, template_name, context)
    if sessionKey:
       dt = datetime.datetime.now() + datetime.timedelta(hours = int(12))
+      print "write  sesssion" + sessionKey
       response.set_cookie('session',sessionKey,expires=dt)
    return response

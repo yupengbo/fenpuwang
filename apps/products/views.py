@@ -37,6 +37,13 @@ def products_recommend_list(request,mark=0):                                    
         print e
         return response_data_utils.error_response(request, "推荐产品不存在！",__name__, e)
 
+def session(request):
+    #设置session
+    pay_from = request.REQUEST.get('pay_from') 
+    if pay_from != None and pay_from != "":
+      request.session['pay_from'] = pay_from
+    return HttpResponse("set session success", content_type="application/json")
+
 def products_recommend(request):                                               #kim 
     dp = request.REQUEST.get('dp')
     #微信中用户信息获取及授权处理

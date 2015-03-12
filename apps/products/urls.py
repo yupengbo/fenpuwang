@@ -9,5 +9,6 @@ urlpatterns = patterns('',
   url(r'^(?P<type>\d+)/(?P<category_id>\d+)/(?P<order>\d+)$', views.productlist_by_category, name='query_by_category_order'),
 #  url(r'^(?P<type>\d+)/(?P<category_id>\d+)/(?P<order>\d+)/(?P<filter>\d+)$', views.productlist_by_category, name='query_by_category_order_filter'),
   url(r'^(?P<type>\d+)/(?P<category_id>\d+)/(?P<order>\d+)/(?P<filter>\d+)/(?P<mark>\d+)$', views.productlist_by_category, name='query_by_all'),
+  url(r'^session/$', views.session, name='session'),
 )
 

@@ -177,14 +177,23 @@
 </head>
 <body style="background:#f1f1f1;">
     <header>
-      <div class="page-title"><div class="left">支付中心</div><div class="right"><a href="{% url 'order:order_detail' order_id%}">查看订单&gt;</a></div></div>
+      <div class="page-title"><div class="left">支付中心</div><!--div class="right"><a href="{% url 'order:order_detail' order_id%}">查看订单&gt;</a></div--></div>
       
       <div class="row">
         <div class="row-fluid" style="padding:0;">
-          <div class="row-p new_url_container" id="qcode" style="display:none;height:auto;margin-bottom:5px;border-bottom:1px solid #ddd;">
-            <p>抱歉，支付失败<br/>
+          <div class="row-p new_url_container" id="qcode" style="{% if show_qrcode == 0 %}display:none;{% endif %}height:auto;margin-bottom:5px;border-bottom:1px solid #ddd;">
+            <p>
+            {% if show_qrcode == 0 %}
+            抱歉，支付失败<br/>
             如果提示的是“不允许跨号支付”，请长按下方二维码，点击“识别图中二维码”重新支付<br/>
-            如果是错误点击“取消”，请点击左上角“返回“重新支付</p>
+            如果是错误点击“取消”，请点击左上角“返回“重新支付
+            {% endif %}
+            {% if show_qrcode == 1 %}
+            请长按二维码<br>
+            选择"识别图中二维码"即可支付
+            {% endif %}
+            </p>
+            <div style="text-align:center;text-decoration:none;height:40px;"><a style="color:green" href="{% url 'order:order_detail' order_id%}">支付成功后，点此查看我的订单</a></div>
             <img style="width:100%" src="http://qr.liantu.com/api.php?text={{ wxQrcodeUrl }}">
           </div>
           <div class="row-p" style="height:auto;margin-bottom:5px;border-bottom:1px solid #ddd;padding: 10px 5px;">
@@ -195,7 +204,7 @@
         </div>
       </div>
     </header>
-    <div class="wx_pay_button" style="padding:12px 12px;" id="wx_pay_button">
+    <div class="wx_pay_button" style="{% if show_qrcode == 1 %}display:none;{% endif %}padding:12px 12px;" id="wx_pay_button">
       <button style="width:100%; height:40px;background-color:green; border:0px #FE6714 solid; cursor: pointer; color:white;  font-size:16px;" type="button" onclick="callpay()">微信安全支付</button>
     </div>
 

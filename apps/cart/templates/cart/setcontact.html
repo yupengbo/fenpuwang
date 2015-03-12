@@ -6,18 +6,18 @@
    <script type="text/javascript" src="{% static "js/cart.js"%}?v=1.0"></script>
 {% endblock %}
 {% block main_content %}
-<form  id='order_form' action='{% url 'order:submit_order' %}' method='POST'>
-<input type='hidden' name='orderId' value='{{ orderId }}'>
+<form  id='order_form' action='{% url 'order:submit_order' %}' method='POST' >
+<input id="orderId" type='hidden' name='orderId' value='{{ orderId }}'>
 {% if not readonly %}
-<div class='line'>
+<div class='line info_line'>
   <div class='label'>收货人</div>
   <div class='input'><input type='text' name='contact' value='{{ contact }}'></div>
 </div>
-<div class='line'>
+<div class='line info_line'>
   <div class='label'>联系电话</div>
   <div class='input'><input type='text' name='contactPhone' value='{{ contactPhone }}'></div>
 </div>
-<div class='line'>
+<div class='line info_line'>
   <div class='label'>收货地址</div>
   <div class='input'><input type='text' name='address' value='{{ address }}' ></div>
 </div>
@@ -46,8 +46,54 @@
 </div>
 <div class='line no_b'>
   <input type='hidden' id='cartInfo' name='cartInfo' value='{{ cartInfo }}' />
-  <input class='to_pay block' type='submit' value='确认支付' />
+  <input class='to_pay block' type='button' value='确认支付' />
 </div>
 </form>
+<script>
+$(function(){
+   var submit_order =false;
+   var payment_id = $("#payment").val();
+   $('.pay_selector').removeClass("on");
+   if(payment_id=="2"){
+      $(".payment").eq(0).find(".pay_selector").addClass("on");
+   }else if(payment_id=="0"){
+      $(".payment").eq(1).find(".pay_selector").addClass("on");
+   }
+   if($("#orderId").val()!=""){
+      $(".info_line").hide();
+      $("#order_form").attr("aciton","{% url 'order:to_pay_order' %}");
+   }
+   $(".to_pay").click(function(){
+      if(submit_order){
+	     return;
+	  }
+      submit_order = true;
+      if($("#orderId").val()!=""){
+         $(".info_line").hide();
+         $("#order_form").attr("aciton","{% url 'order:to_pay_order' %}");
+         $("#order_form").submit();
+	     return;
+      }
+
+      $.get_data( 
+         "{% url 'order:ajax_submit_order' %}",
+	      $("#order_form").serialize(),
+	      function(data) {
+		    if (data['error'] == 2){
+			   window.location = data.authuri;
+			}else if(data['error'] == 0){
+               $("#orderId").val(data['orderId']);
+			   $("#order_form").attr("aciton","{% url 'order:to_pay_order' %}");
+			   $("#order_form").submit();
+			}else{
+			   alert(data["errorString"]);
+			}
+	      },
+	      function(xmlReq, textStatus) {},
+	      'json'
+	  );
+   });
+});
+</script>
 {% endblock %}
 

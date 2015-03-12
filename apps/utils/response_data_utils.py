@@ -46,11 +46,20 @@ def error_response(request, message, view_name = "unknow_source", error_info = "
   logger.error(view_name + str(error_info))
   return render(request, '500.html', {'text': message})
 
-def error_comments(request, message, view_name = "unknown_souurce", error_info="unkonw_error"):
+def error_log(request, message, view_name = "unknown_souurce", error_info="unkonw_error"):
+  if not error_info:
+     if message:
+        error_info = message 
+     else:
+        error_info = "unkonw_error"
+  if not message:
+     message = "服务器忙，请稍后重试！"
   if not view_name:
-      view_name = "unknown_source"
+     view_name = "unknow_source"
   view_name = view_name + ":"
-  logger.error(view_name+message)    
+  logger.error(view_name + str(error_info))
 
+def error_comments(request, message, view_name = "unknown_souurce", error_info="unkonw_error"):
+  error_log(request, message, view_name, error_info)
 
 

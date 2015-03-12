@@ -115,16 +115,16 @@ $.extend({
     error_callback: function (xmlReq, textStatus) {
         switch (xmlReq.status) {
             case 404: // Not Found
-                alert("XmlHttpRequest status: [404] \nThe requested URL was not found on this server.");
+                console.log("XmlHttpRequest status: [404] \nThe requested URL was not found on this server.");
                 break;
             case 500:
-                alert("XmlHttpRequest status: [500] Service Unavailable");
+                console.log("XmlHttpRequest status: [500] Service Unavailable");
                 break;
             case 400:
-                alert("XmlHttpRequest status: [400] Bad Request");
+                console.log("XmlHttpRequest status: [400] Bad Request");
                 break;
             case 503: // Service Unavailable
-                alert("XmlHttpRequest status: [503] Service Unavailable");
+                console.log("XmlHttpRequest status: [503] Service Unavailable");
                 break;
             default:
                 break;
@@ -204,4 +204,20 @@ function delCookie(name){//为了删除指定名称的cookie，可以将其过�
      date.setTime(date.getTime() - 10000);
      document.cookie = name + "=a; expires=" + date.toGMTString();
 }
-
+function GetRequest() {
+   var url = location.search; //获取url中"?"符后的字串
+   var theRequest = new Object();
+   if (url.indexOf("?") != -1) {
+       var str = url.substr(1);
+	   strs = str.split("&");
+	   for(var i = 0; i < strs.length; i ++) {
+	       theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+	   }
+   }
+  return theRequest;
+}
+var request_vars = GetRequest();
+var pay_from_var = request_vars['pay_from'];
+if(pay_from_var){
+    $.get_data("/products/session/", "pay_from="+pay_from_var, function(){}, function(){}, 'json');
+}

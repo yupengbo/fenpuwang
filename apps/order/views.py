@@ -59,7 +59,7 @@ def order_list(request):                                                        
         if str(order_list_result['mark']) != "0":
            next_request_url = reverse('order:ajax_order_list', kwargs ={"mark":order_list_result['mark']})
         meta_data = {'url':next_request_url, "nav":"order","order_list":order_list_result["productOrderList"]}
-        return render(request,"order/orders.html",meta_data)
+        return weixin_auth_utils.fp_render(request,'order/orders.html',meta_data, session)
     except Exception,e:
         print e
         return response_data_utils.error_response(request,"服务器忙，请稍后重试！",__name__, e)
@@ -79,7 +79,7 @@ def order_detail(request,order_id):                                            #
     try:
         process_order_detail(order_detail_result)
         meta_data = {"order":order_detail_result, 'navTitle':'订单详情'}
-        return render(request,"order/order.html",meta_data)
+        return weixin_auth_utils.fp_render(request,'order/order.html',meta_data, session)
     except Exception,e:
         return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e)
 
@@ -142,18 +142,99 @@ def submit_order(request) :
         return HttpResponseRedirect(alipay_url + "?orderId=" + str(orderId) +"&session=" + session )
     elif payment == "1":
         meta_data["navTitle"] = "选择银行"
-        return render(request, 'order/choice_bank.html', meta_data)
+        return weixin_auth_utils.fp_render(request,'order/choice_bank.html',meta_data, session)
     elif payment == "2": 
         wxpay_url = reverse("order:wxpay_order",kwargs={})
         return HttpResponseRedirect(wxpay_url + "?orderId=" + str(orderId) +"&session=" + session )
 
+def to_pay_order(rquest):
+    user_info = weixin_auth_utils.get_user_info(request)
+    authuri = user_info.get('redirect')
+    session = user_info.get('session')
+    if authuri:
+        return HttpResponseRedirect(authuri)
+    payment = request.REQUEST.get('payment')
+    orderId = request.REQUEST.get('orderId')
+    if not orderId:
+        return response_data_utils.error_response(request, "服务器忙，请稍后重试！", __name__, result)
+    if orderId == 0:
+        return response_data_utils.error_response(request, "服务器忙，请稍后重试！", __name__, result)
+
+    order_info = api_list.get_product_order(request, session, orderId) 
+    if not order_info or order_info["error"]!=0:
+        return response_data_utils.error_response(request, "找不到对应的订单！", __name__, order_info)
+
+    meta_data = {"order_id": orderId}
+    if order_info and order_info.get("productOrder"):
+        product_order = order_info.get("productOrder") 
+        meta_data["goods_num"] = product_order.get("goodsNum")
+        meta_data["total_fee"] = product_order.get("totalFee")
+
+    if payment == "0":
+        alipay_url = reverse("order:alipay_order",kwargs={})
+        return HttpResponseRedirect(alipay_url + "?orderId=" + str(orderId) +"&session=" + session )
+    elif payment == "1":
+        meta_data["navTitle"] = "选择银行"
+        return weixin_auth_utils.fp_render(request,'order/choice_bank.html',meta_data, session)
+    elif payment == "2": 
+        wxpay_url = reverse("order:wxpay_order",kwargs={})
+        return HttpResponseRedirect(wxpay_url + "?orderId=" + str(orderId) +"&session=" + session )
+
+
+def ajax_submit_order(request) :
+    is_ajax = request.is_ajax()
+    user_info = weixin_auth_utils.get_user_info(request)
+    authuri = user_info.get('redirect')
+    session = user_info.get('session')
+    response_json = {'error':1, "errorString": "没有选择商品" }
+    if authuri:
+        response_json = {'error':2, "errorString": "需要重新授权", "authuri":authuri }
+        return HttpResponse(json.dumps(response_json), content_type="application/json")
+    contact = request.REQUEST.get('contact')
+    contactPhone =request.REQUEST.get('contactPhone')
+    address = request.REQUEST.get('address')
+    cartInfo = request.REQUEST.get('cartInfo')
+    payment = request.REQUEST.get('payment')
+    orderId = request.REQUEST.get('orderId')
+    if not cartInfo:
+        response_data_utils.error_log(request, "没有选择商品！", __name__, "没有选择商品")
+        return HttpResponse(json.dumps(response_json), content_type="application/json")
+    try:
+       cart_dict = json.loads(cartInfo)
+       if not cart_dict:
+          response_data_utils.error_log(request, "没有选择商品！", __name__, "没有选择商品")
+          return HttpResponse(json.dumps(response_json), content_type="application/json")
+    except Exception,e:
+       response_data_utils.error_log(request, "没有选择商品" , __name__ , e)
+       return HttpResponse(json.dumps(response_json), content_type="application/json")
+    
+    result = api_list.submit_order(request, session, cartInfo , contact,  address,  contactPhone)
+    orderId = 0
+    if result and result.get("orderId"):
+        orderId = result.get("orderId")
+    else:
+        response_data_utils.error_log(request, result.get("errorString") , __name__ , result)
+        return HttpResponse(json.dumps(response_json), content_type="application/json")
+    
+    if orderId == 0:
+        response_json = {'orderId':orderId, 'error':0 }
+        return response_data_utils.error_response(request, "服务器忙，请稍后重试！", __name__, result)
+
+    response_json = {'orderId':orderId, 'error':0 }
+    return HttpResponse(json.dumps(response_json), content_type="application/json")
+
 def wxpay_order(request):
+    show_qrcode = 0;
+    if 'pay_from' in request.session and request.session['pay_from'] == 'subscribe':
+      show_qrcode = 1
+
     session = request.REQUEST.get('session')
     order_id = request.REQUEST.get('orderId')
     user_agent = request.META.get('HTTP_USER_AGENT')
     order_info = api_list.get_product_order(request, session, order_id)
     meta_data = {}
     meta_data['order_id'] = order_id;
+    meta_data['show_qrcode'] = show_qrcode;
     if order_info and order_info.get("productOrder"):
       product_order = order_info.get("productOrder");
       meta_data["wxJsApiParameters"] = product_order.get("wxJsApiParameters"); 
