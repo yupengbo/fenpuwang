@@ -115,14 +115,17 @@ def product_detail(request, product_id):
 
 
 def add_in_cart(request):
-    is_ajax = request.is_ajax()
+    goods_id = request.REQUEST.get('goodsId')
+    product_id = request.REQUEST.get('productId')
+    product_uri = 'http://m.fenpuwang.com/product/' + product_id + "/"
+    authuri = weixin_auth_utils.build_auth_uri(product_uri)
     session = request.COOKIES.get("session")
+    is_ajax = request.is_ajax()
     if not session:
-        return response_data_utils.error_response(request, "invalid session!",  __name__, "invalid session")
+        response_json = {'error': 2,"authuri":authuri}
+        return HttpResponse(json.dumps(response_json), content_type="application/json")
     if not is_ajax:
         return response_data_utils.error_response(request, "非ajax!",  __name__, "no ajax")
-    goods_id = request.REQUEST.get('goodsId')
-    product_id =request.REQUEST.get('productId')
     print api_list.add_goods_in_cart(request,session, goods_id,product_id)
     response_json = {'error': 0}
     return HttpResponse(json.dumps(response_json), content_type="application/json")

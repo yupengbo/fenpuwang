@@ -5,7 +5,7 @@
 
 {% block script %}
 {% load static %}
-<link rel="stylesheet" href="{% static "css/product.css" %}?v=2.5">
+<link rel="stylesheet" href="{% static "css/product.css" %}?v=2.6">
 {% endblock %}
 
 {% block main_content %}
@@ -85,7 +85,6 @@
     <a class="product_cart_in" href="{% url 'cart:cart_index' %}">查看购物车</a></div>
   <div class='clear'></div>
 </div>
-
 <div class="cart-pop" style="display:none;left:0;margin:0;width:100%;position:fixed;bottom:50%;z-index:9999">
   <div class="ico-succ" style="background-color:grey;color:white;padding:11px 15px 9px 11px;" >
     <span class="att-succ">添加成功！</span>
@@ -107,10 +106,15 @@ $(document).ready(function(){
     $.get_data(
       '{%  url 'product:add_in_cart' %}',
       "goodsId="+goods_id+"&productId="+{{ product.product.productId }},
-      function(){
+      function(data){
+	    alert(1);
         var cart_num_str = $(".product_cart_num").text();
         var new_cart_num = parseInt(cart_num_str)+1;
-        $(".product_cart_num").text(new_cart_num);   
+        $(".product_cart_num").text(new_cart_num);  
+		alert(data.error);
+		if(data.error && data.error == 2){
+		   alert(data.authuri);
+		}
       }
     );
     $(".cart-pop").fadeIn("slow")
