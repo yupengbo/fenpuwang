@@ -215,7 +215,7 @@
 <script>
   var url = "{{ wxQrcodeUrl }}";
   //参数1表示图像大小，取值范围1-10；参数2表示质量，取值范围'L','M','Q','H'
-  var qr = qrcode(10, 'H');
+  var qr = qrcode(10, 'M');
   qr.addData(url);
   qr.make();
   var element=document.getElementById("qrcode");
