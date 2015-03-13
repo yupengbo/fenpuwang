@@ -109,15 +109,14 @@ $(document).ready(function(){
       '{%  url 'product:add_in_cart' %}',
       "goodsId="+goods_id+"&productId="+{{ product.product.productId }},
       function(data){
-	    alert(1);
         var cart_num_str = $(".product_cart_num").text();
         var new_cart_num = parseInt(cart_num_str)+1;
-        $(".product_cart_num").text(new_cart_num);  
-		alert(data.error);
+        $(".product_cart_num").text(new_cart_num); 
 		if(data.error && data.error == 2){
-		   alert(data.authuri);
+		   window.location=data.authuri;
 		}
-      }
+      },
+	  function(){},'json'
     );
     $(".cart-pop").fadeIn("slow")
     setTimeout(function(){$(".cart-pop").fadeOut("slow");},1300);
