@@ -25,7 +25,9 @@
   <div class="promote_topic_question">{{ products_promote.topicNum }}笔记&nbsp;&nbsp;&nbsp;{{products_promote.questionNum }}问答</div>
   <div class="promote_content">{{ products_promote.promotion_description}}</div>
   {% for goods in products_promote.goods %}
+  {% if forloop.counter == 1 %}
   <div class="promote_price_size"><span class="promote_price">¥{{ goods.goodsPrice }}</span><span class="promote_size">/{{ goods.size }}</span></div>
+  {% endif %}
   {% endfor %}
 </div>
 </a>

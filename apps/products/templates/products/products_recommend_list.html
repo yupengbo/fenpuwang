@@ -17,7 +17,9 @@
      <div class="clear"></div>
      <div class="absolute feature_ps">
          {% for goods in products_feature.goods %}
+         {% if forloop.counter == 1 %}
          <div class="feature_price_size"><span class="feature_price">¥{{ goods.goodsPrice }}</span><span class="feature_size">/{{ goods.size }}</span></div>
+         {% endif %}
          {% endfor %}
      </div>
    </div>
