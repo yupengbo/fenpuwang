@@ -44,6 +44,7 @@
   </div>
   <div class="sp_line"></div>
   {% for goods in product.product.goods%}
+  {% if forloop.counter == 1 %}
   <div class="relative product_fenpu_goods">
     <div><span class="product_fenpu_price">¥{{ goods.goodsPrice }}</span><span class="product_fenpu_size">&nbsp;/{{ goods.size }}</span></div>
     <div class="product_fenpu_seller">卖家：{{ goods.seller_name }}</div>
@@ -52,6 +53,7 @@
     </div>
   </div>
   <div class="sp_line"></div>
+  {% endif %}
   {% endfor %}
   <div class="relative product_consult">
     <img src="{% static "images/img_product_detail_q_note@2x.png" %}" class="float_l product_why_btn">
