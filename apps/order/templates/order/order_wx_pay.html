@@ -194,7 +194,7 @@
             {% endif %}
             </p>
             <div style="text-align:center;text-decoration:none;height:40px;"><a style="color:green" href="{% url 'order:order_detail' order_id%}">支付成功后，点此查看我的订单</a></div>
-            <div style="background-color:black;min-height:20px;width:100%;"><img style="width:100%;background-color:black;min-height:20px;" src="http://qr.liantu.com/api.php?text={{ wxQrcodeUrl }}"></div>
+            <div style="background-color:black;min-height:40px;width:100%;"><img style="width:100%;background-color:black;min-height:20px;" src="http://qr.liantu.com/api.php?text={{ wxQrcodeUrl }}"></div>
           </div>
           <div class="row-p" style="height:auto;margin-bottom:5px;border-bottom:1px solid #ddd;padding: 10px 5px;">
             商品：<span class="green">{{ goodsDesc}}</span></div>
