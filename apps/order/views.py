@@ -25,11 +25,11 @@ def ajax_order_list(request,mark=0):                                            
     authuri = user_info.get('redirect')
     session = user_info.get('session')
     if authuri:
-        return response_data_utils.error_response(request, "非法请求！",__name__, "not ajax")
+        return response_data_utils.error_response(request, "非法请求！",__name__, "not ajax", session)
     try: 
         order_list_result = api_list.list_my_product_order(request,session,mark)          
         if not order_list_result or order_list_result["error"]!=0:
-            return response_data_utils.error_response(request,"服务器忙，请稍后重试！",__name__,order_list_result)    
+            return response_data_utils.error_response(request,"服务器忙，请稍后重试！",__name__,order_list_result, session)    
         process_order_detail(order_list_result)
         next_request_url = ""
         if str(order_list_result['mark']) != "0":
@@ -41,7 +41,7 @@ def ajax_order_list(request,mark=0):                                            
         return HttpResponse(json.dumps(response_json), content_type="application/json")
     except Exception,e:
         print e
-        return response_data_utils.error_response(request, "推荐产品不存在！",__name__, e)
+        return response_data_utils.error_response(request, "推荐产品不存在！",__name__, e, session)
 
 def order_list(request):                                                         #kim                                     
     user_info = weixin_auth_utils.get_user_info(request)
@@ -52,7 +52,7 @@ def order_list(request):                                                        
         return HttpResponseRedirect(authuri)
     order_list_result = api_list.list_my_product_order(request,session)          
     if not order_list_result or order_list_result["error"]!=0:
-        return response_data_utils.error_response(request,"服务器忙，请稍后重试！",__name__,order_list_result)    
+        return response_data_utils.error_response(request,"服务器忙，请稍后重试！",__name__,order_list_result, session)    
     try:
         process_order_detail(order_list_result)
         next_request_url = ""
@@ -62,7 +62,7 @@ def order_list(request):                                                        
         return weixin_auth_utils.fp_render(request,'order/orders.html',meta_data, session)
     except Exception,e:
         print e
-        return response_data_utils.error_response(request,"服务器忙，请稍后重试！",__name__, e)
+        return response_data_utils.error_response(request,"服务器忙，请稍后重试！",__name__, e, session)
 
 
 def order_detail(request,order_id):                                            #kim
@@ -75,13 +75,13 @@ def order_detail(request,order_id):                                            #
     order_detail_result = api_list.get_product_order(request, session, order_id)
    # cart_num = api_list.get_goods_num_in_cart(request)
     if not order_detail_result or order_detail_result["error"]!=0:
-        return response_data_utils.error_response(request,"服务器忙，请稍后重试！",__name__,order_detail_result)
+        return response_data_utils.error_response(request,"服务器忙，请稍后重试！",__name__,order_detail_result, session)
     try:
         process_order_detail(order_detail_result)
         meta_data = {"order":order_detail_result, 'navTitle':'订单详情'}
         return weixin_auth_utils.fp_render(request,'order/order.html',meta_data, session)
     except Exception,e:
-        return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e)
+        return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e, session)
 
 def process_order_detail(data):
     if data.get("productOrder") and data.get("productOrder").get("creationTime"):
@@ -108,28 +108,28 @@ def submit_order(request) :
     orderId = request.REQUEST.get('orderId')
     if not orderId:
        if not cartInfo:
-           return response_data_utils.error_response(request, "没有选择商品！", __name__, "没有选择商品")
+           return response_data_utils.error_response(request, "没有选择商品！", __name__, "没有选择商品", session)
        try:
            cart_dict = json.loads(cartInfo)
            if not cart_dict:
-               return response_data_utils.error_response(request, "没有选择商品！", __name__, "没有选择商品")
+               return response_data_utils.error_response(request, "没有选择商品！", __name__, "没有选择商品", session)
        except Exception,e:
            print e
-           return response_data_utils.error_response(request, "没有选择商品！", __name__, "没有选择商品")
+           return response_data_utils.error_response(request, "没有选择商品！", __name__, "没有选择商品", session)
     
        result = api_list.submit_order(request, session, cartInfo , contact,  address,  contactPhone)
        orderId = 0
        if result and result.get("orderId"):
            orderId = result.get("orderId")
        else:
-           return response_data_utils.error_response(request, result.get("errorString"), __name__, result)
+           return response_data_utils.error_response(request, result.get("errorString"), __name__, result, session)
     
     if orderId == 0:
-        return response_data_utils.error_response(request, "服务器忙，请稍后重试！", __name__, result)
+        return response_data_utils.error_response(request, "服务器忙，请稍后重试！", __name__, result, session)
 
     order_info = api_list.get_product_order(request, session, orderId) 
     if not order_info or order_info["error"]!=0:
-        return response_data_utils.error_response(request, "找不到对应的订单！", __name__, order_info)
+        return response_data_utils.error_response(request, "找不到对应的订单！", __name__, order_info, session)
 
     meta_data = {"order_id": orderId}
     if order_info and order_info.get("productOrder"):
@@ -156,13 +156,13 @@ def to_pay_order(rquest):
     payment = request.REQUEST.get('payment')
     orderId = request.REQUEST.get('orderId')
     if not orderId:
-        return response_data_utils.error_response(request, "服务器忙，请稍后重试！", __name__, result)
+        return response_data_utils.error_response(request, "服务器忙，请稍后重试！", __name__, result, session)
     if orderId == 0:
-        return response_data_utils.error_response(request, "服务器忙，请稍后重试！", __name__, result)
+        return response_data_utils.error_response(request, "服务器忙，请稍后重试！", __name__, result, session)
 
     order_info = api_list.get_product_order(request, session, orderId) 
     if not order_info or order_info["error"]!=0:
-        return response_data_utils.error_response(request, "找不到对应的订单！", __name__, order_info)
+        return response_data_utils.error_response(request, "找不到对应的订单！", __name__, order_info, session)
 
     meta_data = {"order_id": orderId}
     if order_info and order_info.get("productOrder"):

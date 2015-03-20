@@ -13,7 +13,7 @@ import cgi
 import logging
 
 logger = logging.getLogger('django')
-def question_list(request,mark=0):                                      #kim
+def question_list(request,mark=0):                                     
     is_ajax = request.is_ajax()
     question_list_json = api_list.get_product_feeds(request,mark)
     try:
@@ -35,7 +35,7 @@ def question_list(request,mark=0):                                      #kim
     except Exception,e:
         return response_data_utils.error_response(request,None, __name__, e)
 
-def new_question_list(request,mark):                                    #kim
+def new_question_list(request,mark):                     
     question_new_json = api_list.get_question_new(request,mark)
     try:
         if question_new_json and question_new_json['error']==0:
@@ -52,7 +52,7 @@ def new_question_list(request,mark):                                    #kim
     except Exception,e:
         return response_data_utils.error_response(request,None, __name__, e)
 
-def process_question_time(data):                                #kim
+def process_question_time(data):
     if data.get('feedList'):
         for question in data['feedList']:
             if question['question'].get('creationTime'):
@@ -90,14 +90,13 @@ def question_details(request, question_id):
             process_question_data(question_obj)
             next_page_url = ''  # for next page ajax loading
             if int(question_obj['mark']) > 0:
-                next_page_url = reverse('question:answer_list',
-                                        kwargs = {'question_id' : question_id, 'mark' : question_obj['mark']})
+                next_page_url = reverse('question:answer_list', kwargs = {'question_id' : question_id, 'mark' : question_obj['mark']})
             meta_data = response_data_utils.pack_data(request, {'navTitle':'问答详情', 'question':question_obj, 'question_id':question_id, 'url' : next_page_url})
-            return render(request, 'question/question.html', meta_data)
+            return weixin_auth_utils.fp_render(request, 'question/question.html', meta_data, session)
         else:
-            return response_data_utils.error_response(request, "找不到这个问题！",  __name__, question_obj)
+            return response_data_utils.error_response(request, "找不到这个问题！",  __name__, question_obj, session)
     except Exception as e:
-        return response_data_utils.error_response(request,"找不到这个问题！", __name__, e)
+        return response_data_utils.error_response(request,"找不到这个问题！", __name__, e, session)
 @csrf_exempt
 def answer_list(request, question_id, mark):
     """
