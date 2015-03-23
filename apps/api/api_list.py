@@ -43,6 +43,8 @@ def build_params(request,params):
     device = response_data_utils.get_user_device(request)
     device = 'm_' + device
     params['channel'] = 'm_website'
+    if 'user_from' in request.session:
+      params['channel'] = request.session['user_from'] 
     params['device'] = device
     params['appName'] = 'm_fenpu'
     return params

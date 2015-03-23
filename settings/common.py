@@ -40,6 +40,7 @@ INSTALLED_APPS = (
                   'apps.activities',
                   'apps.cart',
                   'apps.order',
+                  'apps.middleware',
                   )
 
 MIDDLEWARE_CLASSES = (
@@ -50,6 +51,7 @@ MIDDLEWARE_CLASSES = (
                       'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
                       'django.contrib.messages.middleware.MessageMiddleware',
                       'django.middleware.clickjacking.XFrameOptionsMiddleware',
+                      'apps.middleware.user_tracking_middleware.UserTrackingMiddleware',
                       )
 
 ROOT_URLCONF = 'urls'
