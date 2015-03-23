@@ -33,11 +33,17 @@ def change(request, sessionKey = '', mark = 0):
        sessionKey = request.REQUEST.get("sessionKey")
     if not sessionKey:
        return response_data_utils.error_response(request, None,  __name__, " not find sessionKey")
+    channel = request.REQUEST.get("channel")
+    udid = request.REQUEST.get("UDID")
+    union_key = ""
+    if channel and udid  and channel == "360super" :
+        union_key = channel + udid
+
     try:
         change_info = None
         if not is_ajax:
             change_info = api_list.get_user_change_info(request, sessionKey)
-        logs = api_list.get_user_change_log(request, sessionKey, mark)
+        logs = api_list.get_user_change_log(request, sessionKey, union_key, mark)
         if logs['error'] == 0:
            next_page_url = ''  # for next page ajax loading
            if int(logs['mark']) > 0:
