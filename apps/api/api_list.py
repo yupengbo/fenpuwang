@@ -94,8 +94,8 @@ def get_feature_topic_comments(req, feature_topic_id, rCommentId = 0,pre = 20, m
     params ={'featureTopicId': feature_topic_id,'rCommentId':rCommentId,'pre':pre,'mark':mark}
     return get_result(req,'listFeatureTopicComments.do',params)
     
-def get_user_change_log(req, sessionKey, mark = 0):
-    params = {'sessionKey': sessionKey,  'mark': mark}
+def get_user_change_log(req, sessionKey, unionKey, mark = 0):
+    params = {'sessionKey': sessionKey, 'unionKey':unionKey, 'mark': mark}
     return get_result(req, 'listUserChangeLog.do', params)
 
 def get_user_change_info(req, sessionKey):
