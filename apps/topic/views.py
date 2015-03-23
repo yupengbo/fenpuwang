@@ -40,16 +40,16 @@ def topic_info(request, topic_id):
     try:
         topic_json = api_list.get_feature_topic_info(request, topic_id)
         if topic_json == None or topic_json == "" or topic_json['error'] != 0:
-          return response_data_utils.error_response(request,"找不到这个专题", __name__, topic_json)
+          return response_data_utils.error_response(request,"找不到这个专题", __name__, topic_json, session)
         uid = request.GET.get('dp')
         bottom_download = request.GET.get('bottom_download')
         process_topic_data(topic_json)
         process_topic_url(uid, topic_json)
         topic_comments_json = topic_comments(request,topic_id)
         meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic'],'commentsTopic':topic_comments_json,'nav':'topic','navTitle':'笔记详情','bottom_download':bottom_download, 'fromUserName':from_user_name})
-        return render(request, 'topic/topic.html', meta)
+        return weixin_auth_utils.fp_render(request,'topic/topic.html', meta, session)
     except Exception,e:
-       return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e) 
+       return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e, session) 
 
 def topic_comments(request,topic_id):                        #kim
     topic_comments_json = api_list.get_feature_topic_comments(request, topic_id)

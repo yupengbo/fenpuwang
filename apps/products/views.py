@@ -72,9 +72,9 @@ def products_recommend(request):                                               #
     cart_num_json = api_list.get_goods_num_in_cart(request, session)
 
     if not products_promote_result or products_promote_result['error']==1:
-        return response_data_utils.error_response(request, "主推产品不存在！",__name__, products_promote_result)
+        return response_data_utils.error_response(request, "主推产品不存在！",__name__, products_promote_result, session)
     if ( not products_feature_result ) or products_feature_result['error']!=0:
-        return response_data_utils.error_response(request,"推荐产品不存在",__name__,products_feature_result)
+        return response_data_utils.error_response(request,"推荐产品不存在",__name__,products_feature_result, session)
     try: 
         process_products_promote(products_promote_result)
         process_products_feature(products_feature_result)
@@ -88,9 +88,9 @@ def products_recommend(request):                                               #
  
         meta_data = {'cartNum':cartNum,'url':next_request_url, 'nav':'products',"products_promote_list":products_promote_result.get('productList'),"products_feature_list":products_feature_result.get('productList')}
         meta_data = response_data_utils.pack_data(request, meta_data)
-        return render(request,'products/products_recommend.html',meta_data)
+        return weixin_auth_utils.fp_render(request,'products/products_recommend.html', meta_data, session)
     except Exception,e:
-        return response_data_utils.error_response(request, "推荐产品不存在！",__name__, e)
+        return response_data_utils.error_response(request, "推荐产品不存在！",__name__, e, session)
 
 def process_products_promote(data):                                                 #kim
     for product in data['productList']:

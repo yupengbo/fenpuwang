@@ -126,6 +126,10 @@ def check_login(req, weixin_webchat_code):
     params = {"weixinWebChatCode": weixin_webchat_code}
     return get_result(req, 'checkLogin.do', params)
 
+def web_anony_register(req):
+    params = {"webAnonyRegist": 1}
+    return get_result(req, 'checkLogin.do', params)
+
 def user_share_log(req, sessionKey, target_id, share_type = 0, share_channel = 0 ):
     params = {'sessionKey': sessionKey, "type": share_type, "targetId": target_id, "shareChannel": share_channel}
     return get_result(req, 'userShareLog.do', params)

@@ -111,7 +111,7 @@ def product_detail(request, product_id):
     return weixin_auth_utils.fp_render(request,'product/product.html', meta, session)
   except Exception,e:
     print e
-    return response_data_utils.error_response(request, "找不到这个产品！",  __name__, e)
+    return response_data_utils.error_response(request, "找不到这个产品！",  __name__, e, session)
 
 
 def add_in_cart(request):

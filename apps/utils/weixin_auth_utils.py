@@ -58,6 +58,10 @@ def get_user_info(request):
    return user_info
 
 def get_api_user_info(request, sessionKey, code):
+  is_mm = 0
+  if request.META.get('HTTP_USER_AGENT').lower().find("micromessenger") != -1:
+    is_mm = 1
+
   user_info = {}
   session = sessionKey
   if sessionKey:
@@ -65,6 +69,8 @@ def get_api_user_info(request, sessionKey, code):
   elif code:
      print "===>" + code
      user_info = api_list.check_login(request,code)
+  elif is_mm == 0:
+     user_info = api_list.web_anony_register(request) 
 
   if not user_info:
      return {}
@@ -78,10 +84,9 @@ def get_api_user_info(request, sessionKey, code):
       return user_info
   return {}
 
-def fp_render(request, template_name,context,sessionKey):
+def fp_render(request, template_name, context, sessionKey):
    response  = render(request, template_name, context)
-   if sessionKey:
-      dt = datetime.datetime.now() + datetime.timedelta(hours = int(12))
-      print "write  sesssion" + sessionKey
-      response.set_cookie('session',sessionKey,expires=dt)
+   if sessionKey != None and str(sessionKey) != "":
+      dt = datetime.datetime.now() + datetime.timedelta(hours = int(168))
+      response.set_cookie('session', sessionKey, expires=dt)
    return response

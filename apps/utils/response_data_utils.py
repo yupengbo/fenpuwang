@@ -2,6 +2,7 @@
 from django.shortcuts import render
 import string 
 import logging
+import datetime
 logger = logging.getLogger('django')
 
 def pack_data(request,meta):
@@ -32,7 +33,7 @@ def get_user_device(request):
       device = 'android'
   return device
 
-def error_response(request, message, view_name = "unknow_source", error_info = "unknow_error"):
+def error_response(request, message, view_name = "unknow_source", error_info = "unknow_error", sessionKey = None):
   if not error_info:
      if message:
         error_info = message 
@@ -44,7 +45,12 @@ def error_response(request, message, view_name = "unknow_source", error_info = "
      view_name = "unknow_source"
   view_name = view_name + ":"
   logger.error(view_name + str(error_info))
-  return render(request, '500.html', {'text': message})
+
+  response  = render(request, '500.html', {'text': message})
+  if sessionKey != None and sessionKey != "":
+    dt = datetime.datetime.now() + datetime.timedelta(hours = int(168))
+    response.set_cookie('session',sessionKey,expires=dt)
+  return response
 
 def error_log(request, message, view_name = "unknown_souurce", error_info="unkonw_error"):
   if not error_info:
