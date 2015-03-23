@@ -6,6 +6,7 @@
 {% block script %}
 {% load static %}
 <link rel="stylesheet" href="{% static "css/product.css" %}?v=2.6">
+<script src="https://s.meiqia.com/js/mechat.js?unitid=6497&btn=hide" charset="UTF-8"></script>
 {% endblock %}
 
 {% block main_content %}
@@ -59,7 +60,8 @@
     <img src="{% static "images/img_product_detail_q_note@2x.png" %}" class="float_l product_why_btn">
     <a href='{% url 'topic:topic_info' 3756 %}'><div class="float_l product_why_character">粉扑如何保证正品？</div></a>
     <div class="absolute product_service_cb">
-        <a href='http://mp.weixin.qq.com/s?__biz=MzAxOTE4MjA1Nw==&mid=204366285&idx=1&sn=a4651bf822f260d369e6b46f5f3a3fe6'><div class="float_r product_service_character">联系客服</div></a>
+        <!--a href='http://mp.weixin.qq.com/s?__biz=MzAxOTE4MjA1Nw==&mid=204366285&idx=1&sn=a4651bf822f260d369e6b46f5f3a3fe6'><div class="float_r product_service_character">联系客服</div></a-->
+        <a  href="javascript:void(0)" onclick="mechatClick()"><div class="float_r product_service_character">联系客服</div></a>
         <img src="{% static "images/btn_product_detail_feedback_normal@2x.png" %}" class="product_service_btn float_r">
     </div>
   </div>
