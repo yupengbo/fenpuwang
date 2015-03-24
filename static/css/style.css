@@ -160,5 +160,5 @@ body {margin: 0px;min-width:320px;}
 .filter_list .on .p_t_3{background-image:url('../images/icon_category_brand_highlight@2x.png');}
 .footer{height:85px;}
 .footer_download {width:100%;height:45px;background-color:rgba(255,255,255,.95);padding:10px 0px;position:fixed;bottom:0px;left:0px;z-index:9999;}
-.footer_download .btn_t_download{background-size:280px 44px;width:280px;height:44px;margin:0px auto;background-image:url('../images/img_download_topic@2x.png');}
+.footer_download .btn_t_download{background-size:280px 44px;width:280px;height:44px;margin:0px auto;background-image:url('http://dabanniu.oss.aliyuncs.com/images/img_download_topic@2x');}
 .back_top_button{right:3%;bottom:100px;position:fixed;height:26px;width:26px;background-image:url('../images/btn_back_nav@2x.png');background-size:26px 26px;z-index:9999;}

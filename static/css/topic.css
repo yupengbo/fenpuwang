@@ -28,7 +28,7 @@
 .topic_content .content .con{margin-bottom:12px;}
 .topic_content .con{font-size:15px;line-height:30px;}
 .topic_download {height:45px;background-color:#802923;padding:20px 0px;}
-.topic_download .btn_t_download{background-size:280px 44px;width:280px;height:44px;margin:0px auto;background-image:url('../images/img_download_topic@2x.png');}
+.topic_download .btn_t_download{background-size:280px 44px;width:280px;height:44px;margin:0px auto;background-image:url('http://dabanniu.oss.aliyuncs.com/images/img_download_topic@2x');}
 .link_cell {width:100%;height:78px;border-top:solid 1px #dbdbdb;border-bottom:solid 1px #dbdbdb;line-height:26px;}
 .link_arrow {padding:14px 21px 3px;margin-bottom:32px;}
 .link_arrow .link_arrow_i {position:absolute;background-size:9px 13px;width:9px;height:13px;}

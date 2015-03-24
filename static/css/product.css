@@ -69,7 +69,7 @@
 
 .product_cart_container{border-top:1px #e4e4e4 solid;background-color:rgba(255,255,255,.96);height:60px;line-height:60px;width:100%;position:fixed;bottom:0px;left:0px;z-index:10000;padding:0px 10px;}
 .product_cart_container .cart_download{width:150px;height:44px;padding:8px 6px }
-.product_cart_container .cart_download .btn_t_download{background-size:150px 44px;width:150px;height:44px;margin:0px auto;background-image:url('../images/img_products_detail_download.png');}
+.product_cart_container .cart_download .btn_t_download{background-size:150px 44px;width:150px;height:44px;margin:0px auto;background-image:url('http://dabanniu.oss.aliyuncs.com/images/img_products_detail_download.png');}
 .product_cart_container .show_cart{border:1px #dbdbdb solid;width:135px;height:36px;font-size:16px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;margin:12px 15px 12px 3px;}
 .product_cart{margin:0;padding:0;height:36px;width:36px;text-align:center;}
 .product_in_cart_btn{border-radius:3px;line-height:36px;font-size:12px;height:36px;width:85px;color:#FFFFFF;background-color:rgb(255,83,70);margin:0 auto}
