@@ -101,7 +101,7 @@ def activity(request, activity_id):
     if not meta_data.get('nickName'):
        meta_data['nickName'] = '粉扑'
     if not meta_data.get('avatarURL'):
-       meta_data['avatarURL'] = 'http://dabanniu.oss.aliyuncs.com/img_user_avatars_default@2x.png'
+       meta_data['avatarURL'] = 'http://static.fenpuwang.com/img_user_avatars_default@2x.png'
     meta_data['avatarURL'] = user_activity_info.get("avatarURL")
     meta_data['total_fee'] = meta_data['bonus_fee'] + meta_data['share_activity_fee']
     meta_data['view'] = 'share_bonus'

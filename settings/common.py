@@ -49,6 +49,7 @@ MIDDLEWARE_CLASSES = (
 #                      'django.middleware.csrf.CsrfViewMiddleware',
                       'django.contrib.auth.middleware.AuthenticationMiddleware',
                       'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
+                      'django.middleware.gzip.GZipMiddleware',
                       'django.contrib.messages.middleware.MessageMiddleware',
                       'django.middleware.clickjacking.XFrameOptionsMiddleware',
                       'apps.middleware.user_tracking_middleware.UserTrackingMiddleware',
