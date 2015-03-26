@@ -56,6 +56,16 @@
         <div class="clear"></div>
     </div>
 </div>
+{% if order.productOrder.customerRemark|length %}
+<div class="order_line marg_t_oz"></div>
+<div class="relative order_buyer_info">
+    <div class="order_buyer_name">备注信息</div>
+    <div class="marg_t_one_four">
+        <div class="float_l order_buyer_address">{{ order.productOrder.customerRemark}}</div>
+        <div class="clear"></div>
+    </div>
+</div>
+{% endif %} 
 <div class="order_line"></div>
 <div class="order_line marg_t_oz"></div> 
 <div class="relative order_order_goods_total">
