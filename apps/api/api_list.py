@@ -175,4 +175,7 @@ def get_product_order(req, sessionKey, order_id):                               
 def submit_order(req, sessionKey, cartInfo, contact,  address,  contactPhone):
     params = {"sessionKey": sessionKey,'cartInfo': cartInfo, 'contact': contact, 'address': address, 'contactPhone': contactPhone}
     return get_result(req,"submitOrder.do",params)
- 
+
+def get_flash_product_list(req):
+    params = {}
+    return get_result(req,"getFlashProductlist.do",params) 

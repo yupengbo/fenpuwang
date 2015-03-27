@@ -135,3 +135,21 @@ def process_product_data(product_data):
         product['goodReviewRatio'] =  int(product['goodReviewRatio']*100)
         if pics and len(pics) > 0 :
             product['thumb_s'] = pics[0]['thumb-s']
+
+
+def seckill(request):
+    seckill_result = api_list.get_flash_product_list(request)
+    seckill_today_list = seckill_result["todayProductList" ]
+    seckill_process(seckill_today_list)
+    seckill_tomorrow_list = seckill_result["tomorrowProductList"]
+    seckill_process(seckill_tomorrow_list)
+    meta_data = {"seckill_today_list":seckill_today_list,"seckill_tomorrow_list":seckill_tomorrow_list} 
+    return render(request,"products/seckill_list.html",meta_data)
+
+def seckill_process(data):
+    for letter in data:
+        letter["img"] = letter["pics"][0]["org"]
+   
+
+
+ 
