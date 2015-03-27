@@ -149,7 +149,8 @@ def seckill(request):
 def seckill_process(data):
     for letter in data:
         letter["img"] = letter["pics"][0]["org"]
-   
+        letter["start_time"] = letter["goods"][0]["flash_start_time"]
+        letter["continue_time"] = letter["goods"][0]["flash_duration"]
 
 
  

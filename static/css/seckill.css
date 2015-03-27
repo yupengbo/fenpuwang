@@ -6,9 +6,16 @@
 .float_r{float:right;}
 
 .tomorrow_img{width:100%;margin-top:13px;}
-.banner_img{width:100%;}
+.banner_ing_img,.banner_img{width:100%;}
 .banner_button_section{width:100%;left:0px;bottom:12%;}
 .tomorrow_button_section{width:100%;left:0px;bottom:11%;}
+
+.countdown_letter{color:#666666;font-weight:bold;}
+.countdown_time{color:#ff5346;font-weight:bold;}
+.seckill_letter{color:#666666;font-weight:bold;}
+.seckill_time{color:#ff5346;font-weight:bold;}
+.seckill_letter_time{width:100%;left:0px;bottom:51%;}
+.countdown_letter_time{width:100%;left:0px;bottom:56%;}
 
 .seckill_limit{margin-top:10px;height:18px;}
 .seckill_limit_img{margin-left:12px;height:18px;width:18px;}
@@ -20,6 +27,7 @@
 .seckill_origin_price{font-size:14px;color:#999;line-height:25px;margin-left:6px;}
 .seckill_discount{width:30px;height:16px;background-color:#4baab9;font-size:9px;color:#fff;margin-top:4px;line-height:16px;}
 
+.seckill_pre_detail{width:75%;height:36px;line-height:36px;font-size:14px;border:2px solid #ff5346;border-radius:3px;margin:10px auto;color:#ff5346;}
 .seckill_detail_cart{height:36px;width:75%;margin:10px auto;}
 .seckill_detail_button{width:38%;border:2px solid #ff5346;height:32px;font-size:14px;line-height:32px;border-radius:3px;}
 .seckill_cart_button{width:56%;background-color:#4baab9;font-size:14px;height:36px;line-height:36px;color:white;margin-left:4%;border-radius:3px;}
@@ -30,4 +38,6 @@
 .tomorrow_origin_price{font-size:14px;color:#999;line-height:25px;margin-left:6px;}
 
 .seckill_line{border:solid 1px #e4e4e4;margin-top:16px;}
+.seckill_bottom{height:104px;}
 
+.marg_l_ft{margin-left:53%;}
