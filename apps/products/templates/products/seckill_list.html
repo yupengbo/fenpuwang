@@ -1,0 +1,113 @@
+{% extends "base_no_nav.html" %}
+
+ {% load static %}
+{% block script%}
+ <link rel="stylesheet" type="text/css" href="{% static "css/seckill.css" %}">
+{% endblock %}
+
+{% block main_content %}
+<div class="relative">
+  <img src="{% static "images/banner_big_sale_pre.jpg" %}" class="banner_img">
+  <div class="absolute banner_button_section">
+       <a href="/"><div class="div_center banner_button"></div></a>
+  </div>
+</div>
+<img src="{% static "images/banner_big_sale_ing.jpg" %}" style="width:100%;display:none;">
+{% for letter in seckill_today_list %}
+<div class="seckill_limit">
+  <img src="{% static "images/icon_big_sale_products_num.png" %}" class="float_l seckill_limit_img">
+  <div class="float_l seckill_limit_num">限量1000件</div>
+</div>    
+<div class="text_center">
+  <img src="{{ letter.img }}" class="seckill_product_img">
+  <div class="seckill_product_name">{{ letter.name }}{{ letter.flash_sizes.size }}</div>
+  <div class="div_center seckill_price_section">
+     <div class="float_l seckill_discount">3.5折</div>
+     <div class="float_l seckill_promote_price">¥{{ letter.flash_sizes.price }}</div>
+     <div class="float_l seckill_origin_price">¥{{ letter.price }}</div>
+  </div>
+  <div style="width:75%;height:36px;line-height:36px;font-size:14px;border:2px solid #ff5346;border-radius:3px;margin:10px auto;color:#ff5346;display:none;">查看详情</div> 
+  <div class="seckill_detail_cart">
+    <div class="float_l seckill_detail_button">查看详情</div>
+    <div class="float_l seckill_cart_button">立即加入购物车</div>
+  </div>
+</div>
+<div class="seckill_detail_description">[限量1000件]{{ letter.promotion_description }}</div>
+<div class="seckill_line"></div>
+{% endfor %}
+
+<div class="relative">
+  <img src="{% static "images/banner_big_sale_next.jpg" %}" class="tomorrow_img">
+  <div class="absolute tomorrow_button_section">
+     <a href="/"><div class="div_center tomorrow_button"></div></a>
+  </div>
+</div>
+{% for letter in seckill_tomorrow_list %}
+<div class="seckill_limit">
+  <img src="{% static "images/icon_big_sale_products_num.png" %}" class="float_l seckill_limit_img">
+  <div class="float_l seckill_limit_num">限量1000件</div>
+</div>
+<div class="text_center">
+  <img src="{{ letter.img }}" class="seckill_product_img">
+  <div class="seckill_product_name">{{ letter.name }}{{ letter.flash_sizes.size }}</div>
+  <div class="div_center tomorrow_price_section">
+     <div class="float_l seckill_discount">3.5折</div>
+     <div class="float_l tomorrow_promote_price">¥{{ letter.flash_sizes.price }}</div>
+     <div class="float_l tomorrow_origin_price">¥{{ letter.price }}</div>
+  </div>
+  <div style="width:75%;height:36px;line-height:36px;font-size:14px;border:2px solid #ff5346;border-radius:3px;margin:10px auto;color:#ff5346;">查看详情</div>
+</div>
+<div class="seckill_detail_description">[限量1000件]{{ letter.promotion_description }}</div>
+<div class="seckill_line"></div>
+{% endfor %}
+<div style="height:104px;"></div>
+<script>
+function banner_but_width(){
+   var banner_img_width = $(".banner_img").width();
+   var banner_button_width = banner_img_width * 0.55;
+   return banner_button_width
+}
+function banner_but_height(){
+   var banner_img_height = $(".banner_img").height();
+   var banner_button_height = banner_img_height * 0.21; 
+   return banner_button_height
+}
+function tomorrow_but_width(){
+   var tomorrow_img_width = $(".banner_img").width();
+   var tomorrow_button_width = tomorrow_img_width * 0.62;
+   return tomorrow_button_width
+} 
+function tomorrow_but_height(){
+   var tomorrow_img_height = $(".banner_img").height();
+   var tomorrow_button_height = tomorrow_img_height * 0.18;
+   return tomorrow_button_height
+}
+
+$(document).ready(function(){
+    var price_section_width=30+$(".seckill_promote_price").width()+$(".seckill_origin_price").width()+14;
+    var tomorrow_section_width=30+$(".tomorrow_promote_price").width()+$(".tomorrow_origin_price").width()+14;
+    $(".seckill_price_section").css("width",price_section_width);
+    $(".tomorrow_price_section").css("width",tomorrow_section_width);
+    var banner_button_width = banner_but_width();
+    var banner_button_height = banner_but_height();
+    $(".banner_button").css({"width":banner_button_width,"height":banner_button_height});   
+    var tomorrow_button_width = tomorrow_but_width();
+    var tomorrow_button_height = tomorrow_but_height();
+    $(".tomorrow_button").css({"width":tomorrow_button_width,"height":tomorrow_button_height});
+    
+});
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
