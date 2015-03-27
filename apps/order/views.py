@@ -103,6 +103,7 @@ def submit_order(request) :
     contact = request.REQUEST.get('contact')
     contactPhone =request.REQUEST.get('contactPhone')
     address = request.REQUEST.get('address')
+    remark = request.REQUEST.get('remark')
     cartInfo = request.REQUEST.get('cartInfo')
     payment = request.REQUEST.get('payment')
     orderId = request.REQUEST.get('orderId')
@@ -117,7 +118,7 @@ def submit_order(request) :
            print e
            return response_data_utils.error_response(request, "没有选择商品！", __name__, "没有选择商品", session)
     
-       result = api_list.submit_order(request, session, cartInfo , contact,  address,  contactPhone)
+       result = api_list.submit_order(request, session, cartInfo , contact,  address,  contactPhone, remark)
        orderId = 0
        if result and result.get("orderId"):
            orderId = result.get("orderId")
@@ -193,6 +194,7 @@ def ajax_submit_order(request) :
     contact = request.REQUEST.get('contact')
     contactPhone =request.REQUEST.get('contactPhone')
     address = request.REQUEST.get('address')
+    remark = request.REQUEST.get('remark')
     cartInfo = request.REQUEST.get('cartInfo')
     payment = request.REQUEST.get('payment')
     orderId = request.REQUEST.get('orderId')
@@ -208,7 +210,7 @@ def ajax_submit_order(request) :
        response_data_utils.error_log(request, "没有选择商品" , __name__ , e)
        return HttpResponse(json.dumps(response_json), content_type="application/json")
     
-    result = api_list.submit_order(request, session, cartInfo , contact,  address,  contactPhone)
+    result = api_list.submit_order(request, session, cartInfo , contact,  address,  contactPhone, remark)
     orderId = 0
     if result and result.get("orderId"):
         orderId = result.get("orderId")
