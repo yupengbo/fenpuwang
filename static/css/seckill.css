@@ -38,6 +38,12 @@
 .tomorrow_origin_price{font-size:14px;color:#999;line-height:25px;margin-left:6px;}
 
 .seckill_line{border:solid 1px #e4e4e4;margin-top:16px;}
-.seckill_bottom{height:104px;}
+.seckill_bottom{height:100px;}
 
 .marg_l_ft{margin-left:53%;}
+.flow_con{width:100%;height:72px;padding:14px 0;position:fixed;left:0px;bottom:0px;background:#fff;border-top:1px #e4e4e4 solid;}
+.flow_box{float:left;width:36%;margin-left:3%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.flow_tip{font-size:18px;color:#666;}
+.flow_time{font-size:32px;color:#4baab9;}
+.flow_cart_btn{float:left;border-radius:3px;background-color:#ffb337;color:#6c4608;font-size:26px;line-height:72px;height:72px;width:56%;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+

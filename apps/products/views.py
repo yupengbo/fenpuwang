@@ -143,14 +143,26 @@ def seckill(request):
     seckill_process(seckill_today_list)
     seckill_tomorrow_list = seckill_result["tomorrowProductList"]
     seckill_process(seckill_tomorrow_list)
-    meta_data = {"seckill_today_list":seckill_today_list,"seckill_tomorrow_list":seckill_tomorrow_list} 
-    return render(request,"products/seckill_list.html",meta_data)
+#    seckill_today_list = {}
+    server_time_stamp = seckill_result['timeStamp']
+    meta_data = {"seckill_today_list":seckill_today_list,"seckill_tomorrow_list":seckill_tomorrow_list, "server_time_stamp": server_time_stamp}
+    #if seckill_today_list:
+    #    return render(request,"products/flashing.html",meta_data)
+    #else:
+    #    return render(request,"products/flash_list.html",meta_data)
+    return render(request,"products/flashing.html",meta_data)
 
 def seckill_process(data):
     for letter in data:
         letter["img"] = letter["pics"][0]["org"]
-        letter["start_time"] = letter["goods"][0]["flash_start_time"]
-        letter["continue_time"] = letter["goods"][0]["flash_duration"]
+        letter["start_time"] = letter["flash_start_time"]
+        letter["continue_time"] = letter["flash_duration"]
+        letter["remaining_stock"] = letter["stock"] - letter["sold_num"] 
+        if letter["remaining_stock"] < 0 :
+             letter["remaining_stock"] = 0
+ #       letter["start_time"] = 1427528202280
+#        letter["continue_time"] = 300000
+        letter["discount"] = round(letter["flash_sizes"]["price"]/letter["price"]*10 ,1)
 
 
  
