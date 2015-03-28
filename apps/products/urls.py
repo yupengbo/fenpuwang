@@ -11,5 +11,6 @@ urlpatterns = patterns('',
   url(r'^(?P<type>\d+)/(?P<category_id>\d+)/(?P<order>\d+)/(?P<filter>\d+)/(?P<mark>\d+)$', views.productlist_by_category, name='query_by_all'),
   url(r'^session/$', views.session, name='session'),
   url(r'^seckill/$', views.seckill, name='seckill'),
+  url(r'^flashing/$', views.seckill, name='flashing'),
 )
 
