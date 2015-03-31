@@ -7,7 +7,7 @@
  <input type='hidden' class='price_input'  name='goods_price' value='{{ cart_info.goods.goodsPrice }}'>
 <div class='fl con relative'>
  <a href='{% url 'product:product_detail' cart_info.product.productId %}'><h2>{{ cart_info.product.name }}</h2></a>
- <a href='{% url 'product:product_detail' cart_info.product.productId %}'><span class='goods_size block'>￥{{ cart_info.goods.goodsPrice }}<em>/{{ cart_info.goods.size }}</em></span></a>
+ <a href='{% url 'product:product_detail' cart_info.product.productId %}'><span class='goods_size block'>¥{{ cart_info.goods.goodsPrice }}<em>/{{ cart_info.goods.size }}</em></span></a>
  <div class='controll_box absolute'>
    <div class='num_box relative fl'>
       <div class='bg absolute minus'></div>
