@@ -34,8 +34,8 @@
 .link_arrow .link_arrow_i {position:absolute;background-size:9px 13px;width:9px;height:13px;}
 .link_arrow_i {background-image:url('../images/icon_f_topic_arrow@2x.png');right:8px;top:32px;}
 .topic_product {width:10px;height:12px;margin:6px 2px 0px 2px;background-image:url('../images/icon_f_topic_products@2x.png');background-size:10px 12px;}
-.topic_topic {width:10px;height:12px;margin:6px 2px 0px 2px;background-image:url('../images/icon_f_topic_topic@2x.png');}
-.topic_question {width:10px;height:12px;margin:6px 2px 0px 2px;background-image:url('../images/icon_f_topic_q_and_a@2x.png');}
+.topic_topic {width:10px;height:12px;margin:6px 2px 0px 2px;background-image:url('../images/icon_f_topic_topic@2x.png');background-size:10px 12px;}
+.topic_question {width:10px;height:12px;margin:6px 2px 0px 2px;background-image:url('../images/icon_f_topic_q_and_a@2x.png');background-size:10px 12px;}
 .topic_outlink_img {width:10px;height:10px;margin:9px;background-image:url('../images/icon_f_topic_links@2x.png');background-size:10px 10px;}
 .topic_product_img ,.topic_product_img img{width:78px;height:78px;}
 .topic_product_img img{border:none!important;}
