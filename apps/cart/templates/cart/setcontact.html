@@ -15,15 +15,19 @@
 </div>
 <div class='line info_line'>
   <div class='label'>联系电话</div>
-  <div class='input'><input type='text' name='contactPhone' value='{{ contactPhone }}'></div>
+  <div class='input'><input border='0' type='text' name='contactPhone' value='{{ contactPhone }}'></div>
 </div>
 <div class='line info_line'>
   <div class='label'>收货地址</div>
   <div class='input'><input type='text' name='address' value='{{ address }}' ></div>
 </div>
+<div class='line info_line'>
+  <div class='label'>备注信息</div>
+  <div class='input'><input type='text' name='remark' value='' ></div>
+</div>
 {% endif %}
 <div class='line'>
-  <span class='price_label'>总价</span><em class='price_info'>￥{{ total_num }}</em>
+  <span class='price_label'>总价</span><em class='price_info'>&nbsp;¥{{ total_num }}</em>
 </div>
 <div class='line payment_list'>
   <span class='price_label'>选择支付方式</span>

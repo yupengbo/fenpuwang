@@ -135,3 +135,51 @@ def process_product_data(product_data):
         product['goodReviewRatio'] =  int(product['goodReviewRatio']*100)
         if pics and len(pics) > 0 :
             product['thumb_s'] = pics[0]['thumb-s']
+
+
+def seckill(request):
+    seckill_result = api_list.get_flash_product_list(request)
+    seckill_today_list = seckill_result["todayProductList" ]
+    seckill_process(seckill_today_list)
+    seckill_tomorrow_list = seckill_result["tomorrowProductList"]
+    seckill_process(seckill_tomorrow_list)
+#    seckill_today_list = {}
+    server_time_stamp = seckill_result['timeStamp']
+    meta_data = {"seckill_today_list":seckill_today_list,"seckill_tomorrow_list":seckill_tomorrow_list, "server_time_stamp": server_time_stamp}
+    #if seckill_today_list:
+    #    return render(request,"products/flashing.html",meta_data)
+    #else:
+    #    return render(request,"products/flash_list.html",meta_data)
+    return render(request,"products/flashing.html",meta_data)
+
+def ajax_exists_qualification(request):
+    session = request.REQUEST.get('session')
+    if not session:
+        session = request.COOKIES.get("session")
+    product_uri = 'http://m.fenpuwang.com/products/'
+    authuri = weixin_auth_utils.build_auth_uri(product_uri)
+    is_ajax = request.is_ajax()
+    if not session:
+        response_json = {'error': 2,"authuri":authuri}
+        print response_json
+        return HttpResponse(json.dumps(response_json), content_type="application/json")
+    if not is_ajax:
+        return response_data_utils.error_response(request, "非ajax!",  __name__, "no ajax")
+    response_json = api_list.exists_qualification(request,session)
+    print response_json
+    return HttpResponse(json.dumps(response_json), content_type="application/json")
+
+def seckill_process(data):
+    for letter in data:
+        letter["img"] = letter["pics"][0]["org"]
+        letter["start_time"] = letter["flash_start_time"]
+        letter["continue_time"] = letter["flash_duration"]
+        letter["remaining_stock"] = letter["stock"] - letter["sold_num"] 
+        if letter["remaining_stock"] < 0 :
+             letter["remaining_stock"] = 0
+ #       letter["start_time"] = 1427528202280
+#        letter["continue_time"] = 300000
+        letter["discount"] = round(letter["flash_sizes"]["price"]/letter["price"]*10 ,1)
+
+
+ 

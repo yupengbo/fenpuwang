@@ -43,7 +43,7 @@ def cart_index(request):
     try:
         if item_list_json and item_list_json['error']==0:
             process_cartinfo_data(item_list_json)
-            meta_data = {'navTitle':'购物车', 'cart_info_list':item_list_json['validCartItemList'],'invlid_cart_info_list':item_list_json['invalidCartItemList']}
+            meta_data = {'navTitle':'购物车', 'cart_info_list':item_list_json['validCartItemList'],'invalid_cart_info_list':item_list_json['invalidCartItemList']}
             if len(item_list_json['validCartItemList']) == 0 and len(item_list_json['invalidCartItemList']) == 0:
                 return response_data_utils.error_response(request,"您的购物车空空如也", __name__, "购物车为空")
             meta_data = response_data_utils.pack_data(request,meta_data)
