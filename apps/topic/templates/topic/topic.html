@@ -112,7 +112,7 @@
             {% url 'products:query_by_category' 3 contentInfo.link.data  %}
           {% endif %}
           {% if contentInfo.link.type == '1' %}
-            <div class="link_cell relative">
+            <div class="link_cell_new relative">
               <a href="{% url "product:product_detail" contentInfo.link.data %}">
               <div style="margin-left:13px;color:#56452A;font-size:15px;line-height:17px;height:17px;overflow:hidden;">{{ contentInfo.link.title|safe }}</div>
               <div style="margin-left:13px;color:#9C8E79;font-size:11px;height:13px;margin-top:10px;">
