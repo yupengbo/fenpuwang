@@ -1,5 +1,5 @@
 /*product*/
-.product_body {padding:13px 15px 0 15px;}
+.product_body {padding:13px 0px 0px 0px;}
 
 .prodcut_pics {height:145px;}
 .product_pics_img{height:145px; margin:0 auto;}
@@ -12,7 +12,7 @@
 
 .product_related .btn {width:33%;}
 .product_related .btn .btn_content {width:88px;margin:0 auto;}
-.product_related {height:20px; padding:8px 0;margin:0 auto;}
+.product_related {height:44px;padding:10px 0;margin:0 auto;}
 .porduct_jeshao_img,.porduct_category_img,.porduct_brand_img{margin:5px 4px 0 0;background-color:#ffffff;background-size:12px 12px;width:12px;height:12px;}
 .porduct_jeshao_img{background-image:url('/static/images/icon_product_jieshao@2x.png');}
 .porduct_category_img{background-image:url('/static/images/icon_product_leibie@2x.png');}
@@ -48,34 +48,44 @@
 .center{text-align:center;}
 .product_c{width:100%;left:0px;top:15px;}
 .product_cart_btn{width:22px;height:22px;}
-.product_in_cart_b{width:100%;left:0px;bottom:22px;height:30px;margin:0 auto}
-.product_market_section{height:15px;margin-top:12px;padding-bottom:50px;line-height:15px;}
-.product_market_price{font-size:16px;}
+.product_market_section{height:15px;line-height:15px;margin:10px auto 0px;}
+.product_market_ps{margin-left:4px;}
+.product_market_price{font-size:13px;}
 .product_market_size{color:rgb(153,153,153);font-size:13px;}
-.product_market_price_btn{;margin-left:9px;height:15px;width:30px;}
+.product_market_price_btn{height:15px;width:30px;}
 .product_like_nb{width:100%;left:0px;bottom:15px;}
 .product_like_num{height:44px;font-size:12px;color:#999999;line-height:77px;overflow:hidden;margin-left:8px;}
 .product_like_btn{border-radius:50%;height:44px;width:44px;}
-.product_fenpu_goods{padding-top:14px;padding-bottom:14px;}
-.product_fenpu_price{color:#FF5346;font-size:22px;}
+.product_fenpu_goods{padding-top:14px;padding-bottom:14px;padding-left:15px;padding-right:15px;border-bottom:1px solid #eeeeee;}
+.product_fenpu_price{color:#FF5346;font-size:18px;}
 .product_fenpu_size{color:#999999;font-size:12px;}
-.product_fenpu_seller{margin-top:11px;font-size:12px;color:#999999;}
-.product_consult{padding-top:17px;padding-bottom:17px;height:15px;}
-.product_why_btn{height:15px;width:15px;}
-.product_why_character{color:#CB6358;font-size:13px;margin-left:6px;}
-.product_service_cb{width:50%;right:0px;bottom:16px;height:17px;}
-.product_service_character{color:#666666;margin-left:6px;font-size:12px;}
-.product_service_btn{height:17px;width:19px;}
+.product_fenpu_no_price{font-size:18px;color:rgb(153,153,153);}
+.product_consult{width:100%;left:0px;bottom:14px;}
+.product_service_cb{margin-right:20px;}
+.product_service_character{color:#666666;font-size:12px;}
+.product_service_btn{height:21px;width:18px;}
 
 .product_cart_container{border-top:1px #e4e4e4 solid;background-color:rgba(255,255,255,.96);height:60px;line-height:60px;width:100%;position:fixed;bottom:0px;left:0px;z-index:10000;padding:0px 10px;}
 .product_cart_container .cart_download{width:150px;height:44px;padding:8px 6px }
 .product_cart_container .cart_download .btn_t_download{background-size:150px 44px;width:150px;height:44px;margin:0px auto;background-image:url('http://static.fenpuwang.com/images/img_products_detail_download.png');}
 .product_cart_container .show_cart{border:1px #dbdbdb solid;width:135px;height:36px;font-size:16px;-webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px;margin:12px 15px 12px 3px;}
 .product_cart{margin:0;padding:0;height:36px;width:36px;text-align:center;}
-.product_in_cart_btn{border-radius:3px;line-height:36px;font-size:12px;height:36px;width:85px;color:#FFFFFF;background-color:rgb(255,83,70);margin:0 auto}
 .product_cart_in{padding-left:48px;width:135px;height:36px;line-height:36px;display:block;color:#666666;font-size:13px;}
 .product_cart_in:visited{color:#666666}
 .product_cn{width:100%;left:0px;top:3px;}
 .product_cart_num{border-radius:6px;line-height:12px;color:white;font-size:6px;height:12px;width:20px;background-color:rgb(0,183,191);margin-right:3px;}
 .ico-succ{margin:0 auto;width:200px;background-color:rgba(0,0,0,0.65);color:#fff;}
 .cart-pop .ico-succ span{display:block;text-align:center}
+
+
+
+
+
+.product_in_cart_btn{background-color:#4BAAB9;height:32px;width:200px;margin:10px auto 0px;font-size:12px;color:#fff;line-height:32px;border-radius:3px;}
+.product_why_btn{height:15px;width:15px;}
+.product_why_character{color:#666666;font-size:12px;margin-left:9px;line-height:15px;}
+.product_fenpu_seller{font-size:12px;color:#999999;}
+.product_gray_block{margin-top:16px;background-color:#f9f9f9;height:12px;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;}
+.product_nickname{margin-top:10px;color:rgb(153,153,153);font-size:11px;}
+.marg_t_oz{margin-top:10px;}
+.product_why_bc{margin-top:10px;height:15px;}
