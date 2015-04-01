@@ -12,6 +12,7 @@ urlpatterns = patterns('',
   url(r'^topay/$', views.to_pay_order, name='to_pay_order'),
   url(r'^alipay/$', views.alipay_order, name='alipay_order'),
   url(r'^wxpay/$', views.wxpay_order, name='wxpay_order'),
+  url(r'^didpay/$', views.order_pay_result, name='order_pay_result'),
 #  url(r'^cart_num/$',views.cart_num,name="cart_num"),
 )
 

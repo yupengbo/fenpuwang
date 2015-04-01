@@ -17,6 +17,17 @@ logger = logging.getLogger('django')
 def order_pay_test(request):
     return render(request,"order/pay.html")
 
+def order_pay_result(request):
+    # print request
+    paySuccess = request.GET.get('paySuccess')
+    if paySuccess == None:
+        paySuccess = '0'
+    order_Id = request.GET.get('order_Id')
+    if not order_Id:
+        return response_data_utils.error_response(request, "找不到对应的订单！", __name__)
+    meta_data = {'paySuccess':paySuccess, 'order_Id':order_Id}
+    return render(request,"order/order_pay_result.html", meta_data)
+
 def ajax_order_list(request,mark=0):                                                         #kim                                     
     is_ajax = request.is_ajax()
     if not is_ajax:
