@@ -176,6 +176,10 @@ def submit_order(req, sessionKey, cartInfo, contact,  address,  contactPhone, re
     params = {"sessionKey": sessionKey,'cartInfo': cartInfo, 'contact': contact, 'address': address, 'remark': remark, 'contactPhone': contactPhone}
     return get_result(req,"submitOrder.do",params)
 
+def exists_qualification(req, sessionKey):
+    params = {"sessionKey": sessionKey}
+    return get_result(req,"existsQualification.do",params) 
+
 def get_flash_product_list(req):
     params = {}
     return get_result(req,"getFlashProductlist.do",params) 
