@@ -31,14 +31,14 @@
 .invalid .selector_box{visibility:hidden;}
 .invalid .num_box{visibility:hidden;}
 .line{height:50px;border-bottom:1px #e4e4e4 solid;line-height:50px;padding:0 12px;}
-.line .label,.line .input{font-size:14px;color:#222;float:left;}
+.line .label,.line .input{font-size:14px;color:#666;float:left;}
 .line .label{width:20%;min-width:70px;}
 .line .input{width:70%;min-width:210px;}
-.line .input input{width:90%;height:30px;line-height:30px;}
+.line .input input{width:90%;height:30px;line-height:30px;padding:0px 10px;border:1px #e4e4e4 solid;}
 .line .price_label{color:#aaa;font-size:12px;}
 .line .price_info{color:#ff5346;font-size:22px;}
 .line .price_label,.line .price_info{height:50px;line-height:50px;display:block;float:left;}
-.line .to_pay{width:90%;border:None;height:40px;background-color:#ff5346;font-size:15px;color:#fff;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;margin:10px auto;}
+.line .to_pay{width:90%;border:None;height:40px;background-color:#ff5346;font-size:15px;color:#fff;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;margin:30px auto;}
 .payment_list{height:135px;}
 .payment_list ul{width:94%;margin:0 auto;}
 .payment{float:left;width:100%;border-top:1px #eeeeee solid;}

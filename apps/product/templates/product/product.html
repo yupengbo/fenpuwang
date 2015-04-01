@@ -5,7 +5,7 @@
 
 {% block script %}
 {% load static %}
-<link rel="stylesheet" href="{% static "css/product.css" %}?v=2.6">
+<link rel="stylesheet" href="{% static "css/product.css" %}?v=2.7">
 <script src="https://s.meiqia.com/js/mechat.js?unitid=6497&btn=hide" charset="UTF-8"></script>
 {% endblock %}
 
@@ -27,47 +27,55 @@
   </div>
 
   <div class="product_info">
-    <div class="product_detail_name fcb1 f17">{{ product.product.name}}</div>  
-    <div class="relative product_market_section">
-      <div class="float_l"><span class="product_market_price">¥{{ product.product.price }}</span><span class="product_market_size">/{{ product.product.size }}</span></div>
+    <div class="product_detail_name fcb1 f17 center">{{ product.product.name}}</div>  
+    {% if product.product.alias %}
+    <div class="center product_nickname">又名&nbsp;{{ product.product.alias }}</div>
+    {% endif %}
+    <div class="product_market_section">
       <img src="{% static "images/img_product_detail_price@2x.png" %}" class="float_l product_market_price_btn">
-      <div class="absolute product_like_nb">
-           <div class="float_r product_like_num">{{ product.product.likeNum}}人喜欢</div>
-           <!--img src="{% static "images/btn_product_collected_pressed.png" %}" class="float_r product_like_btn"-->
-      </div>
-    </div> 
+      <div class="float_l product_market_ps"><span class="product_market_price">¥{{ product.product.price }}</span><span class="product_market_size">/{{ product.product.size }}</span></div>
+    </div>
+  {% if product.product.goods %}
+    {% if product.product.goods|length == 1 %}
+      {% for goods in product.product.goods %}
+          {% if forloop.counter == 1%}
+    <div class="center marg_t_oz"><span class="product_fenpu_price">{{ product.product.priceRange }}</span><span class="product_fenpu_size">&nbsp;/{{ goods.size }}</span></div> 
+          {% endif %}
+      {% endfor %}
+    {% else %}
+    <div class="center marg_t_oz"><span class="product_fenpu_price">{{ product.product.priceRange }}</span></div> 
+    {% endif %}
+  {% else %}
+     <div class="center marg_t_oz"><span class="product_fenpu_no_price">暂无售卖</span></div>
+  {% endif %} 
+    {% for goods in product.product.goods %}
+         {% if forloop.counter == 1%}
+    <div get_goods_id="{{ goods.goodsId }}" class="center product_in_cart_btn">加入购物车</div>
+         {% endif %}
+    {% endfor %}
   </div>
-  <div class="sp_line"></div>
-  <div class="product_related">
-    <a href='{% url 'product:product_official' product.product.productId %}'><div class="btn fl"><div class="btn_content fcb1 f13 bg"><div class="porduct_jeshao_img fl"></div>官方介绍</div></div></a>
-    <a href='{% url 'products:query_by_category' 1 product.product.category.categoryId %}'><div class="btn fl"><div class="btn_content fcb1 f13 bg"><div class="porduct_category_img fl"></div>同类别产品</div></div></a>
-    <a href='{% url 'products:query_by_category' 3 product.product.brand.brandId %}'><div class="btn fl"><div class="btn_content fcb1 f13 bg"><div class="porduct_brand_img fl"></div>同品牌产品</div></div></a>
-  </div>
-  <div class="sp_line"></div>
+  <div class="product_gray_block"></div>
   {% for goods in product.product.goods%}
   {% if forloop.counter == 1 %}
   <div class="relative product_fenpu_goods">
-    <div><span class="product_fenpu_price">¥{{ goods.goodsPrice }}</span><span class="product_fenpu_size">&nbsp;/{{ goods.size }}</span></div>
     <div class="product_fenpu_seller">卖家：{{ goods.seller_name }}</div>
-    <div class="absolute product_in_cart_b">
-        <div class="center float_r product_in_cart_btn" get_goods_id="{{ goods.goodsId }}" >加入购物车</div>
+    <div class="product_why_bc">
+       <img src="{% static "images/img_product_detail_q_note@2x.png" %}" class="float_l product_why_btn">
+       <a href='{% url 'topic:topic_info' 3756 %}'><div class="float_l product_why_character">粉扑如何保证正品？</div></a>
+    </div>
+    <div class="absolute product_consult">
+        <div class="float_r center product_service_cb">
+          <img src="{% static "images/icon_mine_kefu@2x.png" %}" class="product_service_btn">
+          <a href="javascript:void(0)" onclick="mechatClick()"><div class="product_service_character">客服</div></a>
+        </div>
     </div>
   </div>
-  <div class="sp_line"></div>
   {% endif %}
   {% endfor %}
-  <div class="relative product_consult">
-    <img src="{% static "images/img_product_detail_q_note@2x.png" %}" class="float_l product_why_btn">
-    <a href='{% url 'topic:topic_info' 3756 %}'><div class="float_l product_why_character">粉扑如何保证正品？</div></a>
-    <div class="absolute product_service_cb">
-        <!--a href='http://mp.weixin.qq.com/s?__biz=MzAxOTE4MjA1Nw==&mid=204366285&idx=1&sn=a4651bf822f260d369e6b46f5f3a3fe6'><div class="float_r product_service_character">联系客服</div></a-->
-        <a  href="javascript:void(0)" onclick="mechatClick()"><div class="float_r product_service_character">联系客服</div></a>
-        <img src="{% static "images/btn_product_detail_feedback_normal@2x.png" %}" class="product_service_btn float_r">
-    </div>
-  </div>
 </div>
 
 <!--产品相关问题信息-->
+{% if product.totalNumber and product.totalNumber > 0 %}
 <div class="question_body">
 <div class="question_overview fcg1 f13">{{product.totalNumber}}个相关回答</div>
 <div class="sp_line"></div>
@@ -77,6 +85,27 @@
 {% endwith %}
 </ul>
 </div>
+{% else %}
+<div style="font-size:17px;color:D3B5AF;padding-top:25px;padding-bottom:25px;" class="center">还没有相关内容</div>
+         <div class="product_related">
+            <a href='{% url 'products:query_by_category' 1 product.product.category.categoryId %}'>
+                    <img src="{% static "images/icon_product_detail_related@2x.png" %}" style="height:44px;width:44px;" class="float_l">
+                    <div class="float_l common_cat" style="line-height:44px;margin-left:10px;color;rgb(68,68,68);color:rgb(68,68,68);">同类别产品</div>
+            </a>
+            <a href='{% url 'products:query_by_category' 3 product.product.brand.brandId %}'>
+                   <img src="{% static "images/icon_product_detail_brand@2x.png" %}" style="height:44px;width:44px;margin-left:32px;" class="float_l">
+                  <div class="float_l common_brand" style="line-height:44px;margin-left:10px;color:rgb(68,68,68);">同品牌产品</div>
+            </a>
+         </div>
+         <div class="sp_line"></div>
+         <script>
+           $(document).ready(function(){
+               var product_related_width = $(".common_cat").width()+$(".common_brand").width()+88+52;
+                 $(".product_related").css("width",product_related_width);
+ 
+            });
+         </script>
+{% endif %}
 <div class='product_cart_container'>
   <div class='cart_download fl'><a id='bd_topic_download' onclick="ga('send', 'event', '应用', '下载', '底部');_hmt.push(['_trackEvent', 'software', 'download', 'topic_info_{{ featureTopic.featureTopicId }}']);" href='http://www.dabanniu.com/download.phtml' class="bg btn_t_download block" target="_blank"></a></div>
   <div class='show_cart fr fcb1'>
@@ -95,7 +124,29 @@
     <span class="cart-succ">商品已成功加入购物车</span>
   </div>
 </div>
-
+<!--规格选择栏-->
+<!--<div style="position:fixed;bottom:0px;left:0px;width:100%;z-inde:9999;background-color:yellow;padding-left:5%;padding-right:5%;">
+  <div style="height:68px;">
+    <img src="{% static "images/bonus_background.jpg" %}" class="float_l" style="border-radius:50%;boder:1px solid #ececec;height:68px;width:68px;">
+    <div class="float_l" class="margin-left:15px;">
+       <div style="font-size:14px;colro:#222;line-height:143%;">雅诗兰黛精华乳</div>
+       <div><span>88.0</span><span>/170g</span></div>
+    </div>
+  </div>
+  <div style="margin-top:18px;">
+     <div style="width:85px;;height:36px;border:1px solid #666;font-size:12px;line-height:36px;margin-left:16px;margin-top:12px;" class="center float_l">C罗</div>
+     <div style="clear:both;"></div>
+  </div>
+  <div class="realative" style="padding-top:18px;padding-bottom:18px;height:33px;">
+     <img src="{% static "images/btn_product_incart_decrease_disabled@2x.png" %}" class="float_l product_decrease" style="height:33px;width:42px;">
+     <div style="width:68px;float:left;height:33px;line-height:33px;text-align:center;" class="product_num">1</div>
+     <img src="{% static "images/btn_product_incart_increase_normal@2x.png" %}" class="float_l product_increase" style="height:33px;width:42px;">
+     <div class="absolute" style="width:100%;left:0px;bottom:17px;">
+        <div style="float:right;background-color:#ff5346;border-radius:3px;color:#fff;width:85px;height:33px;line-height:33px;font-size:11px;" class="center">加入购物车</div>
+     </div>
+  </div>
+</div>
+-->
 <script type="application/javascript">
 $(".datalist").loaddata({
   url : "{{ url }}",
@@ -123,7 +174,46 @@ $(document).ready(function(){
     $(".cart-pop").fadeIn("slow")
     setTimeout(function(){$(".cart-pop").fadeOut("slow");},1300);
   });
+  var market_section_width = $(".product_market_ps").width() + $(".product_market_price_btn").width() + 7;
+  $(".product_market_section").css("width",market_section_width);
+  //var current_num = parseInt($(".product_num").html());
+  //$(".product_increase").click(function(){
+  //   current_num = current_num + 1;
+  //   $(".product_num").html(current_num);
+  //   if(current_num == 2){
+  //     $(".product_decrease").attr("src","{% static "images/btn_product_incart_decrease_normal@2x.png" %}");
+  //   } 
+  //});
+  //$(".product_decrease").click(function(){
+  //   if(current_num > 1){
+  //    current_num = current_num - 1;
+  //    $(".product_num").html(current_num);
+  //    if(current_num == 1){
+  //       $(".product_decrease").attr("src","{% static "images/btn_product_incart_decrease_disabled@2x.png" %}");
+  //     }
+ //    }
+ // });
+ // $(".product_increase").mousedown(function(){
+ //      $(".product_increase").attr("src","{% static "images/btn_product_incart_increase_pressed@2x.png" %}");
+ // });
+ // $(".product_increase").mouseup(function(){
+ //      $(".product_increase").attr("src","{% static "images/btn_product_incart_increase_normal@2x.png" %}");
+ // }); 
+ // $(".product_decrease").mousedown(function(){
+ //      if(current_num !=1 ){
+ //       $(".product_decrease").attr("src","{% static "images/btn_product_incart_decrease_pressed@2x.png" %}");
+ //      }
+ // });
+ // $(".product_decrease").mouseup(function(){
+ //      if(current_num !=1 ){
+ //       $(".product_decrease").attr("src","{% static "images/btn_product_incart_decrease_normal@2x.png" %}");
+ //      }
+ // });
+
 });
 </script>
 
 {% endblock %}
+
+
+

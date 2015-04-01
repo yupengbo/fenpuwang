@@ -1,0 +1,418 @@
+{% extends "base_no_nav.html" %}
+
+{% block title%}
+秒杀
+{% endblock title %}
+ {% load static %}
+{% block script%}
+ <script type="text/javascript" src="{% static "js/base.js" %}?v=1.3"></script>
+ <link rel="stylesheet" type="text/css" href="{% static "css/seckill.css" %}?v=2.2">
+{% endblock %}
+
+{% block main_content %}
+<div class="relative banner_pre">
+  <img src="http://static.fenpuwang.com/images/banner_big_sale_pre.jpg" class="banner_img">
+  <div class="absolute banner_button_section">
+       <a class='btn_get_qualification' href="javascript:void(0);" ><div class="div_center banner_button">获取秒杀资格</div></a>
+  </div>
+  <div class="absolute countdown_letter_time">
+     <div class="marg_l_ft">
+       <div class="countdown_letter">距离开抢还有</div>
+       <div class="countdown_time"></div>
+     </div>
+  </div>
+</div>
+<div class="banner_ing relative">
+  <img src="http://static.fenpuwang.com/images/banner_big_sale_ing.jpg" class="banner_ing_img">
+  <div class="absolute seckill_letter_time">
+    <div class="marg_l_ft">
+       <div class="seckill_letter">距离本场结束还有</div>
+       <div class="seckill_time"></div>
+    </div>
+  </div>
+</div>
+<div class='flashing_goods_list'>
+{% for letter in seckill_today_list %}
+<div class="seckill_limit">
+  <img src="http://static.fenpuwang.com/images/icon_big_sale_products_num.png" class="float_l seckill_limit_img" />
+  <div class="float_l seckill_limit_num" start_time="{{ letter.start_time }}" continue_time="{{ letter.continue_time }}">仅剩{{ letter.remaining_stock }}件</div>
+</div>    
+<div class="text_center">
+  <img src="{{ letter.img }}" class="seckill_product_img" onclick='detail({{ letter.productId }});' />
+  <div class="seckill_product_name">{{ letter.name_decoration }}</div>
+  <div class="div_center seckill_price_section">
+     <span class="seckill_discount">{{ letter.discount }}折</span>
+     <span class="seckill_promote_price">¥{{ letter.flash_sizes.price }}</span>
+     <span class="seckill_origin_price">¥{{ letter.price }}</span>
+  </div>
+  {% if letter.flashing == 1 %}
+  <div class="seckill_detail_cart">
+    <div class="float_l seckill_detail_button"  onclick='detail({{ letter.productId }});'>查看详情</div>
+    {% if letter.remaining_stock  == 0 %}
+        <div class="float_l seckill_cart_button"  >销售告罄</div>
+	{% endif %}
+    {% if letter.remaining_stock  > 0 %}
+        <div class="float_l seckill_cart_button"  onclick='add_to_cart({{ letter.productId }},{{ letter.flash_goods_id }});'>立即加入购物车</div>
+	{% endif %}
+  </div>
+  {% endif %}
+  {% if letter.flashing == 0 %}
+    <div class="seckill_pre_detail" onclick='detail({{ letter.productId }});'>查看详情</div> 
+  {% endif %}
+</div>
+<div class="seckill_detail_description">{{ letter.promotion_description }}</div>
+<div class="seckill_line"></div>
+{% endfor %}
+</div>
+<div class="relative tomorrow_section">
+  <img src="http://static.fenpuwang.com/images/banner_big_sale_next.jpg" class="tomorrow_img">
+  <div class="absolute tomorrow_button_section">
+     <a class='btn_get_qualification' href="javascript:void(0);"><div class="div_center tomorrow_button">点击获取明日秒杀资格</div></a>
+  </div>
+</div>
+<iframe  id='fenpuFrame' style='display:none;'></iframe>
+<div class='flash_goods_list'>
+{% for letter in seckill_tomorrow_list %}
+<div class="seckill_limit">
+  <img src="http://static.fenpuwang.com/images/icon_big_sale_products_num.png" class="float_l seckill_limit_img" /> 
+  <div class="float_l seckill_limit_num" start_time="{{ letter.start_time }}" continue_time="{{ letter.continue_time }}">限量{{ letter.stock }}件</div>
+</div>    
+<div class="text_center">
+  <img src="{{ letter.img }}" class="seckill_product_img" onclick='detail({{ letter.productId }});' />
+  <div class="seckill_product_name">{{ letter.name_decoration }}</div>
+  <div class="div_center seckill_price_section">
+     <span class="seckill_discount">{{ letter.discount }}折</span>
+     <span class="seckill_promote_price">¥{{ letter.flash_sizes.price }}</span>
+     <span class="seckill_origin_price">¥{{ letter.price }}</span>
+  </div>
+  {% if letter.flashing == 1 %}
+  <div class="seckill_detail_cart">
+    <div class="float_l seckill_detail_button"  onclick='detail({{ letter.productId }});'>查看详情</div>
+    <div class="float_l seckill_cart_button"  onclick='add_to_cart({{ letter.productId }},{{ letter.flash_goods_id }});'>立即加入购物车</div>
+  </div>
+  {% endif %}
+  {% if letter.flashing == 0 %}
+    <div class="seckill_pre_detail" onclick='detail({{ letter.productId }});'>查看详情</div> 
+  {% endif %}
+</div>
+<div class="seckill_detail_description">{{ letter.promotion_description }}</div>
+<div class="seckill_line"></div>
+{% endfor %}
+</div>
+<div class="seckill_bottom">
+  <div class='flow_con'>
+    <div class='flow_box'>
+       <div class='flow_tip'>距离秒杀还有</div>
+       <div class='flow_time'>00:13:14</div>
+	</div>
+    <div class='flow_cart_btn'>获取秒杀资格</div>
+  </div>
+</div>
+</div>
+<div class="cart-pop" style="display:none;left:15%;margin:0;width:70%;position:fixed;bottom:75%;z-index:9999">
+  <div class="ico-succ" style="background-color:grey;color:white;padding:11px 15px 9px 11px;" >
+    <span class="att-succ">添加成功！</span>
+	<br/>
+    <span class="cart-succ">商品已成功加入购物车</span>
+  </div>
+</div>
+<script>
+var __session;
+var __exists_qualification =false;
+var __current_status;
+function detail(pid ){
+   $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/product?productId=' + pid); 
+}
+function show_dialog(title,content){
+   $(".att-succ").html(title);
+   $(".cart-succ").html(content);
+   $(".cart-pop").fadeIn("slow");
+   setTimeout(function(){$(".cart-pop").fadeOut("slow");},2300);
+}
+function add_to_cart(pid , gid){
+   if(!__session || __session == ""){
+      to_login();
+	  return;
+   }
+    $.get_data(
+      '{%  url 'product:add_in_cart' %}',
+      "goodsId="+gid+"&productId=" + pid + "&session=" +__session,
+      function(data){
+        var cart_num_str = $(".product_cart_num").text();
+        var new_cart_num = parseInt(cart_num_str)+1;
+        $(".product_cart_num").text(new_cart_num);
+		if( data.error == 0){
+		    show_dialog("添加成功！","商品已成功加入购物车");
+		}
+		if(data.error && data.error == 1){
+		    show_dialog("出错啦",data.errorString);
+		}
+		if(data.error && data.error == 2){
+		    show_dialog("出错啦","请登录后重新尝试");
+		}
+      },
+	  function(){},'json'
+    );
+}
+function to_login(){
+   $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/getAppSessionKey?needlogin=1&callback=session_callback'); 
+}
+function get_app_session(){
+   $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/getAppSessionKey?needlogin=0&callback=session_callback'); 
+}
+
+function session_callback(session){
+  __session = session;
+  if(__session &&  __session != ""){
+     ajax_exists_qualification();
+  }else{
+      $(".btn_get_qualification").click(function(){
+	    get_qualification(); 
+      });
+	   $(".flow_cart_btn").click(function(){
+	        if( $(".flow_cart_btn").attr("event") == 'to_cart'){
+			    to_cart_page();
+			}else{
+			    get_qualification();
+			}
+	   });
+  }
+}
+
+function ajax_exists_qualification(){
+    $.get_data(
+      '{%  url 'products:ajax_exists_qualification' %}',
+       "&session=" +__session,
+      function(data){
+		if( data.error == 0){
+		    $(".btn_get_qualification div").html("已获取秒杀资格");
+			__exists_qualification = true;
+		}else{
+		    $(".btn_get_qualification").click(function(){
+			   get_qualification(); 
+			});
+		}
+		if (__exists_qualification){
+			$(".flow_cart_btn").html("已获取秒杀资格");
+		}
+        $(".flow_cart_btn").click(function(){
+    	    if( $(".flow_cart_btn").attr("event") == 'to_cart'){
+			    to_cart_page();
+		    }else{
+			    if (!__exists_qualification){
+	               get_qualification(); 
+				}
+			}
+		});
+      },
+	  function(){},'json'
+    );
+}
+function to_login(){
+   $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/getAppSessionKey?needlogin=1&callback=session_callback'); 
+}
+function get_app_session(){
+   $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/getAppSessionKey?needlogin=0&callback=session_callback'); 
+}
+
+function get_qualification(){
+   if(!__session || __session == ""){
+      to_login();
+	  return;
+   }
+   $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/bigsale?share=wxtimeline'); 
+}
+function to_cart_page(){
+   $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/cart'); 
+}
+function banner_img_width(){
+   var banner_img_width = $(".banner_img").width();
+   return banner_img_width;
+}
+function banner_img_height(){
+    var banner_img_height = $(".banner_img").height();
+   return banner_img_height;
+}
+function tomorrow_img_width(){
+   var tomorrow_img_width = $(".tomorrow_img").width();
+   return tomorrow_img_width;
+} 
+function tomorrow_img_height(){
+   var tomorrow_img_height = $(".tomorrow_img").height();
+   return tomorrow_img_height;
+}
+function banner_ing_width(){
+   var banner_ing_width = $(".banner_ing_img").width();
+   return banner_ing_width
+}
+function banner_ing_height(){
+   var banner_ing_height = $(".banner_ing_img").height();
+   return banner_ing_height
+}
+function loadImage(url, callback){
+  var img = new Image(); 
+  img.src = url;
+  if(img.complete) { 
+     callback.call(img);
+     return; 
+  }
+  img.onload = function () { 
+     callback.call(img);
+  };
+}
+
+$(document).ready(function(){
+    var offset_time = 0;
+	var base_client_time = new Date().getTime();
+    function currentTime(){
+	   var current_client_time = new Date().getTime();
+	   if ( (current_client_time - base_client_time - offset_time) > 3000  ){
+		   offset_time = current_client_time - base_client_time;  
+	   }
+       return {{ server_time_stamp }} + offset_time;
+       //return (new Date("2015/3/28 12:12:01")).getTime()/1000
+    }
+    function startTime(){
+       var time = $(".seckill_limit_num").attr("start_time");
+       return parseInt(time);
+    }
+    function continueTime(){
+       var time = $(".seckill_limit_num").attr("continue_time");
+       return parseInt(time);
+    }
+    function change_layout(){
+       var current_time = currentTime();
+       var start_time = startTime();
+       var continue_time = continueTime();
+	   var temp_status;
+       if(current_time >=start_time && current_time <= start_time+continue_time){
+           seckill();
+		   temp_status = "seckill";
+       }
+       if(current_time>start_time+continue_time || current_time<start_time){
+           tomorrow();
+		   temp_status = "tomorrow";
+       }
+	   if (__current_status == undefined){
+	       __current_status = temp_status;
+	   } else if(__current_status != temp_status) {
+	      location.reload(); 
+	   }
+       offset_time = offset_time + 1000;
+       setTimeout(change_layout,1000);
+    }
+    function tomorrow(){
+       $(".banner_ing").hide();
+       $(".banner_pre").show();
+       $(".tomorrow_section").hide();
+       var all_timestamp = startTime()-currentTime();
+       if(Math.floor(all_timestamp) == 0){
+          window.location.reload();
+       }
+       all_timestamp = Math.floor(all_timestamp /1000);
+       var hour = Math.floor(all_timestamp/(60*60));
+       hour = hour.toString();
+       var minute = Math.floor((all_timestamp - hour*60*60)/60);
+       minute = minute.toString();
+       var second = Math.floor(all_timestamp - hour*60*60 - minute*60);
+       second = second.toString();
+       if(hour.length == 1){
+           hour = "0" + hour;
+       }
+       if(minute.length ==1){
+           minute = "0" + minute;
+       }
+       if(second.length ==1){
+          second = "0" + second;
+       }
+       $(".countdown_time").html(hour+":"+minute+":"+second); 
+	   $(".flow_time").html(hour+":"+minute+":"+second);
+       $(".flow_tip").html("距离秒杀还有");
+       if (__exists_qualification){
+	      $(".flow_cart_btn").html("已获取秒杀资格");
+	   }else{
+	      $(".flow_cart_btn").html("获取秒杀资格");
+	   }
+	   $(".flow_cart_btn").attr("event","get_qualification");
+    }
+    function seckill(){
+        $(".banner_ing").show();
+        $(".banner_pre").hide();
+        $(".tomorrow_section").show();
+        var all_timestamp = startTime() + continueTime() - currentTime()
+        if(Math.floor(all_timestamp) ==0 ){
+            window.location.reload();
+        }
+        all_timestamp = Math.floor(all_timestamp /1000);
+        var hour = Math.floor(all_timestamp/(60*60));
+        hour = hour.toString();
+        var minute = Math.floor((all_timestamp - hour*60*60)/60);
+        minute = minute.toString();
+        var second = Math.floor(all_timestamp - hour*60*60 - minute*60);
+        second = second.toString();
+        if(hour.length == 1){
+            hour = "0" + hour;
+        }
+        if(minute.length ==1){
+            minute = "0" + minute;
+        }
+        if(second.length ==1){
+           second = "0" + second;
+        }
+        $(".seckill_time").html(hour+":"+minute+":"+second);
+		$(".flow_time").html(hour+":"+minute+":"+second);
+		$(".flow_tip").html("距离结束还有");
+	    $(".flow_cart_btn").html("查看购物车");
+	    $(".flow_cart_btn").attr("event","to_cart");
+    }
+    //var price_section_width=30+$(".seckill_promote_price").width()+$(".seckill_origin_price").width()+14;
+   // var tomorrow_section_width=30+$(".tomorrow_promote_price").width()+$(".tomorrow_origin_price").width()+14;
+   // $(".seckill_price_section").css("width",price_section_width);
+   // $(".tomorrow_price_section").css("width",tomorrow_section_width);
+    loadImage($(".banner_img").attr('src'),function(){
+       var banner_button_width = banner_img_width() * 0.55;
+       var banner_button_height = banner_img_height() * 0.21;
+	   var banner_button_font_size = banner_button_height * 0.36; 
+       $(".banner_button").css({
+	        "width":banner_button_width,
+			"height":banner_button_height,
+			"line-height":(banner_button_height-8)+"px",
+		    "font-size":banner_button_font_size
+	   }); 
+       var countdown_today_time = banner_img_height() * 0.06;
+       var countdown_today_letter = banner_img_height() * 0.04;
+       $(".countdown_time").css("font-size",countdown_today_time);
+       $(".countdown_letter").css("font-size",countdown_today_letter); 
+	});
+    loadImage($(".tomorrow_img").attr('src'),function(){
+       var tomorrow_button_width = tomorrow_img_width() * 0.62;
+       var tomorrow_button_height = tomorrow_img_height() * 0.18;
+	   var tomorrow_button_font_size = tomorrow_button_height * 0.36; 
+       $(".tomorrow_button").css({
+	       "width":tomorrow_button_width,
+		   "height":tomorrow_button_height,
+		   "line-height":(tomorrow_button_height-8)+"px",
+		   "font-size":tomorrow_button_font_size
+	   });
+	});
+    loadImage($(".banner_ing_img").attr('src'),function(){
+       var seckill_time = banner_ing_height() * 0.12;
+       var seckill_letter =  banner_ing_height() * 0.04;
+       $(".seckill_time").css("font-size",seckill_time);
+       $(".seckill_letter").css("font-size",seckill_letter);
+	});
+    change_layout();
+	get_app_session();
+	$(window).scroll(function () {
+	   var srollPos = $(window).scrollTop();    //滚动条距顶部距离(页面超出窗口的高度)
+	   var flowLine = $('.flashing_goods_list').offset().top;
+	   if (flowLine < srollPos) {
+	       $(".seckill_bottom").show();
+ 	   } else {
+	       $(".seckill_bottom").hide();
+	   }
+    });
+    window.scrollTo(0,1);
+});
+</script>
+{% endblock %}

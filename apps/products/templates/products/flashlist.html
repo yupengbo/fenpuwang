@@ -40,16 +40,19 @@
      <div class="float_l seckill_promote_price">¥{{ letter.flash_sizes.price }}</div>
      <div class="float_l seckill_origin_price">¥{{ letter.price }}</div>
   </div>
-  <div class="seckill_pre_detail" onclick='detail({{ letter.flash_goods_id }});'>查看详情</div> 
+  {% if letter.flashing == 1 %}
   <div class="seckill_detail_cart">
-    <div class="float_l seckill_detail_button"  onclick='detail({{ letter.productId }},{{ letter.flash_goods_id }});'>查看详情</div>
+    <div class="float_l seckill_detail_button"  onclick='detail({{ letter.productId }});'>查看详情</div>
     <div class="float_l seckill_cart_button"  onclick='add_to_cart({{ letter.productId }},{{ letter.flash_goods_id }});'>立即加入购物车</div>
   </div>
+  {% endif %}
+  {% if letter.flashing == 0 %}
+    <div class="seckill_pre_detail" onclick='detail({{ letter.productId }});'>查看详情</div> 
+  {% endif %}
 </div>
 <div class="seckill_detail_description">[限量1000件]{{ letter.promotion_description }}</div>
 <div class="seckill_line"></div>
 {% endfor %}
-
 <div class="relative tomorrow_section">
   <img src="{% static "images/banner_big_sale_next.jpg" %}" class="tomorrow_img">
   <div class="absolute tomorrow_button_section">
@@ -58,28 +61,35 @@
 </div>
 <iframe  id='fenpuFrame' style='display:none;'></iframe>
 <div class="seckill_bottom"></div>
-<!--{% for letter in seckill_tomorrow_list %}
+{% for letter in seckill_tomorrow_list %}
 <div class="seckill_limit">
   <img src="{% static "images/icon_big_sale_products_num.png" %}" class="float_l seckill_limit_img">
-  <div class="float_l seckill_limit_num">限量1000件</div>
-</div>
+  <div class="float_l seckill_limit_num" start_time="{{ letter.start_time }}" continue_time="{{ letter.continue_time }}">限量1000件</div>
+</div>    
 <div class="text_center">
   <img src="{{ letter.img }}" class="seckill_product_img">
   <div class="seckill_product_name">{{ letter.name }}{{ letter.flash_sizes.size }}</div>
-  <div class="div_center tomorrow_price_section">
-     <div class="float_l seckill_discount">3.5折</div>
-     <div class="float_l tomorrow_promote_price">¥{{ letter.flash_sizes.price }}</div>
-     <div class="float_l tomorrow_origin_price">¥{{ letter.price }}</div>
+  <div class="div_center seckill_price_section">
+     <div class="float_l seckill_discount">{{ letter.discount }}折</div>
+     <div class="float_l seckill_promote_price">¥{{ letter.flash_sizes.price }}</div>
+     <div class="float_l seckill_origin_price">¥{{ letter.price }}</div>
   </div>
-  <div style="width:75%;height:36px;line-height:36px;font-size:14px;border:2px solid #ff5346;border-radius:3px;margin:10px auto;color:#ff5346;">查看详情</div>
+  {% if letter.flashing == 1 %}
+  <div class="seckill_detail_cart">
+    <div class="float_l seckill_detail_button"  onclick='detail({{ letter.productId }});'>查看详情</div>
+    <div class="float_l seckill_cart_button"  onclick='add_to_cart({{ letter.productId }},{{ letter.flash_goods_id }});'>立即加入购物车</div>
+  </div>
+  {% endif %}
+  {% if letter.flashing == 0 %}
+    <div class="seckill_pre_detail" onclick='detail({{ letter.productId }});'>查看详情</div> 
+  {% endif %}
 </div>
 <div class="seckill_detail_description">[限量1000件]{{ letter.promotion_description }}</div>
 <div class="seckill_line"></div>
 {% endfor %}
--->
 <script>
-function detail(pid , gid){
-   alert("detail:" + gid + " " + pid);
+function detail(pid ){
+   alert("detail:" + " " + pid);
    $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/product?productId=' + pid); 
 }
 function add_to_cart(pid , gid){
@@ -148,8 +158,6 @@ $(document).ready(function(){
        if(current_time >=start_time && current_time <= start_time+continue_time){
            $(".banner_ing").show();
            $(".banner_pre").hide();
-           $(".seckill_detail_cart").show();
-           $(".seckill_pre_detail").hide();
            $(".tomorrow_section").show();
            $(".seckill_bottom").hide();
            seckill();
@@ -157,8 +165,6 @@ $(document).ready(function(){
        if(current_time>start_time+continue_time || current_time<start_time){
            $(".banner_ing").hide();
            $(".banner_pre").show();
-           $(".seckill_detail_cart").hide();
-           $(".seckill_pre_detail").show();
            $(".tomorrow_section").hide();
            $(".seckill_bottom").show()
            tomorrow();

@@ -96,6 +96,16 @@
        <div class="float_r order_total_statistics color_99"><span class="order_total_freight">运费<span class="color_22">{{ order.productOrder.transportFee }}</span>&nbsp;&nbsp;&nbsp;&nbsp;合计：</span><span class="order_total_price">¥{{ order.productOrder.totalFee }}</span></div>
    </div>
 </div>
+{% if order.productOrder.transportInfo|length %}
+<div class="order_line marg_t_oz"></div>
+<div class="relative order_buyer_info">
+    <div class="order_buyer_name">物流信息</div>
+    <div class="marg_t_one_four">
+        <div class="float_l order_buyer_address">{{ order.productOrder.transportInfo}}</div>
+        <div class="clear"></div>
+    </div>
+</div>
+{% endif %}
 <div class="order_line"></div>
 </div>
 <div class='to_pay_hidden hidden'>
@@ -109,7 +119,7 @@
  <script>
    $(function () {
       $(".footer_download").html($(".to_pay_hidden").html());
-   });   
+   });
  </script>
 {% endifequal %}
 {% endblock %}

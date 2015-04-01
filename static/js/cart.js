@@ -1,5 +1,5 @@
 $(function(){
-  var yen_char='￥';
+  var yen_char='¥';
   function get_num(num,ret_val){
     num = Number(num);
     if(isNaN(num)){
