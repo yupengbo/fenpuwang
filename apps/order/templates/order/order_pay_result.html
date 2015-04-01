@@ -14,14 +14,14 @@
 {% ifequal paySuccess '1' %}
     <img src="{% static "images/order_pay_success@2x.png" %}" style="width:57px;height:57px;padding-top:40px" />
     <div style="font-size:16px;color:#cd9c99;line-height:16px;padding-top:15px;">支付成功</div>
-    {% endifequal %}
+{% endifequal %}
 
 {% ifequal paySuccess '0' %}
     <img src="{% static "images/order_pay_failed@2x.png" %}" style="width:57px;height:57px;padding-top:40px" />
     <div style="font-size:16px;color:#cd9c99;line-height:16px;padding-top:15px;">未支付成功</div>
-    {% endifequal %}
+{% endifequal %}
 
-<div style="font-size:14px;color:#ff5346;line-height:13px;padding-top:15px;" onclick="window.location = '{% url 'order:order_detail' order_Id%}'">查看订单</div>
+<div style="font-size:14px;color:#ff5346;line-height:13px;padding-top:15px;" onclick="window.location = '{% url 'order:order_detail' order_id%}'">查看订单</div>
 
 </div>
 
@@ -30,12 +30,12 @@
 {% ifequal paySuccess '1' %}
     <div style="font-size:16px;color:#222;line-height:16px;padding-top:30px;">随时跟踪你的订单</div>
     <div style="font-size:13px;color:#999;line-height:13px;padding-top:10px;">在App内查看订单更方便哦</div>
-    {% endifequal %}
+{% endifequal %}
 
 {% ifequal paySuccess '0' %}
     <div style="font-size:16px;color:#222;line-height:16px;padding-top:30px;">升级你的购买体验</div>
     <div style="font-size:13px;color:#999;line-height:13px;padding-top:10px;">在App内操作体验更流畅哦</div>
-    {% endifequal %}
+{% endifequal %}
 
 <input type='button' onclick="window.location = 'http://www.dabanniu.com/download.phtml'" value='下载粉扑' style="width:210px;border:None;height:40px;background-color:#ff5346;font-size:14px;color:#fff;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;margin:20px auto;" />
 
