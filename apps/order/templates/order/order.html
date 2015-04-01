@@ -5,6 +5,7 @@
 {% block title %} {{ question.question.normal_title }} {% endblock %}
 {% block script %}
      {% load static %}
+     <script src="https://s.meiqia.com/js/mechat.js?unitid=6497&btn=hide" charset="UTF-8"></script>
      <link rel="stylesheet" href="{% static "css/order.css" %}?v=1.4">
 {% endblock %}
 {% block main_content %}
@@ -35,7 +36,7 @@
       <div class="order_express_other_status">订单已失效</div>
   </div>
   {% endifequal %}
-  <a href="http://mp.weixin.qq.com/s?__biz=MzAxOTE4MjA1Nw==&mid=204366285&idx=1&sn=a4651bf822f260d369e6b46f5f3a3fe6">
+  <a href="javascript:void(0)" onclick="mechatClick()">
   <div class="absolute order_service_section">
        <div class="float_r center marg_r_os">
           <img src="{% static "images/btn_order_detail_feedback_normal@2x.png" %}" class="order_service_btn">
