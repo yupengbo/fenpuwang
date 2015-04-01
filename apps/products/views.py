@@ -152,6 +152,23 @@ def seckill(request):
     #    return render(request,"products/flash_list.html",meta_data)
     return render(request,"products/flashing.html",meta_data)
 
+def ajax_exists_qualification(request):
+    session = request.REQUEST.get('session')
+    if not session:
+        session = request.COOKIES.get("session")
+    product_uri = 'http://m.fenpuwang.com/products/'
+    authuri = weixin_auth_utils.build_auth_uri(product_uri)
+    is_ajax = request.is_ajax()
+    if not session:
+        response_json = {'error': 2,"authuri":authuri}
+        print response_json
+        return HttpResponse(json.dumps(response_json), content_type="application/json")
+    if not is_ajax:
+        return response_data_utils.error_response(request, "非ajax!",  __name__, "no ajax")
+    response_json = api_list.exists_qualification(request,session)
+    print response_json
+    return HttpResponse(json.dumps(response_json), content_type="application/json")
+
 def seckill_process(data):
     for letter in data:
         letter["img"] = letter["pics"][0]["org"]
