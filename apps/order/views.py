@@ -18,14 +18,15 @@ def order_pay_test(request):
     return render(request,"order/pay.html")
 
 def order_pay_result(request):
+    user_info = weixin_auth_utils.get_user_info(request)
     # print request
-    paySuccess = request.GET.get('paySuccess')
+    paySuccess = request.GET.get('pay_success')
     if paySuccess == None:
         paySuccess = '0'
-    order_Id = request.GET.get('order_Id')
-    if not order_Id:
+    order_id = request.GET.get('order_id')
+    if not order_id:
         return response_data_utils.error_response(request, "找不到对应的订单！", __name__)
-    meta_data = {'paySuccess':paySuccess, 'order_Id':order_Id}
+    meta_data = {'paySuccess':paySuccess, 'order_id':order_id}
     return render(request,"order/order_pay_result.html", meta_data)
 
 def ajax_order_list(request,mark=0):                                                         #kim                                     
