@@ -5,7 +5,7 @@
 
 {% block script %}
 {% load static %}
-<link rel="stylesheet" href="{% static "css/product.css" %}?v=2.6">
+<link rel="stylesheet" href="{% static "css/product.css" %}?v=2.7">
 <script src="https://s.meiqia.com/js/mechat.js?unitid=6497&btn=hide" charset="UTF-8"></script>
 {% endblock %}
 
@@ -48,7 +48,11 @@
   {% else %}
      <div class="center marg_t_oz"><span class="product_fenpu_no_price">暂无售卖</span></div>
   {% endif %} 
+    {% for goods in product.product.goods %}
+         {% if forloop.counter == 1%}
     <div get_goods_id="{{ goods.goodsId }}" class="center product_in_cart_btn">加入购物车</div>
+         {% endif %}
+    {% endfor %}
   </div>
   <div class="product_gray_block"></div>
   {% for goods in product.product.goods%}
