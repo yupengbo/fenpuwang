@@ -60,7 +60,7 @@
 .product_fenpu_price{color:#FF5346;font-size:18px;}
 .product_fenpu_size{color:#999999;font-size:12px;}
 .product_fenpu_no_price{font-size:18px;color:rgb(153,153,153);}
-.product_consult{width:100%;left:0px;bottom:14px;}
+.product_consult{width:20%;right:0px;bottom:14px;}
 .product_service_cb{margin-right:20px;}
 .product_service_character{color:#666666;font-size:12px;}
 .product_service_btn{height:21px;width:18px;}
@@ -84,4 +84,4 @@
 .product_gray_block{margin-top:16px;background-color:#f9f9f9;height:12px;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;}
 .product_nickname{margin-top:10px;color:rgb(153,153,153);font-size:11px;}
 .marg_t_oz{margin-top:10px;}
-.product_why_bc{margin-top:10px;height:15px;}
+.product_why_bc{width:80%;margin-top:10px;height:15px;}
