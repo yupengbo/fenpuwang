@@ -13,6 +13,8 @@
 
     <title>收银台</title>
     {% load static %}
+    <script src="{% static js/qrcode.js %}">
+    <script type="text/javascript" src="{% static "js/qrcode.js" %}"></script>
     <script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
     <script type="text/javascript">
       //调用微信JS api 支付
@@ -194,7 +196,7 @@
             {% endif %}
             </p>
             <div style="text-align:center;text-decoration:none;height:40px;"><a style="color:green" href="{% url 'order:order_detail' order_id%}">支付成功后，点此查看我的订单</a></div>
-            <img style="width:100%" src="http://qr.liantu.com/api.php?text={{ wxQrcodeUrl }}">
+            <div align="center" id="qrcode"></div>
           </div>
           <div class="row-p" style="height:auto;margin-bottom:5px;border-bottom:1px solid #ddd;padding: 10px 5px;">
             商品：<span class="green">{{ goodsDesc}}</span></div>
@@ -210,4 +212,13 @@
 
     <footer><div style="margin: 10px 0;font-size: 12px;text-align: center;">版权所有©2014-2015 粉扑</div></footer>
 </body>
+<script>
+  var url = "{{ wxQrcodeUrl }}";
+  //参数1表示图像大小，取值范围1-10；参数2表示质量，取值范围'L','M','Q','H'
+  var qr = qrcode(1, 'L');
+  qr.addData(url);
+  qr.make();
+  var element=document.getElementById("qrcode");
+  element.innerHTML = qr.createImgTag();
+</script>
 </html>

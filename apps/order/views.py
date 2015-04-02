@@ -17,6 +17,14 @@ logger = logging.getLogger('django')
 def order_pay_test(request):
     return render(request,"order/pay.html")
 
+def order_pay_result(request, order_id, pay_status=0):
+    user_info = weixin_auth_utils.get_user_info(request)
+    session = user_info.get('session')
+    if not order_id:
+        return response_data_utils.error_response(request, "找不到对应的订单！", __name__)
+    meta_data = {'paySuccess':pay_status, 'order_id':order_id}
+    return weixin_auth_utils.fp_render(request,'order/order_pay_result.html',meta_data, session)
+
 def ajax_order_list(request,mark=0):                                                         #kim                                     
     is_ajax = request.is_ajax()
     if not is_ajax:

@@ -13,7 +13,7 @@
 <div class="relative banner_pre">
   <img src="http://static.fenpuwang.com/images/banner_big_sale_pre.jpg" class="banner_img">
   <div class="absolute banner_button_section">
-       <a class='btn_get_qualification' href="javascript:void(0);" ><div class="div_center banner_button">获得秒杀资格</div></a>
+       <a class='btn_get_qualification' href="javascript:void(0);" ><div class="div_center banner_button">获取秒杀资格</div></a>
   </div>
   <div class="absolute countdown_letter_time">
      <div class="marg_l_ft">
@@ -49,7 +49,7 @@
   <div class="seckill_detail_cart">
     <div class="float_l seckill_detail_button"  onclick='detail({{ letter.productId }});'>查看详情</div>
     {% if letter.remaining_stock  == 0 %}
-        <div class="float_l seckill_cart_button"  >销售告罄</div>
+        <div class="float_l seckill_cart_button sold_out"  >销售告罄</div>
 	{% endif %}
     {% if letter.remaining_stock  > 0 %}
         <div class="float_l seckill_cart_button"  onclick='add_to_cart({{ letter.productId }},{{ letter.flash_goods_id }});'>立即加入购物车</div>

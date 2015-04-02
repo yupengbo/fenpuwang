@@ -24,7 +24,7 @@ bind = "0.0.0.0:8888"
 workers = multiprocessing.cpu_count()×2\+1
 </pre></code>
 - 3.开发环境服务单进程启动：  
-python manage.py runserver 0.0.0.0:8003 --settings=settings.development
+sudo python manage.py runserver 0.0.0.0:8003 --settings=settings.development
 
 ###三.线上服务启动
 1.gunicorn_start 脚本

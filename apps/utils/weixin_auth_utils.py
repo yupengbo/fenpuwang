@@ -32,9 +32,9 @@ def build_auth_uri(redirect_uri):
 
 def get_user_info(request):
    session = None
-   session = request.COOKIES.get("session")
+   session = request.REQUEST.get("session")
    if not session:
-      session = request.REQUEST.get("session")
+       session = request.COOKIES.get("session")
    host = get_base_uri(request)
    path_uri = request.META.get('PATH_INFO')
    query_str = request.META['QUERY_STRING']
