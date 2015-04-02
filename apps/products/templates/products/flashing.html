@@ -5,8 +5,13 @@
 {% endblock title %}
  {% load static %}
 {% block script%}
+{% load compress %}
+{% compress js inline %}
  <script type="text/javascript" src="{% static "js/base.js" %}?v=1.3"></script>
+{% endcompress %}
+{% compress css inline %}
  <link rel="stylesheet" type="text/css" href="{% static "css/seckill.css" %}?v=2.2">
+{% endcompress %}
 {% endblock %}
 
 {% block main_content %}
@@ -35,7 +40,7 @@
 {% for letter in seckill_today_list %}
 <div class="seckill_limit">
   <img src="http://static.fenpuwang.com/images/icon_big_sale_products_num.png" class="float_l seckill_limit_img" />
-  <div class="float_l seckill_limit_num" start_time="{{ letter.start_time }}" continue_time="{{ letter.continue_time }}">仅剩{{ letter.remaining_stock }}件</div>
+  <div id="stock_{{ letter.productId }}" class="float_l seckill_limit_num" start_time="{{ letter.start_time }}" continue_time="{{ letter.continue_time }}">仅剩{{ letter.remaining_stock }}件</div>
 </div>    
 <div class="text_center">
   <img src="{{ letter.img }}" class="seckill_product_img" onclick='detail({{ letter.productId }});' />
@@ -48,12 +53,8 @@
   {% if letter.flashing == 1 %}
   <div class="seckill_detail_cart">
     <div class="float_l seckill_detail_button"  onclick='detail({{ letter.productId }});'>查看详情</div>
-    {% if letter.remaining_stock  == 0 %}
-        <div class="float_l seckill_cart_button sold_out"  >销售告罄</div>
-	{% endif %}
-    {% if letter.remaining_stock  > 0 %}
-        <div class="float_l seckill_cart_button"  onclick='add_to_cart({{ letter.productId }},{{ letter.flash_goods_id }});'>立即加入购物车</div>
-	{% endif %}
+       <div class="float_l seckill_cart_button sold_out" {% if letter.remaining_stock  > 0 %}style='display:none;'{% endif %} >销售告罄</div>
+       <div class="float_l seckill_cart_button add_to_cart" {% if letter.remaining_stock  == 0 %}style='display:none;'{% endif %}  onclick='add_to_cart({{ letter.productId }},{{ letter.flash_goods_id }});'>立即加入购物车</div>
   </div>
   {% endif %}
   {% if letter.flashing == 0 %}
@@ -85,15 +86,7 @@
      <span class="seckill_promote_price">¥{{ letter.flash_sizes.price }}</span>
      <span class="seckill_origin_price">¥{{ letter.price }}</span>
   </div>
-  {% if letter.flashing == 1 %}
-  <div class="seckill_detail_cart">
-    <div class="float_l seckill_detail_button"  onclick='detail({{ letter.productId }});'>查看详情</div>
-    <div class="float_l seckill_cart_button sold_out"  onclick='add_to_cart({{ letter.productId }},{{ letter.flash_goods_id }});'>立即加入购物车</div>
-  </div>
-  {% endif %}
-  {% if letter.flashing == 0 %}
     <div class="seckill_pre_detail" onclick='detail({{ letter.productId }});'>查看详情</div> 
-  {% endif %}
 </div>
 <div class="seckill_detail_description">{{ letter.promotion_description }}</div>
 <div class="seckill_line"></div>
@@ -154,13 +147,26 @@ function add_to_cart(pid , gid){
 	  function(){},'json'
     );
 }
+function refreshStock(){
+    $.get_data(
+      '{%  url 'products:ajax_get_stock' %}',""
+	  function(data){
+		if(data.error == 0){
+		   for (var stock_i in data.list){
+		      alert(stock_i);
+		   }
+		}
+	  },
+	  function(){},'json'
+	);
+}
+refreshStock();
 function to_login(){
    $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/getAppSessionKey?needlogin=1&callback=session_callback'); 
 }
 function get_app_session(){
    $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/getAppSessionKey?needlogin=0&callback=session_callback'); 
 }
-
 function session_callback(session){
   __session = session;
   if(__session &&  __session != ""){
@@ -178,7 +184,6 @@ function session_callback(session){
 	   });
   }
 }
-
 function ajax_exists_qualification(){
     $.get_data(
       '{%  url 'products:ajax_exists_qualification' %}',
@@ -214,7 +219,6 @@ function to_login(){
 function get_app_session(){
    $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/getAppSessionKey?needlogin=0&callback=session_callback'); 
 }
-
 function get_qualification(){
    if(!__session || __session == ""){
       to_login();
@@ -260,7 +264,6 @@ function loadImage(url, callback){
      callback.call(img);
   };
 }
-
 $(document).ready(function(){
     var offset_time = 0;
 	var base_client_time = new Date().getTime();

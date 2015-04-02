@@ -152,6 +152,15 @@ def seckill(request):
     #    return render(request,"products/flash_list.html",meta_data)
     return render(request,"products/flashing.html",meta_data)
 
+def ajax_get_stock(request):
+    is_ajax = request.is_ajax()
+    seckill_result = api_list.get_flash_product_list(request)
+    seckill_today_list = seckill_result["tomorrowProductList"]
+   # seckill_today_list = seckill_result["todayProductList" ]
+    stock_data = seckill_stock_process(seckill_today_list)
+    meta_data = {"error":0 ,"list": stock_data}
+    return HttpResponse(json.dumps(meta_data), content_type="application/json")
+
 def ajax_exists_qualification(request):
     session = request.REQUEST.get('session')
     if not session:
@@ -182,4 +191,13 @@ def seckill_process(data):
         letter["discount"] = round(letter["flash_sizes"]["price"]/letter["price"]*10 ,1)
 
 
+def seckill_stock_process(data):
+    stock_data = {}
+    for letter in data:
+        letter["remaining_stock"] = letter["stock"] - letter["sold_num"] 
+        if letter["remaining_stock"] < 0 :
+             letter["remaining_stock"] = 0
+        stock_data["stock_" + str(letter["productId"])] = letter["remaining_stock"]
+    return stock_data
+ 
  
