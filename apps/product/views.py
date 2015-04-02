@@ -14,6 +14,8 @@ def process_product_data(product_data):
   if product_data.get("contentList"):
     for content in product_data['contentList']:
         if content['type'] == 0:
+            content['question']['title'] = string_utils.truncate_text2(content['question']['title'],36)
+
             if content['question']['relatedAnswer']!=None:     #答案有可能不存在
                 content['question']['relatedAnswer']['content'] = string_utils.truncate_text(content['question']['relatedAnswer']['content'])   
         if content['type'] == 1:
