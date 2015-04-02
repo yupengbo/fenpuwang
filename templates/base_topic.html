@@ -9,14 +9,19 @@
         <meta name="keywords" content="粉扑，粉扑网，粉扑网站，粉扑下载，护肤，美妆，正品，美妆社区"/>
         <title>{% block title %}粉扑网，美妆护肤助手，败家剁手利器{% endblock %}</title>
         {% load static %}
+        {% load compress %}
         <link rel="icon" href="{% static "images/Icon-Small.ico" %}" mce_href="{% static "images/Icon-Small.ico" %}" type="image/x-icon" />
         <link rel="shortcut icon" href="{% static "images/Icon-Small.ico" %}" type="image/x-icon" />
+        {% compress css inline %}
         <link rel="stylesheet" href="{% static "css/style.css" %}?v=1.1">
         <link rel="stylesheet" href="{% static "css/topic.css" %}?v=2.0">
+        {% endcompress %}
         <script type="text/javascript" src="http://static.fenpuwang.com/js/jquery.min.js"></script>
+        {% compress js inline %}
         <script type="text/javascript" src="{% static "js/base.js" %}?v=1.1"></script>
         <script type="text/javascript" src="{% static "js/loaddata.js" %}?v=1.0"></script>
         <script type="text/javascript" src="{% static "js/back_top.js"%}?v=1.0"></script>
+        {% endcompress %}
         {% block script %}{% endblock %}
     </head>
 

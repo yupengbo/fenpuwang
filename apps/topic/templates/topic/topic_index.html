@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block script %}
-    {% load staticfiles %}
-    <link rel="stylesheet" href="{% static "css/topic.css" %}?v=2.0">
+{% load staticfiles %}
+{% load compress %}
+{% compress css inline %}
+<link rel="stylesheet" href="{% static "css/topic.css" %}?v=2.0">
+{% endcompress %}
 {% endblock %}
 {% block main_content %}
 <div class='height_tf'>

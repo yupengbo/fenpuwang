@@ -1,9 +1,14 @@
 {% extends "base_topic.html" %}
 {% block title %} 支付 {% endblock %}
 {% block script %}
-   {% load staticfiles %}
-   <link rel="stylesheet" href="{% static "css/cart.css" %}?v=3.0">
-   <script type="text/javascript" src="{% static "js/cart.js"%}?v=1.0"></script>
+{% load staticfiles %}
+{% load compress %}
+{% compress css inline %}
+<link rel="stylesheet" href="{% static "css/cart.css" %}?v=3.0">
+{% endcompress %}
+{% compress js inline %}
+<script type="text/javascript" src="{% static "js/cart.js"%}?v=1.0"></script>
+{% endcompress %}
 {% endblock %}
 {% block main_content %}
 <form  id='order_form' action='{% url 'order:submit_order' %}' method='POST' >

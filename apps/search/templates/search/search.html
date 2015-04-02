@@ -5,9 +5,12 @@
 
 {% block script %}
 {% load static %}
+{% load compress %}
+{% compress css inline %}
 <link rel="stylesheet" href="{% static "css/search.css" %}">
 <link rel="stylesheet" href="{% static "css/product.css" %}">
 <link rel="stylesheet" href="{% static "css/products.css" %}">
+{% endcompress %}
 {% endblock %}
 
 {% block main_content %}

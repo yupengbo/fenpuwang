@@ -1,9 +1,12 @@
 {% extends "base.html" %}
-{% block title %} 问答列表 {% endblock %}
+{% block title %} 问答 {% endblock %}
 {% block script %}
-     {% load staticfiles %}
-     <link rel="stylesheet" href="{% static "css/topic.css" %}?v=2.0">
-     <link rel="stylesheet" href="{% static "css/question_test.css" %}">
+{% load staticfiles %}
+{% load compress %}
+{% compress css inline %}
+<link rel="stylesheet" href="{% static "css/topic.css" %}?v=2.0">
+<link rel="stylesheet" href="{% static "css/question_test.css" %}">
+{% endcompress %}
 {% endblock %}
 {% block main_content %}
 <div class='height_tf'>

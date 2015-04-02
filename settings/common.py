@@ -41,7 +41,15 @@ INSTALLED_APPS = (
                   'apps.cart',
                   'apps.order',
                   'apps.middleware',
+                  'compressor',
                   )
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
 
 MIDDLEWARE_CLASSES = (
                       'django.contrib.sessions.middleware.SessionMiddleware',
@@ -102,6 +110,10 @@ STATIC_PATH = os.path.join(BASE_DIR,'static')
 STATICFILES_DIRS = (
     STATIC_PATH,
 )
+
+COMPRESS_ROOT = '/static/'
+#COMPRESS_URL = 'include/' 
+COMPRESS_ENABLED = True
 
 #logging
 LOGGING = {
