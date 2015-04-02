@@ -74,7 +74,7 @@ def product_detail(request, product_id):
 
   user_agent = request.META.get('HTTP_USER_AGENT')
 
-  is_mm = None
+  is_mm = 0 
   user_agent = user_agent.lower()
   if "micromessenger" in user_agent:
     is_mm = 1
@@ -107,7 +107,7 @@ def product_detail(request, product_id):
       product_json["cartNum"] = cart_num_json["totalNum"]
     process_product_data(product_json)
     next_request_url = reverse('product:question_list', kwargs ={"product_id":product_id, "mark":product_json['mark']})
-    meta = response_data_utils.pack_data(request, {'navTitle':'产品详情','product':product_json, 'url':next_request_url,'fromUserName':from_user_name})
+    meta = response_data_utils.pack_data(request, {'navTitle':'产品详情','product':product_json, 'url':next_request_url,'fromUserName':from_user_name,'is_mm':is_mm})
     return weixin_auth_utils.fp_render(request,'product/product.html', meta, session)
   except Exception,e:
     print e
