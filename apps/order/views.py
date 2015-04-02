@@ -17,16 +17,13 @@ logger = logging.getLogger('django')
 def order_pay_test(request):
     return render(request,"order/pay.html")
 
-def order_pay_result(request):
-    # print request
-    paySuccess = request.GET.get('paySuccess')
-    if paySuccess == None:
-        paySuccess = '0'
-    order_Id = request.GET.get('order_Id')
-    if not order_Id:
+def order_pay_result(request, order_id, pay_status=0):
+    user_info = weixin_auth_utils.get_user_info(request)
+    session = user_info.get('session')
+    if not order_id:
         return response_data_utils.error_response(request, "找不到对应的订单！", __name__)
-    meta_data = {'paySuccess':paySuccess, 'order_Id':order_Id}
-    return render(request,"order/order_pay_result.html", meta_data)
+    meta_data = {'paySuccess':pay_status, 'order_id':order_id}
+    return weixin_auth_utils.fp_render(request,'order/order_pay_result.html',meta_data, session)
 
 def ajax_order_list(request,mark=0):                                                         #kim                                     
     is_ajax = request.is_ajax()
@@ -77,6 +74,12 @@ def order_list(request):                                                        
 
 
 def order_detail(request,order_id):                                            #kim
+    user_agent = request.META.get('HTTP_USER_AGENT')
+    is_mm = 0
+    user_agent = user_agent.lower()
+    if "micromessenger" in user_agent:
+      is_mm = 1
+
     user_info = weixin_auth_utils.get_user_info(request)
     authuri = user_info.get('redirect')
     session = user_info.get('session')
@@ -89,7 +92,7 @@ def order_detail(request,order_id):                                            #
         return response_data_utils.error_response(request,"服务器忙，请稍后重试！",__name__,order_detail_result, session)
     try:
         process_order_detail(order_detail_result)
-        meta_data = {"order":order_detail_result, 'navTitle':'订单详情'}
+        meta_data = {"order":order_detail_result, 'navTitle':'订单详情', 'is_mm':is_mm}
         return weixin_auth_utils.fp_render(request,'order/order.html',meta_data, session)
     except Exception,e:
         return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e, session)

@@ -60,7 +60,7 @@
 .product_fenpu_price{color:#FF5346;font-size:18px;}
 .product_fenpu_size{color:#999999;font-size:12px;}
 .product_fenpu_no_price{font-size:18px;color:rgb(153,153,153);}
-.product_consult{width:100%;left:0px;bottom:14px;}
+.product_consult{width:20%;right:0px;bottom:14px;}
 .product_service_cb{margin-right:20px;}
 .product_service_character{color:#666666;font-size:12px;}
 .product_service_btn{height:21px;width:18px;}
@@ -77,15 +77,11 @@
 .ico-succ{margin:0 auto;width:200px;background-color:rgba(0,0,0,0.65);color:#fff;}
 .cart-pop .ico-succ span{display:block;text-align:center}
 
-
-
-
-
 .product_in_cart_btn{background-color:#4BAAB9;height:32px;width:200px;margin:10px auto 0px;font-size:12px;color:#fff;line-height:32px;border-radius:3px;}
 .product_why_btn{height:15px;width:15px;}
-.product_why_character{color:#666666;font-size:12px;margin-left:9px;line-height:15px;}
+.product_why_character{color:#666666;font-size:12px;line-height:15px;}
 .product_fenpu_seller{font-size:12px;color:#999999;}
 .product_gray_block{margin-top:16px;background-color:#f9f9f9;height:12px;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;}
 .product_nickname{margin-top:10px;color:rgb(153,153,153);font-size:11px;}
 .marg_t_oz{margin-top:10px;}
-.product_why_bc{margin-top:10px;height:15px;}
+.product_why_bc{width:80%;margin-top:10px;height:15px;}

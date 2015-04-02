@@ -4,8 +4,11 @@
 {% block description %} {{ question.question.content }}-粉扑网 {% endblock %}
 {% block title %} {{ question.question.normal_title }} {% endblock %}
 {% block script %}
-    {% load static %}
-    <link rel="stylesheet" href="{% static "css/question.css" %}?v=1.1">
+{% load static %}
+{% load compress %}
+{% compress css inline %}
+<link rel="stylesheet" href="{% static "css/question.css" %}?v=1.1">
+{% endcompress %}
 {% endblock %}
 {% block main_content %}
 <div class="question-body">
@@ -20,7 +23,7 @@
                 （{{ question.question.user.profile }}）
             </div>
         {% endif %}
-        <div class="f10 fcg1 fr">{{ question.question.creationTime }}</div>
+        <!--div class="f10 fcg1 fr">{{ question.question.creationTime }}</div0-->
 		<div class='clear'></div>
     </div>
     <div class="question-desc f13 fcg2">

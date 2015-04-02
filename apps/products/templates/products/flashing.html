@@ -5,8 +5,13 @@
 {% endblock title %}
  {% load static %}
 {% block script%}
+{% load compress %}
+{% compress js inline %}
  <script type="text/javascript" src="{% static "js/base.js" %}?v=1.3"></script>
+{% endcompress %}
+{% compress css inline %}
  <link rel="stylesheet" type="text/css" href="{% static "css/seckill.css" %}?v=2.2">
+{% endcompress %}
 {% endblock %}
 
 {% block main_content %}
@@ -49,7 +54,7 @@
   <div class="seckill_detail_cart">
     <div class="float_l seckill_detail_button"  onclick='detail({{ letter.productId }});'>查看详情</div>
     {% if letter.remaining_stock  == 0 %}
-        <div class="float_l seckill_cart_button_disabled"  >销售告罄</div>
+        <div class="float_l seckill_cart_button sold_out"  >销售告罄</div>
 	{% endif %}
     {% if letter.remaining_stock  > 0 %}
         <div class="float_l seckill_cart_button"  onclick='add_to_cart({{ letter.productId }},{{ letter.flash_goods_id }});'>立即加入购物车</div>
@@ -88,7 +93,7 @@
   {% if letter.flashing == 1 %}
   <div class="seckill_detail_cart">
     <div class="float_l seckill_detail_button"  onclick='detail({{ letter.productId }});'>查看详情</div>
-    <div class="float_l seckill_cart_button"  onclick='add_to_cart({{ letter.productId }},{{ letter.flash_goods_id }});'>立即加入购物车</div>
+    <div class="float_l seckill_cart_button sold_out"  onclick='add_to_cart({{ letter.productId }},{{ letter.flash_goods_id }});'>立即加入购物车</div>
   </div>
   {% endif %}
   {% if letter.flashing == 0 %}

@@ -5,8 +5,13 @@
 
 {% block script %}
 {% load static %}
+{% load compress %}
+{% compress css inline %}
 <link rel="stylesheet" href="{% static "css/product.css" %}?v=2.7">
+{% endcompress %}
+{% if is_mm == 0 %}
 <script src="https://s.meiqia.com/js/mechat.js?unitid=6497&btn=hide" charset="UTF-8"></script>
+{% endif %}
 {% endblock %}
 
 {% block main_content %}
@@ -60,15 +65,17 @@
   <div class="relative product_fenpu_goods">
     <div class="product_fenpu_seller">卖家：{{ goods.seller_name }}</div>
     <div class="product_why_bc">
-       <img src="{% static "images/img_product_detail_q_note@2x.png" %}" class="float_l product_why_btn">
-       <a href='{% url 'topic:topic_info' 3756 %}'><div class="float_l product_why_character">粉扑如何保证正品？</div></a>
+       <a href='{% url 'topic:topic_info' 3756 %}'> <div class="float_l product_why_character"> <img src="{% static "images/img_product_detail_q_note@2x.png" %}" class="float_l product_why_btn" style="padding-right:4px">粉扑如何保证正品？</div></a>
+       <a href='{% url 'topic:topic_info' 9812 %}'><div class="float_l product_why_character" style="padding-left:9px"><img src="{% static "images/img_product_detail_shopping_guide@2x.png" %}" class="float_l product_why_btn" style="padding-right:4px">小粉粉败家须知</div></a>
     </div>
+    <a {% if is_mm == 0 %}href="javascript:void(0)" onclick="mechatClick()"{% endif %} {% if is_mm == 1 %} href='http://mp.weixin.qq.com/s?__biz=MzAxOTE4MjA1Nw==&mid=204366285&idx=1&sn=a4651bf822f260d369e6b46f5f3a3fe6' {% endif %}>
     <div class="absolute product_consult">
         <div class="float_r center product_service_cb">
           <img src="{% static "images/icon_mine_kefu@2x.png" %}" class="product_service_btn">
-          <a href="javascript:void(0)" onclick="mechatClick()"><div class="product_service_character">客服</div></a>
+          <div class="product_service_character">客服</div>
         </div>
     </div>
+    </a>
   </div>
   {% endif %}
   {% endfor %}

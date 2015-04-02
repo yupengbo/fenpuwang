@@ -1,9 +1,14 @@
 {% extends "base_topic.html" %}
 {% block title %} 选择银行 {% endblock %}
 {% block script %}
-     {% load staticfiles %}
-     <link rel="stylesheet" href="{% static "css/cart.css" %}?v=5.1">
-	 <script type="text/javascript" src="{% static "js/cart.js"%}"></script>
+{% load staticfiles %}
+{% load compress %}
+{% compress css inline %}
+<link rel="stylesheet" href="{% static "css/cart.css" %}?v=5.1">
+{% endcompress %}
+{% compress js inline %}
+<script type="text/javascript" src="{% static "js/cart.js"%}"></script>
+{% endcompress %}
 {% endblock %}
 {% block main_content %}
 <form  id='order_form' action='{% url 'order:pay_order' %}' method='POST'>

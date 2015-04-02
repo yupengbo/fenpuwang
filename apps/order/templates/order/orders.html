@@ -4,8 +4,11 @@
 {% block description %} {{ question.question.content }}-粉扑网 {% endblock %}
 {% block title %} {{ question.question.normal_title }} {% endblock %}
 {% block script %}
-      {% load static %}
-      <link rel="stylesheet" href="{% static "css/order.css" %}"?v=1.3>
+{% load static %}
+{% load compress %}
+{% compress css inline %}
+<link rel="stylesheet" href="{% static "css/order.css" %}"?v=1.3>
+{% endcompress %}
 {% endblock %}
 {% block main_content %}
 <div class="orders_background datalist">
