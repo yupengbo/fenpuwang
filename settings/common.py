@@ -113,7 +113,7 @@ STATICFILES_DIRS = (
 
 COMPRESS_ROOT = '/static/'
 #COMPRESS_URL = 'include/' 
-COMPRESS_ENABLED = False 
+COMPRESS_ENABLED = True
 
 #logging
 LOGGING = {
