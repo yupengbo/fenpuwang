@@ -4,9 +4,12 @@
 {% block description %} {{ question.question.content }}-粉扑网 {% endblock %}
 {% block title %} {{ question.question.normal_title }} {% endblock %}
 {% block script %}
-     {% load static %}
-     <script src="https://s.meiqia.com/js/mechat.js?unitid=6497&btn=hide" charset="UTF-8"></script>
-     <link rel="stylesheet" href="{% static "css/order.css" %}?v=1.4">
+{% load static %}
+{% load compress %}
+<script src="https://s.meiqia.com/js/mechat.js?unitid=6497&btn=hide" charset="UTF-8"></script>
+{% compress css inline %}
+<link rel="stylesheet" href="{% static "css/order.css" %}?v=1.4">
+{% endcompress %}
 {% endblock %}
 {% block main_content %}
 <div class="order_background">

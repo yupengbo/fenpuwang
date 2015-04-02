@@ -7,11 +7,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
         <title>{% block title %}粉扑网，美妆护肤助手，败家剁手利器{% endblock %}</title>
         {% load static %}
+        {% load compress %}
+        {% compress css inline %}
         <link rel="stylesheet" href="{% static "css/style.css" %}?v=1.0">
+        {% endcompress %}
         <script type="text/javascript" src="http://static.fenpuwang.com/js/jquery.min.js"></script>
+        {% compress js inline %}
         <script type="text/javascript" src="{% static "js/base.js" %}?v=1.1"></script>
         <script type="text/javascript" src="{% static "js/loaddata.js" %}?v=1.0"></script>
         <script type="text/javascript" src="{% static "js/back_top.js"%}?v=1.0"></script>
+        {% endcompress %}
         {% block script %}{% endblock %}
     </head>
 

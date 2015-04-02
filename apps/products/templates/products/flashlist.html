@@ -2,7 +2,10 @@
 
  {% load static %}
 {% block script%}
+{% load compress %}
+{% compress css inline %}
  <link rel="stylesheet" type="text/css" href="{% static "css/seckill.css" %}">
+{% endcompress %}
 {% endblock %}
 
 {% block main_content %}

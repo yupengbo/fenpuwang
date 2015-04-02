@@ -5,8 +5,13 @@
 {% endblock title %}
  {% load static %}
 {% block script%}
+{% load compress %}
+{% compress js inline %}
  <script type="text/javascript" src="{% static "js/base.js" %}?v=1.3"></script>
+{% endcompress %}
+{% compress css inline %
  <link rel="stylesheet" type="text/css" href="{% static "css/seckill.css" %}?v=2.2">
+{% endcompress %}
 {% endblock %}
 
 {% block main_content %}

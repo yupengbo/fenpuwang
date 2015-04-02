@@ -1,9 +1,14 @@
 {% extends "base.html" %}
 {% block title %} 产品库 {% endblock %}
 {% block script %}
-    {% load staticfiles %}
-    <link rel="stylesheet" href="{% static "css/products.css" %}" >
-	<script type="text/javascript" src="{% static "js/products.js" %}"></script>
+{% load staticfiles %}
+{% load compress %}
+{% compress css inline %}
+<link rel="stylesheet" href="{% static "css/products.css" %}" >
+{% endcompress %}
+{% compress js inline %}
+<script type="text/javascript" src="{% static "js/products.js" %}"></script>
+{% endcompress %}
 {% endblock %}
 {% block main_content %}
 <div class='filter_list_box'>

@@ -1,9 +1,14 @@
 {% extends "base_topic.html" %}
 {% block title %} 购物车 {% endblock %}
 {% block script %}
-     {% load staticfiles %}
-     <link rel="stylesheet" href="{% static "css/cart.css" %}?v=2.7">
-     <script type="text/javascript" src="{% static "js/cart.js"%}?v=1.3"></script>
+{% load staticfiles %}
+{% load compress %}
+{% compress css inline %}
+<link rel="stylesheet" href="{% static "css/cart.css" %}?v=2.7">
+{% endcompress %}
+{% compress js inline %}
+<script type="text/javascript" src="{% static "js/cart.js"%}?v=1.3"></script>
+{% endcompress %}
 {% endblock %}
 {% block main_content %}
 <form  id='cart_form' action='{% url 'cart:set_contact' %}' method='POST'>

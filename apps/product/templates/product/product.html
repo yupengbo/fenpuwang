@@ -5,7 +5,10 @@
 
 {% block script %}
 {% load static %}
+{% load compress %}
+{% compress css inline %}
 <link rel="stylesheet" href="{% static "css/product.css" %}?v=2.7">
+{% endcompress %}
 <script src="https://s.meiqia.com/js/mechat.js?unitid=6497&btn=hide" charset="UTF-8"></script>
 {% endblock %}
 
