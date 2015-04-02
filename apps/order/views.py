@@ -74,6 +74,7 @@ def order_list(request):                                                        
 
 
 def order_detail(request,order_id):                                            #kim
+    user_agent = request.META.get('HTTP_USER_AGENT')
     is_mm = 0
     user_agent = user_agent.lower()
     if "micromessenger" in user_agent:

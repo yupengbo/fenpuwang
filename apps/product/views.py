@@ -77,7 +77,7 @@ def product_detail(request, product_id):
   is_mm = 0 
   user_agent = user_agent.lower()
   if "micromessenger" in user_agent:
-    is_mm = 1
+    is_mm = 1 
 
   if authuri and is_mm == 1 and dp != None and dp != "":
       return HttpResponseRedirect(authuri)
