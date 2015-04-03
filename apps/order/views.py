@@ -92,7 +92,7 @@ def order_detail(request,order_id):                                            #
         return response_data_utils.error_response(request,"服务器忙，请稍后重试！",__name__,order_detail_result, session)
     try:
         process_order_detail(order_detail_result)
-        meta_data = {"order":order_detail_result, 'navTitle':'订单详情', 'is_mm':is_mm}
+        meta_data = {"order":order_detail_result, 'navTitle':'订单详情','search_btn':1 , 'is_mm':is_mm}
         return weixin_auth_utils.fp_render(request,'order/order.html',meta_data, session)
     except Exception,e:
         return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e, session)
@@ -157,6 +157,7 @@ def submit_order(request) :
         return HttpResponseRedirect(alipay_url + "?orderId=" + str(orderId) +"&session=" + session )
     elif payment == "1":
         meta_data["navTitle"] = "选择银行"
+        meta_data["search_btn"] = 1
         return weixin_auth_utils.fp_render(request,'order/choice_bank.html',meta_data, session)
     elif payment == "2": 
         wxpay_url = reverse("order:wxpay_order",kwargs={})
@@ -190,6 +191,7 @@ def to_pay_order(rquest):
         return HttpResponseRedirect(alipay_url + "?orderId=" + str(orderId) +"&session=" + session )
     elif payment == "1":
         meta_data["navTitle"] = "选择银行"
+        meta_data["search_btn"] = 1
         return weixin_auth_utils.fp_render(request,'order/choice_bank.html',meta_data, session)
     elif payment == "2": 
         wxpay_url = reverse("order:wxpay_order",kwargs={})

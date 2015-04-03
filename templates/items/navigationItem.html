@@ -3,7 +3,7 @@
    <div class='nav'>
        <div class='nav_inner'>
        <form onsubmit='$("#nav_btn_search").click();return false;'>
-        <ul >
+        <ul>
 	   <li><div class='bg logo_btn' ><a href='/'></a></div></li>                                 
            <li {% if nav == 'topic' %}class='on'{% endif %}><a href='{% url  'topic:topic_index' %}'>笔记</a></li>
            <li {% if nav == 'question' %}class='on'{% endif %}><a href='{% url 'question:question_list'%}'>问答</a></li>

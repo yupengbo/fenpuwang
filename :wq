@@ -9,9 +9,7 @@
 {% compress css inline %}
 <link rel="stylesheet" href="{% static "css/product.css" %}?v=2.7">
 {% endcompress %}
-{% if is_mm == 0 %}
 <script src="https://s.meiqia.com/js/mechat.js?unitid=6497&btn=hide" charset="UTF-8"></script>
-{% endif %}
 {% endblock %}
 
 {% block main_content %}
@@ -65,17 +63,15 @@
   <div class="relative product_fenpu_goods">
     <div class="product_fenpu_seller">卖家：{{ goods.seller_name }}</div>
     <div class="product_why_bc">
-       <a href='{% url 'topic:topic_info' 3756 %}'> <div class="float_l product_why_character"> <img src="{% static "images/img_product_detail_q_note@2x.png" %}" class="float_l product_why_btn" style="padding-right:4px">粉扑如何保证正品？</div></a>
-       <a href='{% url 'topic:topic_info' 9812 %}'><div class="float_l product_why_character" style="padding-left:9px"><img src="{% static "images/img_product_detail_shopping_guide@2x.png" %}" class="float_l product_why_btn" style="padding-right:4px">小粉粉败家须知</div></a>
+       <img src="{% static "images/img_product_detail_q_note@2x.png" %}" class="float_l product_why_btn">
+       <div class="float_l product_why_character"><a href='{% url 'topic:topic_info' 3756 %}'>粉扑如何保证正品？</a></div>
     </div>
-    <a {% if is_mm == 0 %}href="javascript:void(0)" onclick="mechatClick()"{% endif %} {% if is_mm == 1 %} href='http://mp.weixin.qq.com/s?__biz=MzAxOTE4MjA1Nw==&mid=204366285&idx=1&sn=a4651bf822f260d369e6b46f5f3a3fe6' {% endif %}>
     <div class="absolute product_consult">
         <div class="float_r center product_service_cb">
           <img src="{% static "images/icon_mine_kefu@2x.png" %}" class="product_service_btn">
-          <div class="product_service_character">客服</div>
+          <a href="javascript:void(0)" onclick="mechatClick()"><div class="product_service_character">客服</div></a>
         </div>
     </div>
-    </a>
   </div>
   {% endif %}
   {% endfor %}
@@ -84,7 +80,7 @@
 <!--产品相关问题信息-->
 {% if product.totalNumber and product.totalNumber > 0 %}
 <div class="question_body">
-<div class="question_overview fcan f10">{{product.totalNumber}}个相关结果</div>
+<div class="question_overview fcg1 f13">{{product.totalNumber}}个相关回答</div>
 <div class="sp_line"></div>
 <ul class='question_list datalist'>
 {% with question_topic_list=product.contentList %}
@@ -144,7 +140,7 @@
     <div class="float_l" style="margin-left:16px;">
        <div style="font-size:14px;color:#222;line-height:143%;margin-top:6px;">{{ product.product.name}}</div>
        {% for goods in product.product.goods %}
-       <div style="margin-top:3px;display:none;" class="product_fixed_ps" goodsId="{{ goods.goodsId }}"><span style="color:#ff5346;font-size:10px;">¥{{ goods.goodsPrice }}</span><span style="color:#dbdbdb;font-size:10px;">/{{ goods.size }}</span></div>
+       <div style="margin-top:3px;display:none;" class="product_fixed_ps current" goodsId="{{ goods.goodsId }}"><span style="color:#ff5346;font-size:10px;">¥{{ goods.goodsPrice }}</span><span style="color:#dbdbdb;font-size:10px;">/{{ goods.size }}</span></div>
        {% endfor %}
     </div>
     <div class="absolute" style="width:100%;left:0px;top:16px;">
@@ -186,7 +182,7 @@ $(document).ready(function(){
   var current_num = parseInt($(".product_num").html());
   $(".footer_download").hide();
   $(".product_in_cart").click(function(){
-    var goods_id = $(".current").attr("sizeId");
+    var goods_id = $(".current").attr("goodsId");
     //alert($(this).index());
     var num = $(".product_num").html();
     $.get_data(
@@ -202,7 +198,12 @@ $(document).ready(function(){
       },
 	  function(){},'json'
     );
-    $(".exit_btn").click();
+    $(".cover_layer").hide();
+    $(".product_more_standard").hide();
+    $(".product_cart_container").show();
+    $(".cart-pop").fadeIn("slow");
+    $(".product_num").html(1);
+    current_num = 1;
     setTimeout(function(){$(".cart-pop").fadeOut("slow");},1300);
   });
 /////////////////////////
@@ -242,36 +243,38 @@ $(document).ready(function(){
        }
   });
   $(".product_fixed_ps").first().show();
+  $(".abc").eq(0).css("border","2px solid #ff5346");
   $(".abc").click(function(){
     $(this).css("border","2px solid #ff5346");
     $(".haha div").not($(this)).css("border","1px solid #666");
     var size = $(this).attr("sizeId");
     //alert($(this).index());
     //alert(size);
-	$(".abc").removeClass("current");
-    $(this).addClass("current");
-    $(".product_fixed_ps[goodsId="+size+"]").show();
+    $(".product_fixed_ps[goodsId="+size+"]").css("display","block");
+    $(".product_fixed_ps[goodsId="+size+"]").addClass("current");
     $(".product_fixed_ps[goodsId!="+size+"]").hide();
+    $(".product_fixed_ps[goodsId!="+size+"]").removeClass("current");
   });
-  $(".abc").eq(0).click();
   $(".product_in_cart_btn").click(function(){
     $(".product_cart_container").hide();
     $(".product_more_standard").show();
-	$("#main-content").height($(window).height()-200);
-	$("#main-content").css('overflow','hidden');
-    $(".abc").eq(0).click();
+    //$("body").css("overflow","hidden");
+    //$("body").css("height",$(window).height());
+    $(".abc").css("border","1px solid #666");
+    $(".abc").eq(0).css("border","2px solid #ff5346");
     $(".cover_layer").show();
-  });
-  $(".cover_layer").click(function(){
-    $(".exit_btn").click();
   });
   $(".exit_btn").click(function(){
     $(".product_more_standard").hide();
+    //$("body").css("overflow","visible");
+    //$("html").css({"overflow-x":"hidden","overflow-y":"hidden"})
+    //$("body").css("margin-bottom","-15px");
+    //$("body").height($(window).height());
+    //alert($(window).height());
     $(".product_cart_container").show();
     $(".cover_layer").hide();
-    $(".abc").eq(0).click();
-	$("#main-content").height('auto');
-	$("#main-content").css('overflow','auto');
+    $(".abc").css("border","1px solid #666");
+    $(".abc").eq(0).css("border","2px solid #ff5346");
     current_num = 1;
     $(".product_num").html(1);
   });

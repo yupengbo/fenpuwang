@@ -20,21 +20,21 @@
 
 /*question list*/
 .question_body{background-color:#f9f9f9;padding:0 15px 20px 15px;}
-.question_overview{padding-top:20px;padding-bottom:10px;height:16px;}
+.question_overview{padding-top:15px;padding-bottom:2px;height:16px;}
 .question_body li{position: relative;}
 .question_body li .title{padding-top:10px;}
 .question_body li .content{padding:8px 0 10px;}
 
 .product_topic_topic{padding-top:12px;padding-bottom:12px;}
-.product_topic_img{width:80px;}
+.product_topic_img{width:80px;height:80px;}
 .product_topic_tc{width:64%;margin-left:12px;}
 .product_topic_title{max-height:25.6px;overflow:hidden;}
-.product_topic_content{margin-bottom:12px;margin-top:4px;overflow:hidden;max-height:44px;font-size:14px;line-height:22px;}
+.product_topic_content{margin-bottom:12px;margin-top:0px;overflow:hidden;max-height:44px;font-size:14px;line-height:22px;}
 .product_topic_no_title{overflow:hidden;max-height:66px;font-size:14px;line-height:22px;margin-bottom:12px;}
 .product_topic_lc_section{width:100%;height:12px;bottom:12px;left:0px;}
 .product_topic_lc{height:12px;}
-.product_topic_like_btn{height:12px;width:12px;}
-.product_topic_like_comment{height:12px;line-height:12px;font-size:11px;}
+.product_topic_like_btn{margin-top:2px;height:12px;width:12px;}
+.product_topic_like_comment{margin-top:2px;height:12px;line-height:12px;font-size:11px;color: #999}
 /*product description*/
 .media_logo{padding:16px 13px; width:98px;}
 .product_desc_body{padding:7px 15px 17px 15px;}
