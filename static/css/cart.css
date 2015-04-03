@@ -15,8 +15,8 @@
 .total_fee_box .total_fee em{color:#ff5346;font-size:22px;padding-left:22px;line-height:33px;}
 .total_fee_box .submitOrder{border:None;width:77px;height:38px;background-color:#ff5346;color:#fff;;font-size:16px;-webkit-border-radius: 5px;-moz-border-radius: 5px;border-radius: 5px;margin:13px 30px 0 0;}
 .selector_box{padding-top:29px;width:22px;height:41px;}
-.selector{background-image:url('../images/btn_shopping_cart_uncheck@2x.png');width:22px;height:22px;background-size:22px 22px;}
-.selector.on{background-image:url('../images/btn_shopping_cart_checked@2x.png');}
+.selector{background-image:url('/static/images/btn_shopping_cart_uncheck@2x.png');width:22px;height:22px;background-size:22px 22px;}
+.selector.on{background-image:url('/static/images/btn_shopping_cart_checked@2x.png');}
 .product_img{background-size: 80px;width:80px; height:80px;border:1px #eee solid;margin-left:12px;}
 .cart_list li .con{height:80px;padding-left:12px;width:56%;min-width:168px;}
 .cart_list li .con h2{font-size:13px;color:#222;line-height:131%;}
@@ -24,17 +24,17 @@
 .cart_list li .con .goods_size em{color:#aaa;}
 .cart_list li .controll_box{bottom:0px;left:12px;width:100%;}
 .controll_box .num_box{width:110px;height:22px;border:1px #eee solid;}
-.controll_box .minus{background-image:url('../images/btn_shopping_cart_minus_normal@2x.png');width:30px;height:22px;background-size:30px 22px;top:0px;left:0px;z-index:2;}
-.controll_box .plus{background-image:url('../images/btn_shopping_cart_plus_normal@2x.png');width:30px;height:22px;background-size:30px 22px;top:0px;right:0px;z-index:2;}
+.controll_box .minus{background-image:url('/static/images/btn_shopping_cart_minus_normal@2x.png');width:30px;height:22px;background-size:30px 22px;top:0px;left:0px;z-index:2;}
+.controll_box .plus{background-image:url('/static/images/btn_shopping_cart_plus_normal@2x.png');width:30px;height:22px;background-size:30px 22px;top:0px;right:0px;z-index:2;}
 .controll_box .num_input{border:None;text-align:center;z-index:1;width:110px;font-size:12px;color:#444;line-height:22px;height:22px;}
-.controll_box .del_btn{background-image:url('../images/btn_s_cart_delete_normal@2x.png');width:22px;height:22px;background-size:22px 22px;margin-left:40px;}
+.controll_box .del_btn{background-image:url('/static/images/btn_s_cart_delete_normal@2x.png');width:22px;height:22px;background-size:22px 22px;margin-left:40px;}
 .invalid .selector_box{visibility:hidden;}
 .invalid .num_box{visibility:hidden;}
 .line{height:50px;border-bottom:1px #e4e4e4 solid;line-height:50px;padding:0 12px;}
 .line .label,.line .input{font-size:14px;color:#666;float:left;}
 .line .label{width:20%;min-width:70px;}
 .line .input{width:70%;min-width:210px;}
-.line .input input{width:90%;height:30px;line-height:30px;padding:0px 10px;border:1px #e4e4e4 solid;}
+.line .input input{width:90%;height:30px;line-height:18px;padding:0px 10px;border:1px #e4e4e4 solid;}
 .line .price_label{color:#aaa;font-size:12px;}
 .line .price_info{color:#ff5346;font-size:22px;}
 .line .price_label,.line .price_info{height:50px;line-height:50px;display:block;float:left;}
@@ -42,44 +42,44 @@
 .payment_list{height:135px;}
 .payment_list ul{width:94%;margin:0 auto;}
 .payment{float:left;width:100%;border-top:1px #eeeeee solid;}
-.pay_selector{background-image:url('../images/btn_shopping_cart_uncheck@2x.png');width:22px;height:22px;background-size:22px 22px;}
-.pay_selector.on{background-image:url('../images/btn_shopping_cart_checked@2x.png');}
+.pay_selector{background-image:url('/static/images/btn_shopping_cart_uncheck@2x.png');width:22px;height:22px;background-size:22px 22px;}
+.pay_selector.on{background-image:url('/static/images/btn_shopping_cart_checked@2x.png');}
 .payment .pay_selector{margin-top:10px;}
 .payment .pay_type{font-size:14px;color:#444;line-height:40px;height:40px;}
-.payment .alipay{background-image:url('../images/icon_pay_alipay.png');width:30px;height:30px;background-size:30px 30px;padding:0px 7px;margin-top:5px;}
-.payment .bank_pay{background-image:url('../images/img_order_confirm_unionpay.png');width:22px;height:22px;background-size:22px 22px;padding:4 7px;}
-.payment .wxpay{background-image:url('../images/icon_pay_wechat.png');width:30px;height:30px;background-size:30px 30px;padding:0px 7px;margin-top:5px;}
+.payment .alipay{background-image:url('/static/images/icon_pay_alipay.png');width:30px;height:30px;background-size:30px 30px;padding:0px 7px;margin-top:5px;}
+.payment .bank_pay{background-image:url('/static/images/img_order_confirm_unionpay.png');width:22px;height:22px;background-size:22px 22px;padding:4 7px;}
+.payment .wxpay{background-image:url('/static/images/icon_pay_wechat.png');width:30px;height:30px;background-size:30px 30px;padding:0px 7px;margin-top:5px;}
 .no_b {border:None;}
 .bank_list{width:96%;margin:0 auto;}
 .bank_list .on{border:2px red solid;}
 .bank_item{border:2px #e4e4e4 solid;width:115px;height:45px;background-size:115px 45px;float:left;margin:10px 25px;background-repeat: no-repeat;background-position:center center;}
-.bank_gs{background-image:url('../images/bank_gs.png');}
-.bank_zs{background-image:url('../images/bank_zs.png');}
-.bank_js{background-image:url('../images/bank_js.jpg');}
-.bank_zg{background-image:url('../images/bank_zg.png');}
-.bank_ny{background-image:url('../images/bank_ny.png');}
-.bank_jt{background-image:url('../images/bank_jt.png');}
-.bank_shpd{background-image:url('../images/bank_shpd.png');}
-.bank_gdfz{background-image:url('../images/bank_gdfz.png');}
-.bank_zx{background-image:url('../images/bank_zx.png');}
-.bank_gd{background-image:url('../images/bank_gd.png');}
-.bank_xy{background-image:url('../images/bank_xy.png');}
-.bank_pa{background-image:url('../images/bank_pa.jpg');}
-.bank_zgms{background-image:url('../images/bank_zgms.png');}
-.bank_hx{background-image:url('../images/bank_hx.png');}
-.bank_zgyz{background-image:url('../images/bank_zgyz.png');}
-.bank_nb{background-image:url('../images/bank_nb.png');}
-.bank_dy{background-image:url('../images/bank_dy.jpg');}
-.bank_shns{background-image:url('../images/bank_shns.jpg');}
-.bank_nj{background-image:url('../images/bank_nj.jpg');}
-.bank_gz{background-image:url('../images/bank_gz.jpg');}
-.bank_bh{background-image:url('../images/bank_bh.jpg');}
-.bank_dl{background-image:url('../images/bank_dl.png');}
-.bank_hs{background-image:url('../images/bank_hs.jpg');}
-.bank_jiangs{background-image:url('../images/bank_jiangs.jpg');}
-.bank_ql{background-image:url('../images/bank_ql.jpg');}
-.bank_zd{background-image:url('../images/bank_zd.jpg');}
-.bank_szns{background-image:url('../images/bank_szns.jpg');}
-.bank_wz{background-image:url('../images/bank_wz.png');}
-.bank_xm{background-image:url('../images/bank_xm.jpg');}
-.bank_zes{background-image:url('../images/bank_zes.png');}
+.bank_gs{background-image:url('/static/images/bank_gs.png');}
+.bank_zs{background-image:url('/static/images/bank_zs.png');}
+.bank_js{background-image:url('/static/images/bank_js.jpg');}
+.bank_zg{background-image:url('/static/images/bank_zg.png');}
+.bank_ny{background-image:url('/static/images/bank_ny.png');}
+.bank_jt{background-image:url('/static/images/bank_jt.png');}
+.bank_shpd{background-image:url('/static/images/bank_shpd.png');}
+.bank_gdfz{background-image:url('/static/images/bank_gdfz.png');}
+.bank_zx{background-image:url('/static/images/bank_zx.png');}
+.bank_gd{background-image:url('/static/images/bank_gd.png');}
+.bank_xy{background-image:url('/static/images/bank_xy.png');}
+.bank_pa{background-image:url('/static/images/bank_pa.jpg');}
+.bank_zgms{background-image:url('/static/images/bank_zgms.png');}
+.bank_hx{background-image:url('/static/images/bank_hx.png');}
+.bank_zgyz{background-image:url('/static/images/bank_zgyz.png');}
+.bank_nb{background-image:url('/static/images/bank_nb.png');}
+.bank_dy{background-image:url('/static/images/bank_dy.jpg');}
+.bank_shns{background-image:url('/static/images/bank_shns.jpg');}
+.bank_nj{background-image:url('/static/images/bank_nj.jpg');}
+.bank_gz{background-image:url('/static/images/bank_gz.jpg');}
+.bank_bh{background-image:url('/static/images/bank_bh.jpg');}
+.bank_dl{background-image:url('/static/images/bank_dl.png');}
+.bank_hs{background-image:url('/static/images/bank_hs.jpg');}
+.bank_jiangs{background-image:url('/static/images/bank_jiangs.jpg');}
+.bank_ql{background-image:url('/static/images/bank_ql.jpg');}
+.bank_zd{background-image:url('/static/images/bank_zd.jpg');}
+.bank_szns{background-image:url('/static/images/bank_szns.jpg');}
+.bank_wz{background-image:url('/static/images/bank_wz.png');}
+.bank_xm{background-image:url('/static/images/bank_xm.jpg');}
+.bank_zes{background-image:url('/static/images/bank_zes.png');}

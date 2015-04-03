@@ -14,6 +14,8 @@ def process_product_data(product_data):
   if product_data.get("contentList"):
     for content in product_data['contentList']:
         if content['type'] == 0:
+            content['question']['title'] = string_utils.truncate_text2(content['question']['title'],36)
+
             if content['question']['relatedAnswer']!=None:     #答案有可能不存在
                 content['question']['relatedAnswer']['content'] = string_utils.truncate_text(content['question']['relatedAnswer']['content'])   
         if content['type'] == 1:
@@ -74,10 +76,10 @@ def product_detail(request, product_id):
 
   user_agent = request.META.get('HTTP_USER_AGENT')
 
-  is_mm = None
+  is_mm = 0 
   user_agent = user_agent.lower()
   if "micromessenger" in user_agent:
-    is_mm = 1
+    is_mm = 1 
 
   if authuri and is_mm == 1 and dp != None and dp != "":
       return HttpResponseRedirect(authuri)
@@ -107,7 +109,7 @@ def product_detail(request, product_id):
       product_json["cartNum"] = cart_num_json["totalNum"]
     process_product_data(product_json)
     next_request_url = reverse('product:question_list', kwargs ={"product_id":product_id, "mark":product_json['mark']})
-    meta = response_data_utils.pack_data(request, {'navTitle':'产品详情','product':product_json, 'url':next_request_url,'fromUserName':from_user_name})
+    meta = response_data_utils.pack_data(request, {'navTitle':'产品详情','product':product_json, 'url':next_request_url,'fromUserName':from_user_name,'is_mm':is_mm})
     return weixin_auth_utils.fp_render(request,'product/product.html', meta, session)
   except Exception,e:
     print e

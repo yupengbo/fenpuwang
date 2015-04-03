@@ -20,21 +20,21 @@
 
 /*question list*/
 .question_body{background-color:#f9f9f9;padding:0 15px 20px 15px;}
-.question_overview{padding-top:20px;padding-bottom:10px;height:16px;}
+.question_overview{padding-top:15px;padding-bottom:2px;height:16px;}
 .question_body li{position: relative;}
 .question_body li .title{padding-top:10px;}
 .question_body li .content{padding:8px 0 10px;}
 
 .product_topic_topic{padding-top:12px;padding-bottom:12px;}
-.product_topic_img{width:80px;}
+.product_topic_img{width:80px;height:80px;}
 .product_topic_tc{width:64%;margin-left:12px;}
 .product_topic_title{max-height:25.6px;overflow:hidden;}
-.product_topic_content{margin-bottom:12px;margin-top:4px;overflow:hidden;max-height:44px;font-size:14px;line-height:22px;}
+.product_topic_content{margin-bottom:12px;margin-top:0px;overflow:hidden;max-height:44px;font-size:14px;line-height:22px;}
 .product_topic_no_title{overflow:hidden;max-height:66px;font-size:14px;line-height:22px;margin-bottom:12px;}
 .product_topic_lc_section{width:100%;height:12px;bottom:12px;left:0px;}
 .product_topic_lc{height:12px;}
-.product_topic_like_btn{height:12px;width:12px;}
-.product_topic_like_comment{height:12px;line-height:12px;font-size:11px;}
+.product_topic_like_btn{margin-top:2px;height:12px;width:12px;}
+.product_topic_like_comment{margin-top:2px;height:12px;line-height:12px;font-size:11px;color: #999}
 /*product description*/
 .media_logo{padding:16px 13px; width:98px;}
 .product_desc_body{padding:7px 15px 17px 15px;}
@@ -60,7 +60,7 @@
 .product_fenpu_price{color:#FF5346;font-size:18px;}
 .product_fenpu_size{color:#999999;font-size:12px;}
 .product_fenpu_no_price{font-size:18px;color:rgb(153,153,153);}
-.product_consult{width:100%;left:0px;bottom:14px;}
+.product_consult{width:20%;right:0px;bottom:14px;}
 .product_service_cb{margin-right:20px;}
 .product_service_character{color:#666666;font-size:12px;}
 .product_service_btn{height:21px;width:18px;}
@@ -77,15 +77,11 @@
 .ico-succ{margin:0 auto;width:200px;background-color:rgba(0,0,0,0.65);color:#fff;}
 .cart-pop .ico-succ span{display:block;text-align:center}
 
-
-
-
-
 .product_in_cart_btn{background-color:#4BAAB9;height:32px;width:200px;margin:10px auto 0px;font-size:12px;color:#fff;line-height:32px;border-radius:3px;}
 .product_why_btn{height:15px;width:15px;}
-.product_why_character{color:#666666;font-size:12px;margin-left:9px;line-height:15px;}
+.product_why_character{color:#666666;font-size:12px;line-height:15px;}
 .product_fenpu_seller{font-size:12px;color:#999999;}
 .product_gray_block{margin-top:16px;background-color:#f9f9f9;height:12px;border-top:1px solid #eeeeee;border-bottom:1px solid #eeeeee;}
 .product_nickname{margin-top:10px;color:rgb(153,153,153);font-size:11px;}
 .marg_t_oz{margin-top:10px;}
-.product_why_bc{margin-top:10px;height:15px;}
+.product_why_bc{width:80%;margin-top:10px;height:15px;}

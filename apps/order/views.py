@@ -74,6 +74,12 @@ def order_list(request):                                                        
 
 
 def order_detail(request,order_id):                                            #kim
+    user_agent = request.META.get('HTTP_USER_AGENT')
+    is_mm = 0
+    user_agent = user_agent.lower()
+    if "micromessenger" in user_agent:
+      is_mm = 1
+
     user_info = weixin_auth_utils.get_user_info(request)
     authuri = user_info.get('redirect')
     session = user_info.get('session')
@@ -86,7 +92,7 @@ def order_detail(request,order_id):                                            #
         return response_data_utils.error_response(request,"服务器忙，请稍后重试！",__name__,order_detail_result, session)
     try:
         process_order_detail(order_detail_result)
-        meta_data = {"order":order_detail_result, 'navTitle':'订单详情','search_btn':1}
+        meta_data = {"order":order_detail_result, 'navTitle':'订单详情','search_btn':1 , 'is_mm':is_mm}
         return weixin_auth_utils.fp_render(request,'order/order.html',meta_data, session)
     except Exception,e:
         return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e, session)

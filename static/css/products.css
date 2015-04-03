@@ -5,8 +5,8 @@
 .product_list .desc i{padding-left:5px;}
 .product_list li .fchl{color:#aaaaaa;}
 .used_product_list li .fchl{color:#ff5346;}
-.brand_filter_btn{background-image:url('../images/icon_pinpai_down@2x.png');width:11px;height:11px;background-size:11px 11px;top:35px;left:70%;}
-.brand_filter_btn_up{background-image:url('../images/icon_pinpai_up@2x.png');}
+.brand_filter_btn{background-image:url('/static/images/icon_pinpai_down@2x.png');width:11px;height:11px;background-size:11px 11px;top:35px;left:70%;}
+.brand_filter_btn_up{background-image:url('/static/images/icon_pinpai_up@2x.png');}
 .product_category_list{padding:0px 15px;font-size:14px;}
 .product_category_list li{padding:15px 9%;height:14px;border-bottom:1px #eeeeee solid;color:#aaaaaa;}
 .product_category_list li a{color:#222222;text-decoration:none;padding-right:4%;}
@@ -36,7 +36,7 @@
 .feature_title{font-size:11px;padding-left:12px;padding-top:16px;padding-bottom:8px;color:#999999;}
 .feature_info_background{background-color:white;}
 .feature_info{padding:12px;}
-.feature_img{width:120px}
+.feature_img{width:110px}
 .feature_ntq{margin-left:12px;width:55%;}
 .feature_name{size:15px;color:#222222;line-height:150%;}
 .feature_topic_question{margin-top:10px;color:#AAAAAA;font-size:11px;}
