@@ -49,4 +49,9 @@
 .flow_tip{font-size:10px;color:#666;}
 .flow_time{font-size:16px;color:#4baab9;}
 .flow_cart_btn{float:left;border-radius:3px;background-color:#ffb337;color:#6c4608;font-size:13px;line-height:36px;height:36px;width:56%;text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-
+.sold_out_mask_box,.flashing_goods_item,.seckill_detail_description{position:relative;}
+.sold_out_mask{background-color:rgba(0,0,0,.08);height:300px;position:absolute;left:0;top:5px;width:100%;}
+.sold_out_icon{background-size:67px 40px;width:67px;height:40px;position:absolute;background-image:url('/static/images/img_sold_out.png');left:70%;bottom:-270px;}
+.flashing_goods_item .lq,.flashing_goods_item .rq{position:absolute;background-size:8px 7px;width:8px;height:7px;}
+.flashing_goods_item .lq{left:-5%;top:0px;background-image:url('/static/images/img_f_topic_quote_list_left@2x.png');}
+.flashing_goods_item .rq{right:-5%;bottom:10px;background-image:url('/static/images/img_f_topic_quote_list_right@2x.png');}

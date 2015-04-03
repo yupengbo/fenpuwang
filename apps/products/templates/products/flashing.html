@@ -38,10 +38,16 @@
 </div>
 <div class='flashing_goods_list'>
 {% for letter in seckill_today_list %}
+<div class='flashing_goods_item'>
 <div class="seckill_limit">
   <img src="http://static.fenpuwang.com/images/icon_big_sale_products_num.png" class="float_l seckill_limit_img" />
   <div id="stock_{{ letter.productId }}" class="float_l seckill_limit_num" start_time="{{ letter.start_time }}" continue_time="{{ letter.continue_time }}">仅剩{{ letter.remaining_stock }}件</div>
 </div>    
+<div class='sold_out_mask_box'  {% if letter.remaining_stock  > 0 %}style='display:none;'{% endif %}>
+  <div class='sold_out_mask'>
+  </div>
+    <i class='sold_out_icon'></i>
+</div>
 <div class="text_center">
   <img src="{{ letter.img }}" class="seckill_product_img" onclick='detail({{ letter.productId }});' />
   <div class="seckill_product_name">{{ letter.name_decoration }}</div>
@@ -61,8 +67,13 @@
     <div class="seckill_pre_detail" onclick='detail({{ letter.productId }});'>查看详情</div> 
   {% endif %}
 </div>
-<div class="seckill_detail_description">{{ letter.promotion_description }}</div>
+<div class="seckill_detail_description">
+<i class='lq'></i>
+<i class='rq'></i>
+{{ letter.promotion_description }}
+</div>
 <div class="seckill_line"></div>
+</div>
 {% endfor %}
 </div>
 <div class="relative tomorrow_section">
@@ -74,6 +85,7 @@
 <iframe  id='fenpuFrame' style='display:none;'></iframe>
 <div class='flash_goods_list'>
 {% for letter in seckill_tomorrow_list %}
+<div class='flashing_goods_item'>
 <div class="seckill_limit">
   <img src="http://static.fenpuwang.com/images/icon_big_sale_products_num.png" class="float_l seckill_limit_img" /> 
   <div class="float_l seckill_limit_num" start_time="{{ letter.start_time }}" continue_time="{{ letter.continue_time }}">限量{{ letter.stock }}件</div>
@@ -88,8 +100,13 @@
   </div>
     <div class="seckill_pre_detail" onclick='detail({{ letter.productId }});'>查看详情</div> 
 </div>
-<div class="seckill_detail_description">{{ letter.promotion_description }}</div>
+<div class="seckill_detail_description">
+<i class='lq'></i>
+<i class='rq'></i>
+{{ letter.promotion_description }}
+</div>
 <div class="seckill_line"></div>
+</div>
 {% endfor %}
 </div>
 <div class="seckill_bottom">
@@ -149,18 +166,29 @@ function add_to_cart(pid , gid){
 }
 function refreshStock(){
     $.get_data(
-      '{%  url 'products:ajax_get_stock' %}',""
+      '{%  url 'products:ajax_get_stock' %}',"",
 	  function(data){
 		if(data.error == 0){
 		   for (var stock_i in data.list){
-		      alert(stock_i);
+		      var stock_num = data.list[stock_i];
+			  $p = $("#"+stock_i);
+			  $p.html("仅剩"+stock_num+"件");
+			  $p_p = $p.parents(".flashing_goods_list");
+			  if(stock_num > 0){
+				 $p_p.find(".add_to_cart").show();
+				 $p_p.find(".sold_out").hide();
+				 $p_p.find(".sold_out_mask_box").hide();
+			  }else{
+				 $p_p.find(".sold_out").show();
+				 $p_p.find(".add_to_cart").hide();
+				 $p_p.find(".sold_out_mask_box").show();
+			  }
 		   }
 		}
 	  },
 	  function(){},'json'
 	);
 }
-refreshStock();
 function to_login(){
    $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/getAppSessionKey?needlogin=1&callback=session_callback'); 
 }
@@ -291,6 +319,9 @@ $(document).ready(function(){
        if(current_time >=start_time && current_time <= start_time+continue_time){
            seckill();
 		   temp_status = "seckill";
+	       if(parseInt(offset_time/1000) % 10 == 0 ){
+               refreshStock();
+	       }
        }
        if(current_time>start_time+continue_time || current_time<start_time){
            tomorrow();

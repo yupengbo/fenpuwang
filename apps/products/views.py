@@ -146,6 +146,7 @@ def seckill(request):
 #    seckill_today_list = {}
     server_time_stamp = seckill_result['timeStamp']
     meta_data = {"seckill_today_list":seckill_today_list,"seckill_tomorrow_list":seckill_tomorrow_list, "server_time_stamp": server_time_stamp}
+#    meta_data = {"seckill_today_list":seckill_tomorrow_list,"seckill_tomorrow_list":seckill_tomorrow_list, "server_time_stamp": server_time_stamp}
     #if seckill_today_list:
     #    return render(request,"products/flashing.html",meta_data)
     #else:
@@ -155,8 +156,8 @@ def seckill(request):
 def ajax_get_stock(request):
     is_ajax = request.is_ajax()
     seckill_result = api_list.get_flash_product_list(request)
-    seckill_today_list = seckill_result["tomorrowProductList"]
-   # seckill_today_list = seckill_result["todayProductList" ]
+    #seckill_today_list = seckill_result["tomorrowProductList"]
+    seckill_today_list = seckill_result["todayProductList" ]
     stock_data = seckill_stock_process(seckill_today_list)
     meta_data = {"error":0 ,"list": stock_data}
     return HttpResponse(json.dumps(meta_data), content_type="application/json")
@@ -180,6 +181,7 @@ def ajax_exists_qualification(request):
 
 def seckill_process(data):
     for letter in data:
+#        letter['flashing'] = 1
         letter["img"] = letter["pics"][0]["org"]
         letter["start_time"] = letter["flash_start_time"]
         letter["continue_time"] = letter["flash_duration"]
@@ -188,6 +190,7 @@ def seckill_process(data):
              letter["remaining_stock"] = 0
  #       letter["start_time"] = 1427528202280
 #        letter["continue_time"] = 300000
+        #letter["remaining_stock"] = 0
         letter["discount"] = round(letter["flash_sizes"]["price"]/letter["price"]*10 ,1)
 
 
