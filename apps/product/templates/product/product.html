@@ -147,7 +147,7 @@
        <div style="margin-top:3px;display:none;" class="product_fixed_ps" goodsId="{{ goods.goodsId }}"><span style="color:#ff5346;font-size:10px;">¥{{ goods.goodsPrice }}</span><span style="color:#dbdbdb;font-size:10px;">/{{ goods.size }}</span></div>
        {% endfor %}
     </div>
-    <div class="absolute" style="width:100%;left:0px;top:16px;">
+    <div class="absolute" style="width:100%;left:0px;top:8px;">
          <img src="{% static "images/btn_product_detail_incart_cancel_normal@2x.png" %}" style="height:30px;width:30px;float:right;margin-right:5%;" class="exit_btn">
     </div>
   </div>
@@ -172,7 +172,7 @@
 
 <!--遮盖-->
 {% block cover %}
-<div style="display:none;filter:alpha(opacity=60);opacity:0.6;-moz-opacity:0.6;-khtml-opacity:0.6;width:100%;height:100%;background-color:rgb(141,141,141);left:0px;top:0px;z-index:10000;" class="absolute cover_layer"></div>
+<div style="display:none;filter:alpha(opacity=60);opacity:0.6;-moz-opacity:0.6;-khtml-opacity:0.6;width:100%;height:100%;background-color:rgb(0,0,0);left:0px;top:0px;z-index:10000;" class="absolute cover_layer"></div>
 {% endblock %}
 <!--end-->
 <script type="application/javascript">
