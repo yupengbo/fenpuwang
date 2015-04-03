@@ -34,7 +34,7 @@
 .line .label,.line .input{font-size:14px;color:#666;float:left;}
 .line .label{width:20%;min-width:70px;}
 .line .input{width:70%;min-width:210px;}
-.line .input input{width:90%;height:30px;line-height:30px;padding:0px 10px;border:1px #e4e4e4 solid;}
+.line .input input{width:90%;height:30px;line-height:18px;padding:0px 10px;border:1px #e4e4e4 solid;}
 .line .price_label{color:#aaa;font-size:12px;}
 .line .price_info{color:#ff5346;font-size:22px;}
 .line .price_label,.line .price_info{height:50px;line-height:50px;display:block;float:left;}
