@@ -12,5 +12,6 @@ urlpatterns = patterns('',
   url(r'^session/$', views.session, name='session'),
   url(r'^flashing/$', views.seckill, name='flashing'),
   url(r'^ajax_exists_qualification/$', views.ajax_exists_qualification, name='ajax_exists_qualification'),
+  url(r'^ajax_get_stock/$', views.ajax_get_stock, name='ajax_get_stock'),
 )
 
