@@ -10,6 +10,12 @@ def truncate_text(text, length = 200, suffix = "..."):
   if len(text) > 200:
     text = text[0:200] + str(suffix)
   return text
+def truncate_text2(text, length = 200, suffix = "..."):
+  if text == None:
+    return None
+  if len(text) > length:
+    text = text[0:length] + str(suffix)
+  return text
 
 def truncate(text,suffix="..."):             #kim
    if text == None:
