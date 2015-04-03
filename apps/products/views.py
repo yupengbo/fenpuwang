@@ -67,16 +67,15 @@ def products_recommend(request):                                               #
       dp = None
     # end 
 
-    products_promote_result = api_list.get_promote_product_list(request)
+    flash_activity = api_list.get_flash_banner(request)
     products_feature_result = api_list.get_feature_product_list(request)
     cart_num_json = api_list.get_goods_num_in_cart(request, session)
 
-    if not products_promote_result or products_promote_result['error']==1:
-        return response_data_utils.error_response(request, "主推产品不存在！",__name__, products_promote_result, session)
-    if ( not products_feature_result ) or products_feature_result['error']!=0:
-        return response_data_utils.error_response(request,"推荐产品不存在",__name__,products_feature_result, session)
+    if ( not flash_activity ) or flash_activity['error'] != 0:
+        return response_data_utils.error_response(request, "秒杀产品不存在", __name__, flash_activity, session)
+    if ( not products_feature_result ) or products_feature_result['error'] != 0:
+        return response_data_utils.error_response(request, "推荐产品不存在", __name__, products_feature_result, session)
     try: 
-        process_products_promote(products_promote_result)
         process_products_feature(products_feature_result)
         next_request_url = ""
         if str(products_feature_result['mark']) != "0":
@@ -86,7 +85,7 @@ def products_recommend(request):                                               #
         if cart_num_json and cart_num_json['error'] == 0:
            cartNum = cart_num_json["totalNum"]
  
-        meta_data = {'cartNum':cartNum,'url':next_request_url, 'nav':'products',"products_promote_list":products_promote_result.get('productList'),"products_feature_list":products_feature_result.get('productList')}
+        meta_data = {'cartNum':cartNum,'url':next_request_url, 'nav':'products',"flash_activity":flash_activity.get('activityList'),"products_feature_list":products_feature_result.get('productList')}
         meta_data = response_data_utils.pack_data(request, meta_data)
         return weixin_auth_utils.fp_render(request,'products/products_recommend.html', meta_data, session)
     except Exception,e:

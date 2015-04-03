@@ -14,30 +14,13 @@
 {% endcompress %}
 {% endblock %}
 {% block main_content %}
-<div class="relative products_banner">
-  <div class="products_banner_block float_l"></div>
-  <div class="products_banner_theme float_l">今日推荐</div>
-  <div class="products_banner_time float_l">每日10点&nbsp;&nbsp;准时上新</div>
-  <div class="absolute products_cb">
-     <a href="{% url 'products:products_index' %}"><img src="{% static "images/btn_products_category.png" %}" class="float_r products_category_btn"></a>
-  </div>
-</div>
-{% for products_promote in products_promote_list %}
-<a href="{% url "product:product_detail" products_promote.productId %}">
-<div class="promote_section">
-  <img src="{{ products_promote.promotePics.0.org }}"  class="promote_img">
-  <div class="promote_name">{{ products_promote.name_decoration }}</div>
-  <div class="promote_topic_question">{{ products_promote.topicNum }}笔记&nbsp;&nbsp;&nbsp;{{products_promote.questionNum }}问答</div>
-  <div class="promote_content">{{ products_promote.promotion_description}}</div>
-  {% for goods in products_promote.goods %}
-  {% if forloop.counter == 1 %}
-  <div class="promote_price_size"><span class="promote_price">¥{{ goods.goodsPrice }}</span><span class="promote_size">/{{ goods.size }}</span></div>
-  {% endif %}
-  {% endfor %}
+{% for activity in flash_activity %}
+<a href="{{ activity.data.url}}">
+<div>
+  <img src="{{ activity.pic }}" class="promote_img">
 </div>
 </a>
 {% endfor %}
-<div class="products_line"></div>
 <div class="feature_background">
  <div class="feature_title">热门推荐</div>
  <div class='datalist'>

@@ -183,3 +183,7 @@ def exists_qualification(req, sessionKey):
 def get_flash_product_list(req):
     params = {}
     return get_result(req,"getFlashProductlist.do",params) 
+
+def get_flash_banner(req):
+    params = {"type":10}
+    return get_result(req,"listActivity.do",params) 

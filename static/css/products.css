@@ -1,5 +1,5 @@
 .product_list li{clear:both;height:50px;padding:10px 12px;}
-.product_list .pro_pic{width:50px;height:50px;-webkit-border-radius: 100px;-moz-border-radius: 100px;border-radius: 100px;margin:0 10px;border:1px #dbdbdb solid;}
+.product_list .pro_pic{width:50px;height:50px;-webkit-border-radius: 100px;-moz-border-radius: 100px;border-radius: 100px;margin:0 10px;border:1px #eee solid;}
 .product_list .pro_con{min-width:194px;padding-top:5px;width:70%}
 .product_list .desc{padding-top:7px;}
 .product_list .desc i{padding-left:5px;}
@@ -23,7 +23,6 @@
 .products_banner_time{margin-left:5px;font-size:10px;color:#999999;line-height:150%;}
 .products_cb{left:0px;top:0px;width:100%;}
 .products_category_btn{height:39px;width:48px;filter:alpha(opacity=80);opacity:0.8;-moz-opacity:0.8;-khtml-opacity:0.8;}
-.promote_section{padding-left:12px;padding-right:12px;padding-top:4px;padding-bottom:18px;}
 .promote_img{width:100%;}
 .promote_name{margin-top:8px;font-size:16px;line-height:150%;color:#222222;}
 .promote_topic_question{color:#AAAAAA;margin-top:8px;font-size:11px;line-height:137%;}
