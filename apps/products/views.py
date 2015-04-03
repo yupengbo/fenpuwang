@@ -135,8 +135,13 @@ def process_product_data(product_data):
         if pics and len(pics) > 0 :
             product['thumb_s'] = pics[0]['thumb-s']
 
-
 def seckill(request):
+    user_agent = request.META.get('HTTP_USER_AGENT')
+    is_fenpu = 0
+    user_agent = user_agent.lower()
+    if "fenpuwebview" in user_agent:
+      is_fenpu = 1
+
     seckill_result = api_list.get_flash_product_list(request)
     seckill_today_list = seckill_result["todayProductList" ]
     seckill_process(seckill_today_list)
@@ -144,7 +149,7 @@ def seckill(request):
     seckill_process(seckill_tomorrow_list)
 #    seckill_today_list = {}
     server_time_stamp = seckill_result['timeStamp']
-    meta_data = {"seckill_today_list":seckill_today_list,"seckill_tomorrow_list":seckill_tomorrow_list, "server_time_stamp": server_time_stamp}
+    meta_data = {"seckill_today_list":seckill_today_list,"seckill_tomorrow_list":seckill_tomorrow_list,'navTitle':'秒杀', "server_time_stamp": server_time_stamp, "is_fenpu":is_fenpu}
 #    meta_data = {"seckill_today_list":seckill_tomorrow_list,"seckill_tomorrow_list":seckill_tomorrow_list, "server_time_stamp": server_time_stamp}
     #if seckill_today_list:
     #    return render(request,"products/flashing.html",meta_data)

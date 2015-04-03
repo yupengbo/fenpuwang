@@ -12,9 +12,63 @@
 {% compress css inline %}
  <link rel="stylesheet" type="text/css" href="{% static "css/seckill.css" %}?v=2.2">
 {% endcompress %}
+<style>
+.mydiv {
+background-color: #FFF;
+border: 0px solid #f00;
+text-align: center;
+line-height: 40px;
+font-size: 12px;
+font-weight: bold;
+z-index:999;
+width: 300px;
+height: 160px;
+left:50%;
+top:50%;
+margin-left:-150px!important;/*FF IE7 该值为本身宽的一半 */
+margin-top:-60px!important;/*FF IE7 该值为本身高的一半*/
+margin-top:0px;
+position:fixed!important;/* FF IE7*/
+position:absolute;/*IE6*/
+_top:       expression(eval(document.compatMode &&
+            document.compatMode=='CSS1Compat') ?
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/*IE5 IE5.5*/
+
+}
+
+.bg,.popIframe {
+background-color: #666; display:none;
+width: 100%;
+height: 100%;
+left:0;
+top:0;/*FF IE7*/
+filter:alpha(opacity=50);/*IE*/
+opacity:0.5;/*FF*/
+z-index:1;
+position:fixed!important;/*FF IE7*/
+position:absolute;/*IE6*/
+_top:       expression(eval(document.compatMode &&
+            document.compatMode=='CSS1Compat') ?
+            documentElement.scrollTop + (document.documentElement.clientHeight-this.offsetHeight)/2 :/*IE6*/
+            document.body.scrollTop + (document.body.clientHeight - this.clientHeight)/2);/* www.codefans.net IE5 IE5.5*/
+}
+.popIframe {
+filter:alpha(opacity=0);/*IE*/
+opacity:0;/*FF*/
+}
+</style>
 {% endblock %}
 
 {% block main_content %}
+<div id="popDiv" class="mydiv" style="display:none;">
+  <div style="wdht:100%;height:10px;"><div class="fr" style="margin-right:7px"><a href="javascript:closeDiv()"><img src=/static/images/btn_product_detail_incart_cancel_normal@2x.png"/></a></div></div>
+  <div style="widht:100%;height:30px;padding:20px 10px;">秒杀目前只在粉扑app中进行</div>
+  <div style="width:80%;background-color:green;margin:0 auto"><a href="http://www.dabanniu.com/download.phtml">立即参加秒杀</a></div>
+</div>
+<div id="bg" class="bg" style="display:none;"></div>
+<iframe id='popIframe' class='popIframe' frameborder='0'></iframe>
+
 <div class="relative banner_pre">
   <img src="http://static.fenpuwang.com/images/banner_big_sale_pre.jpg" class="banner_img">
   <div class="absolute banner_button_section">
@@ -82,7 +136,7 @@
      <a class='btn_get_qualification' href="javascript:void(0);"><div class="div_center tomorrow_button">点击获取明日秒杀资格</div></a>
   </div>
 </div>
-<iframe  id='fenpuFrame' style='display:none;'></iframe>
+<iframe id='fenpuFrame' style='display:none;'></iframe>
 <div class='flash_goods_list'>
 {% for letter in seckill_tomorrow_list %}
 <div class='flashing_goods_item'>
@@ -126,12 +180,29 @@
     <span class="cart-succ">商品已成功加入购物车</span>
   </div>
 </div>
+
+
 <script>
+function showDiv(){
+document.getElementById('popDiv').style.display='block';
+document.getElementById('popIframe').style.display='block';
+document.getElementById('bg').style.display='block';
+}
+function closeDiv(){
+document.getElementById('popDiv').style.display='none';
+document.getElementById('bg').style.display='none';
+document.getElementById('popIframe').style.display='none';
+}
+var is_fenpu = {{ is_fenpu }};
 var __session;
-var __exists_qualification =false;
+var __exists_qualification = false;
 var __current_status;
 function detail(pid ){
-   $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/product?productId=' + pid); 
+   if (is_fenpu == 1) {
+     $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/product?productId=' + pid); 
+   } else {
+     window.location = '/product/' + pid; 
+   }
 }
 function show_dialog(title,content){
    $(".att-succ").html(title);
@@ -447,6 +518,12 @@ $(document).ready(function(){
 	   }
     });
     window.scrollTo(0,1);
+    if (is_fenpu == 0) {
+      $('.btn_get_qualification,.flow_cart_btn,.seckill_cart_button').unbind("click");
+      $('.btn_get_qualification,.flow_cart_btn,.seckill_cart_button').click(function(){
+        showDiv();
+      });
+    }
 });
 </script>
 {% endblock %}
