@@ -3,17 +3,14 @@
    <div class='nav'>
        <div class='nav_inner'>
        <form onsubmit='$("#nav_btn_search").click();return false;'>
-        <ul>
-           <a href='javascript:go_back()'><li><div class='bg arrow_btn'></div></li></a>
-           <li class="width_per_tf"></li>
-           <li class='on width_per_fe'>
-           {% if navTitle %}
-             {{ navTitle }}
-           {% else %}
-             粉扑
-           {% endif %}
-           </li>
+        <ul >
+	   <li><div class='bg logo_btn' ><a href='/'></a></div></li>                                 
+           <li {% if nav == 'topic' %}class='on'{% endif %}><a href='{% url  'topic:topic_index' %}'>笔记</a></li>
+           <li {% if nav == 'question' %}class='on'{% endif %}><a href='{% url 'question:question_list'%}'>问答</a></li>
+           <li {% if nav == 'products' %}class='on'{% endif %}><a href='{% url 'products:products_recommend' %}'>买买买</a></li>
+           <li {% if nav == 'order' %}class='on'{% endif %}><a href='{% url 'order:order_list' %}'>订单</a></li>
         </ul>
+
         <div class='top_search {% if nav == 'index' %}index{% endif %}'>
             <div class='closebox fl hidden'>
               <div class='close bg block' ></div>
@@ -25,9 +22,7 @@
 			{% endif %}
             <div  class='inputbox relative fr'>
                <input id='nav_keyword' name='keyword' class='keyword f13 fcb1 fl hidden' value='{% if keyword %}{{keyword}}{% endif%}'/>
-               {% if not search_btn %}
                <input id='nav_btn_search' class='search_icon fr bg absolute {% if nav == 'index' %}hidden{% else %}block{% endif %}' type='button' value=''/>
-               {% endif %}
             </div>
         </div>
        </form>
@@ -57,24 +52,3 @@
   </div>
 </div>
 {% endif%}
-{% if keyword %}
-<script>
-  $(function () {
-    $("#nav_btn_search").click(); 
-  });
-</script>
-{% endif%}
-<script>
-  function go_back() {
-    var isChrome = window.navigator.userAgent.indexOf("Chrome") != -1;
-    var referer = '{{ referer }}';
-    if (referer == '' || referer.indexOf("referer") != -1) {
-      history.go(-1);
-    } else if (referer.indexOf("fenpuwang") == -1) {
-      window.location = "/";
-    } else {
-      history.go(-1);
-    }
-  };
-</script>
-

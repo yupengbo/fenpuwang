@@ -118,6 +118,9 @@ def add_in_cart(request):
     goods_id = request.REQUEST.get('goodsId')
     product_id = request.REQUEST.get('productId')
     session = request.REQUEST.get('session')
+    num = request.REQUEST.get('num')
+    if not num:
+        num = 1
     if not session:
         session = request.COOKIES.get("session")
 
@@ -130,7 +133,7 @@ def add_in_cart(request):
         return HttpResponse(json.dumps(response_json), content_type="application/json")
     if not is_ajax:
         return response_data_utils.error_response(request, "非ajax!",  __name__, "no ajax")
-    response_json = api_list.add_goods_in_cart(request,session, goods_id,product_id)
+    response_json = api_list.add_goods_in_cart(request,session, goods_id,product_id,num)
     #response_json = {'error': 0}
     print response_json
     return HttpResponse(json.dumps(response_json), content_type="application/json")

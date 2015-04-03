@@ -43,7 +43,7 @@ def cart_index(request):
     try:
         if item_list_json and item_list_json['error']==0:
             process_cartinfo_data(item_list_json)
-            meta_data = {'navTitle':'购物车', 'cart_info_list':item_list_json['validCartItemList'],'invalid_cart_info_list':item_list_json['invalidCartItemList']}
+            meta_data = {'search_btn':1,'navTitle':'购物车', 'cart_info_list':item_list_json['validCartItemList'],'invalid_cart_info_list':item_list_json['invalidCartItemList']}
             if len(item_list_json['validCartItemList']) == 0 and len(item_list_json['invalidCartItemList']) == 0:
                 return response_data_utils.error_response(request,"您的购物车空空如也", __name__, "购物车为空")
             meta_data = response_data_utils.pack_data(request,meta_data)
@@ -79,7 +79,7 @@ def set_contact(request):
         result.append({'goodsId': goods_ids[m], 'num': num[m]})
     cartInfo = json.dumps(result)
     api_list.update_shopping_cart(request,session,cartInfo)
-    meta_data = {'cartInfo': cartInfo,'contact': clean_none(user_info.get("contact")),'orderId': orderId, 'readonly': readonly, \
+    meta_data = {'search_btn':1,'cartInfo': cartInfo,'contact': clean_none(user_info.get("contact")),'orderId': orderId, 'readonly': readonly, \
 	'address': clean_none(user_info.get("address")),'contactPhone': clean_none(user_info.get("contactPhone")),\
 	'total_num': total_num,'navTitle':'支付','wxpayShow':is_mm}
     return weixin_auth_utils.fp_render(request,'cart/setcontact.html',meta_data, session) 
