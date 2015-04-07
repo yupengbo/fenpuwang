@@ -326,12 +326,6 @@ function ajax_exists_qualification(){
 	  function(){},'json'
     );
 }
-function to_login(){
-   $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/getAppSessionKey?needlogin=1&callback=session_callback'); 
-}
-function get_app_session(){
-   $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/getAppSessionKey?needlogin=0&callback=session_callback'); 
-}
 function get_qualification(){
    if(!__session || __session == ""){
       to_login();
