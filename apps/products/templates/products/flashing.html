@@ -271,10 +271,14 @@ function refreshStock(){
 	);
 }
 function to_login(){
-   $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/getAppSessionKey?needlogin=1&callback=session_callback'); 
+   if (is_fenpu != 0) {
+     $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/getAppSessionKey?needlogin=1&callback=session_callback'); 
+   }
 }
 function get_app_session(){
-   $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/getAppSessionKey?needlogin=0&callback=session_callback'); 
+   if (is_fenpu != 0) {
+     $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/getAppSessionKey?needlogin=0&callback=session_callback'); 
+   }
 }
 function session_callback(session){
   __session = session;
@@ -331,7 +335,7 @@ function get_app_session(){
 function get_qualification(){
    if(!__session || __session == ""){
       to_login();
-	  return;
+      return;
    }
    $("#fenpuFrame").attr("src", 'fenpu://m.fenpuwang.com/bigsale?share=wxtimeline'); 
 }
