@@ -213,10 +213,17 @@
  </div>
  <div class='comment_content'>{{ comment.content }}</div>
   {% if comment.rComment %}
- <div class='be_comment_section'>{{ comment.rComment.content}}</div>
+ <div class='be_comment_section'>{{ comment.rComment.user.userName}}：{{ comment.rComment.content}}</div>
   {% endif %}
  {% endfor %}
 </div>
+<script>
+
+$(".topic_content").css({"background-color":"#fff"});
+$(".topic_content").css({"background-color":"#fff"});
+$("body").css({"background-color":"#f9f8f5"});
+
+</script>
 {% endblock %}
 
 

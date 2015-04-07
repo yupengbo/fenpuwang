@@ -32,11 +32,11 @@
 </div>
 {% if question.relatedProductList %}
     <div class="related-products section-block">
-        <div class="f10 fcg1 subtitle"> 提到的商品 </div>
-		<div class='sp_line2'></div>
+        <div class="subtitle" style="font-size:9px;color:#FF5346;padding: 0px;margin: 0px;"> 提到的商品 </div>
+
         <ul>
             {% for product in question.relatedProductList %}
-                <li ><a href='{% url 'product:product_detail' product.productId %}' class='fcb1 f13'>{{ product.name }}</a></li>
+                <li ><a href='{% url 'product:product_detail' product.productId %}' style="padding: 0px;margin: 0px;font-size:14px;color:#222;">{{ product.name }}</a></li>
             {% endfor %}
         </ul>
     </div>
@@ -52,11 +52,12 @@
               {% endfor %}
 			{% endwith %}
         {% else %}
-             <div class="f10 fcg1">没有回答</div>
+             <div class="f13 fcg1" style="text-align: center">没有回答</div>
         {% endif %}
     </div>
 
 </div>
+
 
 {% if question.relatedQuestionList %}
  <div class="related-question-body">
@@ -77,7 +78,9 @@
   </div>
 {% endif %}
 <script type="application/javascript">
-
+    $(".question-body").css({"background-color":"#fff"});
+    $(".related-products").css({"background-color":"#fff"});
+    $("body").css({"background-color":"#f9f8f5"});
     $(".datalist").loaddata({
         url : "{{ url }}",
 		success :show_right_info

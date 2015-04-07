@@ -9,7 +9,7 @@
 {% endcompress %}
 {% endblock %}
 {% block main_content %}
-<div class='height_tf'>
+<div class='height_tf' style="background-color: #FFFFFF">
       <div class="float_l width_per_half">
          <div class='question_choice' id ='select' get_data_url='{%  url 'question:question_list_choice' 0  %}'>精选</div>
       </div>
@@ -21,6 +21,8 @@
      {% include "question/questionList.html" %}
 </ul>
 <script>
+    $("body").css({"background-color":"#f9f8f5"});
+
     $(".datalist").loaddata({
         url : "{{ url }}"
     });
