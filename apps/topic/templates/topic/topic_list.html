@@ -1,3 +1,12 @@
+<script>
+function loadImg(obj){
+    var img_width = $(obj).parent().parent().width();
+    var img_height = $(obj).parent().parent().height();
+    if (img_height > img_width){
+        $(obj).parent().parent().css({"height":img_width});
+    }
+}
+</script>
 {% for topic in featureTopicList %}
     {% include "items/topicItem.html" %}
 {% endfor %}

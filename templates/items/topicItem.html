@@ -3,7 +3,11 @@
   <div class='imgBox'>
     {% if topic.org %}
     <a href='{% url 'topic:topic_info' topic.featureTopicId %}' >
-      <img src='{{ topic.org }}' />
+    {% if topic.height > topic.width %}
+     <img src='{{ topic.org }}' onload='loadImg(this)'/>
+    {% else %}
+     <img src='{{ topic.org }}'/>
+    {% endif %}
     </a>
 	{% endif %}
   </div>
