@@ -51,7 +51,7 @@
   </a>
 </div>
 <div class="order_line marg_t_oz"></div>
-<div class="relative order_buyer_info">
+<div class="relative order_line order_buyer_info">
     <div class="order_buyer_name">收货人：{{ order.productOrder.userName}}</div>
     <div class="absolute order_buyer_t">
         <div class="float_r order_buyer_telephone">{{ order.productOrder.mobile }}</div>
@@ -123,6 +123,7 @@
 </div>
 {% ifequal order.productOrder.status 0 %}
  <script>
+ $("body").css({"background-color":"#f9f8f5"});
    $(function () {
       $(".footer_download").html($(".to_pay_hidden").html());
    });

@@ -30,7 +30,7 @@
 {% block main_content %}
 <!--专题信息-->
 {% if fromUserName %}
-  <div style="width:80%;padding:17px 14px 0px 14px;height:22px;line-hegint:22px;font-size:12px;">
+  <div style="width:80%;padding:10px 14px 10px 14px;height:22px;line-hegint:22px;font-size:12px;">
   <div class="fl" style="color:#999;padding:5px 8px;-moz-border-radius: 15px; -webkit-border-radius: 15px;border-radius:15px;background-color:#eee">来自<span class="fcb1" style="color:#666">{{fromUserName}}</span>的分享</div>
   </div>
 {% endif %}
@@ -213,10 +213,17 @@
  </div>
  <div class='comment_content'>{{ comment.content }}</div>
   {% if comment.rComment %}
- <div class='be_comment_section'>{{ comment.rComment.content}}</div>
+ <div class='be_comment_section'>{{ comment.rComment.user.userName}}：{{ comment.rComment.content}}</div>
   {% endif %}
  {% endfor %}
 </div>
+<script>
+
+$(".topic_content").css({"background-color":"#fff"});
+$(".topic_content").css({"background-color":"#fff"});
+$("body").css({"background-color":"#f9f8f5"});
+
+</script>
 {% endblock %}
 
 

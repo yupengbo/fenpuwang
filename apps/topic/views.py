@@ -123,6 +123,8 @@ def process_topic_data(topic_data):
     topic_data['featureTopic']['digitalTime'] = time.strftime("%Y-%m-%d",time.localtime(topic_data['featureTopic']['digitalTime']/1000))
     if pics and len(pics) > 0 :
       topic_data['featureTopic']['org'] = pics[0]['org']
+      topic_data['featureTopic']['width'] = pics[0]['width']
+      topic_data['featureTopic']['height'] = pics[0]['height']
     content_list = topic_data['featureTopic'].get('contentList')
     if content_list:
       for content_info in content_list:
@@ -146,3 +148,5 @@ def process_topic_data(topic_data):
       topic['creationTime']  = time.strftime('%d %b',time.localtime(topic['creationTime']/1000))
       if pics and len(pics) > 0 :
         topic['org'] = pics[0]['org']
+        topic['width'] = pics[0]['width']
+        topic['height'] = pics[0]['height']

@@ -1,14 +1,14 @@
 .question-body {padding:16px 12px;}
 .question-title{font-weight:bold;}
-.profile-name {padding:1px 8px;}
+.profile-name {padding:0px 6px;}
 .question-user-profile{padding:6px 0 3px;}
 .profile-property {padding:4px 0;}
 .related-products ul{padding:5px 0px;}
 .related-products ul li{padding:10px 0px;}
 .related-products .subtitle,.answer-body .subtitle,.related-question-body .subtitle{padding:17px 0px 7px;}
 .question-desc {line-height: 24px;clear: both;}
-.related-products{padding:5px 12px;}
-.answer-body {padding:0px 12px 12px 12px; background-color: #f9f8f5;}
+.related-products{padding:1px 12px;}
+.answer-body {padding: 0px 12px 12px 12px; background-color: #f9f8f5;}
 .answer-body .answer-item{padding-top:10px;position:relative;}
 .answer-body .answer-item .sp_line{ padding:5px 0px;}
 .answer-user-profile span{padding:1px 8px;}

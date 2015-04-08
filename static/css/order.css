@@ -10,7 +10,7 @@ a{color:#222222}
 .marg_t_one_four{margin-top:14px;}
 .marg_r_os{margin-right:17px;}
 .order_background,.orders_background{background-color:#F9F7F5;height:100%;}
-.orders_line,.order_line{border:1px thin solid #eee;}
+.orders_line,.order_line{border-bottom:thin solid #eee;}
 .order_express_info{height:36px;background-color:#5F1309;padding-top:14px;padding-bottom:14px;}
 .order_express_btn{height:30px;width:30px;margin-top:3px;}
 .order_express_status{font-size:16px;color:#FFFFFF;height:16px;line-height:16px;}
@@ -31,7 +31,7 @@ a{color:#222222}
 .order_order_time{font-size:10px;margin-right:12px;color:#AAAAAA;}
 .order_goods_num{text-align:right;font-size:18px;color:#aaa;}
 .orders_goods_info,.order_goods_info{padding-top:12px;padding-bottom:12px;}
-.orders_goods_img,.order_goods_img{width:100px;}
+.orders_goods_img,.order_goods_img{width:100px;border:thin solid #eee;}
 .orders_goods_name_size,.order_goods_name_size{width:65%;margin-left:12px;}
 .orders_goods_name,.order_goods_name{color:#222;}
 .orders_goods_size,.order_goods_size{margin-top:9px;color:#999999;font-size:12px;}

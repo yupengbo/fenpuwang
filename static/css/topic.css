@@ -58,11 +58,6 @@
 .footer_product_inner .footer_product_seller_info{padding:1px 3px;background-color:#f9f8f5;margin:3px 0 0  3px;}
 .product_cell_link{display:none;}
 
-
-
-
-
-
 .topic_choice{line-height:32px;height:32px;text-align:center;margin:0px auto;width:100px;border-bottom:2px solid #ff5346;font-size:14px;color:#444;}
 .topic_new{line-height:32px;height:32px;text-align:center;margin:0px auto;width:100px;border-bottom:2px solid #fff;font-size:14px;color:#999;}
 .topic_list_title{font-size:14px;color:#222;margin-bottom:6px;line-height:14px;}
@@ -75,11 +70,11 @@
 .topic_list_user{padding-top:10px;padding-left:12px;padding-right:12px;padding-bottom:12px;border-bottom:1px solid #dbdbdb;}
 .topic_list_likeIcon{height:12px;width:12px;background-image:url('/static/images/icon_f_topic_collected@2x.png');background-size:12px 12px;}
 .topic_list_commentIcon{height:12px;width:13px;background-image:url('/static/images/icon_f_topic_comment@2x.png');background-size:13px 12px;}
-.topic_detail_time{font-size:10px;color:#aaa;}
-.topic_detail_user_name{font-size:14px;margin-bottom:8px;color:#666;}
+.topic_detail_time{font-size:10px;color:#aaa;margin-top: 0px;padding-top: 0px;}
+.topic_detail_user_name{font-size:14px;margin-bottom:4px;color:#666;}
 .topic_detail_user_avatars{width:34px;height:34px;float:left;border-radius:50%;background-size:34px 34px;}
-.topic_detal_likeNum{font-size:12px;line-height:12px;}
-.topic_detail_commentNum{font-size:12px;line-height:12px;}
+.topic_detal_likeNum{font-size:12px;line-height:12px;color:#999;}
+.topic_detail_commentNum{font-size:12px;line-height:12px;color:#999;}
 .topic_detail_likeIcon{height:12px;width:12px;background-image:url('/static/images/icon_f_topic_collected@2x.png');background-size:12px 12px;}
 .topic_detail_commentIcon{height:12px;width:13px;background-image:url('/static/images/icon_f_topic_comment@2x.png');background-size:13px 12px;}
 
