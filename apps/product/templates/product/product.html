@@ -159,6 +159,10 @@
   <div style="clear:both;"></div>
 
   <div style="border-top:1px solid #dbdbdb;width:90%;margin:16px auto 0px;"></div>
+  {% for goods in product.product.goods %}
+  <div style="height:85px;margin-left:5%;line-height:40px;font-size:12px;display:none;" class="product_send_time" timeId="{{ goods.goodsId }}">{{ goods.transportTitle }}</div>
+  {% endfor %}
+  <div style="border-top:1px solid #dbdbdb;width:90%;margin:0px auto;"></div>
   <div class="realative" style="padding-top:18px;padding-bottom:18px;height:33px;margin-left:5%;z-index:99;width:50%;">
      <img src="{% static "images/btn_product_incart_decrease_disabled@2x.png" %}" class="float_l product_decrease" style="height:33px;width:42px;">
      <div style="width:68px;float:left;height:33px;line-height:33px;text-align:center;" class="product_num">1</div>
@@ -246,12 +250,13 @@ $(document).ready(function(){
     $(this).css("border","2px solid #ff5346");
     $(".haha div").not($(this)).css("border","1px solid #666");
     var size = $(this).attr("sizeId");
-    //alert($(this).index());
-    //alert(size);
 	$(".abc").removeClass("current");
     $(this).addClass("current");
     $(".product_fixed_ps[goodsId="+size+"]").show();
     $(".product_fixed_ps[goodsId!="+size+"]").hide();
+    $(".product_send_time[timeId="+size+"]").show();
+    $(".product_send_time[timeId!="+size+"]").hide();
+    
   });
   $(".abc").eq(0).click();
   $(".product_in_cart_btn").click(function(){
@@ -275,6 +280,7 @@ $(document).ready(function(){
     current_num = 1;
     $(".product_num").html(1);
   });
+  $(".product_send_time").eq(0).show();
   
 });
 </script>

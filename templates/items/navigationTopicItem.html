@@ -24,7 +24,7 @@
 			   </div>
 			{% endif %}
             <div  class='inputbox relative fr'>
-               <input id='nav_keyword' name='keyword' class='keyword f13 fcb1 fl hidden' value='{% if keyword %}{{keyword}}{% endif%}'/>
+               <input id='nav_keyword' name='keyword' class='keyword f13 fcb1 fl hidden' value='{% if keyword %}{{keyword}}{% endif%}' style="padding-left:8px;"/>
                {% if not search_btn %}
                <input id='nav_btn_search' class='search_icon fr bg absolute {% if nav == 'index' %}hidden{% else %}block{% endif %}' type='button' value=''/>
                {% endif %}

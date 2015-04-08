@@ -119,7 +119,7 @@
           {% if contentInfo.link.type == '1' %}
             <div class="link_cell_new relative">
               <a href="{% url "product:product_detail" contentInfo.link.data %}">
-              <div style="margin-left:13px;color:#56452A;font-size:15px;line-height:17px;height:17px;overflow:hidden;">{{ contentInfo.link.title|safe }}</div>
+              <div style="width:80%;margin-left:13px;color:#56452A;font-size:15px;line-height:17px;height:17px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;">{{ contentInfo.link.title|safe }}</div>
               <div style="margin-left:13px;color:#9C8E79;font-size:11px;height:13px;margin-top:10px;">
                   <div class="float_l" style="line-height:13px;">{{ contentInfo.link.questionNum|safe}}相关内容</div>
                   <div class="float_l" style="margin-left:11px;background-color:rgb(245,230,207);color:rgb(215,172,115);line-height:13px;font-size:6px;border-radius:4px;">市场价</div>

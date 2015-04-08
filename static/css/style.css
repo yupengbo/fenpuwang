@@ -103,8 +103,8 @@ body {margin: 0px;min-width:320px;}
 .nav .top_search .closebox{width:8%;min-width:32px;}
 .nav .top_search .inputbox{width:90%;min-width:256px;}
 .nav .top_search .close{margin:14px auto;background-size:16px 16px;width:16px;height:16px;background-image:url('/static/images/btn_nav_cancel_normal@2x.png');}
-.nav .top_search .keyword{margin-top:6px;width:99%;border:1px  #eeeeee solid;background-color:#fff;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;height:27px;}
-.nav .top_search .search_icon{right:2%;top:13px;border:0px;background-color:#ff5346;background-size:17px 17px;width:17px;height:17px;background-image:url('/static/images/btn_nav_search_normal@2x.png');}
+.nav .top_search .keyword{margin-top:6px;width:96%;border:1px  #eeeeee solid;background-color:#fff;-webkit-border-radius: 3px;-moz-border-radius: 3px;border-radius: 3px;height:27px;}
+.nav .top_search .search_icon{right:4%;top:13px;border:0px;background-color:#ff5346;background-size:17px 17px;width:17px;height:17px;background-image:url('/static/images/btn_nav_search_normal@2x.png');}
 .nav .top_search .on{background-image:url('/static/images/btn_nav_search_pressed@2x.png');background-color:#fff;}
 .nav .index .inputbox{width:80%;min-width:256px;}
 .nav .index .filterbox{width:2%;min-width:16px;margin:0 3% 0 1%;}
