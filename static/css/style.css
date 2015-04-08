@@ -93,7 +93,7 @@ body {margin: 0px;min-width:320px;}
 .nav{z-index:9999;background-color:#ff5346;height:44px;overflow:hidden;position:relative;left:0;top:0;width:100%;}
 .nav_inner{position:relative;}
 .nav ul{width:80%;height:44px;vertical-align: middle;position:absolute;top:0px;z-index:9999;}
-.nav ul li{float:left;display:block;padding:0 3%;height:44px;}
+.nav ul li{float:left;display:block;padding:0 3%;height:44px;vertical-align:middle;}
 .nav ul li a{color:#ffddda; line-height:44px;font-size:15px;}
 .nav ul li .logo_btn{background-size:33px 44px;width:33px;height:44px;background-image:url('/static/images/img_nav_logo@2x.png');}
 .nav ul li .logo_btn a{width:33px;height:44px;display:block;}
