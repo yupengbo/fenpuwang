@@ -19,9 +19,7 @@ def topic_info(request, topic_id):
     user_info = weixin_auth_utils.get_user_info(request)
     authuri = user_info.get('redirect')
     session = user_info.get('session')
-
     user_agent = request.META.get('HTTP_USER_AGENT')
- 
     is_mm = None
     user_agent = user_agent.lower()
     if "micromessenger" in user_agent:
@@ -36,7 +34,6 @@ def topic_info(request, topic_id):
       if from_user_info != None:
         from_user_name = from_user_info.get("userInfo").get('userName')
     # end 
-
     try:
         topic_json = api_list.get_feature_topic_info(request, topic_id)
         if topic_json == None or topic_json == "" or topic_json['error'] != 0:

@@ -1,6 +1,81 @@
 {% include "items/downloadItem.html" %}
-<div class='nav_bar relative'>
-   <div class='nav'>
+{% load static %}
+<div style="height:44px;width:100%;background-color:#ff5346;">
+ <div style="width:100%;max-width:800px;margin:0px auto;position:relative;" class="nav_section">
+   <div style="text-align:center;line-height:44px;color:#fff;font-weight:bold;font-size:15px;">
+        {% if navTitle %}
+             {{ navTitle }}
+        {% else %}
+             粉扑
+        {% endif %}
+   </div>   
+   <div style="width:100%;left:0px;top:0px;height:44px;position:absolute;">
+      <img src="{% static "images/btn_nav_back_normal@2x.png" %}" style="float:left;margin-left:12px;height:17px;width:20px;margin-top:13px;" class="nav_return_btn">
+      {% if not search_btn %}
+      <img src="{% static "images/btn_seach_bar_menu.png" %}" style="float:right;margin-right:17px;height:17px;margin-top:13px;" class="nav_menu_btn">
+      <img src="{% static "images/btn_nav_search_normal@2x.png" %}" style="float:right;margin-right:20px;height:17px;margin-top:13px;" class="nav_search_btn">
+      {% endif %}
+   </div>
+ </div>
+</div>
+<div style="height:40px;width:100%;border-bottom:1px solid #eeeeee;display:none;position:absolute;top:44px;z-index:10;background-color:#fbfbf9;" class="nav_menu_content">
+  <div style="width:100%;max-width:800px;margin:0px auto;position:relative;">
+    <a href="{% url "topic:topic_index" %}"><div style="font-size:14px;color:#666666;float:left;margin-left:16px;line-height:40px;">笔记</div></a>
+    <a href="{% url "products:products_recommend" %}"><div style="font-size:14px;color:#666666;float:left;margin-left:16px;line-height:40px;">买买买</div></a>
+    <a href="{% url "order:order_list" %}"><div style="font-size:14px;color:#666666;float:left;margin-left:16px;line-height:40px;">我的订单</div></a>
+    <a href="{% url "cart:cart_index" %}"><div style="font-size:14px;color:#666666;float:left;margin-left:16px;line-height:40px;">购物车</div></a>
+  </div>
+</div>
+<div style="display:none;height:40px;width:100%;position:absolute;top:44px;z-index:10;background-color:#fbfbf9;" class="nav_search_content">
+  <div style="width:100%;max-width:800px;margin:0px auto;position:relative;">
+    <div style="font-size:13px;float:left;line-height:40px;margin-left:12px;position:relative;" class="nav_search_box" >
+       <form onsubmit='$(".nav_search_letter").click();return false;'>
+       <input type="text" placeholder="小棕瓶和小黑瓶哪个好用?" value="" style="padding-left:30px;padding-top:8px;padding-bottom:8px;width:100%;color:#dbdbdb;height:12px;border-radius:5px;border:1px solid #dbdbdb;" class="nav_search" />
+       </form>
+       <img src="{% static "images/btn_nav_search_pressed@2x.png" %}" style="height:17px;width:17px;position:absolute;left:9px;top:13px;">
+    </div>
+    <div style="font-size:15px;color:#ff5346;float:left;margin-left:12px;line-height:40px;width:30px;text-align:center;" class="nav_search_letter">搜索</div>
+  </div>
+</div>
+<script>
+  $(document).ready(function(){
+     $(".nav_menu_btn").click(function(){
+       $(".nav_menu_content").toggle();
+       $(".nav_search_content").hide();
+     });
+     var banner_width = $(".nav_section").width();
+     //var search_letter_width = $(".nav_search_letter").width();
+     $(".nav_search_box").css("width",banner_width-12-17-12-30);
+     $(".nav_search").css("width",banner_width-12-17-12-30-30);
+     $(".nav_search_btn").click(function(){
+       $(".nav_search_content").toggle();
+       $(".nav_menu_content").hide();
+     });
+     $(".nav_return_btn").click(function(){
+        window.history.back();
+     });
+     $(".nav_search_letter").click(function(){
+        var search_content = $(".nav_search").val();
+        if(search_content){
+            window.location.href = "/search/"+search_content; 
+        }else{
+            return false;
+        }
+     });
+     $(".nav_search").focus(function(){
+       $(".nav_search").css("color","black");
+     });
+     $(".nav_search").blur(function(){
+       $(".nav_search").css("color","#dbdbdb");
+     });
+//     $().submit(function(){
+//        $(".nav_search_letter").click();
+//        return flase;
+//     });
+});
+</script>
+
+<!--   <div class='nav' style="display:none;">
        <div class='nav_inner'>
        <form onsubmit='$("#nav_btn_search").click();return false;'>
         <ul >
@@ -51,4 +126,4 @@
     <form>
   </div>
 </div>
-{% endif%}
+{% endif%} -->

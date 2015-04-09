@@ -17,7 +17,7 @@
     </div>
     <div class="question-user-profile">
         <img class="question-avatar s_avatar fl" src="{{ question.question.user.avatarURL }}" alt="avatar" />
-        <div class="profile-name f13 fcg1 fl">{{ question.question.user.userName }}</div>
+        <div class="profile-name f13 fcg2 fl">{{ question.question.user.userName }}</div>
         {% if question.question.user.profile %}
             <div class="profile-property f13 fcg1 fl">
                 （{{ question.question.user.profile }}）
@@ -32,12 +32,15 @@
 </div>
 {% if question.relatedProductList %}
     <div class="related-products section-block">
-        <div class="subtitle" style="font-size:9px;color:#FF5346;padding: 0px;margin: 0px;"> 提到的商品 </div>
+        <div class="subtitle" style="font-size:9px;color:#FF5346;padding: 0px;margin-bottom: 0px;line-height: 9px"> 提到的产品 </div>
 
         <ul>
             {% for product in question.relatedProductList %}
-                <li ><a href='{% url 'product:product_detail' product.productId %}' style="padding: 0px;margin: 0px;font-size:14px;color:#222;">{{ product.name }}</a></li>
+                <li ><a href='{% url 'product:product_detail' product.productId %}' style="padding: 0px;margin-bottom: 0px;line-height: 12px;font-size:14px;color:#222;">{{ product.name }}</a></li>
+                <div style="color: #aaaaaa;font-size: 10px;margin-top: 0px;line-height: 10px">¥{{ product.price }}/{{ product.size }}</div>
+                <div style="height: 5px"></div>
             {% endfor %}
+            <div style="height: 10px"></div>
         </ul>
     </div>
 {% endif %}

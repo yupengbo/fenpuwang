@@ -16,15 +16,15 @@
 {% if not readonly %}
 <div class='line info_line'>
   <div class='label'>收货人</div>
-  <div class='input'><input type='text' name='contact' value='{{ contact }}'></div>
+  <div class='input'><input type='text' id='contact' name='contact' value='{{ contact }}'></div>
 </div>
 <div class='line info_line'>
   <div class='label'>联系电话</div>
-  <div class='input'><input border='0' type='text' name='contactPhone' value='{{ contactPhone }}'></div>
+  <div class='input'><input border='0' id='contactPhone' type='text' name='contactPhone' value='{{ contactPhone }}'></div>
 </div>
 <div class='line info_line'>
   <div class='label'>收货地址</div>
-  <div class='input'><input type='text' name='address' value='{{ address }}' ></div>
+  <div class='input'><input type='text' id='address' name='address' value='{{ address }}' ></div>
 </div>
 <div class='line info_line'>
   <div class='label'>备注信息</div>
@@ -83,7 +83,26 @@ $(function(){
          $("#order_form").submit();
 	     return;
       }
-
+      if($('#contact').val()==''){
+         alert("请输入收货人");
+		 submit_order = false;
+		 return;
+	  }
+      if($('#contactPhone').val()=='' ){
+         alert("请输入联系电话");
+		 submit_order = false;
+		 return;
+	  }
+      if($('#contactPhone').val().length != 11 ){
+         alert("请输入正确的联系电话");
+		 submit_order = false;
+		 return;
+	  }
+      if($('#address').val()==''){
+         alert("请输入收货地址");
+		 submit_order = false;
+		 return;
+	  }
       $.get_data( 
          "{% url 'order:ajax_submit_order' %}",
 	      $("#order_form").serialize(),
@@ -96,6 +115,7 @@ $(function(){
 			   $("#order_form").submit();
 			}else{
 			   alert(data["errorString"]);
+			   submit_order = false;
 			}
 	      },
 	      function(xmlReq, textStatus) {},
