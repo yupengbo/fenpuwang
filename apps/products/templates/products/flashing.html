@@ -62,9 +62,11 @@ opacity:0;/*FF*/
 {% endblock %}
 
 {% block nav_content %}
+{% if is_fenpu == 0 %}
 <div id="top-navigation-bar">
   {% include "items/navigationTopicItem.html" %}
 </div>
+{% endif %}
 {% endblock %}
 
 {% block main_content %}
