@@ -116,6 +116,10 @@ def get_user_info_by_uid(req, uid):
     params = {'uID': uid}
     return get_result(req, 'getUserInfo.do', params)
 
+def get_js_ticket(req):
+    params = {}
+    return get_result(req, 'getJsTicket.do', params)
+
 def get_activity_info(req, sessionKey, activity_id = 0, view_uid = 0):
     params = {'sessionKey': sessionKey, 'activityId': activity_id, 'uID': view_uid}
     return get_result(req, 'getActivityInfo.do', params)

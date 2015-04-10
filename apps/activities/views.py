@@ -11,6 +11,7 @@ from apps.api import api_list
 from apps.utils import weixin_utils
 from apps.utils.sign import Sign
 from django.core.urlresolvers import reverse
+import datetime
 # Create your views here.
 
 def get_view_uid(request):
@@ -154,4 +155,57 @@ def open_bonus(request, activity_id):
         return HttpResponse(response_json,content_type="application/json")
     else:
         return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, "not ajax") 
+
+def water(request,activity_key):
+    ticket = None
+    ticket_info = {}
+    base_uri = weixin_utils.get_base_uri(request)
+    path_uri = reverse("activities:water",kwargs={"activity_key": activity_key})
+    share_uri = base_uri + path_uri 
+    ticket_info = api_list.get_js_ticket(request)
+    if ticket_info.get("ticket"):
+        ticket = ticket_info.get("ticket")
+    meta_data = get_sign_info(request, ticket, share_uri)
+    meta_data['appid'] = weixin_utils.get_appid()
+    meta_data['base_uri'] = base_uri
+    meta_data['share_uri'] = share_uri
+    return render(request, 'activities/water' + activity_key +'.html', meta_data)
+
+
+def get(request):
+   #是否  得过水
+   suc = request.COOKIES.get("suc")
+   response  = HttpResponse("{\"error\":0}",content_type="application/json")
+   timestamp = int(time.time() * 1000)
+   if not suc:
+   #debug
+   #if not suc or True:
+      #cookie 有效时间
+      dt = datetime.datetime.now() + datetime.timedelta(hours = int(1680))
+      response.set_cookie('suc', 1, expires=dt)
+      response.set_cookie('get_timestamp', timestamp , expires=dt)
+   else:
+      print '曾经获得过'
+   return response
+
+def result(request):
+   suc = request.COOKIES.get("suc")
+   get_timestamp = request.COOKIES.get("get_timestamp")
+   print suc
+   print get_timestamp
+   timestamp = int(time.time() * 1000)
+   #duration = 1800000
+   duration = 500000
+   if ( not suc ) or ( not get_timestamp ) or ( suc != '1' ):
+      print '非法'
+      raise Http404()
+   if timestamp > int(get_timestamp) + duration:
+      print '超时'
+      raise Http404()
+   meta_data = {}
+   meta_data ['get_timestamp'] = get_timestamp
+   meta_data ['server_time_stamp'] = timestamp
+   meta_data ['sucess'] = suc
+   meta_data ['duration'] = duration
+   return render(request, 'activities/water_result.html', meta_data)
 

@@ -1,0 +1,72 @@
+{% extends "base_no_nav.html" %}
+
+{% block keywords %} 春节红包发！发！发！ {% endblock %}
+{% block description %} 分享内容换取红包  {% endblock %}
+{% block title %} 春节红包发！发！发！ {% endblock %}
+{% block script %}
+    {% load static %}
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="{% static "js/activities.js" %}?v=1.8"></script>
+	<link rel='stylesheet' href='{% static 'css/activity.css' %}?v=1.8' type='text/css'>
+{% endblock %}
+{% block main_content %}
+
+<script>
+wx.config({
+      debug: true,
+      appId: '{{ appid }}',
+      timestamp: {{ timestamp }},
+      nonceStr: '{{ nonceStr }}',
+      signature: '{{ signature }}',
+      jsApiList: [
+        'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo'
+     ]
+});
+
+wx.ready(function(){
+  wx.onMenuShareTimeline({
+    title: '粉扑给你发水啦，快来领~', // 分享标题
+    link: '{{ share_uri }}', // 分享链接
+    imgUrl: '{{ base_uri }}{% static "images/bonus_img.jpg" %}', // 分享图标
+    success: function () { 
+		shared();
+    },
+    cancel: function () { 
+    }
+  });
+
+  wx.onMenuShareAppMessage({
+    title: '粉扑给你发红包啦，快来领~', // 分享标题
+    desc: '粉扑红包可提现，快来领取吧', // 分享描述
+    link: '{{ share_uri }}', // 分享链接
+    imgUrl: '{{ base_uri }}{% static "images/bonus_img.jpg" %}', // 分享图标
+    success: function () { 
+	  shared();
+    },
+    cancel: function () { 
+    }
+  });
+});
+function shared(){
+  $.get_data(
+     '{%  url 'activities:water_get' %}',
+	 "session={{ session }}",
+     function(data) {
+	   if(data['error']==0){
+	      window.location='{% url "activities:water_result" %}';
+	   }
+	 },
+     function(xmlReq, textStatus) {
+	 },
+     'json'
+  );
+}
+$(".weixin_share").click(function(){
+   $(".weixin_share").hide();
+});
+</script>
+{% endblock %}

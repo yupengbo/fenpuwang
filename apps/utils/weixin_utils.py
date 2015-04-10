@@ -17,12 +17,9 @@ def url_encode(uri):
    return uri[1:]
 
 def get_base_uri(request):
-#   base_uri = request.META.get("HTTP_ORIGIN")
-#   if not base_uri:
-   base_uri = 'http://bonus.fenpu.me'
-#   port = request.META.get("SERVER_PORT")
-   #if port != '80':
-   #   base_uri = base_uri + ":" + port 
+   return_uri = request.META.get("HTTP_HOST")
+   if return_uri:
+      return "http://"+return_uri
    return base_uri
 
 def code2token (code):

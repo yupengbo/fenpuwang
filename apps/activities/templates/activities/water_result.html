@@ -1,0 +1,72 @@
+{% extends "base_no_nav.html" %}
+
+{% block title%}
+结果
+{% endblock title %}
+ {% load static %}
+{% block script%}
+<script type="text/javascript" src="{% static "js/base.js" %}?v=1.3"></script>
+{% endblock %}
+
+{% block main_content %}
+<span class='seckill_time'></span>
+<script>
+$(document).ready(function(){
+    var offset_time = 0;
+	var base_client_time = new Date().getTime();
+    function currentTime(){
+	   var current_client_time = new Date().getTime();
+	   if ( (current_client_time - base_client_time - offset_time) > 3000  ){
+		   offset_time = current_client_time - base_client_time;  
+	   }
+       return {{ server_time_stamp }} + offset_time;
+       //return (new Date("2015/3/28 12:12:01")).getTime()/1000
+    }
+	function startTime(){
+	   return {{ get_timestamp }};
+	}
+	function continueTime(){
+	   return {{ duration }}; 
+	}
+
+    function change_layout(){
+       var current_time = currentTime();
+       var start_time = startTime();
+       var continue_time = continueTime();
+	   var temp_status;
+       if(current_time >=start_time && current_time <= start_time+continue_time){
+           reload_time();
+           offset_time = offset_time + 1000;
+           setTimeout(change_layout,1000);
+       }
+       if(current_time>start_time+continue_time || current_time<start_time){
+	      alert("时间已经过去很久了");
+       }
+    }
+    function reload_time(){
+        var all_timestamp = startTime() + continueTime() - currentTime()
+        if(Math.floor(all_timestamp) ==0 ){
+            window.location.reload();
+        }
+        all_timestamp = Math.floor(all_timestamp /1000);
+        var hour = Math.floor(all_timestamp/(60*60));
+        hour = hour.toString();
+        var minute = Math.floor((all_timestamp - hour*60*60)/60);
+        minute = minute.toString();
+        var second = Math.floor(all_timestamp - hour*60*60 - minute*60);
+        second = second.toString();
+        if(hour.length == 1){
+            hour = "0" + hour;
+        }
+        if(minute.length ==1){
+            minute = "0" + minute;
+        }
+        if(second.length ==1){
+           second = "0" + second;
+        }
+        $(".seckill_time").html(hour+":"+minute+":"+second);
+    }
+    change_layout();
+});
+</script>
+{% endblock %}
