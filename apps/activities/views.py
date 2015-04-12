@@ -159,6 +159,9 @@ def open_bonus(request, activity_id):
 def water(request,activity_key):
     ticket = None
     ticket_info = {}
+    suc = request.COOKIES.get("suc")
+    if suc:
+       return HttpResponseRedirect(reverse("activities:water_result",kwargs={}));
     base_uri = weixin_utils.get_base_uri(request)
     path_uri = reverse("activities:water",kwargs={"activity_key": activity_key})
     share_uri = base_uri + path_uri 
@@ -179,9 +182,10 @@ def get(request):
    timestamp = int(time.time() * 1000)
    if not suc:
    #debug
+   #timestamp = timestamp - 3595000
    #if not suc or True:
       #cookie 有效时间
-      dt = datetime.datetime.now() + datetime.timedelta(hours = int(1680))
+      dt = datetime.datetime.now() + datetime.timedelta(hours = int(16800))
       response.set_cookie('suc', 1, expires=dt)
       response.set_cookie('get_timestamp', timestamp , expires=dt)
    else:
@@ -194,14 +198,14 @@ def result(request):
    print suc
    print get_timestamp
    timestamp = int(time.time() * 1000)
-   #duration = 1800000
-   duration = 500000
+   #get_timestamp = timestamp - 495000
+   duration = 3600000
    if ( not suc ) or ( not get_timestamp ) or ( suc != '1' ):
       print '非法'
-      raise Http404()
+      return HttpResponseRedirect(reverse("activities:water",kwargs={"activity_key": activity_key}));
    if timestamp > int(get_timestamp) + duration:
       print '超时'
-      raise Http404()
+   #   raise Http404()
    meta_data = {}
    meta_data ['get_timestamp'] = get_timestamp
    meta_data ['server_time_stamp'] = timestamp

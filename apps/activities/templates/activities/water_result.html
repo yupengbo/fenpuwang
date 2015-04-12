@@ -9,7 +9,54 @@
 {% endblock %}
 
 {% block main_content %}
-<span class='seckill_time'></span>
+<style>
+html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,em,font,img,small,strong,b,u,i,s,dl,dt,dd,ol,ul,li,fieldset,form,label {padding:0px;margin:0px;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+a,img {border:0;}
+ul {list-style:none;}
+li {list-style-type:none;}
+input,select{vertical-align:middle;padding:0px;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal; font-size:12px;}
+b,i,em {font-style:normal;}
+a {text-decoration:none;}
+a:visited{color:#e4e4e4;}
+input {-webkit-appearance: none;}
+a,button,input{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+.pointer{ cursor:pointer;}
+.noborder{ border:0 none;}
+body{background-color:#e84c3f;}
+.absolute{ position:absolute;}
+.relative{ position:relative;}
+.fl {float:left; }
+.fr {float:right; }
+.unline{ text-decoration:underline;}
+.disunline{ text-decoration:none;}
+.invisible{ visibility:hidden;}
+.hidden{ display:none;}
+.block{ display:block;}
+.bold{font-weight:bold;}
+.bg{background-repeat: no-repeat;background-position:center center;}
+.con{width:100%;height:630px;}
+.con div{text-align:center;width:100%;}
+.con img{width:94%;}
+#ercode{display:block;}
+.seckill_time{background-color:#f7f294;color:#c74c3f;font-size:30px;}
+.seckill_time_s{color:#f7f294;font-size:30px;}
+</style>
+<div class='relative con' >
+  <div class='absolute' style='left:0px;top:65px;z-index:1;'>
+     <img src='http://dabanniu.oss.aliyuncs.com/images/water_success.png' style='width:80%;'/>
+  </div> 
+  <div class='absolute time_view' style='left:0px;top:300px;z-index:2;text-align:center;'>
+     <span class='seckill_time m_1'>0</span>
+     <span class='seckill_time m_2'>0</span>
+     <span class='seckill_time_s s_p'>:</span>
+     <span class='seckill_time s_1'>0</span>
+     <span class='seckill_time s_2'>0</span>
+  </div>
+  <div class='absolute' style='left:0px;bottom:0px;z-index:3;'>
+     <img id='ercode' src='http://dabanniu.oss.aliyuncs.com/images/water_result_ercode.png' style='width:100%'/>
+  </div>
+</div>
 <script>
 $(document).ready(function(){
     var offset_time = 0;
@@ -40,33 +87,28 @@ $(document).ready(function(){
            setTimeout(change_layout,1000);
        }
        if(current_time>start_time+continue_time || current_time<start_time){
-	      alert("时间已经过去很久了");
+	       $('.time_view').html("<span class='seckill_time s_2'>已过期</span>");
        }
     }
     function reload_time(){
         var all_timestamp = startTime() + continueTime() - currentTime()
         if(Math.floor(all_timestamp) ==0 ){
-            window.location.reload();
+            //window.location.reload();
         }
         all_timestamp = Math.floor(all_timestamp /1000);
-        var hour = Math.floor(all_timestamp/(60*60));
-        hour = hour.toString();
+		var hour = Math.floor(all_timestamp/(60*60));
         var minute = Math.floor((all_timestamp - hour*60*60)/60);
-        minute = minute.toString();
         var second = Math.floor(all_timestamp - hour*60*60 - minute*60);
-        second = second.toString();
-        if(hour.length == 1){
-            hour = "0" + hour;
-        }
-        if(minute.length ==1){
-            minute = "0" + minute;
-        }
-        if(second.length ==1){
-           second = "0" + second;
-        }
-        $(".seckill_time").html(hour+":"+minute+":"+second);
+		$('.m_1').html(parseInt(minute/10));
+		$('.m_2').html(parseInt(minute%10));
+		$('.s_1').html(parseInt(second/10));
+		$('.s_2').html(parseInt(second%10));
     }
     change_layout();
+$("img").load(function(){ 
+  $('#ercode').offset().top;
+  $(".con").height($('#ercode').offset().top+$('#ercode').height());
+});
 });
 </script>
 {% endblock %}
