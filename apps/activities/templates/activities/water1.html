@@ -1,7 +1,7 @@
 {% extends "base_no_nav.html" %}
 
-{% block keywords %} 加好友，立即送 {% endblock %}
-{% block description %} 加好友，立即送  {% endblock %}
+{% block keywords %} 燕京理工的姑娘们，免费领脉动啦！医务室对面水吧领取[粉扑APP] {% endblock %}
+{% block description %} 燕京理工的姑娘们，免费领脉动啦！医务室对面水吧领取[粉扑APP]  {% endblock %}
 {% block title %} 加好友，立即送 {% endblock %}
 {% block script %}
     {% load static %}
@@ -40,12 +40,15 @@ body{background-color:#e84c3f;}
 .con img{width:94%;}
 #ercode{display:block;}
 </style>
+<div class='hidden'>
+  <img src='http://dabanniu.oss.aliyuncs.com/images/water_icon.jpg' />
+</div>
 <div class='absolute weixin_share hidden' style='width:100%;left:0px;top:0px;height:99%;z-index:9999;'>
    <img src='http://dabanniu.oss.aliyuncs.com/images/water_mask.png' style='width:100%;height:100%;display:block;'/>
 </div>
 <div class='relative con' >
   <div class='absolute' style='left:0px;top:90px;z-index:1;text-align:right;'>
-     <img src='http://dabanniu.oss.aliyuncs.com/images/water_say.png' style='width:60%;'/>
+     <img src='http://dabanniu.oss.aliyuncs.com/images/water_say.jpg' style='width:60%;'/>
   </div> 
   <div class='absolute' style='left:0px;top:20px;z-index:2;text-align:left;'>
      <img src='http://dabanniu.oss.aliyuncs.com/images/water_page.png' style='width:60%;margin-left:3%;'/>
@@ -75,9 +78,9 @@ wx.config({
 
 wx.ready(function(){
   wx.onMenuShareTimeline({
-    title: '粉扑给你发水啦，快来领~', // 分享标题
+    title: '燕京理工的姑娘们，免费领脉动啦！医务室对面水吧领取[粉扑APP]', // 分享标题
     link: '{{ share_uri }}', // 分享链接
-    imgUrl: '{{ base_uri }}{% static "images/bonus_img.jpg" %}', // 分享图标
+    imgUrl: 'http://dabanniu.oss.aliyuncs.com/images/water_icon.jpg', // 分享图标
     success: function () { 
 		shared();
     },
@@ -86,10 +89,10 @@ wx.ready(function(){
   });
 
   wx.onMenuShareAppMessage({
-    title: '粉扑给你发水啦，快来领~', // 分享标题
-    desc: '粉扑给你发水啦，快来领~', // 分享描述
+    title: '燕京理工的姑娘们，免费领脉动啦！医务室对面水吧领取[粉扑APP]', // 分享标题
+    desc: '燕京理工的姑娘们，免费领脉动啦！医务室对面水吧领取[粉扑APP]', // 分享描述PP]
     link: '{{ share_uri }}', // 分享链接
-    imgUrl: '{{ base_uri }}{% static "images/bonus_img.jpg" %}', // 分享图标
+    imgUrl: 'http://dabanniu.oss.aliyuncs.com/images/water_icon.jpg', // 分享图标
     success: function () { 
 	  shared();
     },
