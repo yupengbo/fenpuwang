@@ -147,9 +147,12 @@ def seckill(request):
     seckill_process(seckill_today_list)
     seckill_tomorrow_list = seckill_result["tomorrowProductList"]
     seckill_process(seckill_tomorrow_list)
+    is_flashing = 0
+    if seckill_today_list and len(seckill_today_list)>0:
+       is_flashing = 1
 #    seckill_today_list = {}
     server_time_stamp = seckill_result['timeStamp']
-    meta_data = {"seckill_today_list":seckill_today_list,"seckill_tomorrow_list":seckill_tomorrow_list,'navTitle':'秒杀', "server_time_stamp": server_time_stamp, "is_fenpu":is_fenpu, "is_url":1, "nav_url":'/11286'}
+    meta_data = {"is_flashing":is_flashing, "seckill_today_list":seckill_today_list,"seckill_tomorrow_list":seckill_tomorrow_list,'navTitle':'秒杀', "server_time_stamp": server_time_stamp, "is_fenpu":is_fenpu, "is_url":1, "nav_url":'/11286'}
 #    meta_data = {"seckill_today_list":seckill_tomorrow_list,"seckill_tomorrow_list":seckill_tomorrow_list, "server_time_stamp": server_time_stamp}
     #if seckill_today_list:
     #    return render(request,"products/flashing.html",meta_data)
