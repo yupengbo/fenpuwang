@@ -163,7 +163,7 @@ def water(request,activity_key):
     if suc:
        return HttpResponseRedirect(reverse("activities:water_result",kwargs={}));
     base_uri = weixin_utils.get_base_uri(request)
-    response_data_utils.error_log(request, base_uri  , __name__ , base_uri)
+   # response_data_utils.error_log(request, base_uri  , __name__ , base_uri)
     #base_uri = 'http://water.fenpu.me'
     path_uri = reverse("activities:water",kwargs={"activity_key": activity_key})
 
