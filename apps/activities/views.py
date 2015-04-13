@@ -164,11 +164,19 @@ def water(request,activity_key):
        return HttpResponseRedirect(reverse("activities:water_result",kwargs={}));
     base_uri = weixin_utils.get_base_uri(request)
     path_uri = reverse("activities:water",kwargs={"activity_key": activity_key})
+
+    query_str = request.META['QUERY_STRING']
+    if query_str and len(query_str)>0:
+       query_str = "?" + query_str
+    else:
+       query_str = ''
+
     share_uri = base_uri + path_uri 
+    self_uri = share_uri + query_str
     ticket_info = api_list.get_js_ticket(request)
     if ticket_info.get("ticket"):
         ticket = ticket_info.get("ticket")
-    meta_data = get_sign_info(request, ticket, share_uri)
+    meta_data = get_sign_info(request, ticket, self_uri)
     meta_data['appid'] = weixin_utils.get_appid()
     meta_data['base_uri'] = base_uri
     meta_data['share_uri'] = share_uri
