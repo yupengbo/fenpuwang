@@ -68,4 +68,9 @@ def error_log(request, message, view_name = "unknown_souurce", error_info="unkon
 def error_comments(request, message, view_name = "unknown_souurce", error_info="unkonw_error"):
   error_log(request, message, view_name, error_info)
 
-
+def get_ip(request):
+  if request.META.has_key('HTTP_X_FORWARDED_FOR'):
+    ip =  request.META['HTTP_X_FORWARDED_FOR']
+  else:
+    ip = request.META['REMOTE_ADDR']
+  return ip

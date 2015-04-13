@@ -163,7 +163,9 @@ def water(request,activity_key):
     if suc:
        return HttpResponseRedirect(reverse("activities:water_result",kwargs={}));
     base_uri = weixin_utils.get_base_uri(request)
-    base_uri = 'http://m.fenpuwang.com'
+    ip = response_data_utils.get_ip(request)
+    response_data_utils.error_log(request, "water_in_water|" + str(ip)  , __name__ , "water_in_water|" + str(ip))
+    #base_uri = 'http://water.fenpu.me'
     path_uri = reverse("activities:water",kwargs={"activity_key": activity_key})
 
     query_str = request.META['QUERY_STRING']
@@ -189,12 +191,14 @@ def get(request):
    suc = request.COOKIES.get("suc")
    response  = HttpResponse("{\"error\":0}",content_type="application/json")
    timestamp = int(time.time() * 1000)
+   ip = response_data_utils.get_ip(request)
+   response_data_utils.error_log(request, "water_get_water|" + str(ip)  , __name__ , "water_get_water|" + str(ip))
    if not suc:
    #debug
    #timestamp = timestamp - 3595000
    #if not suc or True:
       #cookie 有效时间
-      dt = datetime.datetime.now() + datetime.timedelta(hours = int(16800))
+      dt = datetime.datetime.now() + datetime.timedelta(hours = int(168000))
       response.set_cookie('suc', 1, expires=dt)
       response.set_cookie('get_timestamp', timestamp , expires=dt)
    else:
@@ -207,11 +211,13 @@ def result(request):
    print suc
    print get_timestamp
    timestamp = int(time.time() * 1000)
+   ip = response_data_utils.get_ip(request)
+   response_data_utils.error_log(request, "water_get_result|"  , __name__ , "water_get_result|")
    #get_timestamp = timestamp - 495000
    duration = 3600000
    if ( not suc ) or ( not get_timestamp ) or ( suc != '1' ):
       print '非法'
-      return HttpResponseRedirect(reverse("activities:water",kwargs={"activity_key": activity_key}));
+      return HttpResponseRedirect(reverse("activities:water",kwargs={"activity_key": "1"}));
    if timestamp > int(get_timestamp) + duration:
       print '超时'
    #   raise Http404()

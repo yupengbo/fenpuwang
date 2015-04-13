@@ -78,7 +78,7 @@ opacity:0;/*FF*/
 <div id="bg_t" class="bg_t" style="display:none;"></div>
 <iframe id='popIframe' class='popIframe' frameborder='0'></iframe>
 
-<div class="relative banner_pre">
+<div class="relative banner_pre" style="{% if is_flashing == 1 %}display:none;{% endif %}">
   <img src="http://static.fenpuwang.com/images/banner_big_sale_pre.jpg" class="banner_img">
   <div class="absolute banner_button_section">
        <a class='btn_get_qualification' href="javascript:void(0);" ><div class="div_center banner_button">获取秒杀资格</div></a>
@@ -90,7 +90,7 @@ opacity:0;/*FF*/
      </div>
   </div>
 </div>
-<div class="banner_ing relative">
+<div class="banner_ing relative" style="{% if is_flashing == 0 %}display:none;{% endif %}">
   <img src="http://static.fenpuwang.com/images/banner_big_sale_ing.jpg" class="banner_ing_img">
   <div class="absolute seckill_letter_time">
     <div class="marg_l_ft">
@@ -139,7 +139,7 @@ opacity:0;/*FF*/
 </div>
 {% endfor %}
 </div>
-<div class="relative tomorrow_section">
+<div class="relative tomorrow_section" style="{% if is_flashing == 0 %}display:none;{% endif %}">
   <img src="http://static.fenpuwang.com/images/banner_big_sale_next.jpg" class="tomorrow_img">
   <div class="absolute tomorrow_button_section">
      <a class='btn_get_qualification' href="javascript:void(0);"><div class="div_center tomorrow_button">点击获取明日秒杀资格</div></a>
