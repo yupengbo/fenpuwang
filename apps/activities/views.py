@@ -163,7 +163,8 @@ def water(request,activity_key):
     if suc:
        return HttpResponseRedirect(reverse("activities:water_result",kwargs={}));
     base_uri = weixin_utils.get_base_uri(request)
-   # response_data_utils.error_log(request, base_uri  , __name__ , base_uri)
+    ip = response_data_utils.get_ip(request)
+    response_data_utils.error_log(request, "water_in_water|" + str(ip)  , __name__ , "water_in_water|" + str(ip))
     #base_uri = 'http://water.fenpu.me'
     path_uri = reverse("activities:water",kwargs={"activity_key": activity_key})
 
@@ -190,6 +191,8 @@ def get(request):
    suc = request.COOKIES.get("suc")
    response  = HttpResponse("{\"error\":0}",content_type="application/json")
    timestamp = int(time.time() * 1000)
+   ip = response_data_utils.get_ip(request)
+   response_data_utils.error_log(request, "water_get_water|" + str(ip)  , __name__ , "water_get_water|" + str(ip))
    if not suc:
    #debug
    #timestamp = timestamp - 3595000
@@ -208,6 +211,8 @@ def result(request):
    print suc
    print get_timestamp
    timestamp = int(time.time() * 1000)
+   ip = response_data_utils.get_ip(request)
+   response_data_utils.error_log(request, "water_get_result|"  , __name__ , "water_get_result|")
    #get_timestamp = timestamp - 495000
    duration = 3600000
    if ( not suc ) or ( not get_timestamp ) or ( suc != '1' ):
