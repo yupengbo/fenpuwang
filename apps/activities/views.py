@@ -194,7 +194,7 @@ def get(request):
    #timestamp = timestamp - 3595000
    #if not suc or True:
       #cookie 有效时间
-      dt = datetime.datetime.now() + datetime.timedelta(hours = int(16800))
+      dt = datetime.datetime.now() + datetime.timedelta(hours = int(168000))
       response.set_cookie('suc', 1, expires=dt)
       response.set_cookie('get_timestamp', timestamp , expires=dt)
    else:
@@ -211,7 +211,7 @@ def result(request):
    duration = 3600000
    if ( not suc ) or ( not get_timestamp ) or ( suc != '1' ):
       print '非法'
-      return HttpResponseRedirect(reverse("activities:water",kwargs={"activity_key": activity_key}));
+      return HttpResponseRedirect(reverse("activities:water",kwargs={"activity_key": "1"}));
    if timestamp > int(get_timestamp) + duration:
       print '超时'
    #   raise Http404()
