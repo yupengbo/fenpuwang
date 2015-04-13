@@ -15,7 +15,7 @@ import logging
 logger = logging.getLogger('django')
 def question_list(request,mark=0):                                     
     is_ajax = request.is_ajax()
-    question_list_json = api_list.get_product_feeds(request,mark)
+    question_list_json = api_list.get_product_feeds(request,0,20,mark)
     try:
         if question_list_json and question_list_json['error']==0:
             process_question_time(question_list_json)

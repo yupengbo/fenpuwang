@@ -32,8 +32,11 @@
 </div>
 {% if question.relatedProductList %}
     <div class="related-products section-block">
-        <div class="subtitle" style="font-size:9px;color:#FF5346;padding: 0px;margin-bottom: 0px;line-height: 9px"> 提到的产品 </div>
-
+    <div  id="RelatedPros" style="width:2px;float: left;margin-top: 10px;padding-left:8px;border-left: 3px solid;border-left-color: #FF5346"></div>
+        <div>
+        <img style="background-size: 9px 11px;width: 9px;margin-top: 12px;height: 11px;float: left" src={% static "images/icon_q_and_a_products@2x.png" %}>
+        <div class="subtitle" style="padding-left: 25px;font-size:9px;color:#FF5346;margin-bottom: 0px;line-height: 2px"> 提到的产品 </div>
+        </div>
         <ul>
             {% for product in question.relatedProductList %}
                 <li ><a href='{% url 'product:product_detail' product.productId %}' style="padding: 0px;margin-bottom: 0px;line-height: 12px;font-size:14px;color:#222;">{{ product.name }}</a></li>
@@ -81,6 +84,9 @@
   </div>
 {% endif %}
 <script type="application/javascript">
+    var pheight = $("#RelatedPros").parent().height() - 25;
+    $("#RelatedPros").css({"height":pheight});
+
     $(".question-body").css({"background-color":"#fff"});
     $(".related-products").css({"background-color":"#fff"});
     $("body").css({"background-color":"#f9f8f5"});

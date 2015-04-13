@@ -30,11 +30,11 @@
 .controll_box .del_btn{background-image:url('/static/images/btn_s_cart_delete_normal@2x.png');width:22px;height:22px;background-size:22px 22px;margin-left:40px;}
 .invalid .selector_box{visibility:hidden;}
 .invalid .num_box{visibility:hidden;}
-.line{height:50px;border-bottom:1px #e4e4e4 solid;line-height:50px;padding:0 12px;}
+.line{height:60px;border-bottom:1px #eee solid;line-height:50px;padding:0 12px;}
 .line .label,.line .input{font-size:14px;color:#666;float:left;}
-.line .label{width:20%;min-width:70px;}
+.line .label{width:20%;min-width:70px;margin-top: 5px;}
 .line .input{width:70%;min-width:210px;}
-.line .input input{width:90%;height:30px;line-height:18px;padding:0px 10px;border:1px #e4e4e4 solid;}
+.line .input input{width:90%;height:30px;line-height:18px;font-size: 14px;margin-top: 5px;padding:5px 10px;border:0px #e4e4e4 solid;-webkit-border-radius: 0px;background-color: #f9f8f5;}
 .line .price_label{color:#aaa;font-size:12px;}
 .line .price_info{color:#ff5346;font-size:22px;}
 .line .price_label,.line .price_info{height:50px;line-height:50px;display:block;float:left;}

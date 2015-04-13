@@ -12,9 +12,9 @@ a{color:#222222}
 .order_background,.orders_background{background-color:#F9F7F5;height:100%;}
 .orders_line,.order_line{border-bottom:thin solid #eee;}
 .order_express_info{height:36px;background-color:#5F1309;padding-top:14px;padding-bottom:14px;}
-.order_express_btn{height:30px;width:30px;margin-top:3px;}
+.order_express_btn{height:30px;width:30px;margin-top:3px;margin-left: 15px}
 .order_express_status{font-size:16px;color:#FFFFFF;height:16px;line-height:16px;}
-.order_express_other_status{font-size:16px;color:#FFFFFF;height:36px;line-height:36px;}
+.order_express_other_status{padding-left: 7px;font-size:16px;color:#FFFFFF;height:36px;line-height:36px;}
 .order_express_num{font-size:11px;color:#FFFFFF;margin-top:9px;height:11px;line-height:11px;}
 .order_service_btn{width:19px;height:17px;}
 .order_service_character{font-size:11px;color:#FFFFFF;margin-top:5px;height:11px;line-height:11px;}
@@ -24,7 +24,7 @@ a{color:#222222}
 .order_buyer_character{color:#666666;font-size:12px;}
 .order_buyer_address{color:#666666;font-size:12px;width:81%;}
 .order_buyer_t{width:100%;left:0px;top:12px;}
-.order_buyer_telephone{margin-right:12px;font-size:16px;height:16px;}
+.order_buyer_telephone{margin-right:12px;font-size:16px;height:16px;padding-top: 22px;}
 .order_order_goods_total{padding-left:12px;padding-right:12px;background-color:#FFFFFF;}
 .order_order_num{font-size:12px;padding-top:17px;color:#666666;}
 .order_order_t{width:100%;left:0px;top:17px;}

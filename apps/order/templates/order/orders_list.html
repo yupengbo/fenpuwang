@@ -40,7 +40,9 @@
    {% for goods in order.orderInfoList%}
     {% if forloop.counter == 1%}
     <div class="orders_goods_info">
-      <img src="{{ goods.goods_pic }}" class="float_l orders_goods_img">
+      <div class="float_l order_goods_img"  style="height: 100px;overflow: hidden">
+      <img src="{{ goods.goods_pic }}" style="width: 100px;">
+      </div>
       <div class="float_l orders_goods_name_size">
           <div class="orders_goods_name color_22">{{ goods.goods_name }}</div>
           <div class="orders_goods_size">{{ goods.price }}/{{ goods.size }}</div>

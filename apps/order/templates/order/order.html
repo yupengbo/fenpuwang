@@ -19,8 +19,7 @@
   {% ifequal order.productOrder.status 3 %}
   <img src="{% static "images/img_order_detail_deliery@2x.png" %}" class="float_l order_express_btn">
   <div class="float_l">
-     <div class="order_express_status">已发货</div>
-     <div class="order_express_num">{{ order.productOrder.transportNum }}</div>
+     <div class="order_express_other_status">已发货</div>
   </div>
   {% endifequal %}
   {% ifequal order.productOrder.status 0 %}
@@ -52,6 +51,10 @@
 </div>
 <div class="order_line marg_t_oz"></div>
 <div class="relative order_line order_buyer_info">
+    <div>
+        <img style="background-size: 16px 12px;width: 16px;height: 12px;float: left" src={% static "images/icon_confirm_order_addressicon@2x.png" %}>
+        <div style="color: #999;font-size: 12px;padding-bottom: 10px;padding-left: 20px">收货信息</div>
+    </div>
     <div class="order_buyer_name">收货人：{{ order.productOrder.userName}}</div>
     <div class="absolute order_buyer_t">
         <div class="float_r order_buyer_telephone">{{ order.productOrder.mobile }}</div>
@@ -65,8 +68,11 @@
 {% if order.productOrder.customerRemark|length %}
 <div class="order_line marg_t_oz"></div>
 <div class="relative order_buyer_info">
-    <div class="order_buyer_name">备注信息</div>
-    <div class="marg_t_one_four">
+    <div>
+        <img style="background-size: 16px 12px;width: 16px;height: 12px;float: left" src={% static "images/icon_confirm_order_note@2x.png" %}>
+        <div style="color: #999;font-size: 12px;padding-bottom: 10px;padding-left: 20px">备注信息</div>
+    </div>
+    <div>
         <div class="float_l order_buyer_address">{{ order.productOrder.customerRemark}}</div>
         <div class="clear"></div>
     </div>
@@ -83,7 +89,9 @@
    {% for product  in order.productOrder.orderInfoList %}
    <div class="order_goods_info">
      <a href='{% url 'product:product_detail' product.productId %}'>
-     <img src="{{ product.goods_pic }}" class="float_l order_goods_img">
+     <div class="float_l order_goods_img"  style="height: 100px;overflow: hidden">
+     <img src="{{ product.goods_pic }}" style="width: 100px">
+     </div>
 	 </a>
      <a href='{% url 'product:product_detail' product.productId %}'>
      <div class="float_l order_goods_name_size" >
@@ -105,14 +113,18 @@
 {% if order.productOrder.transportInfo|length %}
 <div class="order_line marg_t_oz"></div>
 <div class="relative order_buyer_info">
-    <div class="order_buyer_name">物流信息</div>
-    <div class="marg_t_one_four">
+    <div>
+        <img style="background-size: 16px 12px;width: 16px;height: 12px;float: left" src={% static "images/icon_order_detail_delivery@2x.png" %}>
+        <div style="color: #999;font-size: 12px;padding-bottom: 10px;padding-left: 20px">包裹信息</div>
+    </div>
+    <div>
         <div class="float_l order_buyer_address">{{ order.productOrder.transportInfo}}</div>
         <div class="clear"></div>
     </div>
 </div>
 {% endif %}
 <div class="order_line"></div>
+<div style="height: 300px"></div>
 </div>
 <div class='to_pay_hidden hidden'>
   <form method='post' action='{% url 'cart:set_contact' %}' method='POST'>
