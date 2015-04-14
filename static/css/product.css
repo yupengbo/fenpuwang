@@ -34,7 +34,7 @@
 .product_topic_lc_section{width:100%;height:12px;bottom:12px;left:0px;}
 .product_topic_lc{height:12px;}
 .product_topic_like_btn{margin-top:2px;height:12px;width:12px;}
-.product_topic_like_comment{margin-top:2px;height:12px;line-height:12px;font-size:11px;color: #999}
+.product_topic_like_comment{margin-top:4px;height:12px;line-height:12px;font-size:11px;color: #999}
 /*product description*/
 .media_logo{padding:16px 13px; width:98px;}
 .product_desc_body{padding:7px 15px 17px 15px;}
@@ -63,7 +63,7 @@
 .product_consult{width:20%;right:0px;bottom:14px;}
 .product_service_cb{margin-right:20px;}
 .product_service_character{color:#666666;font-size:12px;}
-.product_service_btn{height:21px;width:18px;}
+.product_service_btn{height:18px;width:18px;}
 
 .product_cart_container{border-top:1px #e4e4e4 solid;background-color:rgba(255,255,255,.96);height:60px;line-height:60px;width:100%;position:fixed;bottom:0px;left:0px;z-index:10000;padding:0px 10px;}
 .product_cart_container .cart_download{width:150px;height:44px;padding:8px 6px }
