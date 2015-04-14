@@ -12,6 +12,7 @@
 {% compress js inline %}
 <script type="text/javascript" src="{% static "js/product_list.js" %}"></script>
 {% endcompress %}
+<script type="text/javascript" src="{% static "js/jquery.lazyload.min.js" %}"></script>
 {% endblock %}
 {% block main_content %}
 {% for activity in flash_activity %}

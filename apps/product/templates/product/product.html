@@ -12,6 +12,7 @@
 {% if is_mm == 0 %}
 <script src="https://s.meiqia.com/js/mechat.js?unitid=6497&btn=hide" charset="UTF-8"></script>
 {% endif %}
+<script type="text/javascript" src="{% static "js/jquery.lazyload.min.js" %}"></script>
 {% endblock %}
 
 {% block main_content %}
@@ -25,7 +26,7 @@
   <div class="product_pics t_c">
     {% for pic in product.product.pics %}
 	{% if forloop.first %}
-        <img src="{{ pic.org }}" class="product_pics_img"/>
+        <img data-original="{{ pic.org }}" class="product_pics_img"/>
 	{% endif %}
     {% endfor %}
     <!--img src="{{ product.product.pics }}"/-->
@@ -141,19 +142,19 @@
           {% endif %}
        {% endfor %}
     </div>
-    <div class="float_l" style="margin-left:16px;">
+    <div class="float_l product_layer_info" style="margin-left:16px;">
        <div style="font-size:14px;color:#222;line-height:143%;margin-top:6px;">{{ product.product.name}}</div>
        {% for goods in product.product.goods %}
        <div style="margin-top:3px;display:none;" class="product_fixed_ps" goodsId="{{ goods.goodsId }}"><span style="color:#ff5346;font-size:10px;">¥{{ goods.goodsPrice }}</span><span style="color:#dbdbdb;font-size:10px;">/{{ goods.size }}</span></div>
        {% endfor %}
     </div>
-    <div class="absolute" style="width:100%;left:0px;top:8px;">
-         <img src="{% static "images/btn_product_detail_incart_cancel_normal@2x.png" %}" style="height:30px;width:30px;float:right;margin-right:5%;" class="exit_btn">
+    <div class="absolute" style="width:100%;left:0px;top:0px;">
+         <img src="{% static "images/btn_product_detail_incart_cancel_normal@2x.png" %}" style="height:30px;width:30px;float:right;margin-right:2%;" class="exit_btn">
     </div>
   </div>
    {% for goods in product.product.goods %}
-  <div style="height:36px;width:85px;margin-left:5%;margin-top:16px;" class="float_l haha">
-    <div style="border:1px solid #666;font-size:12px;line-height:36px;" class="center abc" sizeId="{{ goods.goodsId }}">{{ goods.size }}</div>
+  <div style="height:36px;min-width:85px;margin-left:5%;margin-top:16px;" class="float_l haha">
+    <div style="border:1px solid #666;font-size:12px;line-height:36px;padding-left:5px;padding-right:5px;" class="center abc" sizeId="{{ goods.goodsId }}">{{ goods.size }}</div>
   </div>
   {% endfor %}
   <div style="clear:both;"></div>
@@ -216,6 +217,8 @@ $(document).ready(function(){
     setTimeout(function(){$(".cart-pop").fadeOut("slow");},1300);
   });
 /////////////////////////
+  //var prodcut_info_width = $(".product_more_standard").width()*0.9 - 68 - 30;
+  //$(".product_info").css("width",product_info_width);
   var market_section_width = $(".product_market_ps").width() + $(".product_market_price_btn").width() + 7;
   $(".product_market_section").css("width",market_section_width);
   //var current_num = parseInt($(".product_num").html());
@@ -272,6 +275,8 @@ $(document).ready(function(){
 	$("#main-content").css('overflow','hidden');
     $(".abc").eq(0).click();
     $(".cover_layer").show();
+    var product_layer_info_width = ($(".product_more_standard").width())*0.9 - 68 - 30;
+    $(".product_layer_info").css("width",product_layer_info_width);
   });
   $(".cover_layer").click(function(){
     $(".exit_btn").click();
@@ -288,6 +293,11 @@ $(document).ready(function(){
   });
   $(".product_send_time").eq(0).show();
   
+  $(".product_pics_img").show().lazyload({
+      placeholder:"{% static "images/img_product_place_holder_cell@2x.png" %}", 
+      threshold:200,
+      //effect:"fadeIn",
+   });
 });
 </script>
 
