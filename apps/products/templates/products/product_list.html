@@ -1,3 +1,14 @@
+{% load static %}
+{% if productList|length %}
 {% for product in productList %}
     {% include "items/productItem.html" %}
 {% endfor %}
+{% else %}
+<div style="margin-top: 160px;text-align: center">
+<img style="background-size: 72px 72px;width: 72px;height: 72px;" src={% static "images/img_empty_top@2x.png" %}>
+<div style="margin-top: 20px;text-align: center;color: #C2A7A2;font-size: 14px">暂时没有明星产品哦</div>
+</div>
+{% endif %}
+
+
+
