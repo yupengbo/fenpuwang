@@ -56,7 +56,7 @@
         <div class="topic_detail_time">{{ featureTopic.digitalTime }}</div>
    </div>
  </div>
- <div class="height_ot bgc_w marg_b_oe">
+ <div class="height_ot bgc_w ">
     <div class="float_r height_ot">
       <div class="float_l topic_detail_likeIcon"></div>
       <div class="float_l topic_detal_likeNum">&nbsp;{{ featureTopic.likeNum }}&nbsp;&nbsp;&nbsp;&nbsp;</div>
@@ -107,7 +107,7 @@
       {% if contentInfo.href %}
 	    <a href='{{ contentInfo.href }}' >
 	  {% endif %}
-	   <img src='{{ contentInfo.pic.org }}' alt='{{ featureTopic.content|truncatechars:20 }}'/>
+	   <img src='{{ contentInfo.pic.org }}' alt='{{ featureTopic.content|truncatechars:20 }}' style="border: 0px"/>
 	 {% endif %}
 	  {% if contentInfo.href %}
         </a>
