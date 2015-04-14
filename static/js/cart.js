@@ -87,7 +87,7 @@ $(function(){
     $("#order_form").submit();
   });
   reset_val();
-  $(".footer_download").hide();
+  $(".bottom_download").hide();
   $('.payment').click(function(){
     var $sel = $(this).find('.pay_selector');
     $("#payment").val($sel.attr("payment_code"));
