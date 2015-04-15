@@ -81,10 +81,10 @@ opacity:0;/*FF*/
 <div class="relative banner_pre" style="{% if is_flashing == 1 %}display:none;{% endif %}">
   <img src="http://static.fenpuwang.com/images/banner_big_sale_pre.jpg" class="banner_img">
   <div class="absolute banner_button_section">
-       <a class='btn_get_qualification' href="javascript:void(0);" ><div class="div_center banner_button">获取秒杀资格</div></a>
+       <a class='btn_get_qualification' href="javascript:void(0);" ><div class="div_center banner_button" style="display:none;">获取秒杀资格</div></a>
   </div>
   <div class="absolute countdown_letter_time">
-     <div class="marg_l_ft">
+     <div class="marg_l_ft" style="display:none;">
        <div class="countdown_letter">距离开抢还有</div>
        <div class="countdown_time"></div>
      </div>
@@ -93,7 +93,7 @@ opacity:0;/*FF*/
 <div class="banner_ing relative" style="{% if is_flashing == 0 %}display:none;{% endif %}">
   <img src="http://static.fenpuwang.com/images/banner_big_sale_ing.jpg" class="banner_ing_img">
   <div class="absolute seckill_letter_time">
-    <div class="marg_l_ft">
+    <div class="marg_l_ft" style="display:none;">
        <div class="seckill_letter">距离本场结束还有</div>
        <div class="seckill_time"></div>
     </div>
@@ -142,7 +142,7 @@ opacity:0;/*FF*/
 <div class="relative tomorrow_section" style="{% if is_flashing == 0 %}display:none;{% endif %}">
   <img src="http://static.fenpuwang.com/images/banner_big_sale_next.jpg" class="tomorrow_img">
   <div class="absolute tomorrow_button_section">
-     <a class='btn_get_qualification' href="javascript:void(0);"><div class="div_center tomorrow_button">点击获取明日秒杀资格</div></a>
+     <a class='btn_get_qualification' href="javascript:void(0);"><div class="div_center tomorrow_button" style="display:none;">点击获取明日秒杀资格</div></a>
   </div>
 </div>
 <iframe id='fenpuFrame' style='display:none;'></iframe>
@@ -492,6 +492,8 @@ $(document).ready(function(){
    // $(".seckill_price_section").css("width",price_section_width);
    // $(".tomorrow_price_section").css("width",tomorrow_section_width);
     loadImage($(".banner_img").attr('src'),function(){
+       $(".banner_button").show();
+       $(".countdown_time").parent().show(); 
        var banner_button_width = banner_img_width() * 0.55;
        var banner_button_height = banner_img_height() * 0.21;
 	   var banner_button_font_size = banner_button_height * 0.36; 
@@ -500,13 +502,15 @@ $(document).ready(function(){
 			"height":banner_button_height,
 			"line-height":(banner_button_height-8)+"px",
 		    "font-size":banner_button_font_size
-	   }); 
+	   }
+       ); 
        var countdown_today_time = banner_img_height() * 0.06;
        var countdown_today_letter = banner_img_height() * 0.04;
        $(".countdown_time").css("font-size",countdown_today_time);
        $(".countdown_letter").css("font-size",countdown_today_letter); 
 	});
     loadImage($(".tomorrow_img").attr('src'),function(){
+       $(".tomorrow_button").show();
        var tomorrow_button_width = tomorrow_img_width() * 0.62;
        var tomorrow_button_height = tomorrow_img_height() * 0.18;
 	   var tomorrow_button_font_size = tomorrow_button_height * 0.36; 
@@ -518,6 +522,7 @@ $(document).ready(function(){
 	   });
 	});
     loadImage($(".banner_ing_img").attr('src'),function(){
+       $(".seckill_time").parent().show();
        var seckill_time = banner_ing_height() * 0.12;
        var seckill_letter =  banner_ing_height() * 0.04;
        $(".seckill_time").css("font-size",seckill_time);

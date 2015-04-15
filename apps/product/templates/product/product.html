@@ -37,7 +37,7 @@
     {% if product.product.alias %}
     <div class="center product_nickname">又名&nbsp;{{ product.product.alias }}</div>
     {% endif %}
-    <div class="product_market_section">
+    <div class="product_market_section" style="display:none;">
       <img src="{% static "images/img_product_detail_price@2x.png" %}" class="float_l product_market_price_btn">
       <div class="float_l product_market_ps"><span class="product_market_price">¥{{ product.product.price }}</span><span class="product_market_size">/{{ product.product.size }}</span></div>
     </div>
@@ -195,7 +195,7 @@ show_right_info();
 
 $(document).ready(function(){
   var current_num = parseInt($(".product_num").html());
-  $(".footer_download").hide();
+  $(".bottom_download").hide();
   $(".product_in_cart").click(function(){
     var goods_id = $(".current").attr("sizeId");
     //alert($(this).index());
@@ -219,6 +219,7 @@ $(document).ready(function(){
 /////////////////////////
   //var prodcut_info_width = $(".product_more_standard").width()*0.9 - 68 - 30;
   //$(".product_info").css("width",product_info_width);
+  $(".product_market_section").show();
   var market_section_width = $(".product_market_ps").width() + $(".product_market_price_btn").width() + 7;
   $(".product_market_section").css("width",market_section_width);
   //var current_num = parseInt($(".product_num").html());
