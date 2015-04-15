@@ -255,6 +255,6 @@ def get_university_address(activity_key):
    if not activity_key or activity_key == 1:
        return "医务室对面水吧"
    elif activity_key == 'bdfa1841d81cbc3b7a3d8de93aedd357':
-       return "医务室对面水吧"
+       return "二号球场门口"
    else:
        return "医务室对面水吧"
