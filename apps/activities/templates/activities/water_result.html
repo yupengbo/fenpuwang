@@ -48,11 +48,13 @@ body{background-color:#e84c3f;}
      <img src='http://dabanniu.oss.aliyuncs.com/images/water_success_{{ activity_key }}.png' style='width:80%;'/>
   </div> 
   <div class='absolute time_view' style='left:0px;top:300px;z-index:2;text-align:center;'>
+    {% if not cant_valid   %}
      <span class='seckill_time m_1'>0</span>
      <span class='seckill_time m_2'>0</span>
      <span class='seckill_time_s s_p'>:</span>
      <span class='seckill_time s_1'>0</span>
      <span class='seckill_time s_2'>0</span>
+	{% endif %}
   </div>
   <div class='absolute' style='left:0px;bottom:0px;z-index:3;'>
      <img id='ercode' src='http://dabanniu.oss.aliyuncs.com/images/water_result_ercode_{{ activity_key }}.png' style='width:100%'/>
