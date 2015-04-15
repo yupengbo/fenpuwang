@@ -16,10 +16,10 @@ def process_product_data(product_data):
         if content['type'] == 0:
 
             if content['question']['relatedAnswer']!=None:     #答案有可能不存在
-                content['question']['relatedAnswer']['content'] = string_utils.truncate_text(content['question']['relatedAnswer']['content'])   
+                # content['question']['relatedAnswer']['content'] = string_utils.truncate_text(content['question']['relatedAnswer']['content'])
+                content['question']['relatedAnswer']['content'] = string_utils.truncate_text2(content['question']['relatedAnswer']['content'],80)
 
             content['question']['title'] = string_utils.truncate_text2(content['question']['title'],36)
-            content['question']['relatedAnswer']['content'] = string_utils.truncate_text2(content['question']['relatedAnswer']['content'],80)
 
         if content['type'] == 1:
             if content['featureTopic'] != None:
