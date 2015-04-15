@@ -1,14 +1,27 @@
-{% extends "base_no_nav.html" %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="baidu-site-verification" content="ZoKaXQ0GoY" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+        <meta name="description" content="{{ name }}的姑娘们，免费领脉动啦！{{ address }}领取[粉扑APP]"/>
+        <meta name="keywords" content="{{ name }}的姑娘们，免费领脉动啦！{{ address }}领取[粉扑APP] "/>
+        <title>{{ name }}的姑娘你看过来</title>
+        <meta name="format-detection" content="telephone=no"/>  
+        {% load static %}
+        {% load compress %}
+        <link rel="icon" href="{% static "images/Icon-Small.ico" %}" mce_href="{% static "images/Icon-Small.ico" %}" type="image/x-icon" />
+        <link rel="shortcut icon" href="{% static "images/Icon-Small.ico" %}" type="image/x-icon" />
+        {% compress css inline %}
+        <link rel="stylesheet" href="{% static "css/style.css" %}?v=1.1">
+        {% endcompress%}
+        <script type="text/javascript" src="http://static.fenpuwang.com/js/jquery.min.js"></script>
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript" src="{% static "js/water.js" %}?v=1.8"></script>
+    </head>
 
-{% block keywords %} {{ name }}的姑娘们，免费领脉动啦！{{ address }}领取[粉扑APP] {% endblock %}
-{% block description %} {{ name }}的姑娘们，免费领脉动啦！{{ address }}领取[粉扑APP]  {% endblock %}
-{% block title %} {{ name }}的姑娘你看过来 {% endblock %}
-{% block script %}
-    {% load static %}
-	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-	<script type="text/javascript" src="{% static "js/water.js" %}?v=1.8"></script>
-{% endblock %}
-{% block main_content %}
+    <body>
 <style>
 html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,em,font,img,small,strong,b,u,i,s,dl,dt,dd,ol,ul,li,fieldset,form,label {padding:0px;margin:0px;-webkit-tap-highlight-color:rgba(0,0,0,0);}
 a,img {border:0;}
@@ -129,4 +142,5 @@ $("img").load(function(){
   $(".weixin_share").height($('#ercode').offset().top+$('#ercode').height());
 });
 </script>
-{% endblock %}
+    </body>
+</html>
