@@ -240,6 +240,8 @@ def get_university_name(activity_key):
        return "燕京理工"
    elif activity_key == 'bdfa1841d81cbc3b7a3d8de93aedd357':
        return "北京体育大学"
+   elif activity_key == 'a0555f09ff78b67289f9ecd65b7f5c28':
+       return "北京科技大学"
    else:
        return "燕京理工"
 
@@ -247,6 +249,8 @@ def get_cant_valid(activity_key):
    if not activity_key or activity_key == 1:
        return "false"
    elif activity_key == 'bdfa1841d81cbc3b7a3d8de93aedd357':
+       return "true"
+   elif activity_key == 'a0555f09ff78b67289f9ecd65b7f5c28':
        return "true"
    else:
        return "false"
@@ -256,5 +260,7 @@ def get_university_address(activity_key):
        return "C108"
    elif activity_key == 'bdfa1841d81cbc3b7a3d8de93aedd357':
        return "二号球场门口"
+   elif activity_key == 'a0555f09ff78b67289f9ecd65b7f5c28':
+       return "七斋南侧"
    else:
        return "C108"
