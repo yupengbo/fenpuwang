@@ -161,7 +161,7 @@ def water(request,activity_key):
     ticket_info = {}
     suc = request.COOKIES.get("suc")
     if suc:
-       return HttpResponseRedirect(reverse("activities:water_result",kwargs={}));
+       return HttpResponseRedirect(reverse("activities:water_result_new",kwargs={"activity_key": activity_key}));
     base_uri = weixin_utils.get_base_uri(request)
     ip = response_data_utils.get_ip(request)
     response_data_utils.error_log(request, "water_in_water|" + str(ip)  , __name__ , "water_in_water|" + str(ip))
@@ -183,7 +183,10 @@ def water(request,activity_key):
     meta_data['appid'] = weixin_utils.get_appid()
     meta_data['base_uri'] = base_uri
     meta_data['share_uri'] = share_uri
-    return render(request, 'activities/water' + activity_key +'.html', meta_data)
+    meta_data['activity_key'] = activity_key
+    meta_data['name'] = get_university_name(activity_key)
+    meta_data['address'] = get_university_address(activity_key)
+    return render(request, 'activities/water_1.html', meta_data)
 
 
 def get(request):
@@ -205,19 +208,19 @@ def get(request):
       print '曾经获得过'
    return response
 
-def result(request):
+def result_new(request, activity_key=1):
    suc = request.COOKIES.get("suc")
    get_timestamp = request.COOKIES.get("get_timestamp")
-   print suc
-   print get_timestamp
    timestamp = int(time.time() * 1000)
+   if not activity_key:
+      activity_key = 1
    ip = response_data_utils.get_ip(request)
    response_data_utils.error_log(request, "water_get_result|"  , __name__ , "water_get_result|")
    #get_timestamp = timestamp - 495000
    duration = 3600000
    if ( not suc ) or ( not get_timestamp ) or ( suc != '1' ):
       print '非法'
-      return HttpResponseRedirect(reverse("activities:water",kwargs={"activity_key": "1"}));
+      return HttpResponseRedirect(reverse("activities:water",kwargs={"activity_key": activity_key}));
    if timestamp > int(get_timestamp) + duration:
       print '超时'
    #   raise Http404()
@@ -226,5 +229,32 @@ def result(request):
    meta_data ['server_time_stamp'] = timestamp
    meta_data ['sucess'] = suc
    meta_data ['duration'] = duration
+   meta_data ['activity_key'] = activity_key
+   meta_data ['name'] = get_university_name(activity_key)
+   meta_data ['address'] = get_university_address(activity_key)
+   meta_data ['cant_valid'] = get_cant_valid(activity_key)
    return render(request, 'activities/water_result.html', meta_data)
 
+def get_university_name(activity_key):
+   if not activity_key or activity_key == 1:
+       return "燕京理工"
+   elif activity_key == 'bdfa1841d81cbc3b7a3d8de93aedd357':
+       return "北京体育大学"
+   else:
+       return "燕京理工"
+
+def get_cant_valid(activity_key):
+   if not activity_key or activity_key == 1:
+       return "false"
+   elif activity_key == 'bdfa1841d81cbc3b7a3d8de93aedd357':
+       return "true"
+   else:
+       return "false"
+
+def get_university_address(activity_key):
+   if not activity_key or activity_key == 1:
+       return "C108"
+   elif activity_key == 'bdfa1841d81cbc3b7a3d8de93aedd357':
+       return "二号球场门口"
+   else:
+       return "C108"

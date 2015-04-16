@@ -1,14 +1,25 @@
-{% extends "base_no_nav.html" %}
-
-{% block title%}
-燕京理工的姑娘们，免费领脉动啦！医务室对面水吧领取[粉扑APP]
-{% endblock title %}
- {% load static %}
-{% block script%}
-<script type="text/javascript" src="{% static "js/base.js" %}?v=1.3"></script>
-{% endblock %}
-
-{% block main_content %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="baidu-site-verification" content="ZoKaXQ0GoY" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+        <meta name="description" content="{{ name }}的姑娘们，免费领脉动啦！{{ address }}领取[粉扑APP]"/>
+        <meta name="keywords" content="{{ name }}的姑娘们，免费领脉动啦！{{ address }}领取[粉扑APP] "/>
+        <title>{{ name }}的姑娘你看过来</title>
+        <meta name="format-detection" content="telephone=no"/>  
+        {% load static %}
+        {% load compress %}
+        <link rel="icon" href="{% static "images/Icon-Small.ico" %}" mce_href="{% static "images/Icon-Small.ico" %}" type="image/x-icon" />
+        <link rel="shortcut icon" href="{% static "images/Icon-Small.ico" %}" type="image/x-icon" />
+        {% compress css inline %}
+        <link rel="stylesheet" href="{% static "css/style.css" %}?v=1.1">
+        {% endcompress%}
+        <script type="text/javascript" src="http://static.fenpuwang.com/js/jquery.min.js"></script>
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    </head>
+    <body>
 <style>
 html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,em,font,img,small,strong,b,u,i,s,dl,dt,dd,ol,ul,li,fieldset,form,label {padding:0px;margin:0px;-webkit-tap-highlight-color:rgba(0,0,0,0);}
 a,img {border:0;}
@@ -45,17 +56,19 @@ body{background-color:#e84c3f;}
 <img src='http://dabanniu.oss.aliyuncs.com/images/water_icon.jpg?v=1' style='width:0px;height:0px;'/>
 <div class='relative con' >
   <div class='absolute' style='left:0px;top:65px;z-index:1;'>
-     <img src='http://dabanniu.oss.aliyuncs.com/images/water_success.png' style='width:80%;'/>
+     <img src='http://dabanniu.oss.aliyuncs.com/images/water_success_{{ activity_key }}.png' style='width:80%;'/>
   </div> 
   <div class='absolute time_view' style='left:0px;top:300px;z-index:2;text-align:center;'>
+    {% if not cant_valid   %}
      <span class='seckill_time m_1'>0</span>
      <span class='seckill_time m_2'>0</span>
      <span class='seckill_time_s s_p'>:</span>
      <span class='seckill_time s_1'>0</span>
      <span class='seckill_time s_2'>0</span>
+	{% endif %}
   </div>
   <div class='absolute' style='left:0px;bottom:0px;z-index:3;'>
-     <img id='ercode' src='http://dabanniu.oss.aliyuncs.com/images/water_result_ercode.png' style='width:100%'/>
+     <img id='ercode' src='http://dabanniu.oss.aliyuncs.com/images/water_result_ercode_{{ activity_key }}.png' style='width:100%'/>
   </div>
         <div class="hidden">
           <script type="text/javascript">
@@ -68,6 +81,7 @@ body{background-color:#e84c3f;}
 $(document).ready(function(){
     var offset_time = 0;
 	var base_client_time = new Date().getTime();
+	var cant_valid = {{ cant_valid }};
     function currentTime(){
 	   var current_client_time = new Date().getTime();
 	   if ( (current_client_time - base_client_time - offset_time) > 3000  ){
@@ -88,6 +102,10 @@ $(document).ready(function(){
        var start_time = startTime();
        var continue_time = continueTime();
 	   var temp_status;
+	   if (cant_valid){
+	      $('.time_view').html("");
+		  return 
+	   }
        if(current_time >=start_time && current_time <= start_time+continue_time){
            reload_time();
            offset_time = offset_time + 1000;
@@ -118,4 +136,5 @@ $("img").load(function(){
 });
 });
 </script>
-{% endblock %}
+    </body>
+</html>
