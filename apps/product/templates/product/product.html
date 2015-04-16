@@ -135,17 +135,19 @@
 <!--规格选择栏-->
 <div style="position:fixed;bottom:0px;left:0px;width:100%;background-color:white;display:none;z-index:20000" class="product_more_standard">
   <div style="height:68px;margin-left:5%;margin-top:16px;" class="relative">
-    <div style="border-radius:50%;boder:1px solid #ececec;height:68px;width:68px;overflow:hidden;" class="float_l">
+    <div style="height:68px;width:68px;" class="float_l">
+     <div style="border-radius:50%;border:1px solid #e4e4e4;overflow:hidden;" >
        {% for pic in product.product.pics %}
           {% if forloop.first %}
        <img src="{{ pic.org }}" style="height:68px;">
           {% endif %}
        {% endfor %}
+     </div>
     </div>
-    <div class="float_l product_layer_info" style="margin-left:16px;">
-       <div style="font-size:14px;color:#222;line-height:143%;margin-top:6px;">{{ product.product.name}}</div>
+    <div class="float_l product_layer_info" style="margin-left:6px;">
+       <div style="font-size:14px;color:#222;line-height:143%;margin-top:16px;">{{ product.product.name}}</div>
        {% for goods in product.product.goods %}
-       <div style="margin-top:3px;display:none;" class="product_fixed_ps" goodsId="{{ goods.goodsId }}"><span style="color:#ff5346;font-size:10px;">¥{{ goods.goodsPrice }}</span><span style="color:#dbdbdb;font-size:10px;">/{{ goods.size }}</span></div>
+       <div style="margin-top:3px;display:none;" class="product_fixed_ps" goodsId="{{ goods.goodsId }}"><span style="color:#ff5346;font-size:14px;">¥{{ goods.goodsPrice }}</span><span style="color:#dbdbdb;font-size:10px;">/{{ goods.size }}</span></div>
        {% endfor %}
     </div>
     <div class="absolute" style="width:100%;left:0px;top:0px;">
@@ -177,7 +179,7 @@
 
 <!--遮盖-->
 {% block cover %}
-<div style="display:none;filter:alpha(opacity=60);opacity:0.6;-moz-opacity:0.6;-khtml-opacity:0.6;width:100%;height:100%;background-color:rgb(0,0,0);left:0px;top:0px;z-index:10000;" class="absolute cover_layer"></div>
+<div style="display:none;filter:alpha(opacity=30);opacity:0.3;-moz-opacity:0.3;-khtml-opacity:0.3;width:100%;height:100%;background-color:rgb(0,0,0);left:0px;top:0px;z-index:10000;" class="absolute cover_layer"></div>
 {% endblock %}
 <!--end-->
 <script type="application/javascript">
@@ -258,7 +260,7 @@ $(document).ready(function(){
   $(".product_fixed_ps").first().show();
   $(".abc").click(function(){
     $(this).css("border","2px solid #ff5346");
-    $(".haha div").not($(this)).css("border","1px solid #666");
+    $(".haha div").not($(this)).css("border","1px solid #dbdbdb");
     var size = $(this).attr("sizeId");
 	$(".abc").removeClass("current");
     $(this).addClass("current");
