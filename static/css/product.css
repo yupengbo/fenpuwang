@@ -50,7 +50,7 @@
 .product_cart_btn{width:22px;height:22px;}
 .product_market_section{height:15px;line-height:15px;margin:10px auto 0px;}
 .product_market_ps{margin-left:4px;}
-.product_market_price{font-size:13px;}
+.product_market_price{font-size:13px;color: #444}
 .product_market_size{color:rgb(153,153,153);font-size:13px;}
 .product_market_price_btn{height:15px;width:30px;}
 .product_like_nb{width:100%;left:0px;bottom:15px;}
