@@ -9,6 +9,7 @@ from apps.api import api_list, static_data
 from django.core.urlresolvers import reverse
 import json
 import logging
+import time
 
 logger = logging.getLogger('django')
 def products_index(request):
@@ -199,6 +200,9 @@ def seckill_process(data):
 #        letter["continue_time"] = 300000
         #letter["remaining_stock"] = 0
         letter["discount"] = round(letter["flash_sizes"]["price"]/letter["price"]*10 ,1)
+        for le in letter["goods"]:
+            le["last_sold_time"] = time.strftime("%H:%M",time.localtime(le["last_sold_time"]/1000))
+                
 
 
 def seckill_stock_process(data):
