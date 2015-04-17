@@ -266,9 +266,15 @@ function refreshStock(){
 	  function(data){
 		if(data.error == 0){
 		   for (var stock_i in data.list){
-		      var stock_num = data.list[stock_i];
+		      var stock_num = data.list[stock_i].split(";")[0];
+                      var sold_time = data.list[stock_i].split(";")[1];
 			  $p = $("#"+stock_i);
-			  $p.html("仅剩"+stock_num+"件");
+                          if(parseInt(stock_num) > 0){
+		             $p.html("仅剩"+stock_num+"件，秒杀中");
+                          }
+                          if(parseInt(stock_num) == 0){
+                             $p.html("剩余"+stock_num+"件，已于"+sold_time+"秒完");   
+                          } 
 			  $p_p = $p.parents(".flashing_goods_list");
 			  if(stock_num > 0){
 				 $p_p.find(".add_to_cart").show();
