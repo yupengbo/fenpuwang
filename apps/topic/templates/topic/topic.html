@@ -198,31 +198,40 @@
 <div class='divide_line'></div>
 <div class='comment_mainbody'>
  <div class="typeface">全部评论&nbsp;{{ commentsTopic.totalNumber}}</div>
- {% for comment in commentsTopic.commentList %}
- <div class='comment_divide_line'></div>
- <div class='height_three_five'>
-   {% if comment.user.avatarURL %}
-   <div class='float_l user_avatars' style="background-image:url('{{ comment.user.avatarURL }}');"></div>
-   {% else %}
-   <div class='float_l user_avatars' style="background-image:url('{% static "images/img_user_avatars_default@2x.png" %}');"></div>
-   {% endif %}
-   <div class='float_l pad_l_e'>
-       <div class='user_name'>{{ comment.user.userName }}</div>
-       <div class='comment_time'>{{ comment.creationTime }}</div>
-   </div>
- </div>
- <div class='comment_content'>{{ comment.content }}</div>
-  {% if comment.rComment %}
- <div class='be_comment_section'>{{ comment.rComment.user.userName}}：{{ comment.rComment.content}}</div>
-  {% endif %}
- {% endfor %}
+  {% include "topic/topic_comments.html" %}
+</div>
+<div style="position:fixed;bottom:53px;left:0px;width:100%;text-align:center;display:none;" class="scroll_icon">
+   <img src="{% static "images/icon_feed_loading.gif" %}" style="width:30px;height:30px;">
 </div>
 <script>
-
 $(".topic_content").css({"background-color":"#fff"});
 $(".topic_content").css({"background-color":"#fff"});
 $("body").css({"background-color":"#f9f8f5"});
-
+$.extend({
+   url:"{{ url }}",
+});
+$(document).ready(function(){
+    $(window).scroll(function(){
+        if($(window).scrollTop()+$(window).height() == $(document).height()){
+           //$(".scroll_icon").show();
+           var current_mark =($.url).split("mark")[1];
+           if(current_mark != "/0/"){
+             $.ajax({
+               type:"get",
+               url:$.url,
+               beforeSend:function(){$(".scroll_icon").show();},
+               success:function(data){
+                          $(".scroll_icon").hide();
+                          content = data.html
+                          $.url=data.url
+                          $(".typeface").append(content);
+                        },
+               complete:function(){}
+            });
+          } 
+       }
+   });
+});
 </script>
 {% endblock %}
 

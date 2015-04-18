@@ -95,6 +95,10 @@ def get_feature_topic_info(req, feature_topic_id, topicVersion = 1):            
 def get_feature_topic_comments(req, feature_topic_id, rCommentId = 0,pre = 20, mark = 0):      #kim
     params ={'featureTopicId': feature_topic_id,'rCommentId':rCommentId,'pre':pre,'mark':mark}
     return get_result(req,'listFeatureTopicComments.do',params)
+
+def get_topic_info_comments(req,feature_topic_id,mark,rCommentId = 0,pre = 20):
+    params = {'featureTopicId':feature_topic_id,'rCommentId':rCommentId,'pre':pre,'mark':mark}
+    return get_result(req,'listFeatureTopicComments.do',params)
     
 def get_user_change_log(req, sessionKey, unionKey, mark = 0):
     params = {'sessionKey': sessionKey, 'unionKey':unionKey, 'mark': mark}

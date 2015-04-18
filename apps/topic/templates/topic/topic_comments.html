@@ -1,0 +1,19 @@
+{% load static %}
+{% for comment in commentsTopic.commentList %}
+  <div class='comment_divide_line'></div>
+  <div class='height_three_five'>
+    {% if comment.user.avatarURL %}
+    <div class='float_l user_avatars' style="background-image:url('{{ comment.user.avatarURL }}');"></div>
+    {% else %}
+    <div class='float_l user_avatars' style="background-image:url('{% static "images/img_user_avatars_default@2x.png" %}');"></div>
+    {% endif %}
+    <div class='float_l pad_l_e'>
+        <div class='user_name'>{{ comment.user.userName }}</div>
+        <div class='comment_time'>{{ comment.creationTime }}</div>
+    </div>
+  </div>
+  <div class='comment_content'>{{ comment.content }}</div>
+   {% if comment.rComment %}
+  <div class='be_comment_section'>{{ comment.rComment.user.userName}}：{{ comment.rComment.content}}</div>
+   {% endif %}
+{% endfor %}

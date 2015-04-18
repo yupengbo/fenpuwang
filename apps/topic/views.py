@@ -43,13 +43,14 @@ def topic_info(request, topic_id):
         process_topic_data(topic_json)
         process_topic_url(uid, topic_json)
         topic_comments_json = topic_comments(request,topic_id)
-        meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic'],'commentsTopic':topic_comments_json,'nav':'topic','navTitle':'笔记详情','bottom_download':bottom_download, 'fromUserName':from_user_name})
+        next_page_url = reverse("topic:topic_info_comments",kwargs={"topic_id":topic_id,"mark":topic_comments_json["mark"]})
+        meta = response_data_utils.pack_data(request, {'featureTopic': topic_json['featureTopic'],'commentsTopic':topic_comments_json,'nav':'topic','navTitle':'笔记详情','bottom_download':bottom_download, 'fromUserName':from_user_name,'url':next_page_url})
         return weixin_auth_utils.fp_render(request,'topic/topic.html', meta, session)
     except Exception,e:
        return response_data_utils.error_response(request,"服务器忙，请稍后重试！", __name__, e, session) 
 
 def topic_comments(request,topic_id):                        #kim
-    topic_comments_json = api_list.get_feature_topic_comments(request, topic_id)
+    topic_comments_json = api_list.get_feature_topic_comments(request,topic_id)
     if not topic_comments_json or topic_comments_json['error'] != 0:
         return response_data_utils.error_comments(request,"评论不存在",__name__, topic_comments_json)
     topic_comments_json = process_comments(request,topic_comments_json)
@@ -62,6 +63,16 @@ def process_comments(request,comments):                      #kim
             comment["rComment"]["content"] = string_utils.truncate(comment["rComment"]["content"])
     return comments
 
+def topic_info_comments(request,topic_id,mark):
+    if request.is_ajax:
+        topic_info_comments_json = api_list.get_topic_info_comments(request,topic_id,mark,0,20)
+        if topic_info_comments_json.get("commentList"):
+            next_page_url = reverse("topic:topic_info_comments",kwargs={"topic_id":topic_id,"mark":topic_info_comments_json["mark"]})
+            meta = {"commentsTopic":topic_info_comments_json}
+            t  = loader.get_template("topic/topic_comments.html")
+            c  = RequestContext(request,meta)
+            meta_dic = {'html':t.render(c),'url':next_page_url}
+            return HttpResponse(json.dumps(meta_dic),content_type="application/json")
  
 def topic_list(request, mark=0):
     is_ajax = request.is_ajax()
