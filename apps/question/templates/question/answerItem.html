@@ -1,11 +1,11 @@
 <div class="answer-item">
     <div class="answer-user-profile">
         <img class="s_avatar fl" src="{{ answer.user.avatarURL }}" alt="avatar" />
-        <span class="f13 fcg1 fl">{{ answer.user.userName }}</span>
+        <span class="fcg1 fl"  style="font-size: 12px;margin-top: 1px">{{ answer.user.userName }}</span>
         <em class="f10 fcg1 fr">
             {{ answer.user.profile }}
         </em>
-		<div class='clear'></div>
+		<div class='clear' style="height: 5px"></div>
     </div>
     <div class="answer-content  f13 fcg2">
         {{ answer.content|safe }}<em>&nbsp;</em>
@@ -16,4 +16,3 @@
     	<div class='sp_line'></div>
 	{% endif %}
 </div>
-

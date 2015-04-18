@@ -1,4 +1,12 @@
 {% load static %}
+
+{% if order_list|length == 0 %}
+<div style="margin-top: 150px;text-align: center;">
+<img style="background-size: 123px 89px;width: 123px;height: 89px;" src={% static "images/img_empty_data_order@2x.png" %}>
+<div style="margin-top: 30px;text-align: center;font-size: 17px;color: #C2A7A2">你还没有在粉扑买过东西呢</div>
+</div>
+{% endif %}
+
 {% for order in order_list%}
 <div class="orders_line"></div>
 <div class="orders_line marg_t_oz"></div>

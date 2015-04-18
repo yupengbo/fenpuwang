@@ -9,6 +9,7 @@ from apps.api import api_list, static_data
 from django.core.urlresolvers import reverse
 import json
 import logging
+import time
 
 logger = logging.getLogger('django')
 def products_index(request):
@@ -166,7 +167,8 @@ def ajax_get_stock(request):
     #seckill_today_list = seckill_result["tomorrowProductList"]
     seckill_today_list = seckill_result["todayProductList" ]
     stock_data = seckill_stock_process(seckill_today_list)
-    meta_data = {"error":0 ,"list": stock_data}
+    sold_time = seckill_sold_time_process(seckill_today_list)
+    meta_data = {"error":0 ,"list": stock_data,"time_list":sold_time}
     return HttpResponse(json.dumps(meta_data), content_type="application/json")
 
 def ajax_exists_qualification(request):
@@ -199,6 +201,9 @@ def seckill_process(data):
 #        letter["continue_time"] = 300000
         #letter["remaining_stock"] = 0
         letter["discount"] = round(letter["flash_sizes"]["price"]/letter["price"]*10 ,1)
+        for le in letter["goods"]:
+            le["last_sold_time"] = time.strftime("%H:%M",time.localtime(le["last_sold_time"]/1000))
+                
 
 
 def seckill_stock_process(data):
@@ -207,7 +212,11 @@ def seckill_stock_process(data):
         letter["remaining_stock"] = letter["stock"] - letter["sold_num"] 
         if letter["remaining_stock"] < 0 :
              letter["remaining_stock"] = 0
-        stock_data["stock_" + str(letter["productId"])] = letter["remaining_stock"]
+        letter["goods"][0]["last_sold_time"] = time.strftime("%H:%M",time.localtime(letter["goods"][0]["last_sold_time"]/1000))
+        stock_data["stock_" + str(letter["productId"])] = str(letter["remaining_stock"])+";"+str(letter["goods"][0]["last_sold_time"])
     return stock_data
  
- 
+
+
+
+

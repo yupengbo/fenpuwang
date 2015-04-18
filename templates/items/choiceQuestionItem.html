@@ -2,7 +2,7 @@
 <li>
   <div class="question_list_section">
    <a href='{% url 'question:question_details' question_list.question.questionId %}' >
-     <div class="height_oe marg_b_t">
+     <div class="height_oe marg_b_t"  style="margin-top: 5px">
          {% if question_list.user.avatarURL %}
          <div class="float_l height_oe width_oe"><img src="{{ question_list.user.avatarURL }}" class="question_list_user_avatars"></div>
          {% else %}
@@ -16,7 +16,7 @@
     {% endif %}
     {% if question_list.question.answerNum %}
      <div class="height_ot">
-       <div class="float_r question_list_answerNum">{{ question_list.question.answerNum }}答案</div>
+       <div class="float_r question_list_answerNum" style="font-size: 11px">{{ question_list.question.answerNum }}答案</div>
      </div>
     {% else %}
      <div class="height_ot">

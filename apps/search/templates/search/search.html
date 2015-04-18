@@ -14,6 +14,16 @@
 {% endblock %}
 
 {% block main_content %}
+
+{% if not search.brandList and not search.productList and not search.searchContentList  %}
+
+<div style="margin-top: 150px;text-align: center;">
+<img style="background-size: 72px 72px;width: 72px;height: 72px;" src={% static "images/img_empty_search_result@2x.png" %}>
+<div style="margin-top: 30px;text-align: center;font-size: 17px;color: #C2A7A2">暂时没有你查找的问题</div>
+</div>
+
+{% else %}
+
 <!--品牌馆-->
 <div class="brand_body">
   {% for brand in search.brandList %}
@@ -64,6 +74,9 @@
   {% endwith %}
   </ul>
 </div>
+
+{% endif %}
+
 
 <script type="application/javascript">
 $(".datalist").loaddata({

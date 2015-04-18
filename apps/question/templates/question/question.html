@@ -40,8 +40,8 @@
         <ul>
             {% for product in question.relatedProductList %}
                 <li ><a href='{% url 'product:product_detail' product.productId %}' style="padding: 0px;margin-bottom: 0px;line-height: 12px;font-size:14px;color:#222;">{{ product.name }}</a></li>
-                <div style="color: #aaaaaa;font-size: 10px;margin-top: 0px;line-height: 10px">¥{{ product.price }}/{{ product.size }}</div>
-                <div style="height: 5px"></div>
+                <div style="color: #aaaaaa;font-size: 11px;margin-top: 0px;line-height: 3px;margin-top: 0px">¥{{ product.price }}/{{ product.size }}</div>
+                <div style="height: 4px"></div>
             {% endfor %}
             <div style="height: 10px"></div>
         </ul>
@@ -58,12 +58,11 @@
               {% endfor %}
 			{% endwith %}
         {% else %}
-             <div class="f13 fcg1" style="text-align: center">没有回答</div>
+             <div class="f13 fcg1" style="margin-top: 50px;text-align: center">还没有人回答哦</div>
         {% endif %}
     </div>
 
 </div>
-
 
 {% if question.relatedQuestionList %}
  <div class="related-question-body">
