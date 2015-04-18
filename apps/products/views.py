@@ -167,8 +167,8 @@ def ajax_get_stock(request):
     #seckill_today_list = seckill_result["tomorrowProductList"]
     seckill_today_list = seckill_result["todayProductList" ]
     stock_data = seckill_stock_process(seckill_today_list)
-    sold_time = seckill_sold_time_process(seckill_today_list)
-    meta_data = {"error":0 ,"list": stock_data,"time_list":sold_time}
+    #sold_time = seckill_sold_time_process(seckill_today_list)
+    meta_data = {"error":0 ,"list": stock_data}
     return HttpResponse(json.dumps(meta_data), content_type="application/json")
 
 def ajax_exists_qualification(request):
