@@ -42,7 +42,7 @@ def ajax_order_list(request,mark=0):                                            
         next_request_url = ""
         if str(order_list_result['mark']) != "0":
            next_request_url = reverse('order:ajax_order_list', kwargs ={"mark":order_list_result['mark']})
-        meta_data = {'url':next_request_url, "order_list":order_list_result["productOrderList"]}
+        meta_data = {'url':next_request_url, "order_list":order_list_result["productOrderList"], "from_ajax":1}
         context = RequestContext(request, meta_data)
         template = loader.get_template('order/orders_list.html')
         response_json = {'html':template.render(context), 'url':next_request_url}
