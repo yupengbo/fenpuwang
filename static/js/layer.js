@@ -1,6 +1,6 @@
 var layer_status = 0;
 $(document).ready(function(){
-   bind_product_info();
+   ajax_product_info();
    $(".cover_layer").click(function(){
       $(".exit_btn").click();
    });
@@ -18,15 +18,6 @@ $(document).ready(function(){
    });
 });
 
-
-function bind_product_info(){
-     ajax_product_info();
- }
-function unbind_product_info(){
-     $(".recommend_in_cart").unbind("click");
-     $(".product_in_cart").unbind("click");
-     ajax_product_info();
- }
 function ajax_product_info(){
    $(".recommend_in_cart").click(function(){
     if(layer_status == 0){
@@ -60,6 +51,7 @@ function ajax_product_info(){
                  return;
                 }
       });
+    $(".product_in_cart").unbind("click"); 
     }
    });
 }
@@ -104,4 +96,5 @@ function complete(productId){
       });
       $(".exit_btn").click();
   });
+ // $(".product_in_cart").unbind("click");
 }
