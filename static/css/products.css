@@ -34,15 +34,15 @@
 .feature_background{background-color:rgb(241, 240, 237);}
 .feature_title{font-size:11px;padding-left:12px;padding-top:16px;padding-bottom:8px;color:#999999;}
 .feature_info_background{background-color:white;}
-.feature_info{padding:12px;}
-.feature_img{width:110px}
+.feature_info{padding-top:8px;}
+.feature_img{height:155px}
 .feature_ntq{margin-left:12px;width:55%;}
-.feature_name{size:15px;color:#222222;line-height:150%;}
+.feature_name{size:17px;color:#222;line-height:150%;margin-top:8px;}
 .feature_topic_question{margin-top:10px;color:#AAAAAA;font-size:11px;}
 .feature_ps{width:100%;left:0px;bottom:12px;}
 .feature_price_size{text-align:right;margin-right:12px;}
-.feature_price{font-size:16px;color:#444444;}
-.feature_size{font-size:11px;color:#999999;}
+.feature_price{font-size:22px;color:#ff5346;}
+.feature_size{font-size:14px;color:#999;}
 .feature_color_block{height:10px;background-color:rgb(241, 240, 237);}
 .clear{clear:both;}
 .float_l{float:left;}

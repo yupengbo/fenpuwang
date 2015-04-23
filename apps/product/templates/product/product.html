@@ -144,8 +144,8 @@
        {% endfor %}
      </div>
     </div>
-    <div class="float_l product_layer_info" style="margin-left:6px;">
-       <div style="font-size:14px;color:#222;line-height:143%;margin-top:16px;">{{ product.product.name}}</div>
+    <div class="float_l product_layer_info" style="margin-left:16px;">
+       <div style="font-size:14px;color:#222;line-height:143%;margin-top:8px;">{{ product.product.name}}</div>
        {% for goods in product.product.goods %}
        <div style="margin-top:3px;display:none;" class="product_fixed_ps" goodsId="{{ goods.goodsId }}"><span style="color:#ff5346;font-size:14px;">¥{{ goods.goodsPrice }}</span><span style="color:#dbdbdb;font-size:10px;">/{{ goods.size }}</span></div>
        {% endfor %}

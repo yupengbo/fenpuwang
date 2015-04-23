@@ -23,7 +23,25 @@
 <div class='clear'></div>
 </a>
 {% endfor %}
-<div class="feature_background">
+<div class="feature_background" style="padding-top:4px;">
+ <div>
+   {% for letter in album_list_little %}
+   <a href="{% url "products:album_detail" letter.albumId %}"><img src="{{ letter.iconUrl }}" style="margin-left:2%;width:47%;float:left;margin-top:2%;"></a>
+   {% endfor %}
+   <div style="clear:both;"></div>
+ </div>
+ <div style="height:4px;width:100%;background-color:rgb(241, 240, 237);"></div>
+ <div style="margin-top:2%;background-color:white;">
+   {% for letter in album_list_more %}
+   {% if forloop.counter == 1%}
+   <a href="{% url "products:album_detail" letter.albumId %}"><img src="{{ letter.iconUrl }}" style="width:100%;"></a>
+   <div style="padding-top:10px;padding-bottom:16px;text-align:center;width:82%;margin:0px auto;">
+      <div style="color:rgb(68,68,68);font-size:15px;font-weight:bold;">{{ letter.title }}</div>
+      <div style="color:rgb(153,153,153);font-size:10px;margin-top:6px;line-height:20px;">{{ letter.content }}</div>
+   </div>
+   {% endif %}
+   {% endfor %}
+ </div>
  <div class="feature_title">热门推荐</div>
  <div class='datalist'>
  {% include "products/products_recommend_list.html" %} 
@@ -39,17 +57,196 @@
          <div class="center float_r product_cart_num">{{ cartNum }}</div>
        </div>
     </div>
-    <a class="product_cart_in" href="{% url 'cart:cart_index' %}">查看购物车</a></div>
+    <a class="product_cart_in" href="{% url 'cart:cart_index' %}">查看购物车</a>
+  </div>
   <div class='clear'></div>
 </div>
 </div>
+
+<!--多规格弹层-->
+<div style="position:fixed;bottom:0px;left:0px;width:100%;background-color:white;z-index:20000;display:none;" class="product_more_standard">
+  <div style="height:68px;margin-left:5%;margin-top:16px;" class="relative">
+    <div style="height:68px;width:68px;" class="float_l">
+     <div style="border-radius:50%;border:1px solid #e4e4e4;overflow:hidden;" >
+       <img src="" style="height:68px;" class="product_info_img">
+     </div>
+    </div>
+    <div class="float_l product_layer_info" style="margin-left:16px;">
+       <div style="font-size:14px;color:#222;line-height:143%;margin-top:8px;">雅诗兰黛</div>
+       <!--<div style="margin-top:3px;" class="product_fixed_ps" goodsId="{{ goods.goodsId }}"><span style="color:#ff5346;font-size:14px;">¥99</span><span style="color:#dbdbdb;font-size:10px;">/30g</span></div>-->
+    </div>
+    <div class="absolute" style="width:100%;left:0px;top:0px;">
+         <img src="{% static "images/btn_product_detail_incart_cancel_normal@2x.png" %}" style="height:30px;width:30px;float:right;margin-right:2%;" class="exit_btn">
+    </div>
+  </div>
+  <!--<div style="height:36px;min-width:85px;margin-left:5%;margin-top:16px;" class="float_l haha">
+    <div style="border:1px solid #666;font-size:12px;line-height:36px;padding-left:5px;padding-right:5px;" class="center abc" sizeId="{{ goods.goodsId }}">30g</div>
+  </div>-->
+  <div style="clear:both;"></div>
+
+  <div style="border-top:1px solid #dbdbdb;width:90%;margin:16px auto 0px;" class="top_split_line"></div>
+<!--  <div style="height:85px;margin-left:5%;line-height:40px;font-size:12px;" class="product_send_time" timeId="{{ goods.goodsId }}">2-5天内发货</div>-->
+  <div style="border-top:1px solid #dbdbdb;width:90%;margin:0px auto;" class="bottom_split_line"></div>
+  <div class="realative" style="padding-top:18px;padding-bottom:18px;height:33px;margin-left:5%;z-index:99;width:50%;">
+      <img src="{% static "images/btn_product_incart_decrease_disabled@2x.png" %}" class="float_l product_decrease" style="height:33px;width:42px;">
+      <div style="width:68px;float:left;height:33px;line-height:33px;text-align:center;" class="product_num">1</div>
+      <img src="{% static "images/btn_product_incart_increase_normal@2x.png" %}" class="float_l product_increase" style="height:33px;width:42px;">
+      <div class="absolute" style="width:100%;left:0px;bottom:17px;z-index:-1;">
+         <div style="margin-right:5%;float:right;background-color:#ff5346;border-radius:3px;color:#fff;width:85px;height:33px;line-height:33px;font-size:11px;" class="center product_in_cart" add_cart_url = "{% url "product:add_in_cart" %}">加入购物车</div>
+      </div>
+  </div>
+ </div>
+ <!-- end -->
+
+ <!--遮盖-->
+ {% block cover %}
+ <div style="display:none;filter:alpha(opacity=30);opacity:0.3;-moz-opacity:0.3;-khtml-opacity:0.3;width:100%;height:100%;background-color:rgb(0,0,0);left:0px;top:0px;z-index:10000;" class="absolute cover_layer"></div>
+ {% endblock %}
+ <!--end-->
 <script type="application/javascript">
 $("body").css({"background-color":"#f9f8f5"});
 $(".datalist").loaddata({
-  url : "{{ url }}"
+  url : "{{ url }}",
+  success:unbind_product_info
 });
 $(document).ready(function(){
   $(".bottom_download").hide();
+  bind_product_info();
 });
+
+function bind_product_info(){
+    ajax_product_info();
+}
+function unbind_product_info(){
+    $(".recommend_in_cart").unbind("click");
+    $(".product_in_cart").unbind("click;")
+    ajax_product_info();
+}
+
+function ajax_product_info(){
+  $(".recommend_in_cart").click(function(){
+     var info_url =$(this).attr("product_info_url");
+     var current_productId = $(this).attr("product_info_url").split("/")[3];
+     $(".exit_btn").attr("id",current_productId);
+     $.ajax({
+       url:info_url,
+       beforeSend:function(){
+                    $(".product_layer_info").children().eq(0).nextAll().remove();
+                    $(".haha").remove();
+                    $(".top_split_line").nextUntil(".bottom_split_line").remove();
+                 },
+       success:function(data){
+                 for(var i=0;i<(data.product.pics).length;i++){
+                     if(i==0){
+                        $(".product_info_img").attr("src",data.product.pics[i].org);
+                     }   
+                 }
+                 $(".product_layer_info").children().eq(0).html(data.product.name);          
+                 for(var i=0;i<(data.product.goods).length;i++){
+                       $(".product_layer_info").append("<div style='margin-top:3px;display:none;' class='product_fixed_ps' goodsId="+data.product.goods[i]["goodsId"]+"><span style='color:#ff5346;font-size:14px;'>¥"+data.product.goods[i]["goodsPrice"]+"</span><span style='color:#dbdbdb;font-size:10px;'>/"+data.product.goods[i]["size"]+"</span></div>");
+                       $(".product_more_standard").children().eq(0).after("<div style='height:36px;min-width:85px;margin-left:5%;margin-top:16px;' class='float_l haha'><div style='border:1px solid #666;font-size:12px;line-height:36px;padding-left:5px;padding-right:5px;' class='center abc' sizeId="+data.product.goods[i]["goodsId"]+">"+data.product.goods[i]["size"]+"</div></div>");
+                       $(".top_split_line").after("<div style='display:none;height:85px;margin-left:5%;line-height:40px;font-size:12px;' class='product_send_time' timeId="+data.product.goods[i]["goodsId"]+">"+data.product.goods[i]["transportTitle"]+"</div>");
+                    
+                 }
+                 complete(current_productId);
+               } 
+     });
+  });
+}
+var current_num = parseInt($(".product_num").html());
+  //增加按钮、减少按钮
+$(document).ready(function(){
+  //var current_num = parseInt($(".product_num").html());
+  $(".product_increase").click(function(){
+     current_num = current_num + 1;
+     $(".product_num").html(current_num);
+     if(current_num == 2){
+       $(".product_decrease").attr("src","{% static "images/btn_product_incart_decrease_normal@2x.png" %}");
+     }
+  });
+  $(".product_decrease").click(function(){
+    if(current_num > 1){
+       current_num = current_num - 1;
+       $(".product_num").html(current_num);
+    }
+    if(current_num == 1){
+       $(".product_decrease").attr("src","{% static "images/btn_product_incart_decrease_disabled@2x.png" %}");
+    }
+  });
+  $(".product_increase").mousedown(function(){
+           $(".product_increase").attr("src","{% static "images/btn_product_incart_increase_pressed@2x.png" %}");
+  });
+  $(".product_increase").mouseup(function(){
+           $(".product_increase").attr("src","{% static "images/btn_product_incart_increase_normal@2x.png" %}");
+  });
+  $(".product_decrease").mousedown(function(){
+       if(current_num !=1 ){
+           $(".product_decrease").attr("src","{% static "images/btn_product_incart_decrease_pressed@2x.png" %}");
+       }
+  });
+  $(".product_decrease").mouseup(function(){
+       if(current_num !=1 ){
+           $(".product_decrease").attr("src","{% static "images/btn_product_incart_decrease_normal@2x.png" %}");
+       }
+  });
+});
+function complete(productId){
+  $(".cover_layer").show();
+  $("#main-content").height($(window).height()-200);
+  $("#main-content").css('overflow','hidden');
+  $(".haha").eq(0).children().css("border","2px solid #ff5346");
+  $(".abc").eq(0).addClass("current")
+  $(".product_fixed_ps").eq(0).show();
+  $(".product_more_standard").show();
+  $(".product_send_time").eq(0).show();
+  $(".product_cart_container").hide();
+  var product_layer_info_width = ($(".product_more_standard").width())*0.9 - 68 - 30;
+  $(".product_layer_info").css("width",product_layer_info_width);
+  $(".abc").click(function(){
+     $(this).css("border","2px solid #ff5346");
+     $(".abc").removeClass("current");
+     $(this).addClass("current");
+     $(".haha div").not($(this)).css("border","1px solid #dbdbdb");
+     var size = $(this).attr("sizeId");
+     $(".product_fixed_ps[goodsId="+size+"]").show();
+     $(".product_fixed_ps[goodsId!="+size+"]").hide();
+     $(".product_send_time[timeId="+size+"]").show();
+     $(".product_send_time[timeId!="+size+"]").hide();
+  });
+  $(".product_in_cart").click(function(){
+      var add_cart_url = $(".product_in_cart").attr("add_cart_url");
+      var num = $(".product_num").html();
+      var current_goodsId = $(".current").attr("sizeId");
+      $.ajax({
+        url:add_cart_url,
+        data:"goodsId="+current_goodsId+"&productId="+productId+"&num="+num,
+        success:function(data){
+                   var new_cart_num = parseInt($(".product_cart_num").html())+parseInt(num);
+                   $(".product_cart_num").html(new_cart_num);
+                }
+      });
+      $(".exit_btn").click();
+  }); 
+}
+ 
+ $(".cover_layer").click(function(){
+   $(".exit_btn").click();
+ });
+ $(".exit_btn").click(function(){
+   $(".product_more_standard").hide();
+   $(".product_cart_container").show();
+   $(".cover_layer").hide();
+   $("#main-content").height('auto');
+   $("#main-content").css('overflow','auto');
+   current_num = 1;
+   $(".product_num").html(1);
+   var position_id = $(this).attr("id");
+        document.getElementById(position_id).scrollIntoView();
+ });
+
+ $(".product_pics_img").show().lazyload({
+     placeholder:"{% static "images/img_product_place_holder_cell@2x.png" %}",
+     threshold:200,
+  });
 </script>
 {% endblock %}

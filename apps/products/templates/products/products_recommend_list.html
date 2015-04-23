@@ -1,29 +1,42 @@
  {% load staticfiles %}
  {% for products_feature in products_feature_list %}
- <div class="feature_info_background">
+ <div class="feature_info_background" id="{{ products_feature.productId }}">
    <div class="products_line"></div>
 
-   <a href="{% url "product:product_detail"  products_feature.productId %}">
-   <div class="feature_info relative">
+   <div class="feature_info relative" style="text-align:center;">
+      <a href="{% url "product:product_detail"  products_feature.productId %}">
      {% if products_feature.thumb_s %}
-     <img data-original="{{ products_feature.thumb_s }}" class="float_l feature_img">   
+     <img data-original="{{ products_feature.thumb_s }}" class="feature_img">   
      {% else %}
-     <img src="{% static "images/img_product_place_holder.png"%}" class="float_l feature_img">
+     <img src="{% static "images/img_product_place_holder.png"%}" class="feature_img">
      {% endif %}
-     <div class="float_l feature_ntq">
-         <div class="feature_name">{% if products_feature.name_decoration %}{{ products_feature.name_decoration }}{% else %}{{ products_feature.name }}{% endif %}</div>
-         <div class="feature_topic_question">{{ products_feature.topicNum }}笔记&nbsp;&nbsp;&nbsp;{{ products_feature.questionNum }}问答</div>
+     </a>
+     <a href="{% url "product:product_detail"  products_feature.productId %}">
+     <div style="width:75%;margin:8px auto 16px;">
+       <div class="feature_name">{% if products_feature.name_decoration %}{{ products_feature.name_decoration }}{% else %}{{ products_feature.name }}{% endif %}</div>
+       <div style="color:rgb(85,85,85);font-size:12px;margin-top:8px;line-height:18px;position:relative;">
+           {{ products_feature.promotion_description}}
+           <div style="position:absolute;width:8px;top:0px;left:-15px;"><img src="{% static "images/img_f_topic_quote_list_left@2x.png" %}" style="width:8px;height:7px;"></div>
+           <div style="position:absolute;width:8px;bottom:0px;right:-15px;"><img src="{% static "images/img_f_topic_quote_list_right@2x.png" %}" style="width:8px;height:7px;"></div>
+       </div>
+       {% for goods in products_feature.goods %}
+       {% if forloop.counter == 1 %}
+       <div style="margin-top:15px;">
+          <!--<span style="padding:3px;color:white;font-size:8px;background-color:#4baab9;height:20px;vertical-align:middle">3.5折</span>-->
+          <span class="feature_price" style="padding-bottom:0px;vertical-align:middle;">¥{{ goods.goodsPrice }}</span>
+          <span class="feature_size" style="vertical-align:middle;">/{{ goods.size }}</span>
+       </div>
+       {% endif %}
+       {% endfor %}
      </div>
-     <div class="clear"></div>
-     <div class="absolute feature_ps">
-         {% for goods in products_feature.goods %}
-         {% if forloop.counter == 1 %}
-         <div class="feature_price_size"><span class="feature_price">¥{{ goods.goodsPrice }}</span><span class="feature_size">/{{ goods.size }}</span></div>
-         {% endif %}
-         {% endfor %}
+     </a>
+     <div style="border-bottom:1px solid #e4e4e4;"></div>
+     <div style="height:49px;">
+        <a href="{% url "product:product_detail"  products_feature.productId %}"><div style="float:left;line-height:49px;color:rgb(190,190,190);font-size:12px;border-right:1px solid #e4e4e4;" class="more">查看更多</div></a>
+        <div style="float:left;line-height:49px;color:rgb(100,182,195);font-size:12px;" class="recommend_in_cart" product_info_url = "{% url "products:product_info" products_feature.productId %}">加入购物车</div>
      </div>
+     <div style="border-bottom:1px solid #e4e4e4;"></div>
    </div>
-   </a>
    
    <div class="products_line"></div>
    <div class="feature_color_block"></div>
@@ -36,6 +49,9 @@
        placeholder:"{% static "images/img_product_place_holder_cell@2x.png" %}",
        threshold:200,
      });
+     var button_width = ($("#main-content").width()-1)/2;
+     $(".more").css("width",button_width);
+     $(".recommend_in_cart").css("width",button_width);
   });
  </script>
  {% endfor %}
