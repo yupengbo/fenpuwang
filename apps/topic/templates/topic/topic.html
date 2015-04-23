@@ -196,13 +196,19 @@
  {% endif %}
 </div>
 <div class='divide_line'></div>
+
+{% if commentsTopic.totalNumber > 0 %}
 <div class='comment_mainbody'>
- <div class="typeface">全部评论&nbsp;{{ commentsTopic.totalNumber}}</div>
+<div class="typeface">全部评论&nbsp;{{ commentsTopic.totalNumber}}</div>
   {% include "topic/topic_comments.html" %}
 </div>
 <div style="position:fixed;bottom:53px;left:0px;width:100%;text-align:center;display:none;" class="scroll_icon">
    <img src="{% static "images/icon_feed_loading.gif" %}" style="width:30px;height:30px;">
 </div>
+{% else %}
+<div style="font-size:17px;color:#D3B5AF;padding-top:30px;padding-bottom:30px;text-align: center">还没有评论哦</div>
+{% endif %}
+
 <script>
 $(".topic_content").css({"background-color":"#fff"});
 $(".topic_content").css({"background-color":"#fff"});

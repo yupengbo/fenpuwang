@@ -34,7 +34,7 @@
        </form>
        <img src="{% static "images/icon_search_bar.png" %}" style="height:17px;width:17px;position:absolute;left:9px;top:13px;">
     </div>
-    <div style="font-size:15px;color:#ff5346;float:left;margin-left:12px;line-height:40px;width:30px;text-align:center;" class="nav_search_letter">搜索</div>
+    <div style="font-size:15px;color:#ff5346;float:left;margin-left:12px;line-height:40px;width:33px;text-align:center;" class="nav_search_letter">搜索</div>
   </div>
 </div>
 <script>
@@ -46,9 +46,13 @@
      var banner_width = $(".nav_section").width();
      //var search_letter_width = $(".nav_search_letter").width();
      $(".nav_search_box").css("width",banner_width-12-17-12-30);
-     $(".nav_search").css("width",banner_width-12-17-12-30-30);
+     $(".nav_search").css("width",banner_width-12-17-12-30-33);
      $(".nav_search_btn").click(function(){
        $(".nav_search_content").toggle();
+       $(".nav_menu_content").hide();
+     });
+     $(window).scroll(function(){
+       $(".nav_search_content").hide();
        $(".nav_menu_content").hide();
      });
      $(".nav_return_btn").click(function(){

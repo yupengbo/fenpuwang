@@ -181,6 +181,10 @@ def process_product_data(product_data):
             product['thumb_s'] = pics[0]['thumb-s']
 
 def seckill(request):
+    user_from = request.REQUEST.get('from')
+    if user_from == None or user_from == "":
+      user_from = "flashweb"
+
     user_agent = request.META.get('HTTP_USER_AGENT')
     is_fenpu = 0
     user_agent = user_agent.lower()
@@ -197,7 +201,7 @@ def seckill(request):
        is_flashing = 1
 #    seckill_today_list = {}
     server_time_stamp = seckill_result['timeStamp']
-    meta_data = {"is_flashing":is_flashing, "seckill_today_list":seckill_today_list,"seckill_tomorrow_list":seckill_tomorrow_list,'navTitle':'秒杀', "server_time_stamp": server_time_stamp, "is_fenpu":is_fenpu, "is_url":1, "nav_url":'/11286'}
+    meta_data = {"is_flashing":is_flashing, "seckill_today_list":seckill_today_list,"seckill_tomorrow_list":seckill_tomorrow_list,'navTitle':'秒杀', "server_time_stamp": server_time_stamp, "is_fenpu":is_fenpu, "is_url":1, "nav_url":'/11286', "user_from":user_from}
 #    meta_data = {"seckill_today_list":seckill_tomorrow_list,"seckill_tomorrow_list":seckill_tomorrow_list, "server_time_stamp": server_time_stamp}
     #if seckill_today_list:
     #    return render(request,"products/flashing.html",meta_data)
@@ -256,8 +260,11 @@ def seckill_stock_process(data):
         letter["remaining_stock"] = letter["stock"] - letter["sold_num"] 
         if letter["remaining_stock"] < 0 :
              letter["remaining_stock"] = 0
-        letter["goods"][0]["last_sold_time"] = time.strftime("%H:%M",time.localtime(letter["goods"][0]["last_sold_time"]/1000))
-        stock_data["stock_" + str(letter["productId"])] = str(letter["remaining_stock"])+";"+str(letter["goods"][0]["last_sold_time"])
+        last_sold_time = 0
+        for goods in letter['goods']:
+           if letter["flash_goods_id"] == goods["goodsId"]:
+               last_sold_time = time.strftime("%H:%M",time.localtime(goods["last_sold_time"]/1000))
+        stock_data["stock_" + str(letter["productId"])] = str(letter["remaining_stock"])+";"+str(last_sold_time)
     return stock_data
  
 def product_info(request,productId):

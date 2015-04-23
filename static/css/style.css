@@ -89,7 +89,7 @@ body {margin: 0px;min-width:320px;}
 .download .btn_openapp{background-image:url('/static/images/btn_banner_open_normal@2x.png');}
 .download .info_img{background-size:220px 36px;width:220px;height:36px;background-image:url('/static/images/img_banner_information@2x.png');margin:0 auto;}
 /*  顶部导航  */
-.nav_bar{height:44px;width:100%;background-color:#ff5346;}
+.nav_bar{height:44px;width:100%;background-color:#ffffff;}
 .nav{z-index:9999;background-color:#ff5346;height:44px;overflow:hidden;position:relative;left:0;top:0;width:100%;}
 .nav_inner{position:relative;}
 .nav ul{width:80%;height:44px;vertical-align: middle;position:absolute;top:0px;z-index:9999;}
