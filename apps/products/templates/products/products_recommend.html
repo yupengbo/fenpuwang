@@ -34,11 +34,11 @@
  <div style="margin-top:2%;background-color:white;">
    {% for letter in album_list_more %}
    {% if forloop.counter == 1%}
-   <a href="{% url "products:album_detail" letter.albumId %}"><img src="{{ letter.iconUrl }}" style="width:100%;"></a>
+   <a href="{% url "products:album_detail" letter.albumId %}"><img src="{{ letter.iconUrl }}" style="width:100%;">
    <div style="padding-top:10px;padding-bottom:16px;text-align:center;width:82%;margin:0px auto;">
       <div style="color:rgb(68,68,68);font-size:15px;font-weight:bold;">{{ letter.title }}</div>
       <div style="color:rgb(153,153,153);font-size:10px;margin-top:6px;line-height:20px;">{{ letter.content }}</div>
-   </div>
+   </div></a>
    {% endif %}
    {% endfor %}
  </div>
@@ -120,7 +120,7 @@ function bind_product_info(){
 }
 function unbind_product_info(){
     $(".recommend_in_cart").unbind("click");
-    $(".product_in_cart").unbind("click;")
+    $(".product_in_cart").unbind("click");
     ajax_product_info();
 }
 

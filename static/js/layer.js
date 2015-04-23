@@ -24,7 +24,7 @@ function bind_product_info(){
  }
 function unbind_product_info(){
      $(".recommend_in_cart").unbind("click");
-     $(".product_in_cart").unbind("click;")
+     $(".product_in_cart").unbind("click");
      ajax_product_info();
  }
 function ajax_product_info(){
