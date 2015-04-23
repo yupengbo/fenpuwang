@@ -31,7 +31,7 @@
      </div>
      </a>
      <div style="border-bottom:1px solid #e4e4e4;"></div>
-     <div style="height:49px;">
+     <div style="height:49px;display:none;" class="detail_cart">
         <a href="{% url "product:product_detail"  products_feature.productId %}"><div style="float:left;line-height:49px;color:rgb(190,190,190);font-size:12px;border-right:1px solid #e4e4e4;" class="more">查看详情</div></a>
         <div style="float:left;line-height:49px;color:rgb(100,182,195);font-size:12px;" class="recommend_in_cart" product_info_url = "{% url "products:product_info" products_feature.productId %}">加入购物车</div>
      </div>
@@ -52,6 +52,7 @@
      var button_width = ($("#main-content").width()-1)/2;
      $(".more").css("width",button_width);
      $(".recommend_in_cart").css("width",button_width);
+     $(".detail_cart").show();
   });
  </script>
  {% endfor %}
