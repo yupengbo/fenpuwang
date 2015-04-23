@@ -243,6 +243,10 @@ def seckill_process(data):
         letter["start_time"] = letter["flash_start_time"]
         letter["continue_time"] = letter["flash_duration"]
         letter["remaining_stock"] = letter["stock"] - letter["sold_num"] 
+        if int(time.strftime("%H",time.localtime())) < 12:
+            letter["month_day"] = time.strftime("%m月%d日",time.localtime(time.time()))
+        else:
+            letter["month_day"] = time.strftime("%m月%d日",time.localtime(time.time()+24*60*60))
         if letter["remaining_stock"] < 0 :
              letter["remaining_stock"] = 0
  #       letter["start_time"] = 1427528202280

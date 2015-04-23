@@ -67,6 +67,7 @@ def topic_info_comments(request,topic_id,mark):
     if request.is_ajax:
         topic_info_comments_json = api_list.get_topic_info_comments(request,topic_id,mark,0,20)
         if topic_info_comments_json.get("commentList"):
+            process_comments(request,topic_info_comments_json)
             next_page_url = reverse("topic:topic_info_comments",kwargs={"topic_id":topic_id,"mark":topic_info_comments_json["mark"]})
             meta = {"commentsTopic":topic_info_comments_json}
             t  = loader.get_template("topic/topic_comments.html")
