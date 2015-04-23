@@ -109,6 +109,7 @@ $(".datalist").loaddata({
   url : "{{ url }}",
   success:unbind_product_info
 });
+var layer_status = 0;
 $(document).ready(function(){
   $(".bottom_download").hide();
   bind_product_info();
@@ -125,6 +126,7 @@ function unbind_product_info(){
 
 function ajax_product_info(){
   $(".recommend_in_cart").click(function(){
+    if(layer_status == 0){
      var info_url =$(this).attr("product_info_url");
      var current_productId = $(this).attr("product_info_url").split("/")[3];
      $(".exit_btn").attr("id",current_productId);
@@ -134,6 +136,7 @@ function ajax_product_info(){
                     $(".product_layer_info").children().eq(0).nextAll().remove();
                     $(".haha").remove();
                     $(".top_split_line").nextUntil(".bottom_split_line").remove();
+                    layer_status = 1;
                  },
        success:function(data){
                  for(var i=0;i<(data.product.pics).length;i++){
@@ -149,8 +152,13 @@ function ajax_product_info(){
                     
                  }
                  complete(current_productId);
-               } 
+               },
+       error:function(){
+                layer_status = 0;
+                return;
+              } 
      });
+    }
   });
 }
 var current_num = parseInt($(".product_num").html());
@@ -233,6 +241,7 @@ function complete(productId){
    $(".exit_btn").click();
  });
  $(".exit_btn").click(function(){
+   layer_status = 0;
    $(".product_more_standard").hide();
    $(".product_cart_container").show();
    $(".cover_layer").hide();

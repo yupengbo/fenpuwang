@@ -1,9 +1,11 @@
+var layer_status = 0;
 $(document).ready(function(){
    bind_product_info();
    $(".cover_layer").click(function(){
       $(".exit_btn").click();
    });
    $(".exit_btn").click(function(){
+     layer_status = 0;
      $(".product_more_standard").hide();
      $(".product_cart_container").show();
      $(".cover_layer").hide();
@@ -27,6 +29,7 @@ function unbind_product_info(){
  }
 function ajax_product_info(){
    $(".recommend_in_cart").click(function(){
+    if(layer_status == 0){
       var info_url =$(this).attr("product_info_url");
       var current_productId = $(this).attr("product_info_url").split("/")[3];
       $(".exit_btn").attr("id",current_productId);
@@ -36,6 +39,7 @@ function ajax_product_info(){
                      $(".product_layer_info").children().eq(0).nextAll().remove();
                      $(".haha").remove();
                      $(".top_split_line").nextUntil(".bottom_split_line").remove();
+                     layer_status = 1;
                   },
         success:function(data){
                   for(var i=0;i<(data.product.pics).length;i++){
@@ -50,8 +54,13 @@ function ajax_product_info(){
                         $(".top_split_line").after("<div style='display:none;height:85px;margin-left:5%;line-height:40px;font-size:12px;' class='product_send_time' timeId="+data.product.goods[i]["goodsId"]+">"+data.product.goods[i]["transportTitle"]+"</div>");
                   }
                   complete(current_productId);
+                },
+         error:function(){
+                 layer_status = 0;
+                 return;
                 }
       });
+    }
    });
 }
 
