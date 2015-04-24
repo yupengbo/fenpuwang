@@ -19,7 +19,7 @@ def build_error_response(errorString):
     return {'error':1,'errorString':errorString}
 
 def get_result(req, api_url, params):
-    build_params(req,params)
+    params = build_params(req,params)
     response = request('POST', api_url, params);
     result = build_error_response("server is busy-30331")
     try:
@@ -151,6 +151,15 @@ def get_promote_product_list(req):                                              
 def get_feature_product_list(req,pre=6,mark=0):                                  #kim       
     params = {"pre":pre,"mark":mark}
     return get_result(req,'getFeatureProductList.do',params)
+
+def get_list_product_album(req):                                                #kim
+    params = {}
+    return get_result(req,'listProductAlbum.do',params)
+
+def get_list_product_album_info(req,albumId):
+    params = {"albumId":albumId}
+    return get_result(req,'listProductAlbumInfo.do',params)
+
 
 def add_goods_in_cart(req,sessionKey, goods_id,product_id,num=1):                            #kim
     params = {"goodsId": goods_id,"productId": product_id,"num": num,"sessionKey": sessionKey}

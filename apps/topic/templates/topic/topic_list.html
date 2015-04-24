@@ -1,3 +1,4 @@
+{% load static %}
 <script>
 function loadImg(obj){
     var img_width = $(obj).parent().parent().width();
@@ -13,4 +14,8 @@ function loadImg(obj){
 
 <script>
 $("body").css({"background-color":"#f9f7f5"});
+ $(".topic_img").lazyload({
+   placeholder:"{% static "images/img_product_place_holder_cell@2x.png" %}",
+   threshold:200,
+ });
 </script>

@@ -4,9 +4,9 @@
     {% if topic.org %}
     <a href='{% url 'topic:topic_info' topic.featureTopicId %}' >
     {% if topic.height > topic.width %}
-     <img src='{{ topic.org }}' onload='loadImg(this)'/>
+     <img data-original='{{ topic.org }}' onload='loadImg(this)' class="topic_img"/>
     {% else %}
-     <img src='{{ topic.org }}'/>
+     <img data-original='{{ topic.org }}' class="topic_img"/>
     {% endif %}
     </a>
 	{% endif %}

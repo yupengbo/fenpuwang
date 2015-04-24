@@ -41,6 +41,7 @@ INSTALLED_APPS = (
                   'apps.cart',
                   'apps.order',
                   'apps.middleware',
+				  'apps.game',
                   'compressor',
                   )
 

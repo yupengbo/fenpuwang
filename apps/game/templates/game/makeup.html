@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="baidu-site-verification" content="ZoKaXQ0GoY" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+    <meta name="description" content="粉扑网，正品化妆品推荐，海外化妆品代购"/>
+    <meta name="keywords" content="粉扑，粉扑网，粉扑网站，粉扑下载，护肤，美妆，正品，美妆社区"/>
+    <title> 测试 </title>
+    <meta name="format-detection" content="telephone=no"/>  
+    {% load static %}
+    <link rel="icon" href="{% static "images/Icon-Small.ico" %}" mce_href="{% static "images/Icon-Small.ico" %}" type="image/x-icon" />
+    <link rel="shortcut icon" href="{% static "images/Icon-Small.ico" %}" type="image/x-icon" />
+    <link type="text/css" rel="stylesheet" href="{% static "css/game.css" %}"/>
+    
+  </head>
+  <body>
+    <div id="loading_box" class='scene'>
+        <h2 >loading</h2>
+    </div>
+    <div id="welcome_box" class='scene hide'>
+       <img class='lipstick absolute' alt='口红' >
+       <img class='title absolute' alt='标题' >
+       <img class='go absolute' alt='go' >
+       <img class='bottom absolute' alt='底部' >
+    </div>
+    <div id="game_box" class='scene hide'>
+       <div class='q_box relative'>
+          <img class='q_top_left absolute' alt='面霜' >
+          <img class='q_top_right absolute' alt='香水' >
+          <img class='q_bg' alt='问题背景' >
+          <div class='q_pic_box absolute'><img class='q_pic' alt='问题图片' ></div>
+       </div>
+       <div class='q_p_box relative'>
+          <img class='q_progress' alt='进度' >
+       </div>
+       <div class='q_a_box relative'>
+           <img class='q_a_bg' alt='答案背景' >    
+           <img class='q_num absolute' alt='题号' >
+           <img class='q_topic absolute' alt='求科普' >
+           <ul class='qa absolute'>
+               <li class='question'>这款产品叫做什么？</li>
+               <li>A:金吒</li>
+               <li>B:水吒</li>
+               <li>C:木吒</li>
+               <li>D:土吒</li>
+           </ul>
+       </div>
+      
+    </div>
+    <div id="finish_box" class='scene hide'></div>
+    <div id="result_box" class='scene hide'></div>
+    <script type="text/javascript" src="http://static.fenpuwang.com/js/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static "js/game.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/imageLoader.js" %}"></script>
+  </body>
+</html>
+        
+        
+        

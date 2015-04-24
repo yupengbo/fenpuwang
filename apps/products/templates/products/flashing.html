@@ -157,7 +157,7 @@ opacity:0;/*FF*/
 <div class='flashing_goods_item'>
 <div class="seckill_limit">
   <img src="http://static.fenpuwang.com/images/icon_big_sale_products_num.png" class="float_l seckill_limit_img" /> 
-  <div class="float_l seckill_limit_num" start_time="{{ letter.start_time }}" continue_time="{{ letter.continue_time }}">限量{{ letter.stock }}件，12点开抢</div>
+  <div class="float_l seckill_limit_num" start_time="{{ letter.start_time }}" continue_time="{{ letter.continue_time }}">限量{{ letter.stock }}件，{{ letter.month_day }}中午12点开抢</div>
 </div>    
 <div class="text_center">
   <img src="{{ letter.img }}" class="seckill_product_img" onclick='detail({{ letter.productId }});' />

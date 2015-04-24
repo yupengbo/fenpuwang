@@ -45,7 +45,7 @@ def session(request):
       request.session['pay_from'] = pay_from
     return HttpResponse("set session success", content_type="application/json")
 
-def products_recommend(request):                                               #kim 
+def products_recommend(request):                                    #kim
     dp = request.REQUEST.get('dp')
     #微信中用户信息获取及授权处理
     user_info = weixin_auth_utils.get_user_info(request)
@@ -71,11 +71,13 @@ def products_recommend(request):                                               #
     flash_activity = api_list.get_flash_banner(request)
     products_feature_result = api_list.get_feature_product_list(request)
     cart_num_json = api_list.get_goods_num_in_cart(request, session)
-
+    album_list = api_list.get_list_product_album(request)
     if ( not flash_activity ) or flash_activity['error'] != 0:
         return response_data_utils.error_response(request, "秒杀产品不存在", __name__, flash_activity, session)
     if ( not products_feature_result ) or products_feature_result['error'] != 0:
         return response_data_utils.error_response(request, "推荐产品不存在", __name__, products_feature_result, session)
+    if (not album_list) or album_list["error"] !=0:
+        return response_data_utils.error_response(request, "产品合集不存在", __name__, album_list, session)
     try: 
         process_products_feature(products_feature_result)
         next_request_url = ""
@@ -85,12 +87,54 @@ def products_recommend(request):                                               #
         cartNum = 0
         if cart_num_json and cart_num_json['error'] == 0:
            cartNum = cart_num_json["totalNum"]
- 
-        meta_data = {'cartNum':cartNum,'url':next_request_url, 'nav':'products',"flash_activity":flash_activity.get('activityList'),"products_feature_list":products_feature_result.get('productList')}
+        if album_list and album_list["error"] == 0:
+            for letter in album_list["result"]:
+                if letter["type"] == 0:
+                    album_list_little = letter["albums"]
+                if letter["type"] == 1:
+                    album_list_more = letter["albums"]
+        meta_data = {'cartNum':cartNum,'url':next_request_url, 'nav':'products',"flash_activity":flash_activity.get('activityList'),"products_feature_list":products_feature_result.get('productList'),"album_list_little":album_list_little,"album_list_more":album_list_more}
         meta_data = response_data_utils.pack_data(request, meta_data)
         return weixin_auth_utils.fp_render(request,'products/products_recommend.html', meta_data, session)
     except Exception,e:
         return response_data_utils.error_response(request, "推荐产品不存在！",__name__, e, session)
+
+def album_detail(request,albumId):                                                      #kim
+    dp = request.REQUEST.get('dp')
+    #微信中用户信息获取及授权处理
+    user_info = weixin_auth_utils.get_user_info(request)
+    authuri = user_info.get('redirect')
+    session = user_info.get('session')
+    user_agent = request.META.get('HTTP_USER_AGENT')
+
+    is_mm = None
+    user_agent = user_agent.lower()
+    if "micromessenger" in user_agent:
+        is_mm = 1
+
+    if authuri and is_mm == 1 and dp != None and dp != "":
+        return HttpResponseRedirect(authuri)
+
+    if dp != "" and dp != None:
+        api_list.bind_user(request, session, dp)
+    else:
+        dp = None
+    # end
+    album_info = api_list.get_list_product_album_info(request,albumId)
+    cart_num_json = api_list.get_goods_num_in_cart(request, session)
+    cartNum = 0
+    if not album_info and album_info["error"] !=0:
+        return response_data_utils.error_response(request, "合集产品不存在！",__name__, e, session)   
+    if cart_num_json and cart_num_json["error"] == 0:
+        cartNum = cart_num_json["totalNum"]
+    try:
+        if album_info and album_info["error"] ==0:
+            meta_data = {"cartNum":cartNum,"album_description":album_info["album"],"album_info":album_info["albumInfos"],"navTitle":album_info["album"]["title"]}
+            return render(request,"products/album_info.html",meta_data)   
+    except Exception,e:
+        print "============="
+        print e
+        print "============="
 
 def process_products_promote(data):                                                 #kim
     for product in data['productList']:
@@ -199,6 +243,10 @@ def seckill_process(data):
         letter["start_time"] = letter["flash_start_time"]
         letter["continue_time"] = letter["flash_duration"]
         letter["remaining_stock"] = letter["stock"] - letter["sold_num"] 
+        if int(time.strftime("%H",time.localtime())) < 12:
+            letter["month_day"] = time.strftime("%m月%d日",time.localtime(time.time()))
+        else:
+            letter["month_day"] = time.strftime("%m月%d日",time.localtime(time.time()+24*60*60))
         if letter["remaining_stock"] < 0 :
              letter["remaining_stock"] = 0
  #       letter["start_time"] = 1427528202280
@@ -223,7 +271,9 @@ def seckill_stock_process(data):
         stock_data["stock_" + str(letter["productId"])] = str(letter["remaining_stock"])+";"+str(last_sold_time)
     return stock_data
  
-
+def product_info(request,productId):
+    product_info_json = api_list.get_product_info_by_id(request,productId)
+    return HttpResponse(json.dumps(product_info_json),content_type="application/json")
 
 
 

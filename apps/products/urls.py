@@ -13,5 +13,7 @@ urlpatterns = patterns('',
   url(r'^flashing/$', views.seckill, name='flashing'),
   url(r'^ajax_exists_qualification/$', views.ajax_exists_qualification, name='ajax_exists_qualification'),
   url(r'^ajax_get_stock/$', views.ajax_get_stock, name='ajax_get_stock'),
+  url(r'^album/(?P<albumId>\d+)/$', views.album_detail, name='album_detail'),
+  url(r'^product_info/(?P<productId>\d+)/$',views.product_info,name='product_info'),
 )
 
