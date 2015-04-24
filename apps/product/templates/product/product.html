@@ -39,7 +39,11 @@
     {% endif %}
     <div class="product_market_section" style="display:none;">
       <img src="{% static "images/img_product_detail_price@2x.png" %}" class="float_l product_market_price_btn">
+      {% if product.product.price > 0%}
       <div class="float_l product_market_ps"><span class="product_market_price">¥{{ product.product.price }}</span><span class="product_market_size">/{{ product.product.size }}</span></div>
+      {% else %}
+      <div class="float_l product_market_ps"><span class="product_market_size">暂无市场价</span></div>
+      {% endif %}
     </div>
   {% if product.product.goods %}
     {% if product.product.goods|length == 1 %}

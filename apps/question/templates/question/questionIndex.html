@@ -9,6 +9,7 @@
 {% endcompress %}
 {% endblock %}
 {% block main_content %}
+<input id="hidden_value" type="hidden" name="pre_index" value="select">
 <div class='height_tf' style="background-color: #FFFFFF">
       <div class="float_l width_per_half">
          <div class='question_choice' id ='select' get_data_url='{%  url 'question:question_list_choice' 0  %}'>精选</div>
@@ -33,14 +34,23 @@
 <script>
      $(document).ready(function(){
         $("#select").click(function(){
+             $("#hidden_value").attr("value", "select");
              $("#select").css({"border-bottom":"2px solid #ff5346","color":"#444"});
              $("#new").css({"border-bottom":"2px solid #fff","color":"#999"});
           });
         $("#new").click(function(){
+             $("#hidden_value").attr("value", "new");
              $("#select").css({"border-bottom":"2px solid #fff","color":"#999"});
              $("#new").css({"border-bottom":"2px solid #ff5346","color":"#444"});
           });
-     });
+
+        var pre_index = $("#hidden_value").attr("value");
+        if (pre_index == "select"){
+           $("#select").click();
+        }else if (pre_index == "new"){
+           $("#new").click();
+        }
+        });
 </script>
 {% endblock %}
 

@@ -55,7 +55,18 @@
 {% if keyword %}
 <script>
  $(function () {
-    $("#nav_btn_search").click(); 
+    $("#nav_btn_search").click();
+    $(".bottom_download").show();
  });
+
+    $("#nav_keyword").focus(function(){
+        $(".nav").css("position","absolute");
+        $(".bottom_download").hide();
+     });
+     $("#nav_keyword").blur(function(){
+        $(".nav").css("position","fixed");
+        $(".bottom_download").show();
+     });
+
 </script>
 {% endif%}
