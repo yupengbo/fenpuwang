@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+        <meta name="baidu-site-verification" content="ZoKaXQ0GoY" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
+        <meta name="description" content="{{ name }}的姑娘们，免费领脉动啦！{{ address }}领取[粉扑APP]"/>
+        <meta name="keywords" content="{{ name }}的姑娘们，免费领脉动啦！{{ address }}领取[粉扑APP] "/>
+        <title>{{ name }}的姑娘你看过来</title>
+        <meta name="format-detection" content="telephone=no"/>  
+        {% load static %}
+        {% load compress %}
+        <link rel="icon" href="{% static "images/Icon-Small.ico" %}" mce_href="{% static "images/Icon-Small.ico" %}" type="image/x-icon" />
+        <link rel="shortcut icon" href="{% static "images/Icon-Small.ico" %}" type="image/x-icon" />
+        {% compress css inline %}
+        <link rel="stylesheet" href="{% static "css/style.css" %}?v=1.1">
+        {% endcompress%}
+        <script type="text/javascript" src="http://static.fenpuwang.com/js/jquery.min.js"></script>
+		<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+        <script type="text/javascript" src="{% static "js/water.js" %}?v=1.8"></script>
+    </head>
+
+    <body>
+<style>
+html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,em,font,img,small,strong,b,u,i,s,dl,dt,dd,ol,ul,li,fieldset,form,label {padding:0px;margin:0px;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+a,img {border:0;}
+ul {list-style:none;}
+li {list-style-type:none;}
+input,select{vertical-align:middle;padding:0px;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal; font-size:12px;}
+b,i,em {font-style:normal;}
+a {text-decoration:none;}
+a:visited{color:#e4e4e4;}
+input {-webkit-appearance: none;}
+a,button,input{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+.pointer{ cursor:pointer;}
+.noborder{ border:0 none;}
+body{background-color:#e84c3f;}
+.absolute{ position:absolute;}
+.relative{ position:relative;}
+.fl {float:left; }
+.fr {float:right; }
+.unline{ text-decoration:underline;}
+.disunline{ text-decoration:none;}
+.invisible{ visibility:hidden;}
+.hidden{ display:none;}
+.block{ display:block;}
+.bold{font-weight:bold;}
+.bg{background-repeat: no-repeat;background-position:center center;}
+.con{width:100%;height:630px;}
+.con div{text-align:center;width:100%;}
+.con img{width:94%;}
+#ercode{display:block;}
+</style>
+  <img src='http://dabanniu.oss.aliyuncs.com/images/water_icon.jpg?v=1' style='width:0px;height:0px;display:block;'/>
+<div class='absolute weixin_share hidden' style='width:100%;left:0px;top:0px;height:99%;z-index:9999;'>
+   <img src='http://dabanniu.oss.aliyuncs.com/images/water_mask_{{ activity_key }}.png' style='width:100%;height:100%;display:block;'/>
+</div>
+<div class='relative con' >
+  <div class='absolute' style='left:0px;top:120px;z-index:1;text-align:right;'>
+     <img src='http://dabanniu.oss.aliyuncs.com/images/water_say.png' style='width:60%;'/>
+  </div> 
+  <div class='absolute' style='left:0px;top:10px;z-index:2;text-align:left;'>
+     <img src='http://dabanniu.oss.aliyuncs.com/images/water_page_{{ activity_key }}.png' style='width:60%;margin-left:3%;'/>
+  </div>
+  <div class='absolute' style='left:0px;bottom:0px;z-index:3;'>
+     <img id='ercode' src='http://dabanniu.oss.aliyuncs.com/images/water_ercode_{{ activity_key }}.png' style='width:100%'/>
+  </div>
+  <div class='absolute' style='left:0px;bottom:180px;z-index:4;text-align:left;'>
+      <img class='to_share' src='http://dabanniu.oss.aliyuncs.com/images/water_get.png' style='width:40%;margin-left:3%;'/>
+  </div>
+        <div class="hidden">
+          <script type="text/javascript">
+          var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+          document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F9c85a2b6ff68abc4a01a855d93ebcbc5' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+        </div>
+</div>
+<script>
+wx.config({
+      debug: false,
+      appId: '{{ appid }}',
+      timestamp: {{ timestamp }},
+      nonceStr: '{{ nonceStr }}',
+      signature: '{{ signature }}',
+      jsApiList: [
+        'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo'
+     ]
+});
+
+wx.ready(function(){
+  wx.onMenuShareTimeline({
+    title: '{{ name }}的姑娘们，免费领脉动啦！{{ address }}领取[粉扑APP]', // 分享标题
+    link: '{{ share_uri }}', // 分享链接
+    imgUrl: 'http://dabanniu.oss.aliyuncs.com/images/water_icon.jpg', // 分享图标
+    success: function () { 
+		shared();
+    },
+    cancel: function () { 
+    }
+  });
+
+  wx.onMenuShareAppMessage({
+    title: '{{ name }}的姑娘们，免费领脉动啦！{{ address }}领取[粉扑APP]', // 分享标题
+    desc: '{{ name }}的姑娘们，免费领脉动啦！{{ address }}领取[粉扑APP]', // 分享描述PP]
+    link: '{{ share_uri }}', // 分享链接
+    imgUrl: 'http://dabanniu.oss.aliyuncs.com/images/water_icon.jpg', // 分享图标
+    success: function () { 
+    },
+    cancel: function () { 
+    }
+  });
+});
+function shared(){
+  $.get_data(
+     '{%  url 'activities:water_get' %}',
+	 "session={{ session }}",
+     function(data) {
+	   if(data['error']==0){
+	      window.location='{% url "activities:water_result_new" activity_key%}';
+	   }
+	 },
+     function(xmlReq, textStatus) {
+	 },
+     'json'
+  );
+}
+
+$(".to_share").click(function(){
+   $(".weixin_share").show();
+});
+$(".weixin_share").click(function(){
+   $(".weixin_share").hide();
+});
+$("img").load(function(){ 
+  $(".con").height($('#ercode').offset().top+$('#ercode').height());
+  $(".weixin_share").height($('#ercode').offset().top+$('#ercode').height());
+});
+</script>
+    </body>
+</html>

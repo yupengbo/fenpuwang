@@ -1,0 +1,49 @@
+html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,em,font,img,small,strong,b,u,i,s,dl,dt,dd,ol,ul,li,fieldset,form,label {padding:0px;margin:0px;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+a,img {border:0;}
+ul {list-style:none;}
+li {list-style-type:none;}
+input,select{vertical-align:middle;padding:0px;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal; font-size:12px;}
+b,i,em {font-style:normal;}
+a {text-decoration:none;}
+a:visited{color:#e4e4e4;}
+input {-webkit-appearance: none;}
+a,button,input{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+.break { word-break:break-all; word-wrap:break-word;}
+.nobreak { word-break:keep-all; word-wrap:normal;}
+.absolute{ position:absolute;}
+.relative{ position:relative;}
+.fl {float:left; }
+.fr {float:right; }
+.hide{display:none;}
+.clear{ clear:both; height:0px; width:100%; font-size:1px; line-height:0px; visibility:hidden; overflow:hidden;}
+.scene{position:relative;margin:0 auto;}
+.scene img{display:block;width:100%;}
+body{background-color:#ffefec;}
+#loading_box{background-color:#FEF6F5;height:100%;width:100%;vertical-align:middle;}
+#loading_box h2{color:#CD9C99;font-size:28px;font-size:20vw;text-align:center;}
+#welcome_box {background-repeat:repeat-x;}
+#welcome_box .lipstick{width:20%;left:0px;top:10%;}
+#welcome_box .title{width:90%;right:5%;top:5%;z-index:4;}
+#welcome_box .bottom{width:100%;left:0px;bottom:0px;}
+#welcome_box .go{width:50%;left:25%;top:50%;z-index:5;}
+#game_box{}
+#game_box .q_bg{width:90%;margin:0 auto;padding-top:10%;padding-top:10vw;}
+#game_box .q_a_bg{width:90%;margin:0 auto;}
+#game_box .q_top_left{width:16%;left:10%;top:1%;z-index:5;}
+#game_box .q_top_right{width:30%;right:10%;top:1%;z-index:5;}
+#game_box .q_pic_box{height:65%;width:60%;left:20%;top:25%;z-index:4;text-align:center;}
+#game_box .q_pic{height:100%;}
+#game_box .q_progress{width:90%;margin:0 auto;}
+#game_box .q_num{width:20%;left:10%;top:8%;z-index:5;}
+#game_box .q_topic{width:20%;right:13%;top:50%;z-index:9;}
+#game_box .q_box{}
+#game_box .q_p_box{}
+#game_box .q_a_box{}
+#game_box .i_wrong{width:24px;display:inline;vertical-align:top;}
+#game_box .i_right{width:24px;display:inline;vertical-align:top;}
+#game_box .qa{z-index:6;top:16%;left:34%;}
+#game_box .qa li{color:#63211f;font-size:30px;font-size:5vw;padding:10px 0;padding:1vw 0;}
+#game_box .qa .question{font-weight:bold;}
+
+

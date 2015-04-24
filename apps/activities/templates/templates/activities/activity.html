@@ -1,0 +1,166 @@
+{% extends "base_no_nav.html" %}
+
+{% block keywords %} 春节红包发！发！发！ {% endblock %}
+{% block description %} 分享内容换取红包  {% endblock %}
+{% block title %} 春节红包发！发！发！ {% endblock %}
+{% block script %}
+    {% load static %}
+	<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+	<script type="text/javascript" src="{% static "js/activities.js" %}?v=1.8"></script>
+	<link rel='stylesheet' href='{% static 'css/activity.css' %}?v=1.8' type='text/css'>
+{% endblock %}
+{% block main_content %}
+
+
+<div class="absolute weixin_share hidden">                           <!--分享-->
+  <div class="weixin_pic_section"> 
+     <img src="{% static "images/bonus_share_arrow.png" %}" class="weixin_pic">
+  </div>
+  <div class="weixin_character_section">
+      <div class="float_r weixin_character">点击分享给好友</div>
+  </div>
+</div>
+<div id='share_bonus' class="pad_t_tn{% if view != "share_bonus" %} hidden{% endif %}">                                        <!--发红包-->
+   <div class="center">
+       <a href="javascript:void(0);" onclick='to_share();return false;' ><img src="http://dabanniu.oss.aliyuncs.com/send_bonus.png" class="send_pic"></a>
+   </div>
+   <div class="marg_t_ft center">
+       <a href="javascript:void(0);" onclick='to_share();return false;' ><img src="http://dabanniu.oss.aliyuncs.com/send_bonus_button.png?v=1.2" class="send_button"></a>
+   </div>
+</div>
+<div id='open_bonus' class="pad_t_fs{% if view != "open_bonus" %} hidden{% endif %}">                  <!--抢红包-->
+   <div style="text-align:center;">
+      <img src="{{ avatarURL }}" class="grab_user_avatar">
+      <div class="grab_user_name">{{ nickName }}</div>
+   </div>
+   <div class="grab_pic_section div_center relative">
+      <img src="http://dabanniu.oss.aliyuncs.com/grab_bonus.png?v=1.2" class="grab_pic">
+      <a href="javascript:void(0);" onclick='open_bonus();return false;' ><div class="absolute grab_button"></div></a>
+   </div>
+   <div class="center absolute grab_character_section">本活动的最终解释权归粉扑所有</div>
+</div> 
+<div id='opened' class="pad_t_n{% if view != "opened" %} hidden{% endif %}">                             <!--得到红包-->
+  <div class="relative">
+    <div class="get_pic_section div_center relative">
+      <img src="http://dabanniu.oss.aliyuncs.com/get_bonus.png?v=1.1" class="get_pic"/>
+      <a href="javascript:void(0);" onclick='to_share();return false;' ><div class="absolute get_share_button"></div></a>
+      <div class="absolute get_download"> <a onclick="ga('send', 'event', '应用', '下载', '活动');_hmt.push(['_trackEvent', 'software', 'download', 'activity_download']);" id='bd_btn_nav_download' href='http://www.dabanniu.com/download.phtml' class="get_download_color">下载粉扑</a></div>
+    </div>
+    <div class="absolute center get_money">¥{{ total_fee }}</div>
+  </div>
+  <div class="div_center width_ttz">
+    <div class="get_character_section">
+       <div class="get_rule_section">
+         <div class="float_l get_block"></div>
+         <div class="float_l get_rule">&nbsp;规则说明</div>
+       </div>
+       <ul>
+         <li>①&nbsp;每人默认可领取一次；</li>
+         <li>②&nbsp;分享后可额外领取一次；</li>
+         <li>③&nbsp;红包可提现；</li>
+         <li>④&nbsp;提现时须使用获得收益的微信账号登录粉扑；</li>
+         <li>⑤&nbsp;本活动真实有效，红包客服QQ群: 422056127；</li>
+         <li>⑥&nbsp;本活动的最终解释权归粉扑所有。</li>
+       </ul> 
+   </div>
+  </div>
+</div>
+<div id='view_result' class="pad_t_sz{% if view != "view_result" %} hidden{% endif %}">                 <!--红包总量-->
+  <div class="relative">
+    <div class="relative div_center total_pic_section">
+       <img src="http://dabanniu.oss.aliyuncs.com/total_bonus.png"  class="total_pic"/>
+	   <a onclick="ga('send', 'event', '应用', '下载', '活动');_hmt.push(['_trackEvent', 'software', 'download', 'activity_download']);" id='bd_btn_nav_download' href='http://www.dabanniu.com/download.phtml' >
+	   <div class="absolute total_extract_button"></div></a>
+   </div>
+   <div class="absolute center total_money">{{ total_fee }}</div>
+   <div class="absolute total_all_money center">共获得{{ bonus_num }}个红包，总额 {{ total_fee }} 元</div>
+  </div>
+  <div class="div_center width_ttz marg_t_on">
+     <div class="total_character_section">
+         <div class="height_os">
+            <div class="float_l total_block"></div>
+            <div class="float_l total_extract">&nbsp;提现方式</div>
+         </div>
+         <div class="total_step">下载 "粉扑" —— 我 —— 设置 —— 我的收益<br/>重要：用微信登录粉扑账号<br/>本活动真实有效，红包客服QQ群:422056127<br/>本活动的最终解释权归粉扑所有。</div>
+     </div>
+   </div>
+</div>
+<script>
+var share_fee = {{ share_activity_fee }};
+var bonus_fee = {{ bonus_fee }};
+wx.config({
+      debug: false,
+      appId: '{{ appid }}',
+      timestamp: {{ timestamp }},
+      nonceStr: '{{ nonceStr }}',
+      signature: '{{ signature }}',
+      jsApiList: [
+        'checkJsApi',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage',
+        'onMenuShareQQ',
+        'onMenuShareWeibo'
+     ]
+});
+
+wx.ready(function(){
+  wx.onMenuShareTimeline({
+    title: '{{ shareUserName }}给你发红包啦，快来领~', // 分享标题
+    link: '{{ share_uri }}', // 分享链接
+    imgUrl: '{{ base_uri }}{% static "images/bonus_img.jpg" %}', // 分享图标
+    success: function () { 
+		shared();
+    },
+    cancel: function () { 
+    }
+  });
+
+  wx.onMenuShareAppMessage({
+    title: '{{ shareUserName }}给你发红包啦，快来领~', // 分享标题
+    desc: '粉扑红包可提现，快来领取吧', // 分享描述
+    link: '{{ share_uri }}', // 分享链接
+    imgUrl: '{{ base_uri }}{% static "images/bonus_img.jpg" %}', // 分享图标
+    success: function () { 
+	  shared();
+    },
+    cancel: function () { 
+    }
+  });
+});
+function shared(){
+  $.get_data(
+     '{%  url 'activities:share_activity' activity_id %}',
+	 "session={{ session }}",
+     function(data) {
+	   if(data['error']==0){
+		  hide_share_mask();
+          activity_shared(data['shareActivityFee']);
+	   }
+	 },
+     function(xmlReq, textStatus) {
+	 },
+     'json'
+  );
+}
+function open_bonus(){  
+  $.get_data(
+     '{%  url 'activities:open_bonus' activity_id %}',
+     "session={{ session }}",
+     function(data) {
+	  if(data['error']==0){
+	      bonus_opend(data['bonus']);
+	  }
+	 },
+     function(xmlReq, textStatus) {
+	 },
+     'json'
+  );
+}
+$(".weixin_share").click(function(){
+   $(".weixin_share").hide();
+});
+{% if session %}
+  addCookie('session','{{ session }}', 2);
+{% endif %}
+</script>
+{% endblock %}
