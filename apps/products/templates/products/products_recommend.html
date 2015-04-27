@@ -113,6 +113,7 @@ var layer_status = 0;
 $(document).ready(function(){
   $(".bottom_download").hide();
   bind_product_info();
+  resize_btn();
 });
 
 function bind_product_info(){
@@ -121,6 +122,7 @@ function bind_product_info(){
 function unbind_product_info(){
     $(".recommend_in_cart").unbind("click");
     ajax_product_info();
+    resize_btn();
 }
 
 function ajax_product_info(){
@@ -252,7 +254,12 @@ function complete(productId){
    var position_id = $(this).attr("id");
         document.getElementById(position_id).scrollIntoView();
  });
-
+function resize_btn(){
+  var button_width = ($("#main-content").width()-1)/2;
+  $(".more").css("width",button_width);
+  $(".recommend_in_cart").css("width",button_width);
+  $(".detail_cart").show();
+}
  $(".product_pics_img").show().lazyload({
      placeholder:"{% static "images/img_product_place_holder_cell@2x.png" %}",
      threshold:200,
