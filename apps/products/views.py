@@ -254,7 +254,7 @@ def seckill_process(data):
         #letter["remaining_stock"] = 0
         letter["discount"] = round(letter["flash_sizes"]["price"]/letter["price"]*10 ,1)
         for le in letter["goods"]:
-            le["last_sold_time"] = time.strftime("%H:%M",time.localtime(le["last_sold_time"]/1000))
+            le["last_sold_time"] = time.strftime("%H:%M:%S",time.localtime(le["last_sold_time"]/1000))
                 
 
 
@@ -267,7 +267,7 @@ def seckill_stock_process(data):
         last_sold_time = 0
         for goods in letter['goods']:
            if letter["flash_goods_id"] == goods["goodsId"]:
-               last_sold_time = time.strftime("%H:%M",time.localtime(goods["last_sold_time"]/1000))
+               last_sold_time = time.strftime("%H:%M:%S",time.localtime(goods["last_sold_time"]/1000))
         stock_data["stock_" + str(letter["productId"])] = str(letter["remaining_stock"])+";"+str(last_sold_time)
     return stock_data
  
