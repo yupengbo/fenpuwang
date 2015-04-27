@@ -79,9 +79,6 @@ def exchange(request):
        code = request.REQUEST.get("code")
        session = request.REQUEST.get("sessionKey")
        exchange_result = api_list.exchange_code(request,code,session)
-       print "111111111111111111"
-       print exchange_result
-       print "11111111111111111"
        return HttpResponse(json.dumps(exchange_result),content_type="application/json")           
 
 

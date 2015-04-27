@@ -87,6 +87,7 @@
         </script>
         <!--google end-->
        <script>
+         var timing;
          function success(data){
             if(data.error == 1){
                  $(".point_box").html(data.errorString);
@@ -97,18 +98,27 @@
             $(".point_box").parent().show();
             $(".point_box").parent().fadeOut(3000);
          }
+         function check_exchange_box(){
+            if($(".exchange_box").val() == ""){
+                $(".exchange_btn").css("background-color","#FFB7B1");
+            }else{
+                $(".exchange_btn").css("background-color","#ff5346");
+            } 
+         }
          $(document).ready(function(){
            var exchange_box_width = $(".exchange_box").parent().width()-77-34-17-15;
            $(".exchange_box").width(exchange_box_width);
-           document.getElementById("exchange_box").onchange = function(){
-                if($(".exchange_box").val() == ""){
-                     $(".exchange_btn").css("background-color","#FFB7B1");
-                }else{
-                     $(".exchange_btn").css("background-color","#ff5346");
-                }
-           }
+           $(".exchange_box").focus(function(){
+                 timing = setInterval(check_exchange_box,100);     
+           });
+           $(".exchange_box").blur(function(){
+                 clearInterval(timing);
+           });
            $(".exchange_btn").click(function(){
               var exchange_code = $(".exchange_box").val();
+              if(exchange_code == ""){
+                 return;
+              }
               var exchange_url = "{{ exchange_code_url }}" + "?code="+exchange_code+"&sessionKey="+"{{ session }}"
               $.ajax({
                  url:exchange_url,
