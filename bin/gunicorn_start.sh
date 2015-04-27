@@ -16,7 +16,7 @@ export DJANGO_SETTINGS_MODULE=$DJANGO_SETTINGS_MODULE
 export PYTHONPATH=$DJANGODIR:$PYTHONPATH
 
 #启动Django
-exec gunicorn ${DJANGO_WSGI_MODULE}:application \
+exec python /usr/local/bin/gunicorn ${DJANGO_WSGI_MODULE}:application \
     --name $NAME \
     --config=config/config.py \
     --log-level=debug \

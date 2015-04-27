@@ -42,17 +42,4 @@
    <div class="feature_color_block"></div>
  </div>
 
- <script>
-  $(document).ready(function(){
-     $(".feature_ntq").css("width",parseInt($(".feature_info").width())-132);
-     $(".feature_img").lazyload({
-       placeholder:"{% static "images/img_product_place_holder_cell@2x.png" %}",
-       threshold:200,
-     });
-     var button_width = ($("#main-content").width()-1)/2;
-     $(".more").css("width",button_width);
-     $(".recommend_in_cart").css("width",button_width);
-     $(".detail_cart").show();
-  });
- </script>
  {% endfor %}
