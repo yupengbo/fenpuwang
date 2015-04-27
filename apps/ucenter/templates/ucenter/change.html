@@ -60,6 +60,9 @@
              <div style="display:none;margin:0px auto;color:white;text-align:center;width:100%;" >
                   <span style="background-color:grey;padding:11px 15px 9px 11px;" class="point_box"></span>
              </div>
+             <div style="width:100%;text-align:center;display:none;"> 
+                 <img src="{% static "images/icon_feed_loading.gif" %}" style="width:30px;">
+             </div>
         </div>
         <!--baidu begin-->
         <div class="hidden">
@@ -88,6 +91,11 @@
         <!--google end-->
        <script>
          var timing;
+         var req_status = 0;
+         function before(){
+           req_status = 1;
+           $(".point_box").parent().next().show();  
+         }
          function success(data){
             if(data.error == 1){
                  $(".point_box").html(data.errorString);
@@ -95,8 +103,10 @@
             if(data.error == 0){
                  $(".point_box").html(data.content);
             }
+            $(".point_box").parent().next().hide();
             $(".point_box").parent().show();
             $(".point_box").parent().fadeOut(3000);
+            req_status = 0;
          }
          function check_exchange_box(){
             if($(".exchange_box").val() == ""){
@@ -120,10 +130,13 @@
                  return;
               }
               var exchange_url = "{{ exchange_code_url }}" + "?code="+exchange_code+"&sessionKey="+"{{ session }}"
-              $.ajax({
-                 url:exchange_url,
-                 success:success
-              });
+              if(req_status == 0 ){
+                $.ajax({
+                  url:exchange_url,
+                  beforeSend:before,
+                  success:success
+                });
+              }
            });
         });
        </script>
