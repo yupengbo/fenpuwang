@@ -204,3 +204,8 @@ def get_flash_product_list(req):
 def get_flash_banner(req):
     params = {"type":10}
     return get_result(req,"listActivity.do",params) 
+
+
+def exchange_code(req,code,sessionKey):
+    params = {"code":code,"sessionKey":sessionKey}
+    return get_result(req,"useExchangeCode.do",params)

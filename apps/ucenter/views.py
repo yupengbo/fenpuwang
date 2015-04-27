@@ -44,12 +44,13 @@ def change(request, sessionKey = '', mark = 0):
         if not is_ajax:
             change_info = api_list.get_user_change_info(request, sessionKey)
         logs = api_list.get_user_change_log(request, sessionKey, union_key, mark)
+        exchange_code_url = reverse("ucenter:exchangeCode")
         if logs['error'] == 0:
            next_page_url = ''  # for next page ajax loading
            if int(logs['mark']) > 0:
                next_page_url = reverse('ucenter:change_log_list', kwargs ={"sessionKey": sessionKey, "mark": logs['mark']})
            process_log_data(logs["userChangeLogList"])
-           meta_data = {'change_info' : change_info,'userChangeLogList' : logs["userChangeLogList"], 'url':next_page_url}
+           meta_data = {'change_info' : change_info,'userChangeLogList' : logs["userChangeLogList"], 'url':next_page_url,'session':sessionKey,"exchange_code_url":exchange_code_url}
            if is_ajax:
               context = RequestContext(request, meta_data)
               template = loader.get_template('ucenter/change_log_list.html')
@@ -72,3 +73,17 @@ def sendCode(request):
        except Exception as e:
           return response_data_utils.error_response(request, None, __name__, e)
    return response_data_utils.error_response(request, None,  __name__, " not ajax")
+
+def exchange(request):
+   if request.is_ajax():
+       code = request.REQUEST.get("code")
+       session = request.REQUEST.get("sessionKey")
+       exchange_result = api_list.exchange_code(request,code,session)
+       print "111111111111111111"
+       print exchange_result
+       print "11111111111111111"
+       return HttpResponse(json.dumps(exchange_result),content_type="application/json")           
+
+
+
+   

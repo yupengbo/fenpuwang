@@ -29,16 +29,20 @@
         <div id="main-content">
 		   <div class='change_banner relative'>
 		      <img src='{% static "images/img_my_income.png"%}' class='fl'/>
-			  <span class='absolute'>累计收益</span>
+			  <span class='absolute'>钱包余额</span>
 			  <div class='total absolute'><b>{{ change_info.change }}</b>元</div>
-		   <div class='tip_info fl'>
-		      <h2>发笔记，就可以获得收益哦</h2>
-		      <div class='con'>若笔记被设为精选，你将额外获得更多收益</div>
-		   </div>
-		   <div class='clear'></div>
+		     <div class='tip_info fl'>
+		        <h2>发笔记，就可以获得收益哦</h2>
+		        <div class='con'>若笔记被设为精选，你将额外获得更多收益</div>
+		     </div>
+                     <div class='fl' style="height:57px;width:100%;background-color:rgb(61,151,147);">
+                         <input type="text" placeholder="请输入现金券上的编码" style="font-size:12px;padding-left:15px;border:0px;margin-top:8px;border-radius:2px;margin-left:17px;height:40px;" class="fl exchange_box" id="exchange_box">
+                         <div class="fr exchange_btn" style="font-size:12px;margin-top:8px;margin-right:17px;height:40px;background-color:#FFB7B1;color:#fff;width:77px;line-height:40px;border-radius:2px;text-align:center;" >兑换</div>
+                     </div>
+		     <div class='clear'></div>
 		   </div>
 		  <div class='change_content'>
-             <h1>收益详情<a class='fr' href='http://m.fenpuwang.com/topic/2404/'>规则说明</a></h1>
+                    <h1>收益详情<a class='fr' href='http://m.fenpuwang.com/topic/2404/'>规则说明</a></h1>
 			 {% if not userChangeLogList %}
 			   <div class='tip'>
 			      你还没有任何收益哦
@@ -52,6 +56,11 @@
 		  </div>
         </div>
         <a href='#back_top' id="back_top_button"  class="back_top_button hidden" ></a>
+         <div style="left:0;width:100%;position:fixed;bottom:50%;z-index:9999">
+             <div style="display:none;margin:0px auto;color:white;text-align:center;width:100%;" >
+                  <span style="background-color:grey;padding:11px 15px 9px 11px;" class="point_box"></span>
+             </div>
+        </div>
         <!--baidu begin-->
         <div class="hidden">
         <script type="text/javascript">
@@ -77,6 +86,37 @@
 
         </script>
         <!--google end-->
+       <script>
+         function success(data){
+            if(data.error == 1){
+                 $(".point_box").html(data.errorString);
+            }
+            if(data.error == 0){
+                 $(".point_box").html(data.content);
+            }
+            $(".point_box").parent().show();
+            $(".point_box").parent().fadeOut(3000);
+         }
+         $(document).ready(function(){
+           var exchange_box_width = $(".exchange_box").parent().width()-77-34-17-15;
+           $(".exchange_box").width(exchange_box_width);
+           document.getElementById("exchange_box").onchange = function(){
+                if($(".exchange_box").val() == ""){
+                     $(".exchange_btn").css("background-color","#FFB7B1");
+                }else{
+                     $(".exchange_btn").css("background-color","#ff5346");
+                }
+           }
+           $(".exchange_btn").click(function(){
+              var exchange_code = $(".exchange_box").val();
+              var exchange_url = "{{ exchange_code_url }}" + "?code="+exchange_code+"&sessionKey="+"{{ session }}"
+              $.ajax({
+                 url:exchange_url,
+                 success:success
+              });
+           });
+        });
+       </script>
     </body>
 
 </html>

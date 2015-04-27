@@ -9,5 +9,6 @@ urlpatterns = patterns('',
   url(r'^sendCode$', views.sendCode, name='sendCode'),
   url(r'^change$', views.change, name='change'),
   url(r'^change/(?P<sessionKey>\w+)/(?P<mark>\d+)/$', views.change, name='change_log_list'),
+  url(r'^exchangeCode$',views.exchange,name='exchangeCode')
 )
 
