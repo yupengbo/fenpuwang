@@ -45,5 +45,53 @@ body{background-color:#ffefec;}
 #game_box .qa{z-index:6;top:16%;left:34%;}
 #game_box .qa li{color:#63211f;font-size:30px;font-size:5vw;padding:10px 0;padding:1vw 0;}
 #game_box .qa .question{font-weight:bold;}
-
+.center{text-align:center;}
+.fixed{position:fixed;}
+.div_center{margin:0px auto;}
+.bold{font-weight:bold;}
+.fc1{color:#999;}
+.fc2{color:#ff5346;}
+.fc3{color:#fff;}
+.fs15{font-size:15px;}
+.fs11{font-size:11px;}
+.fs20{font-size:20px;}
+#finish_box{display:none;background-image:url(images/bg_questions.png);max-width:680px;margin:0px auto;text-align:center;padding-top:13px;}
+.finish_des_img{width:276px;}
+.finish_time{width:188px;margin:11px auto 0px;font-size:12px;height:14px;line-height:14px;} 
+.finish_check_img{margin:17px auto 0px;width:200px;}
+#result_box{background-image:url(images/bg_questions.png);text-align:center;padding-top:13px;max-width:680px;margin:0px auto;text-align:center;padding-top:13px;}
+.score_master_section{left:0px;top:49px;width:100%;}
+.score_master{height:35px;margin:0px auto;}
+.score{color:#ff5345;font-size:33px;line-height:35px;}
+.master{margin-left:8px;}
+.score_rule{margin-top:16px;font-weight:bold;color:#666;font-size:15px;line-height:18px;}
+.score_own_face{font-weight:bold;color:#666;font-size:15px;line-height:18px;}
+.result_score_ticket{width:165px;height:50px;background-color:#ffa32a;margin:13px auto 0px;}
+.result_next_st{width:165px;height:50px;background-color:#ffa32a;margin:0px auto;}
+.score_own_ticket{font-size:32px;color:#fff;line-height:50px;}
+.ticket_use_rule{margin-top:10px;margin-left:10px;}
+.score_master_img{width:288px;}
+.again_play_btn{width:215px;height:68px;}
+.again_play{width:100%;left:0px;top:0px;color:#fff;line-height:68px;}
+.again_play_face{width:215px;height:68px;}
+.no_play_btn{width:215px;height:68px;}
+.no_play{width:100%;left:0px;top:0px;color:#fff;line-height:68px;}
+.no_play_face{width:215px;height:68px;}
+.fp_logo_img{width:212px;margin-top:22px;}
+.layer{display:none;position:fixed;top:0px;left:0px;width:100%;height:100%;}
+.layer_content{background-color:black;height:100%;max-width:680px;filter:alpha(opacity=60);opacity:0.6;-moz-opacity:0.6;-khtml-opacity:0.6;}
+.layer_white{width:100%;top:0px;left:0px;}
+.layer_small_img{width:225px;}
+.layer_big_img{width:225px;height:240px;}
+.layer_bigger_img{width:278px;}
+.layer_white_section{margin-top:122px;}
+.score_ticket_section{top:90px;left:0px;width:100%;}
+.score_ticket_one{top:43px;left:0px;width:100%;font-size:14px;}
+.score_ticket_two{top:62px;left:0px;width:100%;font-size:14px;}
+.duang{top:56px;left:0px;width:100%;color:#ff5345;font-size:20px;}
+.duang_content{top:103px;left:0px;width:100%;color:black;font-size:10px;}
+.fast_get_section{top:170px;left:0px;width:100%;}
+.fast_get_btn{border-radius:3px;width:165px;height:41px;line-height:41px;color:#fff;font-size:12px;background-color:rgb(74,170,186);}
+.download_section{top:272px;left:0px;width:100%;}
+.download{line-height:52px;border-radius:3px;width:245px;height:52px;background-color:#ff5345;font-size:14px;}
 

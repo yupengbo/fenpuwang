@@ -47,10 +47,84 @@
                <li>D:土吒</li>
            </ul>
        </div>
-      
     </div>
-    <div id="finish_box" class='scene hide'></div>
-    <div id="result_box" class='scene hide'></div>
+    <div class="screen hide" id="finish_box">
+       <img src="images/img_final.png" class="finish_des_img">
+       <div class="finish_time">你答题用时 176 秒正确率95%</div>
+       <div class="finish_time">题目来自粉扑笔记,博女神一笑</div>
+       <img src="images/btn_checkout.png" class="finish_check_img">
+    </div>
+    <div class="hide screen" id="result_box">
+        <div class="relative">
+           <img src="images/bg_question_photo_zone.png" class="score_master_img">
+	   <div class="absolute center score_master_section"> 
+	     <div class="score_master">
+	       <div class="fl score">98</div>
+	       <div class="fl master">
+		     <div class="fs15 fc1">达人</div>
+		     <div class="fs15 fc1">指数</div>
+	       </div>
+	     </div>
+	     <div class="score_rule">指数值<span class="fc2">越高</span>,现金券<span class="fc2">越多</div>
+	     <div class="score_own_face">根据你的指数,你赢的了</div>
+	     <div class="result_score_ticket">
+	           <div class="fl score_own_ticket">￥25</div>
+		      <div class="fl ticket_use_rule">
+		         <div class="fc3 fs15 bold">粉扑现金券</div>
+		         <div class="fc3 fs11">满一元即可使用</div>
+		      </div>
+	           </div> 
+	      </div>
+        </div> 
+        <div class="relative">
+            <img src="images/btn_result.png" class="again_play_btn">
+	    <div class="absolute bold again_play">
+	       <div class="div_center again_play_face">再玩一遍，赢取更多</div>
+	    </div>
+        </div>
+        <div class="relative">
+            <img src="images/btn_result.png" class="no_play_btn">
+	    <div class="absolute bold no_play">
+	        <div class="div_center no_play_face">不玩了，领取现金券</div>
+	    </div>
+        </div>
+        <img src="images/img_result_fenpu.png" class="fp_logo_img">
+    </div>
+    <div class="layer">
+       <div class="center div_center layer_content"></div>
+    </div>
+    <div class="layer_white hide fixed">
+      <div class="relative center layer_white_section">
+	    <div class="hide one_layer">
+	      <img src="images/bg_popover_01.png" class="layer_small_img">
+		  <div class="absolute bold duang">DUANG!</div>
+		  <div class="absolute bold duang_content">最高福利<span class="fs20 fc2">100</span>元等你赢</div>
+		</div>  
+	    <div class="hide two_layer">
+	      <img src="images/bg_popover_01.png" class="layer_big_img">
+		  <div class="absolute score_ticket_one">就酱吗？？不再玩一次吗？？</div>
+		  <div class="absolute score_ticket_two">每个微信号限领一次福利哦！</div>
+		  <div class="absolute score_ticket_section">
+		     <div class="result_next_st">
+			   <div class="fl score_own_ticket">￥25</div>
+			   <div class="fl ticket_use_rule">
+			      <div class="fc3 fs15 bold">粉扑现金券</div>
+			      <div class="fc3 fs11">满一元即可使用</div>
+			   </div>
+		     </div>
+		  </div>
+		  <div class="absolute fast_get_section">
+		      <div class="div_center fast_get_btn">马上领取</div>
+		  </div>
+		</div>
+		<div class="hide three_layer">
+		   <img src="images/img_popover_download.png" class="layer_bigger_img">
+		   <div class="absolute download_section">
+		       <div class="fc3 bold div_center download">下载粉扑</div>
+		   </div>
+		</div>
+	  </div>
+    </div>
     <script type="text/javascript" src="http://static.fenpuwang.com/js/jquery.min.js"></script>
     <script type="text/javascript" src="{% static "js/game.js" %}"></script>
     <script type="text/javascript" src="{% static "js/imageLoader.js" %}"></script>

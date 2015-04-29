@@ -20,6 +20,18 @@ var game_scene_resources=[
    res('icon_question_q_and_a_right.png'),
    res('icon_question_q_and_a_wrong.png')
 ];
+var finish_scene_resource=[
+   res('img_final.png'),
+   res('btn_checkout.png'),
+   res('bg_questions.png')
+];
+var result_scene_resource=[
+   res('bg_question_photo_zone.png'),
+   res('btn_result.png'),
+   res('img_result_fenpu.png'),
+   res('bg_popover_01.png'),
+   res('img_popover_download.png')
+];
 for (i=1;i<=15;i++) {
     var num = i;
     if( i<10){
@@ -76,6 +88,18 @@ function game_res_loaded(){
     $("#game_box .q_a_bg").attr("src",res('bg_qustion_q_and_a.png'));
     
 }
+function finish_res_loaded(){
+    $(".finish_des_img").attr("src",res('img_final.png'));
+    $(".finish_check_img").attr("src",res('btn_checkout.png'));
+    $("#finish_box").css("background-image","url('"+res('bg_questions.png')+")");
+}
+function result_res_loaded(){
+    $(".score_master_img").attr("src",res('bg_question_photo_zone.png'));
+    $(".again_play_btn").attr("src",res('btn_result.png'));
+    $(".fp_logo_img").attr("src",res('img_result_fenpu.png'));
+    $(".layer_small_img").attr("src",res('bg_popover_01.png'));
+    $(".layer_bigger_img").attr("src",res('img_popover_download.png'));
+}
 function begin(){
     $("#welcome_box").hide();
     $("#result_box").hide();
@@ -89,6 +113,16 @@ function finish(){
     __end_time = new Date().getTime();
     $("#game_box").hide();
     $("#finish_box").show();
+    $(".finish_check_img").click(function(){
+        result();
+    });
+}
+function result(){
+    $("#finish_box").hide();
+    $("$result_box").show();
+    var master_width = $(".master").width() + $(".score").width() + 8;
+    $(".master").parent().css("width",master_width);
+    layer();
 }
 function resize_game_screen(){
     var screen_width = $(window).width();
@@ -97,6 +131,7 @@ function resize_game_screen(){
         $(".scene").width(680);
     }
     $(".scene").height(screen_height);
+    $(".screen").height(screen_height);
 }
 function answer(question_id,liobj){
     if(!__can_answer){
@@ -170,7 +205,22 @@ function load_question(){
     }
     question_loaded(data);
 }
-    
+function layer(){
+   $(".again_play_face").click(function(){
+      $(".layer").show();
+	  $(".layer_white").show();
+	  $(".one_layer").show()
+   });
+   $(".no_play_face").click(function(){
+      $(".layer").show();
+	  $(".layer_white").show();
+	  $(".two_layer").show();
+   });
+   $(".fast_get_btn").click(function(){
+      $(".two_layer").hide();
+      $(".three_layer").show();
+   });
+}    
 $(document).ready(function(){
     resize_game_screen();
     $("#welcome_box .go").click(function(){
@@ -179,5 +229,7 @@ $(document).ready(function(){
     jQuery.imageLoader(welcome_scene_resources,welcome_res_loaded);
     load_question();
     jQuery.imageLoader(game_scene_resources,game_res_loaded);
+    jQuery.imageLoader(finish_scene_resources,finish_res_loaded);
+    jQuery.imageLoader(result_scene_resources,result_res_loaded);
 });
 
