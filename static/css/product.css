@@ -85,3 +85,39 @@
 .product_nickname{margin-top:10px;color:rgb(153,153,153);font-size:11px;}
 .marg_t_oz{margin-top:10px;}
 .product_why_bc{width:80%;margin-top:10px;height:15px;}
+/*卡片*/
+.product_card{font-size:17px;color:#D3B5AF;padding-top:25px;padding-bottom:25px;}
+.common_cat_img{height:44px;width:44px;}
+.common_brand_img{height:44px;width:44px;margin-left:32px;}
+.common_cat{line-height:44px;margin-left:10px;color;rgb(68,68,68);color:rgb(68,68,68);}
+.common_brand{line-height:44px;margin-left:10px;color:rgb(68,68,68);}
+/*弹层*/
+.product_more_standard{position:fixed;bottom:0px;left:0px;width:100%;background-color:white;display:none;z-index:20000}
+.layer_product_info{height:68px;margin-left:5%;margin-top:16px;}
+.layer_product_img_div{height:68px;width:68px;}
+.layer_product_img{border-radius:50%;border:1px solid #e4e4e4;overflow:hidden;}
+.layer_product_name{font-size:14px;color:#222;line-height:143%;margin-top:8px;}
+.product_fixed_ps{margin-top:3px;display:none;}
+.layer_product_price{color:#ff5346;font-size:14px;}
+.layer_product_size{color:#dbdbdb;font-size:10px;}
+.exit_section{width:100%;left:0px;top:0px;}
+.top_split_line{border-top:1px solid #dbdbdb;width:90%;margin:16px auto 0px;}
+.bottom_split_line{border-top:1px solid #dbdbdb;width:90%;margin:0px auto;}
+.increase_decrease{padding-top:18px;padding-bottom:18px;height:33px;margin-left:5%;z-index:99;width:50%;}
+.product_in_cart_section{width:100%;left:0px;bottom:17px;z-index:-1;}
+
+.haha{height:36px;min-width:85px;margin-left:5%;margin-top:16px;}
+.abc{border:1px solid #666;font-size:12px;line-height:36px;padding-left:5px;padding-right:5px;}
+.product_layer_info{margin-left:16px;}
+.exit_btn{height:30px;width:30px;float:right;margin-right:2%;}
+.product_send_time{height:85px;margin-left:5%;line-height:40px;font-size:12px;display:none;}
+.product_decrease{height:33px;width:42px;}
+.product_increase{height:33px;width:42px;}
+.product_num{width:68px;float:left;height:33px;line-height:33px;text-align:center;}
+.product_in_cart{margin-right:5%;float:right;background-color:#ff5346;border-radius:3px;color:#fff;width:85px;height:33px;line-height:33px;font-size:11px;}
+.product_info_img{height:68px;}
+
+
+/*阴影*/
+.cover_layer{display:none;filter:alpha(opacity=30);opacity:0.3;-moz-opacity:0.3;-khtml-opacity:0.3;width:100%;height:100%;background-color:rgb(0,0,0);left:0px;top:0px;z-index:10000;}
+

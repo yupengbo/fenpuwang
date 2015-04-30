@@ -3,7 +3,7 @@
  <div class="feature_info_background" id="{{ products_feature.productId }}">
    <div class="products_line"></div>
 
-   <div class="feature_info relative" style="text-align:center;">
+   <div class="feature_info relative center">
       <a href="{% url "product:product_detail"  products_feature.productId %}">
      {% if products_feature.thumb_s %}
      <img data-original="{{ products_feature.thumb_s }}" class="feature_img">   
@@ -12,30 +12,30 @@
      {% endif %}
      </a>
      <a href="{% url "product:product_detail"  products_feature.productId %}">
-     <div style="width:75%;margin:8px auto 16px;">
+     <div class="feature_product_info">
        <div class="feature_name">{% if products_feature.name_decoration %}{{ products_feature.name_decoration }}{% else %}{{ products_feature.name }}{% endif %}</div>
-       <div style="color:rgb(85,85,85);font-size:12px;margin-top:8px;line-height:18px;position:relative;">
+       <div class="feature_promote_des">
            {{ products_feature.promotion_description}}
-           <div style="position:absolute;width:8px;top:0px;left:-15px;"><img src="{% static "images/img_f_topic_quote_list_left@2x.png" %}" style="width:8px;height:7px;"></div>
-           <div style="position:absolute;width:8px;bottom:0px;right:-15px;"><img src="{% static "images/img_f_topic_quote_list_right@2x.png" %}" style="width:8px;height:7px;"></div>
+           <div class="double_mark_left_section"><img src="{% static "images/img_f_topic_quote_list_left@2x.png" %}" class="double_mark_left"></div>
+           <div class="double_mark_right_section"><img src="{% static "images/img_f_topic_quote_list_right@2x.png" %}" class="double_mark_right"></div>
        </div>
        {% for goods in products_feature.goods %}
        {% if forloop.counter == 1 %}
-       <div style="margin-top:15px;">
+       <div class="feature_ps">
           <!--<span style="padding:3px;color:white;font-size:8px;background-color:#4baab9;height:20px;vertical-align:middle">3.5折</span>-->
-          <span class="feature_price" style="padding-bottom:0px;vertical-align:middle;">¥{{ goods.goodsPrice }}</span>
-          <span class="feature_size" style="vertical-align:middle;">/{{ goods.size }}</span>
+          <span class="feature_price">¥{{ goods.goodsPrice }}</span>
+          <span class="feature_size">/{{ goods.size }}</span>
        </div>
        {% endif %}
        {% endfor %}
      </div>
      </a>
-     <div style="border-bottom:1px solid #e4e4e4;"></div>
-     <div style="height:49px;display:none;" class="detail_cart">
-        <a href="{% url "product:product_detail"  products_feature.productId %}"><div style="float:left;line-height:49px;color:rgb(190,190,190);font-size:12px;border-right:1px solid #e4e4e4;" class="more">查看详情</div></a>
-        <div style="float:left;line-height:49px;color:rgb(100,182,195);font-size:12px;" class="recommend_in_cart" product_info_url = "{% url "products:product_info" products_feature.productId %}">加入购物车</div>
+     <div class="feature_line"></div>
+     <div class="detail_cart">
+        <a href="{% url "product:product_detail"  products_feature.productId %}"><div class="more">查看详情</div></a>
+        <div class="recommend_in_cart" product_info_url = "{% url "products:product_info" products_feature.productId %}">加入购物车</div>
      </div>
-     <div style="border-bottom:1px solid #e4e4e4;"></div>
+     <div class="feature_line"></div>
    </div>
    
    <div class="products_line"></div>

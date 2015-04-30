@@ -64,35 +64,35 @@
 </div>
 
 <!--多规格弹层-->
-<div style="position:fixed;bottom:0px;left:0px;width:100%;background-color:white;z-index:20000;display:none;" class="product_more_standard">
-  <div style="height:68px;margin-left:5%;margin-top:16px;" class="relative">
-    <div style="height:68px;width:68px;" class="float_l">
-     <div style="border-radius:50%;border:1px solid #e4e4e4;overflow:hidden;" >
-       <img src="" style="height:68px;" class="product_info_img">
+<div class="product_more_standard">
+  <div class="relative layer_product_info">
+    <div class="float_l layer_product_img_div">
+     <div class="layer_product_img">
+       <img src="" class="product_info_img">
      </div>
     </div>
-    <div class="float_l product_layer_info" style="margin-left:16px;">
-       <div style="font-size:14px;color:#222;line-height:143%;margin-top:8px;">雅诗兰黛</div>
+    <div class="float_l product_layer_info">
+       <div class="layer_product_name">雅诗兰黛</div>
        <!--<div style="margin-top:3px;" class="product_fixed_ps" goodsId="{{ goods.goodsId }}"><span style="color:#ff5346;font-size:14px;">¥99</span><span style="color:#dbdbdb;font-size:10px;">/30g</span></div>-->
     </div>
-    <div class="absolute" style="width:100%;left:0px;top:0px;">
-         <img src="{% static "images/btn_product_detail_incart_cancel_normal@2x.png" %}" style="height:30px;width:30px;float:right;margin-right:2%;" class="exit_btn">
+    <div class="absolute exit_section">
+         <img src="{% static "images/btn_product_detail_incart_cancel_normal@2x.png" %}" class="exit_btn">
     </div>
   </div>
   <!--<div style="height:36px;min-width:85px;margin-left:5%;margin-top:16px;" class="float_l haha">
     <div style="border:1px solid #666;font-size:12px;line-height:36px;padding-left:5px;padding-right:5px;" class="center abc" sizeId="{{ goods.goodsId }}">30g</div>
   </div>-->
-  <div style="clear:both;"></div>
+  <div class="clear"></div>
 
-  <div style="border-top:1px solid #dbdbdb;width:90%;margin:16px auto 0px;" class="top_split_line"></div>
+  <div class="top_split_line"></div>
 <!--  <div style="height:85px;margin-left:5%;line-height:40px;font-size:12px;" class="product_send_time" timeId="{{ goods.goodsId }}">2-5天内发货</div>-->
-  <div style="border-top:1px solid #dbdbdb;width:90%;margin:0px auto;" class="bottom_split_line"></div>
-  <div class="realative" style="padding-top:18px;padding-bottom:18px;height:33px;margin-left:5%;z-index:99;width:50%;">
-      <img src="{% static "images/btn_product_incart_decrease_disabled@2x.png" %}" class="float_l product_decrease" style="height:33px;width:42px;">
-      <div style="width:68px;float:left;height:33px;line-height:33px;text-align:center;" class="product_num">1</div>
-      <img src="{% static "images/btn_product_incart_increase_normal@2x.png" %}" class="float_l product_increase" style="height:33px;width:42px;">
-      <div class="absolute" style="width:100%;left:0px;bottom:17px;z-index:-1;">
-         <div style="margin-right:5%;float:right;background-color:#ff5346;border-radius:3px;color:#fff;width:85px;height:33px;line-height:33px;font-size:11px;" class="center product_in_cart" add_cart_url = "{% url "product:add_in_cart" %}">加入购物车</div>
+  <div class="bottom_split_line"></div>
+  <div class="realative increase_decrease">
+      <img src="{% static "images/btn_product_incart_decrease_disabled@2x.png" %}" class="float_l product_decrease">
+      <div  class="product_num">1</div>
+      <img src="{% static "images/btn_product_incart_increase_normal@2x.png" %}" class="float_l product_increase">
+      <div class="absolute product_in_cart_section">
+         <div class="center product_in_cart" add_cart_url = "{% url "product:add_in_cart" %}">加入购物车</div>
       </div>
   </div>
  </div>
@@ -101,7 +101,7 @@
 
  <!--遮盖-->
  {% block cover %}
- <div style="display:none;filter:alpha(opacity=30);opacity:0.3;-moz-opacity:0.3;-khtml-opacity:0.3;width:100%;height:100%;background-color:rgb(0,0,0);left:0px;top:0px;z-index:10000;" class="absolute cover_layer"></div>
+ <div class="absolute cover_layer"></div>
  <!--end-->
 <script type="application/javascript">
 $("body").css({"background-color":"#f9f8f5"});

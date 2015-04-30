@@ -41,13 +41,31 @@
 .feature_topic_question{margin-top:10px;color:#AAAAAA;font-size:11px;}
 .feature_ps{width:100%;left:0px;bottom:12px;}
 .feature_price_size{text-align:right;margin-right:12px;}
-.feature_price{font-size:22px;color:#ff5346;}
-.feature_size{font-size:14px;color:#999;}
 .feature_color_block{height:10px;background-color:rgb(241, 240, 237);}
 .clear{clear:both;}
 .float_l{float:left;}
 .float_r{float:right;}
 .absolue{position:absolute;}
 .relative{position:relative;}
+.center{text-align:center;}
+/*产品列表*/
+.feature_promote_des{color:rgb(85,85,85);font-size:12px;margin-top:8px;line-height:18px;position:relative;}
+.double_mark_left_section{position:absolute;width:8px;top:0px;left:-15px;}
+.double_mark_right_section{position:absolute;width:8px;bottom:0px;right:-15px;}
+.double_mark_left{width:8px;height:7px;}
+.double_mark_right{width:8px;height:7px;}
+.feature_price{font-size:22px;color:#ff5346;padding-bottom:0px;vertical-align:middle;}
+.feature_size{font-size:14px;color:#999;vertical-align:middle;}
+.recommend_in_cart{float:left;line-height:49px;color:rgb(100,182,195);font-size:12px;}
+.more{float:left;line-height:49px;color:rgb(190,190,190);font-size:12px;border-right:1px solid #e4e4e4;}
+.detail_cart{height:49px;display:none;}
+.feature_product_info{width:75%;margin:8px auto 16px;}
+.feature_line{border-bottom:1px solid #e4e4e4;}
+.feature_ps{margin-top:15px;}
+/*合集列表*/
+.album_banner_img{width:100%;}
+.album_des{width:82%;margin:0px auto;line-height:20px;padding-top:12px;padding-bottom:30px;color:rgb(102,102,102);font-size:12px;text-align:center;}
+
+
 
 
