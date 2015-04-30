@@ -163,3 +163,30 @@ body {margin: 0px;min-width:320px;}
 .footer_download .btn_t_download{background-size:280px 44px;width:280px;height:44px;margin:0px auto;background-image:url('http://static.fenpuwang.com/images/img_download_topic@2x.png');}
 .back_top_button{right:3%;bottom:90px;position:fixed;height:26px;width:26px;background-image:url('/static/images/btn_back_nav@2x.png');background-size:26px 26px;z-index:9999;}
 .href_link{color:#586fd3;}
+
+/*导航*/
+.nav_menu_content{height:40px;width:100%;border-bottom:1px solid #eeeeee;display:none;position:absolute;top:44px;z-index:10;background-color:#fbfbf9;}
+.nav_search_content{display:none;height:40px;width:100%;position:absolute;top:44px;z-index:10;background-color:#fbfbf9;}
+.nav_search_box{font-size:13px;float:left;line-height:40px;margin-left:12px;position:relative;}
+.nav_search{padding-left:30px;padding-top:8px;padding-bottom:8px;width:100%;color:#dbdbdb;height:12px;border-radius:5px;border:1px solid #e4e4e4;}
+.nav_search_letter{font-size:15px;color:#ff5346;float:left;margin-left:12px;line-height:40px;width:33px;text-align:center;}
+.nav_buy{font-size:14px;color:#666666;float:left;margin-left:16px;line-height:40px;}
+.nav_topic{font-size:14px;color:#666666;float:left;margin-left:16px;line-height:40px;}
+.nav_cart{font-size:14px;color:#666666;float:left;margin-left:16px;line-height:40px;}
+.nav_order{font-size:14px;color:#666666;float:left;margin-left:16px;line-height:40px;}
+.nav_return_btn{float:left;margin-left:12px;height:17px;width:20px;margin-top:13px;}
+.nav_menu_btn{float:right;margin-right:17px;height:17px;margin-top:13px;}
+.nav_search_btn{float:right;margin-right:20px;height:17px;margin-top:13px;}
+.nav_section{width:100%;max-width:800px;margin:0px auto;position:relative;}
+.nav_bg{height:44px;width:100%;background-color:#ff5346;}
+.nav_menu{width:100%;max-width:800px;margin:0px auto;position:relative;}
+.nav_img{width:100%;left:0px;top:0px;height:44px;position:absolute;}
+.nav_face{text-align:center;line-height:44px;color:#fff;font-weight:bold;font-size:15px;}
+.nav_search_section{width:100%;max-width:800px;margin:0px auto;position:relative;}
+.nav_search_icon{height:17px;width:17px;position:absolute;left:9px;top:13px;}
+
+
+
+
+
+

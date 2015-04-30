@@ -1,40 +1,40 @@
 {% include "items/downloadItem.html" %}
 {% load static %}
-<div style="height:44px;width:100%;background-color:#ff5346;">
- <div style="width:100%;max-width:800px;margin:0px auto;position:relative;" class="nav_section">
-   <div style="text-align:center;line-height:44px;color:#fff;font-weight:bold;font-size:15px;">
+<div class="nav_bg">
+ <div class="nav_section">
+   <div class="nav_face">
         {% if navTitle %}
              {{ navTitle }}
         {% else %}
              粉扑
         {% endif %}
    </div>   
-   <div style="width:100%;left:0px;top:0px;height:44px;position:absolute;">
-      <img src="{% static "images/btn_nav_back_normal@2x.png" %}" style="float:left;margin-left:12px;height:17px;width:20px;margin-top:13px;" class="nav_return_btn">
+   <div class="nav_img">
+      <img src="{% static "images/btn_nav_back_normal@2x.png" %}" class="nav_return_btn">
       {% if not search_btn %}
-      <img src="{% static "images/btn_seach_bar_menu.png" %}" style="float:right;margin-right:17px;height:17px;margin-top:13px;" class="nav_menu_btn">
-      <img src="{% static "images/btn_nav_search_normal@2x.png" %}" style="float:right;margin-right:20px;height:17px;margin-top:13px;" class="nav_search_btn">
+      <img src="{% static "images/btn_seach_bar_menu.png" %}" class="nav_menu_btn">
+      <img src="{% static "images/btn_nav_search_normal@2x.png" %}" class="nav_search_btn">
       {% endif %}
    </div>
  </div>
 </div>
-<div style="height:40px;width:100%;border-bottom:1px solid #eeeeee;display:none;position:absolute;top:44px;z-index:10;background-color:#fbfbf9;" class="nav_menu_content">
-  <div style="width:100%;max-width:800px;margin:0px auto;position:relative;">
-    <a href="{% url "topic:topic_index" %}"><div style="font-size:14px;color:#666666;float:left;margin-left:16px;line-height:40px;">笔记</div></a>
-    <a href="{% url "products:products_recommend" %}"><div style="font-size:14px;color:#666666;float:left;margin-left:16px;line-height:40px;">买买买</div></a>
-    <a href="{% url "order:order_list" %}"><div style="font-size:14px;color:#666666;float:left;margin-left:16px;line-height:40px;">我的订单</div></a>
-    <a href="{% url "cart:cart_index" %}"><div style="font-size:14px;color:#666666;float:left;margin-left:16px;line-height:40px;">购物车</div></a>
+<div class="nav_menu_content">
+  <div class="nav_menu">
+    <a href="{% url "topic:topic_index" %}"><div class="nav_topic">笔记</div></a>
+    <a href="{% url "products:products_recommend" %}"><div class="nav_buy">买买买</div></a>
+    <a href="{% url "order:order_list" %}"><div class="nav_order">我的订单</div></a>
+    <a href="{% url "cart:cart_index" %}"><div class="nav_cart">购物车</div></a>
   </div>
 </div>
-<div style="display:none;height:40px;width:100%;position:absolute;top:44px;z-index:10;background-color:#fbfbf9;" class="nav_search_content">
-  <div style="width:100%;max-width:800px;margin:0px auto;position:relative;">
-    <div style="font-size:13px;float:left;line-height:40px;margin-left:12px;position:relative;" class="nav_search_box" >
+<div class="nav_search_content">
+  <div class="nav_search_section">
+    <div class="nav_search_box" >
        <form onsubmit='$(".nav_search_letter").click();return false;'>
-       <input type="text" placeholder="小棕瓶和小黑瓶哪个好用?" value="" style="padding-left:30px;padding-top:8px;padding-bottom:8px;width:100%;color:#dbdbdb;height:12px;border-radius:5px;border:1px solid #e4e4e4;" class="nav_search" />
+       <input type="text" placeholder="小棕瓶和小黑瓶哪个好用?" value="" class="nav_search" />
        </form>
-       <img src="{% static "images/icon_search_bar.png" %}" style="height:17px;width:17px;position:absolute;left:9px;top:13px;">
+       <img src="{% static "images/icon_search_bar.png" %}" class="nav_search_icon">
     </div>
-    <div style="font-size:15px;color:#ff5346;float:left;margin-left:12px;line-height:40px;width:33px;text-align:center;" class="nav_search_letter">搜索</div>
+    <div class="nav_search_letter">搜索</div>
   </div>
 </div>
 <script>
@@ -79,55 +79,3 @@
 });
 </script>
 
-<!--   <div class='nav' style="display:none;">
-       <div class='nav_inner'>
-       <form onsubmit='$("#nav_btn_search").click();return false;'>
-        <ul >
-	   <li><div class='bg logo_btn' ><a href='/'></a></div></li>                                 
-           <li {% if nav == 'topic' %}class='on'{% endif %}><a href='{% url  'topic:topic_index' %}'>笔记</a></li>
-           <li {% if nav == 'question' %}class='on'{% endif %}><a href='{% url 'question:question_list'%}'>问答</a></li>
-           <li {% if nav == 'products' %}class='on'{% endif %}><a href='{% url 'products:products_recommend' %}'>买买买</a></li>
-           <li {% if nav == 'order' %}class='on'{% endif %}><a href='{% url 'order:order_list' %}'>订单</a></li>
-        </ul>
-
-        <div class='top_search {% if nav == 'index' %}index{% endif %}'>
-            <div class='closebox fl hidden'>
-              <div class='close bg block' ></div>
-            </div>
-			{% if nav == 'index' %}
-			   <div  class='filterbox relative fr'>
-                  <div class='feed_filter bg block absolute' ></div>
-			   </div>
-			{% endif %}
-            <div  class='inputbox relative fr'>
-               <input id='nav_keyword' name='keyword' class='keyword f13 fcb1 fl hidden' value='{% if keyword %}{{keyword}}{% endif%}'/>
-               <input id='nav_btn_search' class='search_icon fr bg absolute {% if nav == 'index' %}hidden{% else %}block{% endif %}' type='button' value=''/>
-            </div>
-        </div>
-       </form>
-	   </div>
-   </div>
-</div>
-<div class='feed_filter_box absolute hidden'>
-   <ul>
-    <li class='on' get_data_url='{% url 'feed:feed_list' 0 0 %}'>全部</li>
-    {% if nav_list %}
-	  {% for category,nav in nav_list %}
-	     <li get_data_url='{% url 'feed:feed_list' category 0 %}'>{{ nav }}</li>
-	  {% endfor %}
-	{% endif %}
-   </ul>
-   <div class='clear'></div>
-</div>
-{% if nav == 'index' %}
-<div class='search_box t_c'>
-  <h1 class='bg block'></h1>
-  <h2 class='bg block'></h2>
-  <div class='search_input_box relative'>
-    <form onsubmit='$("#index_btn_search").click();return false;'>
-	  <input id='index_keyword' name='indexKeyword' class='f13 absolute' placeholder="小棕瓶和小黑瓶哪个好用"/>
-	  <input id='index_btn_search' type='button' value='' class='bg absolute'/>
-    <form>
-  </div>
-</div>
-{% endif%} -->
