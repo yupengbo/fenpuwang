@@ -1,16 +1,22 @@
 //begin   资源定义
 var __res_b = "/static/images/";
+var __get_cash_coupon_api = "/game/makeup/get";
+function set_get_cash_coupon_api(api){
+    __get_cash_coupon_api = api;
+}
+function get_get_cash_coupon_api(api){
+    return __get_cash_coupon_api;
+}
 function res(res_url){
     return __res_b + res_url;
 }
 var welcome_scene_resources = [
    res('bg_home_02.jpg'),
-   res('img_home_name.png'),
+   res('img_home_name_text.png'),
    res('img_home_left_lipstick.png'),
+   res('img_home_right.png'),
    res('img_home_bottom.png'),
-   res('btn_home_go.png')
-];
-var game_scene_resources=[
+   res('btn_home_go.png'),
    res('img_qustion_top_right.png'),
    res('img_qustion_top_left.png'),
    res('bg_question_photo_zone.png'),
@@ -20,12 +26,15 @@ var game_scene_resources=[
    res('icon_question_q_and_a_right.png'),
    res('icon_question_q_and_a_wrong.png')
 ];
-var finish_scene_resource=[
+var game_scene_resources=[
+
+];
+var finish_scene_resources=[
    res('img_final.png'),
    res('btn_checkout.png'),
    res('bg_questions.png')
 ];
-var result_scene_resource=[
+var result_scene_resources=[
    res('bg_question_photo_zone.png'),
    res('btn_result.png'),
    res('img_result_fenpu.png'),
@@ -54,6 +63,8 @@ var __begin_time = 0;
 var __end_time = 0;
 //题库
 var __question_list;
+//分数
+var __user_score = 0;
 
 var __question_ready = false;
 var __welcome_res_ready = false;
@@ -61,7 +72,8 @@ var __can_answer = false;
 function welcome_res_loaded(){
     $("#welcome_box").css("background-image","url('"+res('bg_home_02.jpg')+"')");
     $("#welcome_box .lipstick").attr("src",res('img_home_left_lipstick.png'));
-    $("#welcome_box .title").attr("src",res('img_home_name.png'));
+    $("#welcome_box .title").attr("src",res('img_home_name_text.png'));
+    $("#welcome_box .cloud").attr("src",res('img_home_right.png'));
     $("#welcome_box .bottom").attr("src",res('img_home_bottom.png'));
     $("#welcome_box .go").attr("src",res('btn_home_go.png'));
     __welcome_res_ready = true;
@@ -91,38 +103,58 @@ function game_res_loaded(){
 function finish_res_loaded(){
     $(".finish_des_img").attr("src",res('img_final.png'));
     $(".finish_check_img").attr("src",res('btn_checkout.png'));
-    $("#finish_box").css("background-image","url('"+res('bg_questions.png')+")");
+    $("#finish_box").css("background-image","url('"+res('bg_questions.png')+"')");
 }
 function result_res_loaded(){
     $(".score_master_img").attr("src",res('bg_question_photo_zone.png'));
-    $(".again_play_btn").attr("src",res('btn_result.png'));
+    $(".again_play_btn,.no_play_btn").attr("src",res('btn_result.png'));
     $(".fp_logo_img").attr("src",res('img_result_fenpu.png'));
-    $(".layer_small_img").attr("src",res('bg_popover_01.png'));
+    $(".layer_small_img,.layer_big_img").attr("src",res('bg_popover_01.png'));
     $(".layer_bigger_img").attr("src",res('img_popover_download.png'));
+    $("#result_box").css("background-image","url('"+res('bg_questions.png')+"')");
 }
 function begin(){
+    $(".layer").hide();
+	$(".layer_white").hide();
+	$(".duang_layer").hide();
     $("#welcome_box").hide();
     $("#result_box").hide();
     $("#game_box").show();
     __begin_time = new Date().getTime();
     __curr_question = 1;
     __op_num = 0;
-    show_question(__curr_question)
+    show_question(__curr_question);
 }
 function finish(){
     __end_time = new Date().getTime();
+    set_result();
     $("#game_box").hide();
     $("#finish_box").show();
     $(".finish_check_img").click(function(){
         result();
     });
+    
+}
+function set_result(){
+    var sec = parseInt((__end_time - __begin_time) /1000);
+    var accuracy = __question_num / __op_num * 100;
+    __user_score = accuracy + 5;
+    $(".finish_time").eq(0).html("你答题用时 " + sec + " 秒正确率" + accuracy +"%");
+    $(".score").html(__user_score);
+
+    var money = 1;
+    if(__user_score <50){
+        money = 5;
+    } else if(__user_score <50 && __user_score >200){
+        money = 15;
+    }else{
+        money = 20;
+    }
+    $(".score_own_ticket").html("￥"+money);
 }
 function result(){
     $("#finish_box").hide();
-    $("$result_box").show();
-    var master_width = $(".master").width() + $(".score").width() + 8;
-    $(".master").parent().css("width",master_width);
-    layer();
+    $("#result_box").show();
 }
 function resize_game_screen(){
     var screen_width = $(window).width();
@@ -131,8 +163,10 @@ function resize_game_screen(){
         $(".scene").width(680);
     }
     $(".scene").height(screen_height);
-    $(".screen").height(screen_height);
+    $("#loading_box h2").height(screen_height);
+    $("#loading_box h2").css("line-height",screen_height+"px");
 }
+
 function answer(question_id,liobj){
     if(!__can_answer){
         return;
@@ -147,7 +181,7 @@ function answer(question_id,liobj){
     __op_num ++ ;
     $(".i_right").remove();
     $(".i_wrong").remove();
-    
+    finish();
     if(liobj.index() == answer){
         var next_question_id = question_id+1;
         $(liobj).html($(liobj).html()+right_icon);
@@ -205,31 +239,114 @@ function load_question(){
     }
     question_loaded(data);
 }
-function layer(){
-   $(".again_play_face").click(function(){
-      $(".layer").show();
-	  $(".layer_white").show();
-	  $(".one_layer").show()
-   });
-   $(".no_play_face").click(function(){
-      $(".layer").show();
-	  $(".layer_white").show();
-	  $(".two_layer").show();
-   });
-   $(".fast_get_btn").click(function(){
-      $(".two_layer").hide();
-      $(".three_layer").show();
-   });
-}    
+
 $(document).ready(function(){
     resize_game_screen();
+    $(window).resize(function(){
+        resize_game_screen();
+    }); 
     $("#welcome_box .go").click(function(){
         begin();
     });
-    jQuery.imageLoader(welcome_scene_resources,welcome_res_loaded);
-    load_question();
-    jQuery.imageLoader(game_scene_resources,game_res_loaded);
-    jQuery.imageLoader(finish_scene_resources,finish_res_loaded);
-    jQuery.imageLoader(result_scene_resources,result_res_loaded);
+    $(".again_play_btn,.again_play").click(function(){
+      $(".layer").show();
+	  $(".layer_white").show();
+	  $(".duang_layer").show();
+      setTimeout(function() {  
+        begin();
+      }, 3000);
+   });
+   $(".no_play_btn,.no_play").click(function(){
+      $(".layer").show();
+	  $(".layer_white").show();
+	  $(".get_layer").show();
+   });
+   $(".layer").click(function(){
+      $(".layer").hide();
+      $(".duang_layer").hide()
+      $(".get_layer").hide();
+      $(".download_layer").hide();
+   });
+   $(".fast_get_section").click(function(){
+       $.get_data(
+         get_get_cash_coupon_api(),
+         "score="+__user_score,
+         function(data){
+           if(data.error != undefined && data.error == 0){
+              $(".get_layer").hide();
+              $(".download_layer").show();
+           }else if(data.error && data.error == 1){
+              alert(data.errorString);
+           }else if(data.error && data.error == 2){
+              window.location=data.authuri;
+           }
+         },
+         function(){},'json'
+       );
+       $(".exit_btn").click();
+       setTimeout(function(){$(".cart-pop").fadeOut("slow");},1300);
+     });
+   
+   setTimeout(function() {  
+        window.scrollTo(0, 1)  ;
+   }, 300); 
+   jQuery.imageLoader(welcome_scene_resources,welcome_res_loaded);
+   load_question();
+   jQuery.imageLoader(game_scene_resources,game_res_loaded);
+   jQuery.imageLoader(finish_scene_resources,finish_res_loaded);
+   jQuery.imageLoader(result_scene_resources,result_res_loaded);
+});
+$.extend({
+    get_data: function (url, args, success_cb, completion_cb, datatype) {
+        datatype = (datatype == null ? 'text' : datatype.toUpperCase());
+        success_cb = (success_cb === null ? $.success_callback : success_cb);
+        completion_cb = (completion_cb === null ? $.complete_callback : completion_cb);
+        $.ajax({
+            type: 'POST',
+            dataType: datatype.toLowerCase(),
+            url: url,
+            data: args,
+            timeout: 10000,
+            async: true,
+            cache: true,
+            beforeSend: $.before_send_callback,
+            complete: completion_cb,
+            success: success_cb,
+            error: $.error_callback
+        });
+    },
+    success_callback: function (xmlReq) {
+        $.ajax_complete();
+    },
+    before_send_callback: function (xmlReq) {
+
+    },
+    complete_callback: function (xmlReq, textStatus) {
+        /**
+         * 数据获取完成时执行
+         */
+
+    },
+    /**
+     * 请求出现错误 responseText 请求的数据 data || textStatus 文本状态 eg：success
+     */
+    error_callback: function (xmlReq, textStatus) {
+        switch (xmlReq.status) {
+            case 404: // Not Found
+                console.log("XmlHttpRequest status: [404] \nThe requested URL was not found on this server.");
+                break;
+            case 500:
+                console.log("XmlHttpRequest status: [500] Service Unavailable");
+                break;
+            case 400:
+                console.log("XmlHttpRequest status: [400] Bad Request");
+                break;
+            case 503: // Service Unavailable
+                console.log("XmlHttpRequest status: [503] Service Unavailable");
+                break;
+            default:
+                break;
+        }
+    }
 });
 

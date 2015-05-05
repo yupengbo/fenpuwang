@@ -205,6 +205,9 @@ def get_flash_banner(req):
     params = {"type":10}
     return get_result(req,"listActivity.do",params) 
 
+def get_game_result(req, sessionKey, score):
+    params = {"score": score, "sessionKey": sessionKey}
+    return get_result(req,"gameResult.do",params) 
 
 def exchange_code(req,code,sessionKey):
     params = {"code":code,"sessionKey":sessionKey}

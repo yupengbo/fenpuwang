@@ -7,12 +7,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
     <meta name="description" content="粉扑网，正品化妆品推荐，海外化妆品代购"/>
     <meta name="keywords" content="粉扑，粉扑网，粉扑网站，粉扑下载，护肤，美妆，正品，美妆社区"/>
-    <title> 测试 </title>
+    <title> 测测你有多懂化妆品 </title>
     <meta name="format-detection" content="telephone=no"/>  
     {% load static %}
     <link rel="icon" href="{% static "images/Icon-Small.ico" %}" mce_href="{% static "images/Icon-Small.ico" %}" type="image/x-icon" />
     <link rel="shortcut icon" href="{% static "images/Icon-Small.ico" %}" type="image/x-icon" />
-    <link type="text/css" rel="stylesheet" href="{% static "css/game.css" %}"/>
+    <style>
+    html,body,div,span,iframe,h1,h2,h3,h4,h5,h6,p,pre,a,em,font,img,small,strong,b,u,i,s,dl,dt,dd,ol,ul,li,fieldset,form,label {padding:0px;margin:0px;-webkit-tap-highlight-color:rgba(0,0,0,0);}
+a,img {border:0;}
+ul {list-style:none;}
+li {list-style-type:none;}
+input,select{vertical-align:middle;padding:0px;}
+h1, h2, h3, h4, h5, h6 {font-weight:normal; font-size:12px;}
+b,i,em {font-style:normal;}
+a {text-decoration:none;}
+a:visited{color:#e4e4e4;}
+input {-webkit-appearance: none;}
+a,button,input{-webkit-tap-highlight-color:rgba(0,0,0,0);}
+.break { word-break:break-all; word-wrap:break-word;}
+.nobreak { word-break:keep-all; word-wrap:normal;}
+.absolute{ position:absolute;}
+.relative{ position:relative;}
+.fixed{position:fixed;}
+.fl {float:left; }
+.fr {float:right; }
+.hide{display:none;}
+.clear{ clear:both; height:0px; width:100%; font-size:1px; line-height:0px; visibility:hidden; overflow:hidden;}
+.scene{position:relative;margin:0 auto;}
+.scene img{display:block;width:100%;}
+.t_c{text-align:center;}
+.t_l{text-align:left;}
+.t_r{text-align:right;}
+.div_center{margin:0px auto;}
+.bold{font-weight:bold;}
+.fc1{color:#999;}
+.fc2{color:#ff5346;}
+.fc3{color:#fff;}
+.fs15{font-size:15px;}
+.fs11{font-size:11px;}
+.fs20{font-size:20px;}
+body{background-color:#ffefec;}
+#loading_box{background-color:#FEF6F5;height:100%;width:100%;vertical-align:middle;}
+#loading_box h2{color:#CD9C99;font-size:28px;text-align:center;}
+#welcome_box {background-repeat:repeat-x;}
+#welcome_box .lipstick{width:20%;left:0px;top:10%;}
+#welcome_box .title{width:60%;right:13%;top:10%;z-index:4;}
+#welcome_box .cloud{width:15%;right:5%;top:5%;}
+#welcome_box .bottom{width:100%;left:0px;bottom:0px;}
+#welcome_box .go{width:50%;left:25%;top:50%;z-index:5;}
+#game_box{}
+#game_box .q_bg{width:90%;margin:0 auto;padding-top:10%;}
+#game_box .q_a_bg{width:90%;margin:0 auto;}
+#game_box .q_top_left{width:13%;left:10%;top:1%;z-index:5;}
+#game_box .q_top_right{width:20%;right:10%;top:1%;z-index:5;}
+#game_box .q_pic_box{height:65%;width:60%;left:20%;top:25%;z-index:4;text-align:center;}
+#game_box .q_pic{height:100%;}
+#game_box .q_progress{width:90%;margin:0 auto;}
+#game_box .q_num{width:13%;left:10%;top:8%;z-index:5;}
+#game_box .q_topic{width:13%;right:13%;top:70%;z-index:9;}
+#game_box .q_box{}
+#game_box .q_p_box{}
+#game_box .q_a_box{}
+#game_box .i_wrong,#game_box .i_right{width:18px;display:inline;vertical-align:top;}
+#game_box .qa{z-index:6;top:16%;left:26%;}
+#game_box .qa li{color:#63211f;font-size:16px;padding-bottom:5px;}
+#game_box .qa .question{font-weight:bold;}
+
+#finish_box{}
+#finish_box .finish_des_img{width:82%;margin:0 auto 10%;}
+#finish_box .finish_time{width:60%;margin:0 auto 2%;font-size:12px;height:14px;line-height:14px;} 
+#finish_box .finish_check_img{margin:8% auto;width:64%;}
+
+#result_box{}
+#result_box img{margin:0 auto;}
+#result_box .score_master_section{left:0px;top:20%;width:100%;}
+#result_box .score_master{}
+#result_box .score,#result_box .master{width:48%;}
+#result_box .score{color:#ff5345;font-size:33px;line-height:35px;}
+#result_box .master{text-align:right;}
+#result_box .score_rule{margin-top:5%;font-weight:bold;color:#666;font-size:15px;line-height:18px;}
+#result_box .score_own_face{font-weight:bold;color:#666;font-size:15px;line-height:18px;}
+#result_box .result_score_ticket{width:58%;height:50px;background-color:#ffa32a;margin:10% auto 0px;}
+.result_next_st{width:48%;background-color:#ffa32a;margin:0px auto;}
+.score_own_ticket{width:30%;font-size:32px;color:#fff;line-height:50px;}
+.ticket_use_rule{width:69%;margin-top:10px;}
+#result_box .score_master_img{width:93%;}
+#result_box .again_play_btn,#result_box  .again_play_face,#result_box .no_play_btn,#result_box .no_play_face,#result_box .fp_logo_img{width:70%;}
+#result_box .again_play,#result_box .no_play{width:70%;left:15%;top:35%;color:#fff;}
+#result_box .fp_logo_img{margin-top:5%;}
+.layer{display:none;position:fixed;top:0px;left:0px;width:100%;height:100%;}
+.layer_content{background-color:black;height:100%;max-width:680px;filter:alpha(opacity=60);opacity:0.6;-moz-opacity:0.6;-khtml-opacity:0.6;}
+.layer_white{width:100%;top:0px;left:0px;}
+.duang_layer,.get_layer,.mm_layer{width:225px;margin:0 auto;position:relative;}
+.get_layer .result_next_st,.fast_get_btn{width:85%;}
+.layer_small_img{width:225px;}
+.layer_big_img{width:225px;height:240px;}
+.layer_bigger_img{width:278px;}
+.layer_white_section{margin-top:20%;}
+.score_ticket_section{top:90px;left:0px;width:100%;}
+.score_ticket_one{top:43px;left:0px;width:100%;font-size:14px;}
+.score_ticket_two{top:62px;left:0px;width:100%;font-size:14px;}
+.duang{top:56px;left:0px;width:100%;color:#ff5345;font-size:26px;}
+.duang_content{top:103px;left:0px;width:100%;color:black;font-size:16px;}
+.fast_get_section{top:170px;left:0px;width:100%;}
+.fast_get_btn{border-radius:3px;height:41px;line-height:41px;color:#fff;font-size:12px;background-color:rgb(74,170,186);}
+.download_section{top:272px;left:0px;width:100%;}
+.download{line-height:52px;border-radius:3px;width:245px;height:52px;background-color:#ff5345;font-size:14px;}
+    </style>
     
   </head>
   <body>
@@ -22,6 +123,7 @@
     <div id="welcome_box" class='scene hide'>
        <img class='lipstick absolute' alt='口红' >
        <img class='title absolute' alt='标题' >
+       <img class='cloud absolute' alt='云' >
        <img class='go absolute' alt='go' >
        <img class='bottom absolute' alt='底部' >
     </div>
@@ -48,88 +150,488 @@
            </ul>
        </div>
     </div>
-    <div class="screen hide" id="finish_box">
-       <img src="images/img_final.png" class="finish_des_img">
-       <div class="finish_time">你答题用时 176 秒正确率95%</div>
-       <div class="finish_time">题目来自粉扑笔记,博女神一笑</div>
-       <img src="images/btn_checkout.png" class="finish_check_img">
+    <div class="scene hide" id="finish_box">
+       <img  class="finish_des_img" />
+       <div class="finish_time t_c">你答题用时 176 秒正确率95%</div>
+       <div class="finish_time t_c">题目来自粉扑笔记,博女神一笑</div>
+       <img src="" class="finish_check_img" />
     </div>
-    <div class="hide screen" id="result_box">
+    <div class="hide scene" id="result_box">
         <div class="relative">
-           <img src="images/bg_question_photo_zone.png" class="score_master_img">
-	   <div class="absolute center score_master_section"> 
-	     <div class="score_master">
-	       <div class="fl score">98</div>
-	       <div class="fl master">
-		     <div class="fs15 fc1">达人</div>
-		     <div class="fs15 fc1">指数</div>
-	       </div>
-	     </div>
-	     <div class="score_rule">指数值<span class="fc2">越高</span>,现金券<span class="fc2">越多</div>
-	     <div class="score_own_face">根据你的指数,你赢的了</div>
-	     <div class="result_score_ticket">
-	           <div class="fl score_own_ticket">￥25</div>
-		      <div class="fl ticket_use_rule">
-		         <div class="fc3 fs15 bold">粉扑现金券</div>
-		         <div class="fc3 fs11">满一元即可使用</div>
-		      </div>
-	           </div> 
-	      </div>
+           <img  class="score_master_img" />
+           <div class="absolute t_c score_master_section"> 
+             <div class="score_master">
+               <div class="fl score t_r">98</div>
+               <div class="fl master">
+                 <div class="fs15 fc1 t_l">达人</div>
+                 <div class="fs15 fc1 t_l">指数</div>
+               </div>
+               <div class="clear"></div>
+             </div>
+             <div class="score_rule">指数值<span class="fc2">越高</span>,现金券<span class="fc2">越多</div>
+             <div class="score_own_face">根据你的指数,你赢的了</div>
+             <div class="result_score_ticket">
+                   <div class="fl score_own_ticket">￥25</div>
+                  <div class="fl ticket_use_rule">
+                     <div class="fc3 fs15 bold">粉扑现金券</div>
+                     <div class="fc3 fs11">满一元即可使用</div>
+                  </div>
+             </div> 
+           </div>
         </div> 
         <div class="relative">
-            <img src="images/btn_result.png" class="again_play_btn">
-	    <div class="absolute bold again_play">
-	       <div class="div_center again_play_face">再玩一遍，赢取更多</div>
-	    </div>
+            <img class="again_play_btn" />
+            <div class="absolute bold again_play">
+               <div class="div_center again_play_face t_c">再玩一遍，赢取更多</div>
+            </div>
         </div>
         <div class="relative">
-            <img src="images/btn_result.png" class="no_play_btn">
-	    <div class="absolute bold no_play">
-	        <div class="div_center no_play_face">不玩了，领取现金券</div>
-	    </div>
+            <img class="no_play_btn" />
+            <div class="absolute bold no_play">
+                <div class="div_center no_play_face t_c">不玩了，领取现金券</div>
+            </div>
         </div>
-        <img src="images/img_result_fenpu.png" class="fp_logo_img">
+        <img  class="fp_logo_img">
     </div>
     <div class="layer">
-       <div class="center div_center layer_content"></div>
+       <div class="t_c div_center layer_content"></div>
     </div>
     <div class="layer_white hide fixed">
-      <div class="relative center layer_white_section">
-	    <div class="hide one_layer">
-	      <img src="images/bg_popover_01.png" class="layer_small_img">
-		  <div class="absolute bold duang">DUANG!</div>
-		  <div class="absolute bold duang_content">最高福利<span class="fs20 fc2">100</span>元等你赢</div>
-		</div>  
-	    <div class="hide two_layer">
-	      <img src="images/bg_popover_01.png" class="layer_big_img">
-		  <div class="absolute score_ticket_one">就酱吗？？不再玩一次吗？？</div>
-		  <div class="absolute score_ticket_two">每个微信号限领一次福利哦！</div>
-		  <div class="absolute score_ticket_section">
-		     <div class="result_next_st">
-			   <div class="fl score_own_ticket">￥25</div>
-			   <div class="fl ticket_use_rule">
-			      <div class="fc3 fs15 bold">粉扑现金券</div>
-			      <div class="fc3 fs11">满一元即可使用</div>
-			   </div>
-		     </div>
-		  </div>
-		  <div class="absolute fast_get_section">
-		      <div class="div_center fast_get_btn">马上领取</div>
-		  </div>
-		</div>
-		<div class="hide three_layer">
-		   <img src="images/img_popover_download.png" class="layer_bigger_img">
-		   <div class="absolute download_section">
-		       <div class="fc3 bold div_center download">下载粉扑</div>
-		   </div>
-		</div>
+      <div class="relative t_c layer_white_section">
+        <div class="hide duang_layer">
+          <img  class="layer_small_img" />
+          <div class="absolute bold duang  t_c">DUANG!</div>
+          <div class="absolute bold duang_content  t_c">最高福利<span class="fs20 fc2">100</span>元等你赢</div>
+        </div>  
+        <div class="hide get_layer">
+          <img  class="layer_big_img" />
+          <div class="absolute score_ticket_one  t_c">就酱吗？？不再玩一次吗？？</div>
+          <div class="absolute score_ticket_two  t_c">每个微信号限领一次福利哦！</div>
+          <div class="absolute score_ticket_section">
+             <div class="result_next_st">
+               <div class="fl score_own_ticket  t_c">￥25</div>
+               <div class="fl ticket_use_rule">
+                  <div class="fc3 fs15 bold  t_c">粉扑现金券</div>
+                  <div class="fc3 fs11  t_c">满一元即可使用</div>
+               </div>
+               <div class='clear'></div>
+             </div>
+          </div>
+          <div class="absolute fast_get_section">
+              <div class="div_center fast_get_btn">马上领取</div>
+          </div>
+        </div>
+        <div class="hide download_layer">
+           <img class="layer_bigger_img" />
+           <div class="absolute download_section">
+               <a href='http://www.fenpuwang.com/download.phtml'><div class="fc3 bold div_center download">下载粉扑</div></a>
+           </div>
+        </div>
+        <div class="hide mm_layer">
+          <img  class="layer_small_img" />
+          <div class="absolute bold duang_content  t_c">该活动限微信用户参与</div>
+        </div>
 	  </div>
     </div>
     <script type="text/javascript" src="http://static.fenpuwang.com/js/jquery.min.js"></script>
-    <script type="text/javascript" src="{% static "js/game.js" %}"></script>
+    <script type="text/javascript" >
+    //begin   资源定义
+var __res_b = "http://static.fenpuwang.com/game/res/";
+var __get_cash_coupon_api = "/game/makeup/get";
+function set_get_cash_coupon_api(api){
+    __get_cash_coupon_api = api;
+}
+function get_get_cash_coupon_api(api){
+    return __get_cash_coupon_api;
+}
+function res(res_url){
+    return __res_b + res_url;
+}
+var welcome_scene_resources = [
+   res('bg_home_02.jpg'),
+   res('img_home_name_text.png'),
+   res('img_home_left_lipstick.png'),
+   res('img_home_right.png'),
+   res('img_home_bottom.png'),
+   res('btn_home_go.png'),
+   res('img_qustion_top_right.png'),
+   res('img_qustion_top_left.png'),
+   res('bg_question_photo_zone.png'),
+   res('btn_qustion_q_and_a_topic.png'),
+   res('bg_qustion_q_and_a.png'),
+   res('bg_questions.png'),
+   res('icon_question_q_and_a_right.png'),
+   res('icon_question_q_and_a_wrong.png')
+];
+var game_scene_resources=[
+
+];
+var finish_scene_resources=[
+   res('img_final.png'),
+   res('btn_checkout.png'),
+   res('bg_questions.png')
+];
+var result_scene_resources=[
+   res('bg_question_photo_zone.png'),
+   res('btn_result.png'),
+   res('img_result_fenpu.png'),
+   res('bg_popover_01.png'),
+   res('img_popover_download.png')
+];
+for (i=1;i<=15;i++) {
+    var num = i;
+    if( i<10){
+        num = "0"+i;
+    }
+    game_scene_resources.push(res('icon_question_num_'+num+'.png'));
+    game_scene_resources.push(res('img_progressbar_'+num+'.png'));
+}
+//end     资源定义
+
+//答题操作次数
+var __op_num = 0;
+//问题总数
+var __question_num = 1;
+//当前正在回答的问题的序号
+var __curr_question = 1;
+//游戏开始时间
+var __begin_time = 0;
+//游戏结束时间
+var __end_time = 0;
+//题库
+var __question_list;
+//分数
+var __user_score = 0;
+
+var __question_ready = false;
+var __welcome_res_ready = false;
+var __can_answer = false;
+var __show_result =false;
+var __is_mm =false;
+function welcome_res_loaded(){
+    $("#welcome_box").css("background-image","url('"+res('bg_home_02.jpg')+"')");
+    $("#welcome_box .lipstick").attr("src",res('img_home_left_lipstick.png'));
+    $("#welcome_box .title").attr("src",res('img_home_name_text.png'));
+    $("#welcome_box .cloud").attr("src",res('img_home_right.png'));
+    $("#welcome_box .bottom").attr("src",res('img_home_bottom.png'));
+    $("#welcome_box .go").attr("src",res('btn_home_go.png'));
+    __welcome_res_ready = true;
+    to_welcome();
+}
+function question_loaded(data){
+    __question_list = data;
+    __question_num = data.length;
+    __question_ready = true;
+    to_welcome();
+}
+function to_welcome(){
+    if(__question_ready&&__welcome_res_ready){
+        $("#loading_box").hide();
+        if(__show_result){
+            set_score();
+            result();
+            $(".layer").show();
+            $(".layer_white").show();
+            $(".download_layer").show();
+            return;
+        }
+        $("#welcome_box").show();
+    }
+}
+function game_res_loaded(){
+    $("#game_box").css("background-image","url('"+res('bg_questions.png')+"')");
+    $("#game_box .q_top_left").attr("src",res('img_qustion_top_left.png'));
+    $("#game_box .q_top_right").attr("src",res('img_qustion_top_right.png'));
+    $("#game_box .q_bg").attr("src",res('bg_question_photo_zone.png'));
+    $("#game_box .q_topic").attr("src",res('btn_qustion_q_and_a_topic.png'));
+    $("#game_box .q_a_bg").attr("src",res('bg_qustion_q_and_a.png'));
+    
+}
+function finish_res_loaded(){
+    $(".finish_des_img").attr("src",res('img_final.png'));
+    $(".finish_check_img").attr("src",res('btn_checkout.png'));
+    $("#finish_box").css("background-image","url('"+res('bg_questions.png')+"')");
+}
+function result_res_loaded(){
+    $(".score_master_img").attr("src",res('bg_question_photo_zone.png'));
+    $(".again_play_btn,.no_play_btn").attr("src",res('btn_result.png'));
+    $(".fp_logo_img").attr("src",res('img_result_fenpu.png'));
+    $(".layer_small_img,.layer_big_img").attr("src",res('bg_popover_01.png'));
+    $(".layer_bigger_img").attr("src",res('img_popover_download.png'));
+    $("#result_box").css("background-image","url('"+res('bg_questions.png')+"')");
+}
+function begin(){
+    $(".layer").hide();
+	$(".layer_white").hide();
+	$(".duang_layer").hide();
+    $("#welcome_box").hide();
+    $("#result_box").hide();
+    $("#game_box").show();
+    __begin_time = new Date().getTime();
+    __curr_question = 1;
+    __op_num = 0;
+    show_question(__curr_question);
+}
+function finish(){
+    __end_time = new Date().getTime();
+    var sec = parseInt((__end_time - __begin_time) /1000);
+    var accuracy = __question_num / __op_num * 100;
+    accuracy = parseInt(accuracy);
+    __user_score = accuracy + 5;
+    $(".finish_time").eq(0).html("你答题用时 " + sec + " 秒正确率" + accuracy +"%");
+    set_score();
+    $("#game_box").hide();
+    $("#finish_box").show();
+    $(".finish_check_img").click(function(){
+        result();
+    });
+    
+}
+function set_score(){
+    
+    $(".score").html(__user_score);
+    var money = 1;
+    if(__user_score <50){
+        money = 5;
+    } else if(__user_score <50 && __user_score >200){
+        money = 15;
+    }else{
+        money = 20;
+    }
+    $(".score_own_ticket").html("￥"+money);
+}
+function result(){
+    $("#finish_box").hide();
+    $("#result_box").show();
+}
+function resize_game_screen(){
+    var screen_width = $(window).width();
+    var screen_height = $(window).height();
+    if(screen_width>680){
+        $(".scene").width(680);
+    }
+    $(".scene").height(screen_height);
+    $("#loading_box h2").height(screen_height);
+    $("#loading_box h2").css("line-height",screen_height+"px");
+}
+
+function answer(question_id,liobj){
+    if(!__can_answer){
+        return;
+    }
+    __can_answer = false;
+    liobj = $(liobj);
+    var index = question_id-1;
+    var question = __question_list[index];
+    var answer = question.answer + "";
+    var wrong_icon = "<img class='i_wrong' src='"+res('icon_question_q_and_a_wrong.png')+"' />";
+    var right_icon = "<img class='i_right' src='"+res('icon_question_q_and_a_right.png')+"' />";
+    __op_num ++ ;
+    $(".i_right").remove();
+    $(".i_wrong").remove();
+    if(liobj.index() == answer){
+        var next_question_id = question_id+1;
+        $(liobj).html($(liobj).html()+right_icon);
+        if(next_question_id > __question_num){
+            setTimeout("finish();",300);
+        }else{
+            setTimeout("show_question("+next_question_id+");",300);
+        }
+    }else{
+        $(liobj).html($(liobj).html()+wrong_icon);
+        __can_answer = true;
+    }
+}
+function show_question(question_id){
+    __can_answer = true;
+    var index = question_id-1;
+    var question = __question_list[index];
+    var pa_num = index;
+    var q_num = question_id;
+    if(pa_num<10){
+        pa_num = "0"+pa_num;
+    }
+    if(q_num<10){
+        q_num = "0"+q_num;
+    }
+    $("#game_box .q_pic").attr("src", question.pic );
+    $("#game_box .q_progress").attr("src",res('img_progressbar_'+pa_num+'.png'));
+    $("#game_box .q_num").attr("src",res('icon_question_num_'+q_num+'.png'));
+    var answer_html = "<li class='question'>" + question.title + "</li>";
+    var answer_list = question.answerList;
+    for (var i=0;i<answer_list.length;i++){
+        var _answer = answer_list[i];
+        answer_html += "<li>" + String.fromCharCode(65+i) + ":" + _answer.text + "</li>";
+    }
+    $("#game_box .qa").html(answer_html);
+    $("#game_box .qa").attr("question_id",question_id);
+    $("#game_box .qa li:gt(0)").click(function(){
+        answer(question_id,$(this));
+    });
+}
+function load_question(){
+    //ajax异步加载题库
+    //将题库列表返回
+    var data=[];
+    for (var i=0;i<15;i++){
+        data.push({
+            "pic": res('pic_1.png'),
+            "questionId":i,
+            "title":"这个产品叫啥子"+i,
+            "answerList":[
+                {"text":"金吒1"},{"text":"木吒2"},{"text":"火吒3"},{"text":"土吒4"}
+            ],
+            "answer":1
+        });
+    }
+    question_loaded(data);
+}
+
+function show_replay(){
+    $(".layer").show();
+	$(".layer_white").show();
+	$(".duang_layer").show();
+    $(".duang").html(3);
+    function  animation(){
+        var duang_html = $(".duang").html();
+        duang_html = parseInt(duang_html);
+        if (isNaN(duang_html)){
+             begin();
+             return;
+        }
+        duang_html = duang_html-1;
+        if(duang_html==0){
+            $(".duang").html("Duang!");
+        }else{
+            $(".duang").html(duang_html);
+        }
+        setTimeout(animation, 1000);
+    }
+    setTimeout(animation, 1000);
+}
+
+
+
+$(document).ready(function(){
+    resize_game_screen();
+    $(window).resize(function(){
+        resize_game_screen();
+    }); 
+    $("#welcome_box .go").click(function(){
+        begin();
+    });
+    $(".again_play_btn,.again_play").click(function(){
+        show_replay();
+   });
+   $(".no_play_btn,.no_play").click(function(){
+      $(".layer").show();
+	  $(".layer_white").show();
+	  $(".get_layer").show();
+   });
+   $(".layer").click(function(){
+      $(".layer").hide();
+      $(".duang_layer").hide()
+      $(".get_layer").hide();
+      $(".download_layer").hide();
+      $(".mm_layer").hide();
+   });
+   $(".fast_get_section").click(function(){
+       if (!__is_mm){
+           $(".get_layer").hide();
+           $(".mm_layer").show();
+           returnl
+       }
+       $.get_data(
+         get_get_cash_coupon_api(),
+         "score="+__user_score,
+         function(data){
+           if(data.error != undefined && data.error == 0){
+              $(".get_layer").hide();
+              $(".download_layer").show();
+           }else if(data.error && data.error == 1){
+              alert(data.errorString);
+           }else if(data.error && data.error == 2){
+              window.location=data.authuri;
+           }
+         },
+         function(){},'json'
+       );
+     });
+   
+   setTimeout(function() {  
+        window.scrollTo(0, 1)  ;
+   }, 300); 
+   jQuery.imageLoader(welcome_scene_resources,welcome_res_loaded);
+   load_question();
+   jQuery.imageLoader(game_scene_resources,game_res_loaded);
+   jQuery.imageLoader(finish_scene_resources,finish_res_loaded);
+   jQuery.imageLoader(result_scene_resources,result_res_loaded);
+});
+
+
+$.extend({
+    get_data: function (url, args, success_cb, completion_cb, datatype) {
+        datatype = (datatype == null ? 'text' : datatype.toUpperCase());
+        success_cb = (success_cb === null ? $.success_callback : success_cb);
+        completion_cb = (completion_cb === null ? $.complete_callback : completion_cb);
+        $.ajax({
+            type: 'POST',
+            dataType: datatype.toLowerCase(),
+            url: url,
+            data: args,
+            timeout: 10000,
+            async: true,
+            cache: true,
+            beforeSend: $.before_send_callback,
+            complete: completion_cb,
+            success: success_cb,
+            error: $.error_callback
+        });
+    },
+    success_callback: function (xmlReq) {
+        $.ajax_complete();
+    },
+    before_send_callback: function (xmlReq) {
+
+    },
+    complete_callback: function (xmlReq, textStatus) {
+        /**
+         * 数据获取完成时执行
+         */
+
+    },
+    /**
+     * 请求出现错误 responseText 请求的数据 data || textStatus 文本状态 eg：success
+     */
+    error_callback: function (xmlReq, textStatus) {
+        switch (xmlReq.status) {
+            case 404: // Not Found
+                console.log("XmlHttpRequest status: [404] \nThe requested URL was not found on this server.");
+                break;
+            case 500:
+                console.log("XmlHttpRequest status: [500] Service Unavailable");
+                break;
+            case 400:
+                console.log("XmlHttpRequest status: [400] Bad Request");
+                break;
+            case 503: // Service Unavailable
+                console.log("XmlHttpRequest status: [503] Service Unavailable");
+                break;
+            default:
+                break;
+        }
+    }
+});
+    </script>
+    <script>
+    {% if error != None and error = 0 %}
+       __show_result = true;
+       __user_score = {{ cashCoupons.0.source }};
+    {% endif %}
+    {% if is_mm != None and is_mm = 1 %}
+       __is_mm = true;
+    {% endif %}
+    </script>
     <script type="text/javascript" src="{% static "js/imageLoader.js" %}"></script>
   </body>
 </html>
-        
-        
-        
