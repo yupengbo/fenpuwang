@@ -40,12 +40,15 @@ a,button,input{-webkit-tap-highlight-color:rgba(0,0,0,0);}
 .t_r{text-align:right;}
 .div_center{margin:0px auto;}
 .bold{font-weight:bold;}
+.lighter{font-weight:100;}
 .fc1{color:#999;}
 .fc2{color:#ff5346;}
 .fc3{color:#fff;}
 .fs15{font-size:15px;}
 .fs11{font-size:11px;}
+.fs17{font-size:17px;}
 .fs20{font-size:20px;}
+.lh20{line-height:20px;}
 body{background-color:#ffefec;}
 #loading_box{background-color:#FEF6F5;height:100%;width:100%;vertical-align:middle;}
 #loading_box h2{color:#CD9C99;font-size:28px;text-align:center;}
@@ -87,13 +90,13 @@ body{background-color:#ffefec;}
 #result_box .master{text-align:right;}
 #result_box .score_rule{margin-top:5%;font-weight:bold;color:#666;font-size:15px;line-height:18px;}
 #result_box .score_own_face{font-weight:bold;color:#666;font-size:15px;line-height:18px;}
-#result_box .result_score_ticket{width:58%;height:50px;background-color:#ffa32a;margin:10% auto 0px;}
+#result_box .result_score_ticket{width:200px;height:50px;background-color:#ffa32a;margin:10% auto 0px;} {##width:58%#}
 .result_next_st{width:48%;background-color:#ffa32a;margin:0px auto;}
 .score_own_ticket{width:30%;font-size:32px;color:#fff;line-height:50px;}
 .ticket_use_rule{width:69%;margin-top:10px;}
 #result_box .score_master_img{width:93%;}
 #result_box .again_play_btn,#result_box  .again_play_face,#result_box .no_play_btn,#result_box .no_play_face,#result_box .fp_logo_img{width:70%;}
-#result_box .again_play,#result_box .no_play{width:70%;left:15%;top:35%;color:#fff;}
+#result_box .again_play,#result_box .no_play{width:70%;left:15%;top:39%;color:#fff;}
 #result_box .fp_logo_img{margin-top:5%;}
 .layer{display:none;position:fixed;top:0px;left:0px;width:100%;height:100%;}
 .layer_content{background-color:black;height:100%;max-width:680px;filter:alpha(opacity=60);opacity:0.6;-moz-opacity:0.6;-khtml-opacity:0.6;}
@@ -163,18 +166,19 @@ body{background-color:#ffefec;}
              <div class="score_master">
                <div class="fl score t_r">98</div>
                <div class="fl master">
-                 <div class="fs15 fc1 t_l">达人</div>
-                 <div class="fs15 fc1 t_l">指数</div>
+                 <div class="fs15 fc1 t_l">&nbsp;达人</div>
+                 <div class="fs15 fc1 t_l">&nbsp;指数</div>
                </div>
                <div class="clear"></div>
              </div>
              <div class="score_rule">指数值<span class="fc2">越高</span>,现金券<span class="fc2">越多</div>
-             <div class="score_own_face">根据你的指数,你赢的了</div>
+             <div style="height: 2px"></div>
+             <div class="score_own_face">根据你的指数,你赢得了</div>
              <div class="result_score_ticket">
-                   <div class="fl score_own_ticket">￥25</div>
+                   <div class="fl score_own_ticket">￥-</div>
                   <div class="fl ticket_use_rule">
                      <div class="fc3 fs15 bold">粉扑现金券</div>
-                     <div class="fc3 fs11">满一元即可使用</div>
+                     <div class="fc3 fs11 lh20 lighter">满一元即可使用</div>
                   </div>
              </div> 
            </div>
@@ -205,14 +209,14 @@ body{background-color:#ffefec;}
         </div>  
         <div class="hide get_layer">
           <img  class="layer_big_img" />
-          <div class="absolute score_ticket_one  t_c">就酱吗？？不再玩一次吗？？</div>
-          <div class="absolute score_ticket_two  t_c">每个微信号限领一次福利哦！</div>
+          <div class="absolute score_ticket_one t_c">就酱吗？？不再玩一次吗？？</div>
+          <div class="absolute score_ticket_two t_c">每个微信号限领一次福利哦！</div>
           <div class="absolute score_ticket_section">
              <div class="result_next_st">
                <div class="fl score_own_ticket  t_c">￥25</div>
                <div class="fl ticket_use_rule">
                   <div class="fc3 fs15 bold  t_c">粉扑现金券</div>
-                  <div class="fc3 fs11  t_c">满一元即可使用</div>
+                  <div class="fc3 fs11 t_c lh20">满一元即可使用</div>
                </div>
                <div class='clear'></div>
              </div>
@@ -298,6 +302,8 @@ var __curr_question = 1;
 var __begin_time = 0;
 //游戏结束时间
 var __end_time = 0;
+//游戏最佳时间 单位 秒
+var __best_time = 20;
 //题库
 var __question_list;
 //分数
@@ -376,8 +382,9 @@ function finish(){
     __end_time = new Date().getTime();
     var sec = parseInt((__end_time - __begin_time) /1000);
     var accuracy = __question_num / __op_num * 100;
-    accuracy = parseInt(accuracy);
-    __user_score = accuracy + 5;
+{#    accuracy = parseInt(accuracy);#}
+    __user_score = parseInt(accuracy * __best_time / sec);
+    __user_score = __user_score > 100 ? 100 : __user_score;
     $(".finish_time").eq(0).html("你答题用时 " + sec + " 秒正确率" + accuracy +"%");
     set_score();
     $("#game_box").hide();
@@ -385,20 +392,18 @@ function finish(){
     $(".finish_check_img").click(function(){
         result();
     });
-    
 }
 function set_score(){
-    
     $(".score").html(__user_score);
     var money = 1;
     if(__user_score <50){
-        money = 5;
-    } else if(__user_score <50 && __user_score >200){
-        money = 15;
-    }else{
+        money = 10;
+    } else if(50<= __user_score && __user_score <100){
         money = 20;
+    }else{
+        money = 30;
     }
-    $(".score_own_ticket").html("￥"+money);
+    $(".score_own_ticket").html("&nbsp;¥"+money);//¥ ￥
 }
 function result(){
     $("#finish_box").hide();
