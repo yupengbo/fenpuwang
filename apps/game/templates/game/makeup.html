@@ -90,7 +90,7 @@ body{background-color:#ffefec;}
 #result_box .master{text-align:right;}
 #result_box .score_rule{margin-top:5%;font-weight:bold;color:#666;font-size:15px;line-height:18px;}
 #result_box .score_own_face{font-weight:bold;color:#666;font-size:15px;line-height:18px;}
-#result_box .result_score_ticket{width:200px;height:50px;background-color:#ffa32a;margin:10% auto 0px;} {##width:58%#}
+#result_box .result_score_ticket{width:200px;height:50px;background-color:#ffa32a;margin:10% auto 0px;}
 .result_next_st{width:48%;background-color:#ffa32a;margin:0px auto;}
 .score_own_ticket{width:30%;font-size:32px;color:#fff;line-height:50px;}
 .ticket_use_rule{width:69%;margin-top:10px;}
@@ -382,7 +382,7 @@ function finish(){
     __end_time = new Date().getTime();
     var sec = parseInt((__end_time - __begin_time) /1000);
     var accuracy = __question_num / __op_num * 100;
-{#    accuracy = parseInt(accuracy);#}
+    accuracy = parseInt(accuracy);
     __user_score = parseInt(accuracy * __best_time / sec);
     __user_score = __user_score > 100 ? 100 : __user_score;
     $(".finish_time").eq(0).html("你答题用时 " + sec + " 秒正确率" + accuracy +"%");

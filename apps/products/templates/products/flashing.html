@@ -81,7 +81,7 @@ opacity:0;/*FF*/
 <div class="relative banner_pre" style="{% if is_flashing == 1 %}display:none;{% endif %}">
   <img src="http://static.fenpuwang.com/images/banner_big_sale_pre.jpg" class="banner_img">
   <div class="absolute banner_button_section">
-       <a class='btn_get_qualification' href="javascript:void(0);" ><div class="div_center banner_button" style="display:none;">获取秒杀资格</div></a>
+       <a class='btn_get_qualification' href="javascript:void(0);" ><div class="div_center banner_button" style="display:none;">参与秒杀</div></a>
   </div>
   <div class="absolute countdown_letter_time">
      <div class="marg_l_ft" style="display:none;">
@@ -125,21 +125,23 @@ opacity:0;/*FF*/
      <span class="seckill_promote_price">¥{{ letter.flash_sizes.price }}</span>
      <span class="seckill_origin_price">¥{{ letter.price }}</span>
   </div>
-  {% if letter.flashing == 1 %}
-  <div class="seckill_detail_cart">
-    <div class="float_l seckill_detail_button"  onclick='detail({{ letter.productId }});'>查看详情</div>
-       <div class="float_l seckill_cart_button sold_out" {% if letter.remaining_stock  > 0 %}style='display:none;'{% endif %} >销售告罄</div>
-       <div class="float_l seckill_cart_button add_to_cart" {% if letter.remaining_stock  == 0 %}style='display:none;'{% endif %}  onclick='add_to_cart({{ letter.productId }},{{ letter.flash_goods_id }});'>立即加入购物车</div>
-  </div>
-  {% endif %}
-  {% if letter.flashing == 0 %}
-    <div class="seckill_pre_detail" onclick='detail({{ letter.productId }});'>查看详情</div> 
-  {% endif %}
 </div>
 <div class="seckill_detail_description">
 <i class='lq'></i>
 <i class='rq'></i>
 {{ letter.promotion_description }}
+</div>
+<div class="text_center">
+  {% if letter.flashing == 1 %}
+  <div class="seckill_detail_cart">
+    <div class="float_l seckill_detail_button"  onclick='detail({{ letter.productId }});'>查看详情</div>
+       <div class="float_l seckill_cart_button sold_out" {% if letter.remaining_stock  > 0 %}style='display:none;'{% endif %} >抢光了</div>
+       <div class="float_l seckill_cart_button add_to_cart" {% if letter.remaining_stock  == 0 %}style='display:none;'{% endif %}  onclick='add_to_cart({{ letter.productId }},{{ letter.flash_goods_id }});'>立即加入购物车</div>
+  </div>
+  {% endif %}
+  {% if letter.flashing == 0 %}
+    <div class="seckill_pre_detail" onclick='detail({{ letter.productId }});'>查看详情</div>
+  {% endif %}
 </div>
 <div class="seckill_line"></div>
 </div>
@@ -148,7 +150,7 @@ opacity:0;/*FF*/
 <div class="relative tomorrow_section" style="{% if is_flashing == 0 %}display:none;{% endif %}">
   <img src="http://static.fenpuwang.com/images/banner_big_sale_next.jpg" class="tomorrow_img">
   <div class="absolute tomorrow_button_section">
-     <a class='btn_get_qualification' href="javascript:void(0);"><div class="div_center tomorrow_button" style="display:none;">点击获取明日秒杀资格</div></a>
+     <a class='btn_get_qualification' href="javascript:void(0);"><div class="div_center tomorrow_button" style="display:none;">参与明日秒杀</div></a>
   </div>
 </div>
 <iframe id='fenpuFrame' style='display:none;'></iframe>
@@ -167,12 +169,14 @@ opacity:0;/*FF*/
      <span class="seckill_promote_price">¥{{ letter.flash_sizes.price }}</span>
      <span class="seckill_origin_price">¥{{ letter.price }}</span>
   </div>
-    <div class="seckill_pre_detail" onclick='detail({{ letter.productId }});'>查看详情</div> 
 </div>
 <div class="seckill_detail_description">
 <i class='lq'></i>
 <i class='rq'></i>
 {{ letter.promotion_description }}
+</div>
+<div class="text_center">
+<div class="seckill_pre_detail" onclick='detail({{ letter.productId }});'>查看详情</div>
 </div>
 <div class="seckill_line"></div>
 </div>
@@ -184,7 +188,7 @@ opacity:0;/*FF*/
        <div class='flow_tip'>距离秒杀还有</div>
        <div class='flow_time'>00:13:14</div>
 	</div>
-    <div class='flow_cart_btn'>获取秒杀资格</div>
+    <div class='flow_cart_btn'>参与秒杀</div>
   </div>
 </div>
 </div>
@@ -465,7 +469,7 @@ $(document).ready(function(){
        if (__exists_qualification){
 	      $(".flow_cart_btn").html("已获取秒杀资格");
 	   }else{
-	      $(".flow_cart_btn").html("获取秒杀资格");
+	      $(".flow_cart_btn").html("参与秒杀");
 	   }
 	   $(".flow_cart_btn").attr("event","get_qualification");
     }
